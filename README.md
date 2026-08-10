@@ -87,11 +87,15 @@ compares reviewed scenario snapshots without rewriting them. See the
 
 ## Prepared deployment and rollback
 
-After merging and validating a deployment source, `prepare-deployment` creates
-an immutable checksum-bound bundle containing the active rollback source,
-deployment source, validation evidence, and optional merge evidence. `deploy`
-requires the caller to restate the exact target ID and resulting name, verifies
-that the live target is unchanged, writes once, and verifies the read-back.
+`prepare` fetches the selected active Liftosaur program, merges its state with a
+new Git candidate relative to the previously deployed source, runs native
+validation, and creates an immutable checksum-bound deployment bundle. It reads
+Liftosaur but never writes to it. `prepare-deployment` remains available for
+callers that already produced the active source, merged program, and evidence.
+
+`deploy` requires the caller to restate the exact target ID and resulting name,
+verifies that the live target is unchanged, writes once, and verifies the
+read-back.
 
 If a known successful write does not verify, the command restores and verifies
 the prepared rollback source. It never guesses through an ambiguous write.

@@ -77,13 +77,35 @@ export async function prepareDeploymentBundle({
   deployedName,
   preparedAt = new Date().toISOString(),
 }) {
-  await requireNewDirectory(outputDirectory, "Deployment bundle directory");
   const [active, deploy, validationText, mergeText] = await Promise.all([
     readFile(activeFile, "utf8"),
     readFile(deployFile, "utf8"),
     readFile(validationReportFile, "utf8"),
     mergeReportFile ? readFile(mergeReportFile, "utf8") : null,
   ]);
+  return prepareDeploymentBundleFromContents({
+    active,
+    deploy,
+    validationText,
+    mergeText,
+    outputDirectory,
+    target,
+    deployedName,
+    preparedAt,
+  });
+}
+
+export async function prepareDeploymentBundleFromContents({
+  active,
+  deploy,
+  validationText,
+  mergeText = null,
+  outputDirectory,
+  target,
+  deployedName,
+  preparedAt = new Date().toISOString(),
+}) {
+  await requireNewDirectory(outputDirectory, "Deployment bundle directory");
   assertCanonicalLiftosaurSource(active, "Active rollback source");
   assertCanonicalLiftosaurSource(deploy, "Deployment source");
   const deployHash = sha256(deploy);
@@ -275,6 +297,7 @@ async function apiJson(apiBase, apiKey, endpoint, init = {}) {
 
 function validateProgram(program, programId, label) {
   if (!program || typeof program !== "object") throw new Error(`${label} response is missing program data`);
+  if (typeof program.id !== "string" || !program.id) throw new Error(`${label} target ID is missing`);
   if (program.id !== programId) throw new Error(`${label} target ID changed`);
   if (typeof program.name !== "string") throw new Error(`${label} target name is missing`);
   if (typeof program.isCurrent !== "boolean") throw new Error(`${label} current-program status is missing`);
@@ -286,6 +309,37 @@ function validateProgram(program, programId, label) {
 async function fetchProgram(apiBase, apiKey, programId, label) {
   const response = await apiJson(apiBase, apiKey, `programs/${encodeURIComponent(programId)}`);
   return validateProgram(response?.data, programId, label);
+}
+
+export async function fetchDeploymentTarget({
+  programId,
+  expectedName,
+  apiKey,
+  apiBase = DEFAULT_API_BASE,
+}) {
+  if (!apiKey?.startsWith("lftsk_")) {
+    throw new Error(`${API_KEY_NAME} must contain a Liftosaur API key starting with lftsk_`);
+  }
+  if (!programId) throw new Error("Liftosaur program ID is required");
+  if (!expectedName) throw new Error("Expected Liftosaur program name is required");
+  try {
+    const response = await apiJson(apiBase, apiKey, `programs/${encodeURIComponent(programId)}`);
+    const resolvedId = response?.data?.id;
+    const program = validateProgram(
+      response?.data,
+      programId === "current" ? resolvedId : programId,
+      "Preparation"
+    );
+    if (programId !== "current" && program.id !== programId) {
+      throw new Error("Preparation target ID changed");
+    }
+    if (program.name !== expectedName) {
+      throw new Error("Preparation target name changed");
+    }
+    return program;
+  } catch (error) {
+    throw new Error(`Liftosaur preparation failed: ${safeMessage(error, apiKey)}`);
+  }
 }
 
 async function putProgram(apiBase, apiKey, target, source) {

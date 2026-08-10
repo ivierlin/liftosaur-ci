@@ -1,0 +1,152 @@
+import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
+import { createServer } from "node:http";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import os from "node:os";
+import path from "node:path";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+const repositoryRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const cli = path.join(repositoryRoot, "bin", "liftosaur-ci.mjs");
+const apiKey = `lftsk_${"pipeline_secret"}`;
+
+function source({ volume = 2, timer = 120 } = {}) {
+  return `# Week 1
+## Day A
+Squat / 3x5 100kg / ${timer}s / progress: custom(volume: ${volume}) {~ state.volume = state.volume ~}
+
+
+`;
+}
+
+function run(args, environment) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [cli, ...args], {
+      env: environment,
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    let stdout = "";
+    let stderr = "";
+    child.stdout.setEncoding("utf8");
+    child.stderr.setEncoding("utf8");
+    child.stdout.on("data", (chunk) => { stdout += chunk; });
+    child.stderr.on("data", (chunk) => { stderr += chunk; });
+    child.on("error", reject);
+    child.on("close", (code) => resolve({ code, stdout, stderr }));
+  });
+}
+
+async function requestBody(request) {
+  const chunks = [];
+  for await (const chunk of request) chunks.push(chunk);
+  return Buffer.concat(chunks).toString("utf8");
+}
+
+test("prepare and deploy run the complete Git-to-Liftosaur pipeline", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "liftosaur-pipeline-"));
+  const baseFile = path.join(root, "base.liftoscript");
+  const candidateFile = path.join(root, "candidate.liftoscript");
+  const conflictBundle = path.join(root, "conflict-bundle");
+  const bundle = path.join(root, "bundle");
+  const record = path.join(root, "record");
+  const base = source();
+  const active = source({ volume: 3 });
+  const candidate = source({ timer: 180 });
+  let program = { id: "program-1", name: "Active", text: active, isCurrent: true };
+  const requests = [];
+  const server = createServer(async (request, response) => {
+    const body = await requestBody(request);
+    requests.push({ method: request.method, url: request.url });
+    response.setHeader("content-type", "application/json");
+    if (request.headers.authorization !== `Bearer ${apiKey}`) {
+      response.statusCode = 401;
+      response.end(JSON.stringify({ error: { code: "unauthorized", message: "Bad token" } }));
+      return;
+    }
+    if (
+      request.method === "GET"
+      && (request.url === "/api/v1/programs/current" || request.url === "/api/v1/programs/program-1")
+    ) {
+      response.end(JSON.stringify({ data: program }));
+      return;
+    }
+    if (request.method === "PUT" && request.url === "/api/v1/programs/program-1") {
+      const update = JSON.parse(body);
+      program = { ...program, name: update.name, text: update.text };
+      response.end(JSON.stringify({ data: program }));
+      return;
+    }
+    response.statusCode = 404;
+    response.end(JSON.stringify({ error: { code: "not_found", message: "Not found" } }));
+  });
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  const apiBase = `http://127.0.0.1:${server.address().port}/api/v1`;
+  const environment = { ...process.env, LIFTOSAUR_API_KEY: apiKey };
+
+  try {
+    await Promise.all([
+      writeFile(baseFile, base, "utf8"),
+      writeFile(candidateFile, source({ volume: 4 }), "utf8"),
+    ]);
+    const conflicted = await run([
+      "prepare",
+      "--base", baseFile,
+      "--candidate", candidateFile,
+      "--program-id", "current",
+      "--expected-program-name", "Active",
+      "--deployed-program-name", "Deployed",
+      "--output", conflictBundle,
+      "--api-base", apiBase,
+    ], environment);
+    assert.equal(conflicted.code, 2, `${conflicted.stdout}\n${conflicted.stderr}`);
+    assert.match(conflicted.stderr, /unresolved three-way merge conflicts/);
+    assert.doesNotMatch(conflicted.stderr, new RegExp(apiKey));
+    await assert.rejects(readFile(path.join(conflictBundle, "deployment-manifest.json")), { code: "ENOENT" });
+    requests.length = 0;
+    await writeFile(candidateFile, candidate, "utf8");
+
+    const prepared = await run([
+      "prepare",
+      "--base", baseFile,
+      "--candidate", candidateFile,
+      "--program-id", "current",
+      "--expected-program-name", "Active",
+      "--deployed-program-name", "Deployed",
+      "--output", bundle,
+      "--api-base", apiBase,
+    ], environment);
+    assert.equal(prepared.code, 0, `${prepared.stdout}\n${prepared.stderr}`);
+    assert.match(prepared.stdout, /1 days validated/);
+    assert.deepEqual(requests, [{ method: "GET", url: "/api/v1/programs/current" }]);
+
+    const merged = await readFile(path.join(bundle, "deploy.liftoscript"), "utf8");
+    assert.match(merged, /180s/);
+    assert.match(merged, /volume: 3/);
+    const manifest = JSON.parse(await readFile(path.join(bundle, "deployment-manifest.json"), "utf8"));
+    assert.equal(manifest.target.id, "program-1");
+    assert.equal(manifest.target.name, "Active");
+    assert.equal(manifest.deployment.name, "Deployed");
+    assert.equal(manifest.evidence.merge.file, "merge-report.json");
+    assert.equal(manifest.evidence.validation.file, "validation-report.json");
+
+    const deployed = await run([
+      "deploy",
+      "--bundle", bundle,
+      "--confirm-program-id", "program-1",
+      "--confirm-program-name", "Deployed",
+      "--output", record,
+      "--api-base", apiBase,
+    ], environment);
+    assert.equal(deployed.code, 0, `${deployed.stdout}\n${deployed.stderr}`);
+    assert.equal(program.name, "Deployed");
+    assert.equal(program.text, merged);
+    const report = JSON.parse(await readFile(path.join(record, "deployment-report.json"), "utf8"));
+    assert.equal(report.deploymentPerformed, true);
+    assert.equal(report.rollbackAttempted, false);
+    assert.deepEqual(requests.map(({ method }) => method), ["GET", "GET", "PUT", "GET"]);
+  } finally {
+    await new Promise((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));
+    await rm(root, { recursive: true, force: true });
+  }
+});

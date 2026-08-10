@@ -4,10 +4,33 @@ Deployment is intentionally split into offline preparation and an explicit live
 write. The caller owns credential storage, approval, private artifact retention,
 and selection of the active source supplied during preparation.
 
-## Prepare
+## End-to-end preparation
 
-First produce a successful validation report for the exact source to deploy.
-When the source came from `merge`, retain its successful merge report too.
+The recommended command takes the exact previously deployed Git source and the
+new Git candidate. It fetches the selected active Liftosaur program, performs a
+three-way merge, validates the merged source, and writes the prepared bundle:
+
+```sh
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare \
+  --base previously-deployed.liftoscript \
+  --candidate new-git-source.liftoscript \
+  --program-id current \
+  --expected-program-name "Current name" \
+  --deployed-program-name "New name" \
+  --output deployment-bundle
+```
+
+`--program-id` may be an exact program ID or `current`; the bundle always records
+the resolved ID. The expected current name prevents selection of an unintended
+target. Preparation uses the API key only for a read and never changes
+Liftosaur. Merge conflicts or native validation failures produce no deployable
+bundle.
+
+## Assemble an externally prepared deployment
+
+For external orchestration, first produce a successful validation report for
+the exact source to deploy. When the source came from `merge`, retain its
+successful merge report too.
 
 ```sh
 node bin/liftosaur-ci.mjs prepare-deployment \
@@ -22,10 +45,10 @@ node bin/liftosaur-ci.mjs prepare-deployment \
   --output deployment-bundle
 ```
 
-Preparation is offline. It verifies canonical source formatting and binds the
-deployment source to passed validation and merge evidence. The new bundle
-directory contains private program state and should never be committed or
-published.
+`prepare-deployment` is offline. It verifies canonical source formatting and
+binds the deployment source to passed validation and merge evidence. Bundles
+from either preparation path contain private program state and should never be
+committed or published.
 
 ## Deploy
 

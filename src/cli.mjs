@@ -5,7 +5,14 @@ import process from "node:process";
 import { checkRepository } from "./check.mjs";
 import { deployPreparedBundle, prepareDeploymentBundle } from "./deployment.mjs";
 import { mergeLiftosaurSources } from "./merge.mjs";
-import { createScenarioSnapshot, LIFTOSAUR_CI_CLI, sha256 } from "./report.mjs";
+import { LiftosaurPreparationError, prepareLiftosaurDeployment } from "./prepare.mjs";
+import {
+  createMergeReport,
+  createScenarioSnapshot,
+  createValidationReport,
+  LIFTOSAUR_CI_CLI,
+  sha256,
+} from "./report.mjs";
 import {
   LIFTOSAUR_VALIDATOR,
   LiftosaurValidationError,
@@ -51,6 +58,15 @@ function usage() {
     --deployed-program-name <new-name> \\
     --output <deployment-bundle-directory>
 
+  liftosaur-ci prepare \\
+    --base <previously-deployed.liftoscript> \\
+    --candidate <new-git-source.liftoscript> \\
+    --program-id <liftosaur-program-id|current> \\
+    --expected-program-name <current-name> \\
+    --deployed-program-name <new-name> \\
+    --output <deployment-bundle-directory> \\
+    [--api-base <url>]
+
   liftosaur-ci deploy \\
     --bundle <deployment-bundle-directory> \\
     --confirm-program-id <liftosaur-program-id> \\
@@ -63,8 +79,9 @@ function usage() {
     [--config <liftosaur-ci.json>] \\
     [--report <check-report.json>]
 
-Merge, validation, snapshots, checks, and deployment preparation are offline.
-Deploy reads LIFTOSAUR_API_KEY and changes exactly one prepared Liftosaur target.
+Merge, validation, snapshots, checks, and prepare-deployment are offline.
+Prepare reads LIFTOSAUR_API_KEY but only reads Liftosaur. Deploy uses the same
+environment variable and changes exactly one prepared Liftosaur target.
 Existing output files and directories are never overwritten.`;
 }
 
@@ -138,19 +155,7 @@ async function runMerge(argv) {
     Object.values(inputs).map((file) => readFile(file, "utf8"))
   );
   const result = await mergeLiftosaurSources({ base, active, candidate });
-  const report = {
-    formatVersion: 1,
-    command: "merge",
-    cli: LIFTOSAUR_CI_CLI,
-    status: result.report.status,
-    inputs: {
-      base: { sha256: sha256(base) },
-      active: { sha256: sha256(active) },
-      candidate: { sha256: sha256(candidate) },
-    },
-    output: result.source ? { sha256: sha256(result.source) } : null,
-    merge: result.report,
-  };
+  const report = createMergeReport({ base, active, candidate }, result);
   if (!result.source) {
     if (outputs.report) {
       await writeFile(outputs.report, `${JSON.stringify(report, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
@@ -178,16 +183,7 @@ async function runValidate(argv) {
   const source = await readFile(program, "utf8");
   try {
     const result = validateLiftosaurSource(source);
-    const report = {
-      formatVersion: 1,
-      command: "validate",
-      cli: LIFTOSAUR_CI_CLI,
-      status: "passed",
-      input: { sha256: sha256(source) },
-      serialized: { sha256: sha256(result.serializedSource) },
-      validator: result.validator,
-      summary: result.summary,
-    };
+    const report = createValidationReport(source, result);
     if (reportFile) {
       await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
     }
@@ -274,6 +270,40 @@ async function runPrepareDeployment(argv) {
   console.log(`Liftosaur deployment bundle prepared: ${outputDirectory}`);
 }
 
+async function runPrepare(argv) {
+  const options = parseOptions(argv, [
+    "base",
+    "candidate",
+    "program-id",
+    "expected-program-name",
+    "deployed-program-name",
+    "output",
+    "api-base",
+  ]);
+  const outputDirectory = requireOption(options, "output");
+  try {
+    const result = await prepareLiftosaurDeployment({
+      baseFile: requireOption(options, "base"),
+      candidateFile: requireOption(options, "candidate"),
+      outputDirectory,
+      programId: requireTextOption(options, "program-id"),
+      expectedProgramName: requireTextOption(options, "expected-program-name"),
+      deployedProgramName: requireTextOption(options, "deployed-program-name"),
+      apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+      apiBase: options["api-base"],
+    });
+    console.log(
+      `Liftosaur deployment prepared: ${result.manifest.target.name} → `
+      + `${result.manifest.deployment.name}; ${result.validation.days} days validated`
+    );
+  } catch (error) {
+    if (error instanceof LiftosaurPreparationError) {
+      throw new CliError(error.message, error.exitCode);
+    }
+    throw error;
+  }
+}
+
 async function runDeploy(argv) {
   const options = parseOptions(argv, [
     "bundle",
@@ -325,7 +355,15 @@ export async function runLiftosaurCi(argv) {
     return;
   }
   const [command, ...commandArgs] = argv;
-  const commands = new Set(["merge", "validate", "snapshot", "prepare-deployment", "deploy", "check"]);
+  const commands = new Set([
+    "merge",
+    "validate",
+    "snapshot",
+    "prepare-deployment",
+    "prepare",
+    "deploy",
+    "check",
+  ]);
   if (!commands.has(command)) throw new CliError(`Unknown command: ${command}`);
   if (commandArgs.length === 1 && (commandArgs[0] === "--help" || commandArgs[0] === "-h")) {
     console.log(usage());
@@ -335,6 +373,7 @@ export async function runLiftosaurCi(argv) {
   else if (command === "validate") await runValidate(commandArgs);
   else if (command === "snapshot") await runSnapshot(commandArgs);
   else if (command === "prepare-deployment") await runPrepareDeployment(commandArgs);
+  else if (command === "prepare") await runPrepare(commandArgs);
   else if (command === "deploy") await runDeploy(commandArgs);
   else await runCheck(commandArgs);
 }
