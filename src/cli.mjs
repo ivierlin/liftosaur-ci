@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 import { checkRepository } from "./check.mjs";
+import { configuredGitPreparation, recordDeploymentState } from "./deployment-state.mjs";
 import { deployPreparedBundle, prepareDeploymentBundle } from "./deployment.mjs";
 import { prepareGitDeployment } from "./git.mjs";
 import { mergeLiftosaurSources } from "./merge.mjs";
@@ -70,11 +71,12 @@ function usage() {
 
   liftosaur-ci prepare-git \\
     [--repository <git-worktree>] \\
-    --base-ref <last-deployed-ref> \\
+    [--config <liftosaur-ci.json> --deployment <stable-id>] \\
+    [--base-ref <last-deployed-ref>] \\
     --candidate-ref <reviewed-ref> \\
-    --program <repository-relative-path> \\
-    --program-id <exact-liftosaur-program-id> \\
-    --deployed-program-name <new-name> \\
+    [--program <repository-relative-path>] \\
+    [--program-id <exact-liftosaur-program-id>] \\
+    [--deployed-program-name <new-name>] \\
     --output <deployment-bundle-directory> \\
     [--api-base <url>]
 
@@ -85,6 +87,11 @@ function usage() {
     --output <private-deployment-record-directory> \\
     [--max-age-hours <hours>] \\
     [--api-base <url>]
+
+  liftosaur-ci record-deployment \\
+    --config <liftosaur-ci.json> \\
+    --deployment <stable-id> \\
+    --report <private-deployment-report.json>
 
   liftosaur-ci check \\
     [--config <liftosaur-ci.json>] \\
@@ -318,6 +325,8 @@ async function runPrepare(argv) {
 async function runPrepareGit(argv) {
   const options = parseOptions(argv, [
     "repository",
+    "config",
+    "deployment",
     "base-ref",
     "candidate-ref",
     "program",
@@ -328,14 +337,42 @@ async function runPrepareGit(argv) {
   ]);
   const outputDirectory = requireOption(options, "output");
   try {
+    const configured = options.config || options.deployment;
+    let preparation;
+    if (configured) {
+      if (!options.config || !options.deployment) {
+        throw new CliError("--config and --deployment must be provided together");
+      }
+      if (options.program || options["program-id"] || options["deployed-program-name"]) {
+        throw new CliError("Configured prepare-git must not override program deployment settings");
+      }
+      preparation = await configuredGitPreparation({
+        configFile: path.resolve(options.config),
+        deploymentId: options.deployment,
+        candidateRef: requireTextOption(options, "candidate-ref"),
+        baseRef: options["base-ref"] ?? null,
+        repository: options.repository ? path.resolve(options.repository) : null,
+      });
+    } else {
+      preparation = {
+        repository: path.resolve(options.repository ?? "."),
+        baseRef: requireTextOption(options, "base-ref"),
+        candidateRef: requireTextOption(options, "candidate-ref"),
+        programPath: requireTextOption(options, "program"),
+        programId: requireTextOption(options, "program-id"),
+        deployedProgramName: requireTextOption(options, "deployed-program-name"),
+        expectedBase: null,
+      };
+    }
     const result = await prepareGitDeployment({
-      repository: path.resolve(options.repository ?? "."),
-      baseRef: requireTextOption(options, "base-ref"),
-      candidateRef: requireTextOption(options, "candidate-ref"),
-      programPath: requireTextOption(options, "program"),
+      repository: preparation.repository,
+      baseRef: preparation.baseRef,
+      candidateRef: preparation.candidateRef,
+      programPath: preparation.programPath,
       outputDirectory,
-      programId: requireTextOption(options, "program-id"),
-      deployedProgramName: requireTextOption(options, "deployed-program-name"),
+      programId: preparation.programId,
+      deployedProgramName: preparation.deployedProgramName,
+      expectedBase: preparation.expectedBase,
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
     });
@@ -349,6 +386,16 @@ async function runPrepareGit(argv) {
     }
     throw error;
   }
+}
+
+async function runRecordDeployment(argv) {
+  const options = parseOptions(argv, ["config", "deployment", "report"]);
+  const result = await recordDeploymentState({
+    configFile: requireOption(options, "config"),
+    deploymentId: requireTextOption(options, "deployment"),
+    reportFile: requireOption(options, "report"),
+  });
+  console.log(`Deployment state recorded: ${result.file}`);
 }
 
 async function runDeploy(argv) {
@@ -410,6 +457,7 @@ export async function runLiftosaurCi(argv) {
     "prepare",
     "prepare-git",
     "deploy",
+    "record-deployment",
     "check",
   ]);
   if (!commands.has(command)) throw new CliError(`Unknown command: ${command}`);
@@ -424,5 +472,6 @@ export async function runLiftosaurCi(argv) {
   else if (command === "prepare") await runPrepare(commandArgs);
   else if (command === "prepare-git") await runPrepareGit(commandArgs);
   else if (command === "deploy") await runDeploy(commandArgs);
+  else if (command === "record-deployment") await runRecordDeployment(commandArgs);
   else await runCheck(commandArgs);
 }

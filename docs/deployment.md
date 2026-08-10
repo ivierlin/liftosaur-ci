@@ -30,6 +30,43 @@ An expected current name is deliberately unnecessary: the exact program ID
 selects the target, and preparation records the name returned by Liftosaur.
 `current` is therefore not accepted by `prepare-git`.
 
+### Configured deployments and tracked bases
+
+After adding a named deployment to `liftosaur-ci.json`, the first preparation
+supplies its base explicitly:
+
+```sh
+LIFTOSAUR_EXAMPLE_PROGRAM_ID=... \
+LIFTOSAUR_API_KEY=... \
+node bin/liftosaur-ci.mjs prepare-git \
+  --config liftosaur-ci.json \
+  --deployment example \
+  --base-ref first-deployed-ref \
+  --candidate-ref reviewed-ref \
+  --output deployment-bundle
+```
+
+After a verified deployment, record its public Git identity from the private
+deployment report:
+
+```sh
+LIFTOSAUR_EXAMPLE_PROGRAM_ID=... \
+node bin/liftosaur-ci.mjs record-deployment \
+  --config liftosaur-ci.json \
+  --deployment example \
+  --report private-deployment-record/deployment-report.json
+```
+
+This atomically writes `.liftosaur-ci/deployments/example.json`. The tracked
+state contains only the logical deployment ID, Git remote/path, object format,
+deployed commit and blob, timestamp, and receipt checksum. It excludes the
+Liftosaur program ID, program name, active source, and API credential.
+
+Commit that state after deployment. Future preparation omits `--base-ref`; the
+command resolves it from the recorded candidate and verifies the remote, path,
+commit, and blob before contacting Liftosaur. Recording a later deployment also
+requires its prepared base to match the current tracked state.
+
 ## File-based end-to-end preparation
 
 For sources prepared outside a Git worktree, supply the exact previously

@@ -93,6 +93,11 @@ runs native validation, and creates a checksum-bound deployment bundle. Git
 provenance is carried into the eventual deployment receipt. It reads Liftosaur
 but never writes to it.
 
+Versioned configuration can assign stable deployment IDs to program paths,
+resulting names, and environment-provided Liftosaur IDs. A verified deployment
+can then be recorded as non-sensitive Git state, allowing the next preparation
+to select and verify its base automatically.
+
 `prepare` provides the same merge and validation path for caller-supplied files.
 `prepare-deployment` remains available for callers that already produced the
 active source, merged program, and evidence.

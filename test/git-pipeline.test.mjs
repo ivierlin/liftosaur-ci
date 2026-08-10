@@ -57,6 +57,7 @@ test("prepare-git binds immutable Git inputs through verified deployment", async
   const repository = path.join(root, "repository");
   const programPath = "programs/example.liftoscript";
   const programFile = path.join(repository, ...programPath.split("/"));
+  const configFile = path.join(repository, "liftosaur-ci.json");
   const bundle = path.join(root, "bundle");
   const record = path.join(root, "record");
   const active = source({ volume: 3 });
@@ -86,14 +87,33 @@ test("prepare-git binds immutable Git inputs through verified deployment", async
   });
   await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
   const apiBase = `http://127.0.0.1:${server.address().port}/api/v1`;
-  const environment = { ...process.env, LIFTOSAUR_API_KEY: apiKey };
+  const environment = {
+    ...process.env,
+    LIFTOSAUR_API_KEY: apiKey,
+    LIFTOSAUR_EXAMPLE_PROGRAM_ID: "program-1",
+  };
 
   try {
     await mkdir(path.dirname(programFile), { recursive: true });
     git(repository, ["init"]);
     git(repository, ["remote", "add", "origin", "https://github.com/example/training.git"]);
-    await writeFile(programFile, source(), "utf8");
-    git(repository, ["add", programPath]);
+    await Promise.all([
+      writeFile(programFile, source(), "utf8"),
+      writeFile(configFile, `${JSON.stringify({
+        formatVersion: 2,
+        implementation: "liftosaur-check-config-v2",
+        programs: ["programs/*.liftoscript"],
+        scenarios: [],
+        deployments: {
+          example: {
+            program: programPath,
+            programIdEnv: "LIFTOSAUR_EXAMPLE_PROGRAM_ID",
+            deployedProgramName: "Deployed",
+          },
+        },
+      }, null, 2)}\n`, "utf8"),
+    ]);
+    git(repository, ["add", programPath, "liftosaur-ci.json"]);
     git(repository, ["-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "base"]);
     const baseSha = git(repository, ["rev-parse", "HEAD"]);
     await writeFile(programFile, source({ timer: 180 }), "utf8");
@@ -104,11 +124,10 @@ test("prepare-git binds immutable Git inputs through verified deployment", async
     const prepared = await run([
       "prepare-git",
       "--repository", repository,
+      "--config", configFile,
+      "--deployment", "example",
       "--base-ref", baseSha,
       "--candidate-ref", candidateSha,
-      "--program", programPath,
-      "--program-id", "program-1",
-      "--deployed-program-name", "Deployed",
       "--output", bundle,
       "--api-base", apiBase,
     ], environment);
@@ -152,16 +171,54 @@ test("prepare-git binds immutable Git inputs through verified deployment", async
     const report = JSON.parse(await readFile(path.join(record, "deployment-report.json"), "utf8"));
     assert.deepEqual(report.source, manifest.source);
 
+    const recorded = await run([
+      "record-deployment",
+      "--config", configFile,
+      "--deployment", "example",
+      "--report", path.join(record, "deployment-report.json"),
+    ], environment);
+    assert.equal(recorded.code, 0, `${recorded.stdout}\n${recorded.stderr}`);
+    const stateFile = path.join(repository, ".liftosaur-ci", "deployments", "example.json");
+    const stateText = await readFile(stateFile, "utf8");
+    const state = JSON.parse(stateText);
+    assert.equal(state.deployment, "example");
+    assert.equal(state.candidate.commitSha, candidateSha);
+    assert.equal(state.candidate.blobSha, manifest.source.candidate.blobSha);
+    assert.doesNotMatch(stateText, /program-1|Actual current name|Deployed/);
+
+    git(repository, ["add", ".liftosaur-ci/deployments/example.json"]);
+    git(repository, ["-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "record deployment"]);
+    await writeFile(programFile, source({ timer: 240 }), "utf8");
+    git(repository, ["add", programPath]);
+    git(repository, ["-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "next candidate"]);
+    const nextCandidateSha = git(repository, ["rev-parse", "HEAD"]);
+    const nextBundle = path.join(root, "next-bundle");
+    const nextPrepared = await run([
+      "prepare-git",
+      "--repository", repository,
+      "--config", configFile,
+      "--deployment", "example",
+      "--candidate-ref", nextCandidateSha,
+      "--output", nextBundle,
+      "--api-base", apiBase,
+    ], environment);
+    assert.equal(nextPrepared.code, 0, `${nextPrepared.stdout}\n${nextPrepared.stderr}`);
+    const nextManifest = JSON.parse(await readFile(path.join(nextBundle, "deployment-manifest.json"), "utf8"));
+    assert.equal(nextManifest.source.base.commitSha, candidateSha);
+    assert.equal(nextManifest.source.base.blobSha, state.candidate.blobSha);
+    const nextMerged = await readFile(path.join(nextBundle, "deploy.liftoscript"), "utf8");
+    assert.match(nextMerged, /240s/);
+    assert.match(nextMerged, /volume: 3/);
+
     const requestCount = requests.length;
     await writeFile(path.join(repository, "untracked.txt"), "not reviewed\n", "utf8");
     const dirty = await run([
       "prepare-git",
       "--repository", repository,
+      "--config", configFile,
+      "--deployment", "example",
       "--base-ref", baseSha,
-      "--candidate-ref", candidateSha,
-      "--program", programPath,
-      "--program-id", "program-1",
-      "--deployed-program-name", "Deployed",
+      "--candidate-ref", nextCandidateSha,
       "--output", path.join(root, "dirty-bundle"),
       "--api-base", apiBase,
     ], environment);
