@@ -8,6 +8,12 @@ export const LIFTOSAUR_VALIDATOR = Object.freeze({
   runtimeRevision: pinnedRuntimeRevision,
 });
 
+export const LIFTOSAUR_SCENARIO_SNAPSHOT = Object.freeze({
+  formatVersion: 1,
+  implementation: "liftosaur-scenario-v1",
+  runtimeRevision: pinnedRuntimeRevision,
+});
+
 export class LiftosaurValidationError extends Error {
   constructor(message, stage, details = []) {
     super(message);
@@ -39,7 +45,10 @@ function stableSet(set) {
 
 function stableEntry(entry) {
   return {
-    exercise: entry.exercise,
+    exercise: {
+      id: entry.exercise.id,
+      equipment: entry.exercise.equipment,
+    },
     index: entry.index,
     sets: entry.sets.map(stableSet),
     warmupSets: entry.warmupSets.map(stableSet),
@@ -61,6 +70,28 @@ function stableRecord(record) {
     dayInWeek: record.dayInWeek,
     dayName: record.dayName,
     entries: record.entries.map(stableEntry),
+  };
+}
+
+function stableBehaviorRecord(record, evaluated, api) {
+  return {
+    ...stableRecord(record),
+    entries: record.entries.map((entry) => {
+      const exercise = entry.programExerciseId
+        ? api.Program_getProgramExerciseForKeyAndDay(
+          evaluated,
+          record.day,
+          entry.programExerciseId
+        )
+        : undefined;
+      return {
+        fullName: exercise?.fullName,
+        progressState: exercise
+          ? api.PlannerProgramExercise_getState(exercise)
+          : undefined,
+        ...stableEntry(entry),
+      };
+    }),
   };
 }
 
@@ -119,6 +150,9 @@ function loadApi() {
   } = runtime.require("src/models/progress.ts");
   const { Settings_build } = runtime.require("src/models/settings.ts");
   const { Stats_getEmpty } = runtime.require("src/models/stats.ts");
+  const { PlannerProgramExercise_getState } = runtime.require(
+    "src/pages/planner/models/plannerProgramExercise.ts"
+  );
   const {
     PlannerProgram_evaluateText,
     PlannerProgram_generateFullText,
@@ -137,6 +171,7 @@ function loadApi() {
     Progress_runUpdateScript,
     Settings_build,
     Stats_getEmpty,
+    PlannerProgramExercise_getState,
     PlannerProgram_evaluateText,
     PlannerProgram_generateFullText,
   };
@@ -178,7 +213,7 @@ function evaluateSource(source, api) {
   return { program, days, records };
 }
 
-function completeNominalSet(set) {
+function completeNominalSet({ set }) {
   const completedReps = set.reps ?? set.minReps ?? 1;
   set.completedReps = completedReps;
   if (set.isUnilateral) set.completedRepsLeft = completedReps;
@@ -188,7 +223,41 @@ function completeNominalSet(set) {
   set.isCompleted = true;
 }
 
-function completeNominalDay(source, day, api) {
+function completeReviewedSet(set, input, exerciseName, setIndex) {
+  if (!input || !Number.isInteger(input.reps) || input.reps < 0) {
+    throw new LiftosaurValidationError(
+      `Scenario requires non-negative integer reps for ${exerciseName} set ${setIndex + 1}`,
+      "scenario"
+    );
+  }
+  if (input.rpe != null && (typeof input.rpe !== "number" || input.rpe < 0 || input.rpe > 10)) {
+    throw new LiftosaurValidationError(
+      `Scenario RPE must be between 0 and 10 for ${exerciseName} set ${setIndex + 1}`,
+      "scenario"
+    );
+  }
+  if (set.logRpe && set.rpe == null && input.rpe == null) {
+    throw new LiftosaurValidationError(
+      `Scenario must provide RPE for ${exerciseName} set ${setIndex + 1}`,
+      "scenario"
+    );
+  }
+  if (set.weight == null && input.weight == null) {
+    throw new LiftosaurValidationError(
+      `Scenario must provide weight for ${exerciseName} set ${setIndex + 1}`,
+      "scenario"
+    );
+  }
+
+  set.completedReps = input.reps;
+  if (set.isUnilateral) set.completedRepsLeft = input.repsLeft ?? input.reps;
+  set.completedWeight = input.weight ?? set.weight;
+  set.completedRpe = input.rpe ?? set.rpe;
+  set.completedSetTimer = input.setTime ?? set.setTimer;
+  set.isCompleted = true;
+}
+
+function completeDay(source, day, api, completeSet) {
   const program = programFromSource(source, api);
   const settings = api.Settings_build();
   const stats = api.Stats_getEmpty();
@@ -223,10 +292,6 @@ function completeNominalDay(source, day, api) {
       }
       const entry = record.entries[entryIndex];
       const set = entry.sets[setIndex];
-      if (!set.isCompleted) {
-        completeNominalSet(set);
-        completedSets += 1;
-      }
       const exercise = entry.programExerciseId
         ? api.Program_getProgramExerciseForKeyAndDay(evaluated, day, entry.programExerciseId)
         : undefined;
@@ -236,6 +301,10 @@ function completeNominalDay(source, day, api) {
           "lifecycle-update",
           [{ day, entry: entryIndex + 1 }]
         );
+      }
+      if (!set.isCompleted) {
+        completeSet({ set, entry, exercise, entryIndex, setIndex });
+        completedSets += 1;
       }
       record = withoutLoggedErrors("lifecycle-update", () => api.Progress_runUpdateScript(
         record,
@@ -307,7 +376,129 @@ function completeNominalDay(source, day, api) {
   withoutLoggedErrors("lifecycle-next-workout", () => (
     api.Program_nextHistoryRecord(reloaded, settings, stats, nextDay)
   ));
-  return { completedSets };
+  return {
+    completedSets,
+    progressedProgram: finished.program,
+    serializedSource,
+    reloaded,
+    reloadedEvaluation,
+    settings,
+    stats,
+    nextDay,
+  };
+}
+
+function scenarioEntries(scenario) {
+  if (!scenario || scenario.formatVersion !== 1 || typeof scenario.name !== "string") {
+    throw new LiftosaurValidationError("Scenario must have formatVersion 1 and a name", "scenario");
+  }
+  if (!Number.isInteger(scenario.day) || scenario.day < 1) {
+    throw new LiftosaurValidationError("Scenario day must be a positive integer", "scenario");
+  }
+  if (!Array.isArray(scenario.entries) || scenario.entries.length === 0) {
+    throw new LiftosaurValidationError("Scenario must provide completed entries", "scenario");
+  }
+  const entries = new Map();
+  for (const entry of scenario.entries) {
+    if (
+      !entry
+      || typeof entry.exercise !== "string"
+      || !Array.isArray(entry.sets)
+      || entry.sets.length === 0
+    ) {
+      throw new LiftosaurValidationError("Scenario entries require exercise and sets", "scenario");
+    }
+    const occurrence = entry.occurrence ?? 1;
+    if (!Number.isInteger(occurrence) || occurrence < 1) {
+      throw new LiftosaurValidationError(
+        `Scenario occurrence must be a positive integer for ${entry.exercise}`,
+        "scenario"
+      );
+    }
+    const key = JSON.stringify([entry.exercise, occurrence]);
+    if (entries.has(key)) {
+      throw new LiftosaurValidationError(
+        `Duplicate scenario exercise occurrence: ${entry.exercise} #${occurrence}`,
+        "scenario"
+      );
+    }
+    entries.set(key, { exercise: entry.exercise, occurrence, sets: entry.sets });
+  }
+  return entries;
+}
+
+export function snapshotLiftosaurScenario(source, scenario) {
+  const api = loadApi();
+  const entries = scenarioEntries(scenario);
+  const original = evaluateSource(source, api);
+  if (scenario.day > original.days) {
+    throw new LiftosaurValidationError(
+      `Scenario day ${scenario.day} exceeds the program's ${original.days} days`,
+      "scenario"
+    );
+  }
+  const usedSets = new Map([...entries].map(([key]) => [key, 0]));
+  const seenOccurrences = new Map();
+  const entryKeys = new Map();
+  const result = completeDay(
+    source,
+    scenario.day,
+    api,
+    ({ set, exercise, entryIndex, setIndex }) => {
+      if (!entryKeys.has(entryIndex)) {
+        const occurrence = (seenOccurrences.get(exercise.fullName) ?? 0) + 1;
+        seenOccurrences.set(exercise.fullName, occurrence);
+        entryKeys.set(entryIndex, JSON.stringify([exercise.fullName, occurrence]));
+      }
+      const key = entryKeys.get(entryIndex);
+      const definition = entries.get(key);
+      if (!definition) {
+        const occurrence = seenOccurrences.get(exercise.fullName);
+        throw new LiftosaurValidationError(
+          `Scenario is missing exercise: ${exercise.fullName} #${occurrence}`,
+          "scenario"
+        );
+      }
+      completeReviewedSet(set, definition.sets[setIndex], exercise.fullName, setIndex);
+      usedSets.set(key, setIndex + 1);
+    }
+  );
+
+  for (const [key, definition] of entries) {
+    if (usedSets.get(key) !== definition.sets.length) {
+      throw new LiftosaurValidationError(
+        `Scenario set count does not match the progressed workout for `
+        + `${definition.exercise} #${definition.occurrence}`,
+        "scenario"
+      );
+    }
+  }
+
+  const nextExposure = withoutLoggedErrors("scenario-next-exposure", () => (
+    api.Program_nextHistoryRecord(
+      result.reloaded,
+      result.settings,
+      result.stats,
+      scenario.day
+    )
+  ));
+  const nextWorkout = withoutLoggedErrors("scenario-next-workout", () => (
+    api.Program_nextHistoryRecord(
+      result.reloaded,
+      result.settings,
+      result.stats,
+      result.nextDay
+    )
+  ));
+  return {
+    snapshot: {
+      ...LIFTOSAUR_SCENARIO_SNAPSHOT,
+      scenario: { name: scenario.name, day: scenario.day },
+      nextExposure: stableBehaviorRecord(nextExposure, result.reloadedEvaluation, api),
+      nextWorkout: stableBehaviorRecord(nextWorkout, result.reloadedEvaluation, api),
+    },
+    serializedSource: result.serializedSource,
+  };
 }
 
 export function validateLiftosaurSource(source) {
@@ -350,7 +541,7 @@ export function validateLiftosaurSource(source) {
   let completedSets = 0;
   for (let day = 1; day <= original.days; day += 1) {
     try {
-      completedSets += completeNominalDay(source, day, api).completedSets;
+      completedSets += completeDay(source, day, api, completeNominalSet).completedSets;
     } catch (error) {
       if (error instanceof LiftosaurValidationError) throw error;
       throw new LiftosaurValidationError(

@@ -29,9 +29,9 @@ function run(args) {
 async function fixture() {
   const directory = await mkdtemp(path.join(os.tmpdir(), "liftosaur-ci-cli-"));
   const paths = Object.fromEntries(
-    ["base", "active", "candidate", "output", "report"].map((name) => [
+    ["base", "active", "candidate", "output", "report", "scenario"].map((name) => [
       name,
-      path.join(directory, `${name}.${name === "report" ? "json" : "liftoscript"}`),
+      path.join(directory, `${name}.${["report", "scenario"].includes(name) ? "json" : "liftoscript"}`),
     ])
   );
   await Promise.all([
@@ -47,6 +47,7 @@ test("offline CLI exposes help without loading the Liftosaur runtime", () => {
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /liftosaur-ci merge/);
   assert.match(result.stdout, /liftosaur-ci validate/);
+  assert.match(result.stdout, /liftosaur-ci snapshot/);
   assert.match(result.stdout, /Offline only/);
 
   const commandHelp = spawnSync(process.execPath, [cli, "merge", "--help"], {
@@ -55,6 +56,35 @@ test("offline CLI exposes help without loading the Liftosaur runtime", () => {
   });
   assert.equal(commandHelp.status, 0, commandHelp.stderr);
   assert.equal(commandHelp.stdout, result.stdout);
+});
+
+test("offline CLI writes a checksum-bound reviewed scenario snapshot", async () => {
+  const { directory, paths } = await fixture();
+  try {
+    await writeFile(paths.scenario, `${JSON.stringify({
+      formatVersion: 1,
+      name: "reviewed nominal",
+      day: 1,
+      entries: [{
+        exercise: "Squat",
+        sets: [{ reps: 5 }, { reps: 5 }, { reps: 5 }],
+      }],
+    }, null, 2)}\n`, "utf8");
+    const result = run([
+      "snapshot", "--program", paths.base,
+      "--scenario", paths.scenario, "--output", paths.output,
+    ]);
+    assert.equal(result.status, 0, result.stderr);
+    const snapshot = JSON.parse(await readFile(paths.output, "utf8"));
+    assert.equal(snapshot.command, "snapshot");
+    assert.equal(snapshot.scenario.name, "reviewed nominal");
+    assert.equal(snapshot.inputs.program.sha256.length, 64);
+    assert.equal(snapshot.inputs.scenario.sha256.length, 64);
+    assert.equal(snapshot.progressedSource.sha256.length, 64);
+    assert.equal(snapshot.nextExposure.entries[0].sets.length, 3);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 test("offline CLI validates immutable input and records checksums", async () => {

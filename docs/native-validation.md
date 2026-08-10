@@ -37,3 +37,23 @@ failure: an exercise overriding inherited `lp(...)` with `progress: none` still
 runs the inherited finish script without its `successCounter` state. The corpus
 requires that exact failure until the pinned upstream source/runtime is fixed;
 all other built-ins must pass the full nominal lifecycle.
+
+## Reviewed regression scenarios
+
+The `snapshot` command accepts a JSON scenario with `formatVersion`, `name`,
+`day`, and one entry for every non-suppressed exercise. Each entry identifies the
+evaluated exercise `fullName` and supplies one object per work set. `reps` is
+required. Repeated same-name exercises use `occurrence` (default 1). Optional
+`weight`, `rpe`, `repsLeft`, and `setTime` values override the prescription;
+omitted values retain the prescribed input. Sets requiring an RPE or weight must
+receive one when the prescription has none.
+
+The command fails if an exercise or set is missing or extra. Its immutable JSON
+output binds the source and scenario checksums and records persistent progression
+state, the next exposure, and the next scheduled workout. Both raw
+`originalWeight` and rounded displayed `weight` remain in the semantic snapshot.
+
+The first reviewed fixtures use Liftosaur's Basic Beginner program with explicit
+nominal, underperformance, and overperformance repetitions. Their snapshots are
+behavior regressions only: the labels describe the supplied observations, not an
+independent claim that the resulting progression is correct.

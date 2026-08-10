@@ -56,6 +56,20 @@ program. Input files and existing reports are never modified. See the
 [native validation policy](docs/native-validation.md) for the exact inputs and
 scope.
 
+## Regression snapshots
+
+```sh
+node bin/liftosaur-ci.mjs snapshot \
+  --program program.liftoscript \
+  --scenario reviewed-scenario.json \
+  --output snapshot.json
+```
+
+Scenario inputs explicitly identify the day, every exercise, and every completed
+work set. The immutable output records persistent progression state plus the next
+exposure and next scheduled workout prescriptions. Snapshot changes require
+review; they do not establish coaching correctness.
+
 ## Tests
 
 ```sh

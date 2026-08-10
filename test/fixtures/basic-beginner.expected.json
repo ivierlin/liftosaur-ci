@@ -1,0 +1,133 @@
+{
+  "scenarios": [
+    {
+      "name": "nominal",
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Workout A",
+        "entries": [
+          {
+            "fullName": "Bent Over Row",
+            "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["97.5lb", "97.5lb", "97.5lb"],
+            "weights": ["97.5lb", "97.5lb", "97.5lb"],
+            "amrap": [false, false, true]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["47.5lb", "47.5lb", "47.5lb"],
+            "weights": ["47.5lb", "47.5lb", "47.5lb"],
+            "amrap": [false, false, true]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": { "increase": { "value": 5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["50lb", "50lb", "50lb"],
+            "weights": ["50lb", "50lb", "50lb"],
+            "amrap": [false, false, true]
+          }
+        ]
+      }
+    },
+    {
+      "name": "underperformance",
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Workout A",
+        "entries": [
+          {
+            "fullName": "Bent Over Row",
+            "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["97.5lb", "97.5lb", "97.5lb"],
+            "weights": ["97.5lb", "97.5lb", "97.5lb"],
+            "amrap": [false, false, true]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["40.5lb", "40.5lb", "40.5lb"],
+            "weights": ["45lb", "45lb", "45lb"],
+            "amrap": [false, false, true]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": { "increase": { "value": 5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["50lb", "50lb", "50lb"],
+            "weights": ["50lb", "50lb", "50lb"],
+            "amrap": [false, false, true]
+          }
+        ]
+      }
+    },
+    {
+      "name": "overperformance",
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Workout A",
+        "entries": [
+          {
+            "fullName": "Bent Over Row",
+            "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["97.5lb", "97.5lb", "97.5lb"],
+            "weights": ["97.5lb", "97.5lb", "97.5lb"],
+            "amrap": [false, false, true]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["50lb", "50lb", "50lb"],
+            "weights": ["50lb", "50lb", "50lb"],
+            "amrap": [false, false, true]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": { "increase": { "value": 5, "unit": "lb" } },
+            "reps": [5, 5, 5],
+            "originalWeights": ["50lb", "50lb", "50lb"],
+            "weights": ["50lb", "50lb", "50lb"],
+            "amrap": [false, false, true]
+          }
+        ]
+      }
+    }
+  ],
+  "nextWorkout": {
+    "day": 2,
+    "dayName": "Workout B",
+    "entries": [
+      {
+        "fullName": "Chin Up",
+        "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+        "reps": [5, 5, 5],
+        "originalWeights": ["0lb", "0lb", "0lb"],
+        "weights": ["0lb", "0lb", "0lb"],
+        "amrap": [false, false, true]
+      },
+      {
+        "fullName": "Overhead Press",
+        "progressState": { "increase": { "value": 2.5, "unit": "lb" } },
+        "reps": [5, 5, 5],
+        "originalWeights": ["45lb", "45lb", "45lb"],
+        "weights": ["45lb", "45lb", "45lb"],
+        "amrap": [false, false, true]
+      },
+      {
+        "fullName": "Deadlift",
+        "progressState": { "increase": { "value": 5, "unit": "lb" } },
+        "reps": [5, 5, 5],
+        "originalWeights": ["95lb", "95lb", "95lb"],
+        "weights": ["95lb", "95lb", "95lb"],
+        "amrap": [false, false, true]
+      }
+    ]
+  }
+}

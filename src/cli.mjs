@@ -6,6 +6,7 @@ import { mergeLiftosaurSources } from "./merge.mjs";
 import {
   LIFTOSAUR_VALIDATOR,
   LiftosaurValidationError,
+  snapshotLiftosaurScenario,
   validateLiftosaurSource,
 } from "./validate.mjs";
 
@@ -33,6 +34,11 @@ function usage() {
   liftosaur-ci validate \\
     --program <program.liftoscript> \\
     [--report <validation-report.json>]
+
+  liftosaur-ci snapshot \\
+    --program <program.liftoscript> \\
+    --scenario <scenario.json> \\
+    --output <snapshot.json>
 
 Offline only. Commands read immutable inputs and optionally write checksum-bearing
 reports. Merge is fail-closed. Existing output or report files are never overwritten.`;
@@ -199,6 +205,44 @@ async function runValidate(argv) {
   }
 }
 
+async function runSnapshot(argv) {
+  const options = parseOptions(argv, ["program", "scenario", "output"]);
+  const inputs = {
+    program: requireOption(options, "program"),
+    scenario: requireOption(options, "scenario"),
+  };
+  const output = requireOption(options, "output");
+  requireDistinctPaths(inputs, { output });
+  await requireNewFile(output, "Scenario snapshot");
+
+  const [source, scenarioText] = await Promise.all([
+    readFile(inputs.program, "utf8"),
+    readFile(inputs.scenario, "utf8"),
+  ]);
+  let scenario;
+  try {
+    scenario = JSON.parse(scenarioText);
+  } catch (error) {
+    throw new CliError(`Scenario is not valid JSON: ${error.message}`);
+  }
+  const result = snapshotLiftosaurScenario(source, scenario);
+  const snapshot = {
+    ...result.snapshot,
+    command: "snapshot",
+    cli: LIFTOSAUR_CI_CLI,
+    inputs: {
+      program: { sha256: sha256(source) },
+      scenario: { sha256: sha256(scenarioText) },
+    },
+    progressedSource: { sha256: sha256(result.serializedSource) },
+  };
+  await writeFile(output, `${JSON.stringify(snapshot, null, 2)}\n`, {
+    encoding: "utf8",
+    flag: "wx",
+  });
+  console.log(`Liftosaur scenario snapshot written: ${output}`);
+}
+
 export async function runLiftosaurCi(argv) {
   if (argv.length === 0 || argv[0] === "--help" || argv[0] === "-h") {
     console.log(usage());
@@ -209,7 +253,7 @@ export async function runLiftosaurCi(argv) {
     return;
   }
   const [command, ...commandArgs] = argv;
-  if (command !== "merge" && command !== "validate") {
+  if (command !== "merge" && command !== "validate" && command !== "snapshot") {
     throw new CliError(`Unknown command: ${command}`);
   }
   if (commandArgs.length === 1 && (commandArgs[0] === "--help" || commandArgs[0] === "-h")) {
@@ -217,5 +261,6 @@ export async function runLiftosaurCi(argv) {
     return;
   }
   if (command === "merge") await runMerge(commandArgs);
-  else await runValidate(commandArgs);
+  else if (command === "validate") await runValidate(commandArgs);
+  else await runSnapshot(commandArgs);
 }
