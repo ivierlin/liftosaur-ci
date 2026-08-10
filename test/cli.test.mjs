@@ -16,7 +16,7 @@ const runtime = path.resolve(
 
 const source = ({ volume = 2, timer = 120 } = {}) => `# Week 1
 ## Day A
-Squat / 3x5 100kg / timer: ${timer} / progress: custom(volume: ${volume}) {~ state.volume = state.volume ~}
+Squat / 3x5 100kg / ${timer}s / progress: custom(volume: ${volume}) {~ state.volume = state.volume ~}
 `;
 
 function run(args) {
@@ -46,6 +46,7 @@ test("offline CLI exposes help without loading the Liftosaur runtime", () => {
   const result = spawnSync(process.execPath, [cli, "--help"], { encoding: "utf8", env: {} });
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /liftosaur-ci merge/);
+  assert.match(result.stdout, /liftosaur-ci validate/);
   assert.match(result.stdout, /Offline only/);
 
   const commandHelp = spawnSync(process.execPath, [cli, "merge", "--help"], {
@@ -54,6 +55,55 @@ test("offline CLI exposes help without loading the Liftosaur runtime", () => {
   });
   assert.equal(commandHelp.status, 0, commandHelp.stderr);
   assert.equal(commandHelp.stdout, result.stdout);
+});
+
+test("offline CLI validates immutable input and records checksums", async () => {
+  const { directory, paths } = await fixture();
+  try {
+    const result = run([
+      "validate", "--program", paths.base, "--report", paths.report,
+    ]);
+    assert.equal(result.status, 0, result.stderr);
+    const report = JSON.parse(await readFile(paths.report, "utf8"));
+    assert.equal(report.status, "passed");
+    assert.equal(report.command, "validate");
+    assert.equal(report.input.sha256.length, 64);
+    assert.equal(report.serialized.sha256.length, 64);
+    assert.deepEqual(report.summary, { days: 1, exercises: 1, sets: 3 });
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("offline CLI writes a failed validation report", async () => {
+  const { directory, paths } = await fixture();
+  try {
+    await writeFile(paths.base, `# Week 1\n## Day A\nSquat / not-a-prescription\n`, "utf8");
+    const result = run([
+      "validate", "--program", paths.base, "--report", paths.report,
+    ]);
+    assert.equal(result.status, 1);
+    const report = JSON.parse(await readFile(paths.report, "utf8"));
+    assert.equal(report.status, "failed");
+    assert.ok(["parse", "evaluate"].includes(report.failure.stage));
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("offline CLI refuses to overwrite an existing validation report", async () => {
+  const { directory, paths } = await fixture();
+  try {
+    await writeFile(paths.report, "keep me\n", "utf8");
+    const result = run([
+      "validate", "--program", paths.base, "--report", paths.report,
+    ]);
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /already exists/);
+    assert.equal(await readFile(paths.report, "utf8"), "keep me\n");
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 test("offline CLI merges immutable inputs and records checksums", async () => {
@@ -66,7 +116,7 @@ test("offline CLI merges immutable inputs and records checksums", async () => {
     assert.equal(result.status, 0, result.stderr);
     const output = await readFile(paths.output, "utf8");
     const report = JSON.parse(await readFile(paths.report, "utf8"));
-    assert.match(output, /timer: 180/);
+    assert.match(output, /180s/);
     assert.match(output, /volume: 3/);
     assert.equal(report.status, "merged");
     assert.equal(report.command, "merge");

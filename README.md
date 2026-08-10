@@ -6,8 +6,8 @@ Unofficial Git-based migration, validation, and deployment tooling for
 ## Status
 
 This repository is an early extraction from a proven migration experiment. The
-current release contains an offline three-way merge CLI only. It has no GitHub,
-credential, preparation, or deployment capability.
+current release contains offline three-way merge and native validation commands.
+It has no GitHub, credential, preparation, or deployment capability.
 
 ## Setup
 
@@ -42,6 +42,19 @@ The JSON report binds the exact input and output bytes with SHA-256 values and
 includes the versioned parser frontend and merge-core evidence.
 
 ## Validation
+
+```sh
+node bin/liftosaur-ci.mjs validate \
+  --program program.liftoscript \
+  --report validation-report.json
+```
+
+Validation uses the pinned Liftosaur runtime to evaluate the program, construct
+every workout day, serialize and reload it, and compare stable prescriptions.
+It does not complete workouts or execute progression yet. Input files and
+existing reports are never modified.
+
+## Tests
 
 ```sh
 npm test

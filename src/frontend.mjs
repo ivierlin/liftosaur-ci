@@ -1,13 +1,8 @@
-import { spawnSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
-import { createRequire } from "node:module";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
 import {
   canonicalizeLiftosaurSource,
   normalizeLineEndings,
 } from "./source-format.mjs";
+import { loadLiftosaurRuntime, pinnedRuntimeRevision } from "./runtime.mjs";
 
 const STATE_MARKER = "__LIFTOSAUR_CI_STATE__";
 const STATE_VALUE = "__LIFTOSAUR_CI_STATE_VALUE__";
@@ -16,13 +11,6 @@ const SECTION_MARKER = "__LIFTOSAUR_CI_SECTION__";
 const SECTION_VALUE = "__LIFTOSAUR_CI_SECTION_VALUE__";
 const STATEMENT_END = "__LIFTOSAUR_CI_STATEMENT_END__";
 export const BLOCK_MARKER = "__LIFTOSAUR_CI_BLOCK__";
-
-const sourceDirectory = path.dirname(fileURLToPath(import.meta.url));
-const repositoryRoot = path.dirname(sourceDirectory);
-const pinnedRuntimeRevision = readFileSync(
-  path.join(repositoryRoot, "runtime", "liftosaur.version"),
-  "utf8"
-).trim();
 
 export const LIFTOSAUR_MERGE_FRONTEND = Object.freeze({
   formatVersion: 1,
@@ -34,28 +22,9 @@ let plannerParser;
 
 function loadPlannerParser() {
   if (plannerParser) return plannerParser;
-  const runtime = path.resolve(
-    process.env.LIFTOSAUR_RUNTIME
-      ?? path.join(repositoryRoot, ".private", "liftosaur-runtime")
-  );
-  const packageFile = path.join(runtime, "package.json");
-  const parserFile = path.join(runtime, "src", "pages", "planner", "plannerExerciseParser.ts");
-  if (!existsSync(packageFile) || !existsSync(parserFile)) {
-    throw new Error(
-      `Pinned Liftosaur parser runtime is unavailable at ${runtime}; run npm run setup:runtime`
-    );
-  }
-  const revision = spawnSync(
-    "git",
-    ["-c", `safe.directory=${runtime}`, "-C", runtime, "rev-parse", "HEAD"],
-    { encoding: "utf8", windowsHide: true }
-  );
-  if (revision.status !== 0 || revision.stdout.trim() !== pinnedRuntimeRevision) {
-    throw new Error(`Liftosaur parser runtime must be pinned at ${pinnedRuntimeRevision}`);
-  }
-  const runtimeRequire = createRequire(packageFile);
-  runtimeRequire("ts-node/register");
-  plannerParser = runtimeRequire(parserFile).parser;
+  plannerParser = loadLiftosaurRuntime().require(
+    "src/pages/planner/plannerExerciseParser.ts"
+  ).parser;
   return plannerParser;
 }
 

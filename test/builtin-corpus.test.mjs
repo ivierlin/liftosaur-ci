@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 
 import { parseLiftosaurMergeDocument } from "../src/frontend.mjs";
 import { mergeLiftosaurSources } from "../src/merge.mjs";
+import { validateLiftosaurSource } from "../src/validate.mjs";
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(testDirectory);
@@ -67,6 +68,8 @@ for (const { filename, source } of programs) {
   test(`built-in corpus processes unchanged source: ${filename}`, async () => {
     const document = parseLiftosaurMergeDocument(source);
     assert.ok(document.manifest.length > 0);
+    const validation = validateLiftosaurSource(source);
+    assert.ok(validation.summary.days > 0);
     const result = await mergeLiftosaurSources({ base: source, active: source, candidate: source });
     assert.equal(result.report.status, "merged");
     assert.ok(result.source);
