@@ -20,7 +20,9 @@ npm run setup:runtime
 
 Runtime setup fetches the exact Liftosaur revision recorded in
 `runtime/liftosaur.version` into `.private/liftosaur-runtime` and installs its
-dependencies. Set `LIFTOSAUR_RUNTIME` to use another dedicated checkout.
+dependencies. Set `LIFTOSAUR_RUNTIME` to use another dedicated checkout. CI
+may keep this checkout in a persistent cache and reuse it while the pinned
+revision and Node ABI remain unchanged.
 
 ## Offline merge
 
