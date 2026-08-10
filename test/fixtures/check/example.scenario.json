@@ -1,0 +1,15 @@
+{
+  "formatVersion": 1,
+  "name": "nominal example",
+  "day": 1,
+  "entries": [
+    {
+      "exercise": "Squat",
+      "sets": [
+        { "reps": 5 },
+        { "reps": 5 },
+        { "reps": 5 }
+      ]
+    }
+  ]
+}

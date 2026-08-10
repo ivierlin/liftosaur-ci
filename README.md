@@ -5,9 +5,10 @@ Unofficial Git-based migration, validation, and deployment tooling for
 
 ## Status
 
-This repository is an early extraction from a proven migration experiment. The
-current release contains offline three-way merge and native validation commands.
-It has no GitHub, credential, preparation, or deployment capability.
+This repository is an early extraction from a proven migration experiment. It
+contains offline three-way merge, native validation, reviewed regression,
+repository check, and prepared deployment commands. GitHub orchestration and
+credential storage remain the responsibility of the calling repository.
 
 ## Setup
 
@@ -74,6 +75,30 @@ completed work set. The immutable output records persistent progression state
 plus the next exposure and next scheduled workout prescriptions after each step.
 Snapshot changes require review; they do not establish coaching correctness.
 
+## Repository check
+
+```sh
+node bin/liftosaur-ci.mjs check --config liftosaur-ci.json
+```
+
+`check` discovers configured programs, runs native validation on each one, and
+compares reviewed scenario snapshots without rewriting them. See the
+[repository check contract](docs/check.md) for the versioned configuration.
+
+## Prepared deployment and rollback
+
+After merging and validating a deployment source, `prepare-deployment` creates
+an immutable checksum-bound bundle containing the active rollback source,
+deployment source, validation evidence, and optional merge evidence. `deploy`
+requires the caller to restate the exact target ID and resulting name, verifies
+that the live target is unchanged, writes once, and verifies the read-back.
+
+If a known successful write does not verify, the command restores and verifies
+the prepared rollback source. It never guesses through an ambiguous write.
+The API key is read only from `LIFTOSAUR_API_KEY`. See the
+[deployment contract](docs/deployment.md) before using the command against a
+live program.
+
 ## Tests
 
 ```sh
@@ -81,7 +106,8 @@ npm test
 ```
 
 The test corpus covers every program in the pinned Liftosaur built-in catalog
-plus a digest-pinned public RP Hypertrophy v4.1 program.
+plus a digest-pinned public RP Hypertrophy v4.1 program. Deployment tests use a
+local fake API and never change Liftosaur.
 
 ## Licensing
 

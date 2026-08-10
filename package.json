@@ -23,8 +23,9 @@
   },
   "scripts": {
     "setup:runtime": "node scripts/setup-runtime.mjs",
-    "test:unit": "node test/source-format.test.mjs && node --test test/frontend.test.mjs test/merge.test.mjs test/validate.test.mjs test/scenario.test.mjs test/cli.test.mjs",
+    "check:self": "node bin/liftosaur-ci.mjs check --config liftosaur-ci.json",
+    "test:unit": "node test/source-format.test.mjs && node --test test/frontend.test.mjs test/merge.test.mjs test/validate.test.mjs test/scenario.test.mjs test/check.test.mjs test/deployment.test.mjs test/cli.test.mjs",
     "test:corpus": "node --test test/builtin-corpus.test.mjs test/external-corpus.test.mjs",
-    "test": "npm run test:unit && npm run test:corpus"
+    "test": "npm run test:unit && npm run test:corpus && npm run check:self"
   }
 }
