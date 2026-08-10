@@ -3,6 +3,7 @@ import path from "node:path";
 import process from "node:process";
 
 import { checkRepository } from "./check.mjs";
+import { configuredDeployment } from "./config.mjs";
 import { configuredGitPreparation, recordDeploymentState } from "./deployment-state.mjs";
 import { deployPreparedBundle, prepareDeploymentBundle } from "./deployment.mjs";
 import { prepareGitDeployment } from "./git.mjs";
@@ -82,8 +83,9 @@ function usage() {
 
   liftosaur-ci deploy \\
     --bundle <deployment-bundle-directory> \\
-    --confirm-program-id <liftosaur-program-id> \\
-    --confirm-program-name <new-name> \\
+    [--config <liftosaur-ci.json> --deployment <stable-id>] \\
+    [--confirm-program-id <liftosaur-program-id>] \\
+    [--confirm-program-name <new-name>] \\
     --output <private-deployment-record-directory> \\
     [--max-age-hours <hours>] \\
     [--api-base <url>]
@@ -401,6 +403,8 @@ async function runRecordDeployment(argv) {
 async function runDeploy(argv) {
   const options = parseOptions(argv, [
     "bundle",
+    "config",
+    "deployment",
     "confirm-program-id",
     "confirm-program-name",
     "output",
@@ -408,12 +412,29 @@ async function runDeploy(argv) {
     "api-base",
   ]);
   const outputDirectory = requireOption(options, "output");
+  const configured = options.config || options.deployment;
+  let expectedProgramId;
+  let expectedDeployedName;
+  if (configured) {
+    if (!options.config || !options.deployment) {
+      throw new CliError("--config and --deployment must be provided together");
+    }
+    if (options["confirm-program-id"] || options["confirm-program-name"]) {
+      throw new CliError("Configured deploy must not override program deployment settings");
+    }
+    const resolved = await configuredDeployment(path.resolve(options.config), options.deployment);
+    expectedProgramId = resolved.deployment.programId;
+    expectedDeployedName = resolved.deployment.deployedProgramName;
+  } else {
+    expectedProgramId = requireTextOption(options, "confirm-program-id");
+    expectedDeployedName = requireTextOption(options, "confirm-program-name");
+  }
   const report = await deployPreparedBundle({
     bundleDirectory: requireOption(options, "bundle"),
     outputDirectory,
     apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
-    expectedProgramId: requireTextOption(options, "confirm-program-id"),
-    expectedDeployedName: requireTextOption(options, "confirm-program-name"),
+    expectedProgramId,
+    expectedDeployedName,
     apiBase: options["api-base"],
     maxAgeHours: Number(options["max-age-hours"] ?? "24"),
   });
