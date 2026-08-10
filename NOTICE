@@ -1,0 +1,19 @@
+liftosaur-ci
+Copyright (c) 2026 liftosaur-ci contributors
+
+This project is licensed under AGPL-3.0-only.
+
+The parser and runtime integration uses an unmodified, revision-pinned checkout
+of Liftosaur:
+
+  Liftosaur
+  Copyright (c) Anton Astashov and Liftosaur contributors
+  Upstream: https://github.com/astashov/liftosaur
+  License: AGPL-3.0
+
+The exact tested revision is recorded in runtime/liftosaur.version. Liftosaur
+source is fetched during runtime setup and is not vendored in this repository.
+
+The external corpus reads the public RP Hypertrophy v4.1 program from its
+Liftosaur page and verifies a reviewed SHA-256. Its source is not distributed
+with this repository.

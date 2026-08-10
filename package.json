@@ -1,0 +1,29 @@
+{
+  "name": "liftosaur-ci",
+  "version": "0.1.0",
+  "description": "Unofficial Git-based migration, validation, and deployment tooling for Liftosaur",
+  "license": "AGPL-3.0-only",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "liftosaur-ci": "bin/liftosaur-ci.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "runtime",
+    "scripts",
+    "LICENSE",
+    "NOTICE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "setup:runtime": "node scripts/setup-runtime.mjs",
+    "test:unit": "node test/source-format.test.mjs && node --test test/frontend.test.mjs test/merge.test.mjs test/cli.test.mjs",
+    "test:corpus": "node --test test/builtin-corpus.test.mjs test/external-corpus.test.mjs",
+    "test": "npm run test:unit && npm run test:corpus"
+  }
+}
