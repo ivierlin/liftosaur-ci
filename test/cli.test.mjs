@@ -42,13 +42,15 @@ async function fixture() {
   return { directory, paths };
 }
 
-test("offline CLI exposes help without loading the Liftosaur runtime", () => {
+test("CLI exposes every command without loading the Liftosaur runtime", () => {
   const result = spawnSync(process.execPath, [cli, "--help"], { encoding: "utf8", env: {} });
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /liftosaur-ci merge/);
   assert.match(result.stdout, /liftosaur-ci validate/);
   assert.match(result.stdout, /liftosaur-ci snapshot/);
-  assert.match(result.stdout, /Offline only/);
+  assert.match(result.stdout, /liftosaur-ci prepare-deployment/);
+  assert.match(result.stdout, /liftosaur-ci deploy/);
+  assert.match(result.stdout, /liftosaur-ci check/);
 
   const commandHelp = spawnSync(process.execPath, [cli, "merge", "--help"], {
     encoding: "utf8",

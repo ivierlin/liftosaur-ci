@@ -1,0 +1,247 @@
+{
+  "formatVersion": 1,
+  "implementation": "liftosaur-scenario-v1",
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "scenario": {
+    "name": "nominal example",
+    "day": 1
+  },
+  "nextExposure": {
+    "day": 1,
+    "week": 1,
+    "dayInWeek": 1,
+    "dayName": "Day A",
+    "entries": [
+      {
+        "fullName": "Squat",
+        "progressState": {},
+        "exercise": {
+          "id": "squat",
+          "equipment": "barbell"
+        },
+        "index": 0,
+        "sets": [
+          {
+            "index": 0,
+            "reps": 5,
+            "originalWeight": {
+              "value": 100,
+              "unit": "kg"
+            },
+            "weight": {
+              "value": 220,
+              "unit": "lb"
+            },
+            "logRpe": false,
+            "isAmrap": false,
+            "askWeight": false,
+            "isUnilateral": false,
+            "programSetIndex": 0
+          },
+          {
+            "index": 1,
+            "reps": 5,
+            "originalWeight": {
+              "value": 100,
+              "unit": "kg"
+            },
+            "weight": {
+              "value": 220,
+              "unit": "lb"
+            },
+            "logRpe": false,
+            "isAmrap": false,
+            "askWeight": false,
+            "isUnilateral": false,
+            "programSetIndex": 1
+          },
+          {
+            "index": 2,
+            "reps": 5,
+            "originalWeight": {
+              "value": 100,
+              "unit": "kg"
+            },
+            "weight": {
+              "value": 220,
+              "unit": "lb"
+            },
+            "logRpe": false,
+            "isAmrap": false,
+            "askWeight": false,
+            "isUnilateral": false,
+            "programSetIndex": 2
+          }
+        ],
+        "warmupSets": [
+          {
+            "index": 0,
+            "reps": 5,
+            "originalWeight": {
+              "value": 66,
+              "unit": "lb"
+            },
+            "weight": {
+              "value": 65,
+              "unit": "lb"
+            },
+            "isUnilateral": false
+          },
+          {
+            "index": 1,
+            "reps": 5,
+            "originalWeight": {
+              "value": 110,
+              "unit": "lb"
+            },
+            "weight": {
+              "value": 110,
+              "unit": "lb"
+            },
+            "isUnilateral": false
+          },
+          {
+            "index": 2,
+            "reps": 5,
+            "originalWeight": {
+              "value": 176,
+              "unit": "lb"
+            },
+            "weight": {
+              "value": 175,
+              "unit": "lb"
+            },
+            "isUnilateral": false
+          }
+        ]
+      }
+    ]
+  },
+  "nextWorkout": {
+    "day": 1,
+    "week": 1,
+    "dayInWeek": 1,
+    "dayName": "Day A",
+    "entries": [
+      {
+        "fullName": "Squat",
+        "progressState": {},
+        "exercise": {
+          "id": "squat",
+          "equipment": "barbell"
+        },
+        "index": 0,
+        "sets": [
+          {
+            "index": 0,
+            "reps": 5,
+            "originalWeight": {
+              "value": 100,
+              "unit": "kg"
+            },
+            "weight": {
+              "value": 220,
+              "unit": "lb"
+            },
+            "logRpe": false,
+            "isAmrap": false,
+            "askWeight": false,
+            "isUnilateral": false,
+            "programSetIndex": 0
+          },
+          {
+            "index": 1,
+            "reps": 5,
+            "originalWeight": {
+              "value": 100,
+              "unit": "kg"
+            },
+            "weight": {
+              "value": 220,
+              "unit": "lb"
+            },
+            "logRpe": false,
+            "isAmrap": false,
+            "askWeight": false,
+            "isUnilateral": false,
+            "programSetIndex": 1
+          },
+          {
+            "index": 2,
+            "reps": 5,
+            "originalWeight": {
+              "value": 100,
+              "unit": "kg"
+            },
+            "weight": {
+              "value": 220,
+              "unit": "lb"
+            },
+            "logRpe": false,
+            "isAmrap": false,
+            "askWeight": false,
+            "isUnilateral": false,
+            "programSetIndex": 2
+          }
+        ],
+        "warmupSets": [
+          {
+            "index": 0,
+            "reps": 5,
+            "originalWeight": {
+              "value": 66,
+              "unit": "lb"
+            },
+            "weight": {
+              "value": 65,
+              "unit": "lb"
+            },
+            "isUnilateral": false
+          },
+          {
+            "index": 1,
+            "reps": 5,
+            "originalWeight": {
+              "value": 110,
+              "unit": "lb"
+            },
+            "weight": {
+              "value": 110,
+              "unit": "lb"
+            },
+            "isUnilateral": false
+          },
+          {
+            "index": 2,
+            "reps": 5,
+            "originalWeight": {
+              "value": 176,
+              "unit": "lb"
+            },
+            "weight": {
+              "value": 175,
+              "unit": "lb"
+            },
+            "isUnilateral": false
+          }
+        ]
+      }
+    ]
+  },
+  "command": "snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "inputs": {
+    "program": {
+      "sha256": "3dff9be01a23ee4484386cf62bcde48eeaa1334a5073e1d8673dc70abca25e20"
+    },
+    "scenario": {
+      "sha256": "795c7f2c9fa6ef9399b283b0cc14282c33e735edcd30b106de94f64632392d23"
+    }
+  },
+  "progressedSource": {
+    "sha256": "7849dc57457f4ac638c97f43ccb9aca6168c527a623ca92acf28cd108c85c022"
+  }
+}

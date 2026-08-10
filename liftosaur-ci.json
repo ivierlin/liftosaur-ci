@@ -1,0 +1,14 @@
+{
+  "formatVersion": 1,
+  "implementation": "liftosaur-check-config-v1",
+  "programs": [
+    "test/fixtures/check/*.liftoscript"
+  ],
+  "scenarios": [
+    {
+      "program": "test/fixtures/check/example.liftoscript",
+      "scenario": "test/fixtures/check/example.scenario.json",
+      "snapshot": "test/fixtures/check/example.expected.json"
+    }
+  ]
+}

@@ -1,8 +1,11 @@
-import { createHash } from "node:crypto";
 import { access, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
+import process from "node:process";
 
+import { checkRepository } from "./check.mjs";
+import { deployPreparedBundle, prepareDeploymentBundle } from "./deployment.mjs";
 import { mergeLiftosaurSources } from "./merge.mjs";
+import { createScenarioSnapshot, LIFTOSAUR_CI_CLI, sha256 } from "./report.mjs";
 import {
   LIFTOSAUR_VALIDATOR,
   LiftosaurValidationError,
@@ -10,10 +13,7 @@ import {
   validateLiftosaurSource,
 } from "./validate.mjs";
 
-export const LIFTOSAUR_CI_CLI = Object.freeze({
-  name: "liftosaur-ci",
-  version: "0.1.0",
-});
+export { LIFTOSAUR_CI_CLI } from "./report.mjs";
 
 export class CliError extends Error {
   constructor(message, exitCode = 1) {
@@ -40,8 +40,32 @@ function usage() {
     --scenario <scenario.json> \\
     --output <snapshot.json>
 
-Offline only. Commands read immutable inputs and optionally write checksum-bearing
-reports. Merge is fail-closed. Existing output or report files are never overwritten.`;
+  liftosaur-ci prepare-deployment \\
+    --active <current-liftosaur.liftoscript> \\
+    --program <validated-program.liftoscript> \\
+    --validation-report <validation-report.json> \\
+    [--merge-report <merge-report.json>] \\
+    --program-id <liftosaur-program-id> \\
+    --expected-program-name <current-name> \\
+    --expected-current <true|false> \\
+    --deployed-program-name <new-name> \\
+    --output <deployment-bundle-directory>
+
+  liftosaur-ci deploy \\
+    --bundle <deployment-bundle-directory> \\
+    --confirm-program-id <liftosaur-program-id> \\
+    --confirm-program-name <new-name> \\
+    --output <private-deployment-record-directory> \\
+    [--max-age-hours <hours>] \\
+    [--api-base <url>]
+
+  liftosaur-ci check \\
+    [--config <liftosaur-ci.json>] \\
+    [--report <check-report.json>]
+
+Merge, validation, snapshots, checks, and deployment preparation are offline.
+Deploy reads LIFTOSAUR_API_KEY and changes exactly one prepared Liftosaur target.
+Existing output files and directories are never overwritten.`;
 }
 
 function parseOptions(argv, allowedNames) {
@@ -61,18 +85,16 @@ function parseOptions(argv, allowedNames) {
   return options;
 }
 
-function parseMergeOptions(argv) {
-  return parseOptions(argv, ["base", "active", "candidate", "output", "report"]);
-}
-
 function requireOption(options, name) {
   const value = options[name];
   if (!value) throw new CliError(`Missing required option: --${name}`);
   return path.resolve(value);
 }
 
-function sha256(value) {
-  return createHash("sha256").update(value).digest("hex");
+function requireTextOption(options, name) {
+  const value = options[name];
+  if (!value) throw new CliError(`Missing required option: --${name}`);
+  return value;
 }
 
 async function requireNewFile(file, label) {
@@ -98,7 +120,7 @@ function requireDistinctPaths(inputs, outputs) {
 }
 
 async function runMerge(argv) {
-  const options = parseMergeOptions(argv);
+  const options = parseOptions(argv, ["base", "active", "candidate", "output", "report"]);
   const inputs = {
     base: requireOption(options, "base"),
     active: requireOption(options, "active"),
@@ -129,7 +151,6 @@ async function runMerge(argv) {
     output: result.source ? { sha256: sha256(result.source) } : null,
     merge: result.report,
   };
-
   if (!result.source) {
     if (outputs.report) {
       await writeFile(outputs.report, `${JSON.stringify(report, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
@@ -152,11 +173,8 @@ async function runValidate(argv) {
   const options = parseOptions(argv, ["program", "report"]);
   const program = requireOption(options, "program");
   const reportFile = options.report ? path.resolve(options.report) : null;
-  if (reportFile === program) {
-    throw new CliError(`Validation report must not replace the input file: ${program}`);
-  }
+  if (reportFile === program) throw new CliError(`Validation report must not replace the input file: ${program}`);
   if (reportFile) await requireNewFile(reportFile, "Validation report");
-
   const source = await readFile(program, "utf8");
   try {
     const result = validateLiftosaurSource(source);
@@ -171,10 +189,7 @@ async function runValidate(argv) {
       summary: result.summary,
     };
     if (reportFile) {
-      await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, {
-        encoding: "utf8",
-        flag: "wx",
-      });
+      await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
     }
     console.log(
       `Liftosaur native validation passed: ${result.summary.days} days, `
@@ -189,17 +204,10 @@ async function runValidate(argv) {
       status: "failed",
       input: { sha256: sha256(source) },
       validator: LIFTOSAUR_VALIDATOR,
-      failure: {
-        stage: error.stage,
-        message: error.message,
-        details: error.details,
-      },
+      failure: { stage: error.stage, message: error.message, details: error.details },
     };
     if (reportFile) {
-      await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, {
-        encoding: "utf8",
-        flag: "wx",
-      });
+      await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
     }
     throw new CliError(error.message);
   }
@@ -214,7 +222,6 @@ async function runSnapshot(argv) {
   const output = requireOption(options, "output");
   requireDistinctPaths(inputs, { output });
   await requireNewFile(output, "Scenario snapshot");
-
   const [source, scenarioText] = await Promise.all([
     readFile(inputs.program, "utf8"),
     readFile(inputs.scenario, "utf8"),
@@ -225,22 +232,87 @@ async function runSnapshot(argv) {
   } catch (error) {
     throw new CliError(`Scenario is not valid JSON: ${error.message}`);
   }
-  const result = snapshotLiftosaurScenario(source, scenario);
-  const snapshot = {
-    ...result.snapshot,
-    command: "snapshot",
-    cli: LIFTOSAUR_CI_CLI,
-    inputs: {
-      program: { sha256: sha256(source) },
-      scenario: { sha256: sha256(scenarioText) },
-    },
-    progressedSource: { sha256: sha256(result.serializedSource) },
-  };
-  await writeFile(output, `${JSON.stringify(snapshot, null, 2)}\n`, {
-    encoding: "utf8",
-    flag: "wx",
-  });
+  const snapshot = createScenarioSnapshot(
+    source,
+    scenarioText,
+    snapshotLiftosaurScenario(source, scenario)
+  );
+  await writeFile(output, `${JSON.stringify(snapshot, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
   console.log(`Liftosaur scenario snapshot written: ${output}`);
+}
+
+async function runPrepareDeployment(argv) {
+  const options = parseOptions(argv, [
+    "active",
+    "program",
+    "validation-report",
+    "merge-report",
+    "program-id",
+    "expected-program-name",
+    "expected-current",
+    "deployed-program-name",
+    "output",
+  ]);
+  const expectedCurrent = requireTextOption(options, "expected-current");
+  if (expectedCurrent !== "true" && expectedCurrent !== "false") {
+    throw new CliError("--expected-current must be true or false");
+  }
+  const outputDirectory = requireOption(options, "output");
+  await prepareDeploymentBundle({
+    activeFile: requireOption(options, "active"),
+    deployFile: requireOption(options, "program"),
+    validationReportFile: requireOption(options, "validation-report"),
+    mergeReportFile: options["merge-report"] ? path.resolve(options["merge-report"]) : null,
+    outputDirectory,
+    target: {
+      id: requireTextOption(options, "program-id"),
+      name: requireTextOption(options, "expected-program-name"),
+      isCurrent: expectedCurrent === "true",
+    },
+    deployedName: requireTextOption(options, "deployed-program-name"),
+  });
+  console.log(`Liftosaur deployment bundle prepared: ${outputDirectory}`);
+}
+
+async function runDeploy(argv) {
+  const options = parseOptions(argv, [
+    "bundle",
+    "confirm-program-id",
+    "confirm-program-name",
+    "output",
+    "max-age-hours",
+    "api-base",
+  ]);
+  const outputDirectory = requireOption(options, "output");
+  const report = await deployPreparedBundle({
+    bundleDirectory: requireOption(options, "bundle"),
+    outputDirectory,
+    apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+    expectedProgramId: requireTextOption(options, "confirm-program-id"),
+    expectedDeployedName: requireTextOption(options, "confirm-program-name"),
+    apiBase: options["api-base"],
+    maxAgeHours: Number(options["max-age-hours"] ?? "24"),
+  });
+  console.log(`Liftosaur deployment verified: ${report.target.name} (${report.target.id})`);
+}
+
+async function runCheck(argv) {
+  const options = parseOptions(argv, ["config", "report"]);
+  const configFile = path.resolve(options.config ?? "liftosaur-ci.json");
+  const reportFile = options.report ? path.resolve(options.report) : null;
+  if (reportFile === configFile) throw new CliError("Check report must not replace the config file");
+  if (reportFile) await requireNewFile(reportFile, "Check report");
+  const report = await checkRepository(configFile);
+  if (reportFile) {
+    await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
+  }
+  if (report.status !== "passed") {
+    throw new CliError(`Liftosaur repository check failed: ${report.summary.failed} program(s)`);
+  }
+  console.log(
+    `Liftosaur repository check passed: ${report.summary.programs} programs, `
+    + `${report.summary.scenarios} reviewed scenarios`
+  );
 }
 
 export async function runLiftosaurCi(argv) {
@@ -253,14 +325,16 @@ export async function runLiftosaurCi(argv) {
     return;
   }
   const [command, ...commandArgs] = argv;
-  if (command !== "merge" && command !== "validate" && command !== "snapshot") {
-    throw new CliError(`Unknown command: ${command}`);
-  }
+  const commands = new Set(["merge", "validate", "snapshot", "prepare-deployment", "deploy", "check"]);
+  if (!commands.has(command)) throw new CliError(`Unknown command: ${command}`);
   if (commandArgs.length === 1 && (commandArgs[0] === "--help" || commandArgs[0] === "-h")) {
     console.log(usage());
     return;
   }
   if (command === "merge") await runMerge(commandArgs);
   else if (command === "validate") await runValidate(commandArgs);
-  else await runSnapshot(commandArgs);
+  else if (command === "snapshot") await runSnapshot(commandArgs);
+  else if (command === "prepare-deployment") await runPrepareDeployment(commandArgs);
+  else if (command === "deploy") await runDeploy(commandArgs);
+  else await runCheck(commandArgs);
 }
