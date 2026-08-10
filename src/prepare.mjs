@@ -26,16 +26,39 @@ export async function prepareLiftosaurDeployment({
   apiKey,
   apiBase,
 }) {
-  const [base, candidate, activeProgram] = await Promise.all([
+  const [base, candidate] = await Promise.all([
     readFile(baseFile, "utf8"),
     readFile(candidateFile, "utf8"),
-    fetchDeploymentTarget({
-      programId,
-      expectedName: expectedProgramName,
-      apiKey,
-      apiBase,
-    }),
   ]);
+  return prepareLiftosaurDeploymentFromContents({
+    base,
+    candidate,
+    outputDirectory,
+    programId,
+    expectedProgramName,
+    deployedProgramName,
+    apiKey,
+    apiBase,
+  });
+}
+
+export async function prepareLiftosaurDeploymentFromContents({
+  base,
+  candidate,
+  outputDirectory,
+  programId,
+  expectedProgramName = null,
+  deployedProgramName,
+  apiKey,
+  apiBase,
+  source = null,
+}) {
+  const activeProgram = await fetchDeploymentTarget({
+    programId,
+    expectedName: expectedProgramName,
+    apiKey,
+    apiBase,
+  });
   const active = activeProgram.text;
 
   let merged;
@@ -78,6 +101,7 @@ export async function prepareLiftosaurDeployment({
       isCurrent: activeProgram.isCurrent,
     },
     deployedName: deployedProgramName,
+    source,
   });
   return {
     manifest,
