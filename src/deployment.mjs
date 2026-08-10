@@ -75,6 +75,7 @@ export async function prepareDeploymentBundle({
   outputDirectory,
   target,
   deployedName,
+  source = null,
   preparedAt = new Date().toISOString(),
 }) {
   const [active, deploy, validationText, mergeText] = await Promise.all([
@@ -91,6 +92,7 @@ export async function prepareDeploymentBundle({
     outputDirectory,
     target,
     deployedName,
+    source,
     preparedAt,
   });
 }
@@ -103,6 +105,7 @@ export async function prepareDeploymentBundleFromContents({
   outputDirectory,
   target,
   deployedName,
+  source = null,
   preparedAt = new Date().toISOString(),
 }) {
   await requireNewDirectory(outputDirectory, "Deployment bundle directory");
@@ -139,6 +142,7 @@ export async function prepareDeploymentBundleFromContents({
       name: deployedName,
       sourceSha256: deployHash,
     },
+    source,
     evidence: {
       validation: { file: "validation-report.json", sha256: sha256(validationText) },
       merge: mergeText ? { file: "merge-report.json", sha256: sha256(mergeText) } : null,
@@ -178,6 +182,34 @@ function parseChecksums(text) {
   return values;
 }
 
+function assertSourceProvenance(source) {
+  if (source === null || source === undefined) return;
+  requireObject(source, "Deployment source provenance");
+  if (
+    source.implementation !== "liftosaur-git-source-v1"
+    || typeof source.remote !== "string"
+    || !source.remote
+    || !["sha1", "sha256"].includes(source.objectFormat)
+    || typeof source.programPath !== "string"
+    || !source.programPath
+  ) {
+    throw new Error("Deployment Git source provenance is invalid");
+  }
+  const objectPattern = source.objectFormat === "sha1" ? /^[a-f0-9]{40}$/ : /^[a-f0-9]{64}$/;
+  for (const label of ["base", "candidate"]) {
+    const revision = source[label];
+    if (
+      !revision
+      || typeof revision.requestedRef !== "string"
+      || !revision.requestedRef
+      || !objectPattern.test(revision.commitSha ?? "")
+      || !objectPattern.test(revision.blobSha ?? "")
+    ) {
+      throw new Error(`Deployment Git ${label} provenance is invalid`);
+    }
+  }
+}
+
 async function verifyDeploymentBundle(bundleDirectory, maxAgeHours) {
   const [manifestText, checksumsText] = await Promise.all([
     readFile(path.join(bundleDirectory, "deployment-manifest.json"), "utf8"),
@@ -209,6 +241,7 @@ async function verifyDeploymentBundle(bundleDirectory, maxAgeHours) {
   ) {
     throw new Error("Deployment manifest target or deployment identity is invalid");
   }
+  assertSourceProvenance(manifest.source);
 
   const files = [...REQUIRED_FILES, ...(manifest.evidence?.merge ? ["merge-report.json"] : [])];
   const checksums = parseChecksums(checksumsText);
@@ -313,7 +346,7 @@ async function fetchProgram(apiBase, apiKey, programId, label) {
 
 export async function fetchDeploymentTarget({
   programId,
-  expectedName,
+  expectedName = null,
   apiKey,
   apiBase = DEFAULT_API_BASE,
 }) {
@@ -321,7 +354,6 @@ export async function fetchDeploymentTarget({
     throw new Error(`${API_KEY_NAME} must contain a Liftosaur API key starting with lftsk_`);
   }
   if (!programId) throw new Error("Liftosaur program ID is required");
-  if (!expectedName) throw new Error("Expected Liftosaur program name is required");
   try {
     const response = await apiJson(apiBase, apiKey, `programs/${encodeURIComponent(programId)}`);
     const resolvedId = response?.data?.id;
@@ -333,7 +365,7 @@ export async function fetchDeploymentTarget({
     if (programId !== "current" && program.id !== programId) {
       throw new Error("Preparation target ID changed");
     }
-    if (program.name !== expectedName) {
+    if (expectedName && program.name !== expectedName) {
       throw new Error("Preparation target name changed");
     }
     return program;
@@ -397,6 +429,7 @@ export async function deployPreparedBundle({
     target: { id: originalTarget.id, name: deployedTarget.name },
     previousTargetName: originalTarget.name,
     preparedAt: bundle.manifest.preparedAt,
+    source: bundle.manifest.source ?? null,
   };
 
   try {

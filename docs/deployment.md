@@ -4,11 +4,37 @@ Deployment is intentionally split into offline preparation and an explicit live
 write. The caller owns credential storage, approval, private artifact retention,
 and selection of the active source supplied during preparation.
 
-## End-to-end preparation
+## Git-native preparation
 
-The recommended command takes the exact previously deployed Git source and the
-new Git candidate. It fetches the selected active Liftosaur program, performs a
-three-way merge, validates the merged source, and writes the prepared bundle:
+When the program is stored in Git, use an exact Liftosaur program ID plus the
+reviewed base and candidate refs:
+
+```sh
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
+  --repository . \
+  --base-ref last-deployed-tag \
+  --candidate-ref reviewed-release-tag \
+  --program programs/example.liftoscript \
+  --program-id exact-program-id \
+  --deployed-program-name "New name" \
+  --output deployment-bundle
+```
+
+The command requires a clean worktree and a credential-free, non-local `origin`
+URL. Both refs are resolved to immutable commits and program blobs. The bundle
+records the remote identity, Git object format, repository-relative path,
+requested refs, commit IDs, and blob IDs. Deployment copies that provenance into
+its private receipt.
+
+An expected current name is deliberately unnecessary: the exact program ID
+selects the target, and preparation records the name returned by Liftosaur.
+`current` is therefore not accepted by `prepare-git`.
+
+## File-based end-to-end preparation
+
+For sources prepared outside a Git worktree, supply the exact previously
+deployed source and new candidate as files. This path retains the optional
+expected-name guard and `current` alias because it lacks Git target provenance:
 
 ```sh
 LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare \
@@ -21,10 +47,9 @@ LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare \
 ```
 
 `--program-id` may be an exact program ID or `current`; the bundle always records
-the resolved ID. The expected current name prevents selection of an unintended
-target. Preparation uses the API key only for a read and never changes
-Liftosaur. Merge conflicts or native validation failures produce no deployable
-bundle.
+the resolved ID. Preparation uses the API key only for a read and never changes
+Liftosaur. Both end-to-end paths produce no deployable bundle when merging or
+native validation fails.
 
 ## Assemble an externally prepared deployment
 

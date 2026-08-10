@@ -87,11 +87,15 @@ compares reviewed scenario snapshots without rewriting them. See the
 
 ## Prepared deployment and rollback
 
-`prepare` fetches the selected active Liftosaur program, merges its state with a
-new Git candidate relative to the previously deployed source, runs native
-validation, and creates an immutable checksum-bound deployment bundle. It reads
-Liftosaur but never writes to it. `prepare-deployment` remains available for
-callers that already produced the active source, merged program, and evidence.
+`prepare-git` resolves reviewed Git refs to immutable commits and program blobs,
+fetches the exact Liftosaur program ID, merges its state with the Git candidate,
+runs native validation, and creates a checksum-bound deployment bundle. Git
+provenance is carried into the eventual deployment receipt. It reads Liftosaur
+but never writes to it.
+
+`prepare` provides the same merge and validation path for caller-supplied files.
+`prepare-deployment` remains available for callers that already produced the
+active source, merged program, and evidence.
 
 `deploy` requires the caller to restate the exact target ID and resulting name,
 verifies that the live target is unchanged, writes once, and verifies the

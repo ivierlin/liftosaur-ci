@@ -50,6 +50,7 @@ test("CLI exposes every command without loading the Liftosaur runtime", () => {
   assert.match(result.stdout, /liftosaur-ci snapshot/);
   assert.match(result.stdout, /liftosaur-ci prepare-deployment/);
   assert.match(result.stdout, /liftosaur-ci prepare \\/);
+  assert.match(result.stdout, /liftosaur-ci prepare-git/);
   assert.match(result.stdout, /liftosaur-ci deploy/);
   assert.match(result.stdout, /liftosaur-ci check/);
 

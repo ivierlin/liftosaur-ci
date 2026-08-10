@@ -4,6 +4,7 @@ import process from "node:process";
 
 import { checkRepository } from "./check.mjs";
 import { deployPreparedBundle, prepareDeploymentBundle } from "./deployment.mjs";
+import { prepareGitDeployment } from "./git.mjs";
 import { mergeLiftosaurSources } from "./merge.mjs";
 import { LiftosaurPreparationError, prepareLiftosaurDeployment } from "./prepare.mjs";
 import {
@@ -67,6 +68,16 @@ function usage() {
     --output <deployment-bundle-directory> \\
     [--api-base <url>]
 
+  liftosaur-ci prepare-git \\
+    [--repository <git-worktree>] \\
+    --base-ref <last-deployed-ref> \\
+    --candidate-ref <reviewed-ref> \\
+    --program <repository-relative-path> \\
+    --program-id <exact-liftosaur-program-id> \\
+    --deployed-program-name <new-name> \\
+    --output <deployment-bundle-directory> \\
+    [--api-base <url>]
+
   liftosaur-ci deploy \\
     --bundle <deployment-bundle-directory> \\
     --confirm-program-id <liftosaur-program-id> \\
@@ -80,8 +91,8 @@ function usage() {
     [--report <check-report.json>]
 
 Merge, validation, snapshots, checks, and prepare-deployment are offline.
-Prepare reads LIFTOSAUR_API_KEY but only reads Liftosaur. Deploy uses the same
-environment variable and changes exactly one prepared Liftosaur target.
+Prepare and prepare-git read LIFTOSAUR_API_KEY but only read Liftosaur. Deploy
+uses the same environment variable and changes exactly one prepared target.
 Existing output files and directories are never overwritten.`;
 }
 
@@ -304,6 +315,42 @@ async function runPrepare(argv) {
   }
 }
 
+async function runPrepareGit(argv) {
+  const options = parseOptions(argv, [
+    "repository",
+    "base-ref",
+    "candidate-ref",
+    "program",
+    "program-id",
+    "deployed-program-name",
+    "output",
+    "api-base",
+  ]);
+  const outputDirectory = requireOption(options, "output");
+  try {
+    const result = await prepareGitDeployment({
+      repository: path.resolve(options.repository ?? "."),
+      baseRef: requireTextOption(options, "base-ref"),
+      candidateRef: requireTextOption(options, "candidate-ref"),
+      programPath: requireTextOption(options, "program"),
+      outputDirectory,
+      programId: requireTextOption(options, "program-id"),
+      deployedProgramName: requireTextOption(options, "deployed-program-name"),
+      apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+      apiBase: options["api-base"],
+    });
+    console.log(
+      `Git deployment prepared: ${result.manifest.source.candidate.commitSha} → `
+      + `${result.manifest.target.id}; ${result.validation.days} days validated`
+    );
+  } catch (error) {
+    if (error instanceof LiftosaurPreparationError) {
+      throw new CliError(error.message, error.exitCode);
+    }
+    throw error;
+  }
+}
+
 async function runDeploy(argv) {
   const options = parseOptions(argv, [
     "bundle",
@@ -361,6 +408,7 @@ export async function runLiftosaurCi(argv) {
     "snapshot",
     "prepare-deployment",
     "prepare",
+    "prepare-git",
     "deploy",
     "check",
   ]);
@@ -374,6 +422,7 @@ export async function runLiftosaurCi(argv) {
   else if (command === "snapshot") await runSnapshot(commandArgs);
   else if (command === "prepare-deployment") await runPrepareDeployment(commandArgs);
   else if (command === "prepare") await runPrepare(commandArgs);
+  else if (command === "prepare-git") await runPrepareGit(commandArgs);
   else if (command === "deploy") await runDeploy(commandArgs);
   else await runCheck(commandArgs);
 }
