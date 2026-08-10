@@ -69,7 +69,13 @@ test("offline CLI validates immutable input and records checksums", async () => 
     assert.equal(report.command, "validate");
     assert.equal(report.input.sha256.length, 64);
     assert.equal(report.serialized.sha256.length, 64);
-    assert.deepEqual(report.summary, { days: 1, exercises: 1, sets: 3 });
+    assert.deepEqual(report.summary, {
+      days: 1,
+      exercises: 1,
+      sets: 3,
+      completedDays: 1,
+      completedSets: 3,
+    });
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -86,6 +92,26 @@ test("offline CLI writes a failed validation report", async () => {
     const report = JSON.parse(await readFile(paths.report, "utf8"));
     assert.equal(report.status, "failed");
     assert.ok(["parse", "evaluate"].includes(report.failure.stage));
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("offline CLI reports finish-script failures", async () => {
+  const { directory, paths } = await fixture();
+  try {
+    await writeFile(paths.base, `# Week 1
+## Day A
+base / used: none / 1x5 / progress: lp(5lb)
+Squat / ...base / progress: none
+`, "utf8");
+    const result = run([
+      "validate", "--program", paths.base, "--report", paths.report,
+    ]);
+    assert.equal(result.status, 1);
+    const report = JSON.parse(await readFile(paths.report, "utf8"));
+    assert.equal(report.failure.stage, "lifecycle-finish");
+    assert.match(report.failure.message, /successCounter/);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

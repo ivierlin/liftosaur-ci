@@ -172,7 +172,7 @@ async function runValidate(argv) {
     }
     console.log(
       `Liftosaur native validation passed: ${result.summary.days} days, `
-      + `${result.summary.exercises} exercises, ${result.summary.sets} sets`
+      + `${result.summary.exercises} exercises, ${result.summary.completedSets} completed sets`
     );
   } catch (error) {
     if (!(error instanceof LiftosaurValidationError)) throw error;

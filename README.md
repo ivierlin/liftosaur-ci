@@ -50,9 +50,11 @@ node bin/liftosaur-ci.mjs validate \
 ```
 
 Validation uses the pinned Liftosaur runtime to evaluate the program, construct
-every workout day, serialize and reload it, and compare stable prescriptions.
-It does not complete workouts or execute progression yet. Input files and
-existing reports are never modified.
+every workout day, compare stable prescriptions across serialization, complete
+nominal work sets, execute update and finish scripts, and reload each progressed
+program. Input files and existing reports are never modified. See the
+[native validation policy](docs/native-validation.md) for the exact inputs and
+scope.
 
 ## Tests
 
