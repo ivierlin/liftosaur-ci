@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { access, mkdir, readFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { spawnSync } from "node:child_process";
@@ -18,6 +18,7 @@ const generatedRuntimeFiles = new Set([
   "src/generated/liftoscriptGrammar.ts",
   "src/generated/plannerGrammar.ts",
 ]);
+const cacheFormat = 1;
 
 function usage() {
   return `Usage: node scripts/setup-runtime.mjs [--destination <path>] [--skip-install]`;
@@ -91,6 +92,14 @@ async function main() {
       ?? process.env.LIFTOSAUR_RUNTIME
       ?? path.join(repositoryRoot, ".private", "liftosaur-runtime")
   );
+  const readyFile = `${destination}.liftosaur-ci-ready.json`;
+  const readyState = `${JSON.stringify({
+    cacheFormat,
+    revision,
+    nodeAbi: process.versions.modules,
+    platform: process.platform,
+    architecture: process.arch,
+  }, null, 2)}\n`;
   await mkdir(path.dirname(destination), { recursive: true });
 
   let hasGeneratedChanges = false;
@@ -124,7 +133,7 @@ async function main() {
   const current = git(destination, ["rev-parse", "HEAD"], { capture: true }).stdout.trim();
   if (current !== revision) {
     if (hasGeneratedChanges) {
-      throw new Error("Runtime pin changed; remove the setup-generated runtime and run setup again");
+      git(destination, ["restore", "--source=HEAD", "--", ...generatedRuntimeFiles]);
     }
     git(destination, ["checkout", "--detach", revision]);
   }
@@ -132,8 +141,19 @@ async function main() {
   if (actual !== revision) throw new Error(`Runtime did not resolve to ${revision}`);
 
   if (!options.skipInstall) {
-    run(process.execPath, [npmCli, "ci", "--ignore-scripts", "--no-audit", "--no-fund"], { cwd: destination });
-    run(process.execPath, [npmCli, "run", "build:markdown"], { cwd: destination });
+    const ready = await exists(readyFile)
+      && await exists(path.join(destination, "node_modules", ".package-lock.json"))
+      && (await Promise.all(
+        [...generatedRuntimeFiles].map((file) => exists(path.join(destination, file)))
+      )).every(Boolean)
+      && await readFile(readyFile, "utf8") === readyState;
+    if (ready) {
+      console.log("Reusing cached Liftosaur runtime.");
+    } else {
+      run(process.execPath, [npmCli, "ci", "--ignore-scripts", "--no-audit", "--no-fund"], { cwd: destination });
+      run(process.execPath, [npmCli, "run", "build:markdown"], { cwd: destination });
+      await writeFile(readyFile, readyState);
+    }
   }
 
   console.log("Liftosaur runtime is ready.");

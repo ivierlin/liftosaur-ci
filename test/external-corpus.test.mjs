@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 
 import { parseLiftosaurMergeDocument } from "../src/frontend.mjs";
 import { mergeLiftosaurSources } from "../src/merge.mjs";
+import { validateLiftosaurSource } from "../src/validate.mjs";
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(testDirectory);
@@ -78,6 +79,8 @@ test("external corpus source matches the reviewed RP Hypertrophy v4.1 fixture", 
 test("external corpus processes RP Hypertrophy v4.1 unchanged", async () => {
   const document = parseLiftosaurMergeDocument(source);
   assert.ok(document.blocks.size > 0);
+  const validation = validateLiftosaurSource(source);
+  assert.ok(validation.summary.days > 0);
   const result = await mergeLiftosaurSources({ base: source, active: source, candidate: source });
   assert.equal(result.report.status, "merged");
 });

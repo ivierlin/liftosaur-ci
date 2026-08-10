@@ -6,8 +6,8 @@ Unofficial Git-based migration, validation, and deployment tooling for
 ## Status
 
 This repository is an early extraction from a proven migration experiment. The
-current release contains an offline three-way merge CLI only. It has no GitHub,
-credential, preparation, or deployment capability.
+current release contains offline three-way merge and native validation commands.
+It has no GitHub, credential, preparation, or deployment capability.
 
 ## Setup
 
@@ -20,7 +20,9 @@ npm run setup:runtime
 
 Runtime setup fetches the exact Liftosaur revision recorded in
 `runtime/liftosaur.version` into `.private/liftosaur-runtime` and installs its
-dependencies. Set `LIFTOSAUR_RUNTIME` to use another dedicated checkout.
+dependencies. Set `LIFTOSAUR_RUNTIME` to use another dedicated checkout. CI
+may keep this checkout in a persistent cache and reuse it while the pinned
+revision and Node ABI remain unchanged.
 
 ## Offline merge
 
@@ -42,6 +44,35 @@ The JSON report binds the exact input and output bytes with SHA-256 values and
 includes the versioned parser frontend and merge-core evidence.
 
 ## Validation
+
+```sh
+node bin/liftosaur-ci.mjs validate \
+  --program program.liftoscript \
+  --report validation-report.json
+```
+
+Validation uses the pinned Liftosaur runtime to evaluate the program, construct
+every workout day, compare stable prescriptions across serialization, complete
+nominal work sets, execute update and finish scripts, and reload each progressed
+program. Input files and existing reports are never modified. See the
+[native validation policy](docs/native-validation.md) for the exact inputs and
+scope.
+
+## Regression snapshots
+
+```sh
+node bin/liftosaur-ci.mjs snapshot \
+  --program program.liftoscript \
+  --scenario reviewed-scenario.json \
+  --output snapshot.json
+```
+
+Scenario inputs explicitly identify the day, every exercise, and every completed
+work set. The immutable output records persistent progression state plus the next
+exposure and next scheduled workout prescriptions. Snapshot changes require
+review; they do not establish coaching correctness.
+
+## Tests
 
 ```sh
 npm test

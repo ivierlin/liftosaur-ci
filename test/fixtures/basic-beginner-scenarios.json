@@ -1,0 +1,32 @@
+[
+  {
+    "formatVersion": 1,
+    "name": "nominal",
+    "day": 1,
+    "entries": [
+      { "exercise": "Bent Over Row", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] },
+      { "exercise": "Bench Press", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] },
+      { "exercise": "Squat", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] }
+    ]
+  },
+  {
+    "formatVersion": 1,
+    "name": "underperformance",
+    "day": 1,
+    "entries": [
+      { "exercise": "Bent Over Row", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] },
+      { "exercise": "Bench Press", "sets": [{ "reps": 4 }, { "reps": 4 }, { "reps": 4 }] },
+      { "exercise": "Squat", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] }
+    ]
+  },
+  {
+    "formatVersion": 1,
+    "name": "overperformance",
+    "day": 1,
+    "entries": [
+      { "exercise": "Bent Over Row", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] },
+      { "exercise": "Bench Press", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 11 }] },
+      { "exercise": "Squat", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] }
+    ]
+  }
+]

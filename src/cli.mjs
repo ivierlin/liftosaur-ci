@@ -3,6 +3,12 @@ import { access, readFile, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { mergeLiftosaurSources } from "./merge.mjs";
+import {
+  LIFTOSAUR_VALIDATOR,
+  LiftosaurValidationError,
+  snapshotLiftosaurScenario,
+  validateLiftosaurSource,
+} from "./validate.mjs";
 
 export const LIFTOSAUR_CI_CLI = Object.freeze({
   name: "liftosaur-ci",
@@ -25,14 +31,22 @@ function usage() {
     --output <merged.liftoscript> \\
     [--report <merge-report.json>]
 
-Offline only. The command reads three immutable inputs, performs a fail-closed
-three-way merge, and writes a new output plus optional checksum-bearing report.
-Existing output or report files are never overwritten.`;
+  liftosaur-ci validate \\
+    --program <program.liftoscript> \\
+    [--report <validation-report.json>]
+
+  liftosaur-ci snapshot \\
+    --program <program.liftoscript> \\
+    --scenario <scenario.json> \\
+    --output <snapshot.json>
+
+Offline only. Commands read immutable inputs and optionally write checksum-bearing
+reports. Merge is fail-closed. Existing output or report files are never overwritten.`;
 }
 
-function parseMergeOptions(argv) {
+function parseOptions(argv, allowedNames) {
   const options = {};
-  const allowed = new Set(["base", "active", "candidate", "output", "report"]);
+  const allowed = new Set(allowedNames);
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
     if (!argument.startsWith("--")) throw new CliError(`Unexpected argument: ${argument}`);
@@ -45,6 +59,10 @@ function parseMergeOptions(argv) {
     index += 1;
   }
   return options;
+}
+
+function parseMergeOptions(argv) {
+  return parseOptions(argv, ["base", "active", "candidate", "output", "report"]);
 }
 
 function requireOption(options, name) {
@@ -130,6 +148,101 @@ async function runMerge(argv) {
   console.log(`Liftosaur three-way merge passed: ${outputs.output}`);
 }
 
+async function runValidate(argv) {
+  const options = parseOptions(argv, ["program", "report"]);
+  const program = requireOption(options, "program");
+  const reportFile = options.report ? path.resolve(options.report) : null;
+  if (reportFile === program) {
+    throw new CliError(`Validation report must not replace the input file: ${program}`);
+  }
+  if (reportFile) await requireNewFile(reportFile, "Validation report");
+
+  const source = await readFile(program, "utf8");
+  try {
+    const result = validateLiftosaurSource(source);
+    const report = {
+      formatVersion: 1,
+      command: "validate",
+      cli: LIFTOSAUR_CI_CLI,
+      status: "passed",
+      input: { sha256: sha256(source) },
+      serialized: { sha256: sha256(result.serializedSource) },
+      validator: result.validator,
+      summary: result.summary,
+    };
+    if (reportFile) {
+      await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, {
+        encoding: "utf8",
+        flag: "wx",
+      });
+    }
+    console.log(
+      `Liftosaur native validation passed: ${result.summary.days} days, `
+      + `${result.summary.exercises} exercises, ${result.summary.completedSets} completed sets`
+    );
+  } catch (error) {
+    if (!(error instanceof LiftosaurValidationError)) throw error;
+    const report = {
+      formatVersion: 1,
+      command: "validate",
+      cli: LIFTOSAUR_CI_CLI,
+      status: "failed",
+      input: { sha256: sha256(source) },
+      validator: LIFTOSAUR_VALIDATOR,
+      failure: {
+        stage: error.stage,
+        message: error.message,
+        details: error.details,
+      },
+    };
+    if (reportFile) {
+      await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`, {
+        encoding: "utf8",
+        flag: "wx",
+      });
+    }
+    throw new CliError(error.message);
+  }
+}
+
+async function runSnapshot(argv) {
+  const options = parseOptions(argv, ["program", "scenario", "output"]);
+  const inputs = {
+    program: requireOption(options, "program"),
+    scenario: requireOption(options, "scenario"),
+  };
+  const output = requireOption(options, "output");
+  requireDistinctPaths(inputs, { output });
+  await requireNewFile(output, "Scenario snapshot");
+
+  const [source, scenarioText] = await Promise.all([
+    readFile(inputs.program, "utf8"),
+    readFile(inputs.scenario, "utf8"),
+  ]);
+  let scenario;
+  try {
+    scenario = JSON.parse(scenarioText);
+  } catch (error) {
+    throw new CliError(`Scenario is not valid JSON: ${error.message}`);
+  }
+  const result = snapshotLiftosaurScenario(source, scenario);
+  const snapshot = {
+    ...result.snapshot,
+    command: "snapshot",
+    cli: LIFTOSAUR_CI_CLI,
+    inputs: {
+      program: { sha256: sha256(source) },
+      scenario: { sha256: sha256(scenarioText) },
+    },
+    progressedSource: { sha256: sha256(result.serializedSource) },
+  };
+  await writeFile(output, `${JSON.stringify(snapshot, null, 2)}\n`, {
+    encoding: "utf8",
+    flag: "wx",
+  });
+  console.log(`Liftosaur scenario snapshot written: ${output}`);
+}
+
 export async function runLiftosaurCi(argv) {
   if (argv.length === 0 || argv[0] === "--help" || argv[0] === "-h") {
     console.log(usage());
@@ -140,10 +253,14 @@ export async function runLiftosaurCi(argv) {
     return;
   }
   const [command, ...commandArgs] = argv;
-  if (command !== "merge") throw new CliError(`Unknown command: ${command}`);
+  if (command !== "merge" && command !== "validate" && command !== "snapshot") {
+    throw new CliError(`Unknown command: ${command}`);
+  }
   if (commandArgs.length === 1 && (commandArgs[0] === "--help" || commandArgs[0] === "-h")) {
     console.log(usage());
     return;
   }
-  await runMerge(commandArgs);
+  if (command === "merge") await runMerge(commandArgs);
+  else if (command === "validate") await runValidate(commandArgs);
+  else await runSnapshot(commandArgs);
 }
