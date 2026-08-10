@@ -7,8 +7,9 @@ Unofficial Git-based migration, validation, and deployment tooling for
 
 This repository is an early extraction from a proven migration experiment. It
 contains offline three-way merge, native validation, reviewed regression,
-repository check, and prepared deployment commands. GitHub orchestration and
-credential storage remain the responsibility of the calling repository.
+repository check, prepared deployment commands, and reusable GitHub workflows.
+Credential storage and deployment approval remain the responsibility of the
+calling repository.
 
 ## Setup
 
@@ -103,6 +104,7 @@ to select and verify its base automatically.
 active source, merged program, and evidence.
 
 `deploy` requires the caller to restate the exact target ID and resulting name,
+or resolves both from a named configured deployment. It then
 verifies that the live target is unchanged, writes once, and verifies the
 read-back.
 
@@ -111,6 +113,10 @@ the prepared rollback source. It never guesses through an ambiguous write.
 The API key is read only from `LIFTOSAUR_API_KEY`. See the
 [deployment contract](docs/deployment.md) before using the command against a
 live program.
+
+See [GitHub Actions integration](docs/github-actions.md) for reusable check and
+approval-gated deployment workflows. Runner labels and tool revisions are
+explicit inputs; no hosted runner image is assumed.
 
 ## Tests
 

@@ -1,0 +1,220 @@
+name: Liftosaur prepare and deploy
+
+on:
+  workflow_call:
+    inputs:
+      deployment:
+        description: Stable deployment ID from liftosaur-ci.json
+        required: true
+        type: string
+      candidate_ref:
+        description: Reviewed commit or tag to deploy
+        required: true
+        type: string
+      base_ref:
+        description: Required only before the first tracked deployment
+        required: false
+        default: ''
+        type: string
+      config:
+        description: Repository-relative liftosaur-ci config path
+        required: false
+        default: liftosaur-ci.json
+        type: string
+      environment:
+        description: Protected GitHub environment requiring deployment approval
+        required: false
+        default: liftosaur
+        type: string
+      state_branch:
+        description: Base branch for the deployment-state pull request
+        required: false
+        default: main
+        type: string
+      tool_repository:
+        description: Repository containing liftosaur-ci
+        required: false
+        default: ivierlin/liftosaur-ci
+        type: string
+      tool_ref:
+        description: Reviewed liftosaur-ci commit or tag
+        required: true
+        type: string
+      runs_on:
+        description: JSON array of runner labels
+        required: false
+        default: '["self-hosted","Linux","X64"]'
+        type: string
+    secrets:
+      liftosaur_api_key:
+        description: Liftosaur API key
+        required: true
+      liftosaur_program_id:
+        description: Exact Liftosaur program ID
+        required: true
+      tool_token:
+        description: Token able to read liftosaur-ci when it is private
+        required: false
+
+concurrency:
+  group: liftosaur-deploy-${{ inputs.deployment }}
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    permissions:
+      contents: read
+    runs-on: ${{ fromJSON(inputs.runs_on) }}
+    timeout-minutes: 30
+    steps:
+      - name: Check out reviewed program repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          path: repository
+          ref: ${{ inputs.candidate_ref }}
+      - name: Check out liftosaur-ci
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ inputs.tool_repository }}
+          ref: ${{ inputs.tool_ref }}
+          path: tool
+          token: ${{ secrets.tool_token || github.token }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: tool/package-lock.json
+      - name: Install liftosaur-ci
+        working-directory: tool
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Set up cached Liftosaur runtime
+        working-directory: tool
+        run: npm run setup:runtime
+        env:
+          LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+      - name: Prepare immutable deployment bundle
+        shell: bash
+        run: |
+          set -eu
+          set -- prepare-git \
+            --repository "$GITHUB_WORKSPACE/repository" \
+            --config "$GITHUB_WORKSPACE/repository/${CONFIG}" \
+            --deployment "$DEPLOYMENT" \
+            --candidate-ref "$CANDIDATE_REF" \
+            --output "$RUNNER_TEMP/liftosaur-deployment"
+          if [ -n "$BASE_REF" ]; then
+            set -- "$@" --base-ref "$BASE_REF"
+          fi
+          node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" "$@"
+        env:
+          BASE_REF: ${{ inputs.base_ref }}
+          CANDIDATE_REF: ${{ inputs.candidate_ref }}
+          CONFIG: ${{ inputs.config }}
+          DEPLOYMENT: ${{ inputs.deployment }}
+          LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
+          LIFTOSAUR_PROGRAM_ID: ${{ secrets.liftosaur_program_id }}
+          LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+      - name: Retain private bundle for the approval gate
+        uses: actions/upload-artifact@v7
+        with:
+          name: liftosaur-deployment-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/liftosaur-deployment
+          if-no-files-found: error
+          retention-days: 1
+
+  deploy:
+    needs: prepare
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ${{ fromJSON(inputs.runs_on) }}
+    timeout-minutes: 15
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Check out reviewed program repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          path: repository
+          ref: ${{ inputs.candidate_ref }}
+      - name: Check out liftosaur-ci
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ inputs.tool_repository }}
+          ref: ${{ inputs.tool_ref }}
+          path: tool
+          token: ${{ secrets.tool_token || github.token }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Download approved bundle
+        uses: actions/download-artifact@v8
+        with:
+          name: liftosaur-deployment-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/liftosaur-deployment
+      - name: Deploy and verify
+        run: >-
+          node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" deploy
+          --bundle "$RUNNER_TEMP/liftosaur-deployment"
+          --config "$GITHUB_WORKSPACE/repository/${CONFIG}"
+          --deployment "$DEPLOYMENT"
+          --output "$RUNNER_TEMP/liftosaur-deployment-record"
+        env:
+          CONFIG: ${{ inputs.config }}
+          DEPLOYMENT: ${{ inputs.deployment }}
+          LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
+          LIFTOSAUR_PROGRAM_ID: ${{ secrets.liftosaur_program_id }}
+      - name: Record verified Git deployment state
+        run: >-
+          node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" record-deployment
+          --config "$GITHUB_WORKSPACE/repository/${CONFIG}"
+          --deployment "$DEPLOYMENT"
+          --report "$RUNNER_TEMP/liftosaur-deployment-record/deployment-report.json"
+        env:
+          CONFIG: ${{ inputs.config }}
+          DEPLOYMENT: ${{ inputs.deployment }}
+          LIFTOSAUR_PROGRAM_ID: ${{ secrets.liftosaur_program_id }}
+      - name: Commit deployment state
+        id: state
+        working-directory: repository
+        shell: bash
+        run: |
+          set -eu
+          branch="liftosaur-ci/state-${DEPLOYMENT}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git switch -c "$branch"
+          git add -- ".liftosaur-ci/deployments/${DEPLOYMENT}.json"
+          git commit -m "Record ${DEPLOYMENT} deployment state"
+          git push origin "HEAD:refs/heads/$branch"
+          printf 'branch=%s\n' "$branch" >> "$GITHUB_OUTPUT"
+        env:
+          DEPLOYMENT: ${{ inputs.deployment }}
+      - name: Open deployment-state pull request
+        uses: actions/github-script@v9
+        env:
+          DEPLOYMENT: ${{ inputs.deployment }}
+          HEAD_BRANCH: ${{ steps.state.outputs.branch }}
+          STATE_BRANCH: ${{ inputs.state_branch }}
+        with:
+          script: |
+            const response = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: process.env.HEAD_BRANCH,
+              base: process.env.STATE_BRANCH,
+              title: `Record ${process.env.DEPLOYMENT} deployment state`,
+              body: "Records the verified Git identity of the deployed program. The private deployment receipt remains a short-lived workflow artifact.",
+            });
+            core.summary.addLink("Deployment-state pull request", response.data.html_url).write();
+      - name: Retain private deployment receipt
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: liftosaur-deployment-record-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/liftosaur-deployment-record
+          if-no-files-found: warn
+          retention-days: 1
