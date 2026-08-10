@@ -1,29 +1,15 @@
-import { glob, readFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
 
+import { discoverConfiguredPrograms, loadLiftosaurConfig } from "./config.mjs";
 import { createScenarioSnapshot } from "./report.mjs";
 import {
   snapshotLiftosaurScenario,
   validateLiftosaurSource,
 } from "./validate.mjs";
 
-export const LIFTOSAUR_CHECK_CONFIG = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-check-config-v1",
-});
-
-function requireObject(value, label) {
-  if (!value || Array.isArray(value) || typeof value !== "object") {
-    throw new Error(`${label} must be a JSON object`);
-  }
-  return value;
-}
-
-function requireAllowedKeys(value, allowed, label) {
-  const unexpected = Object.keys(value).filter((key) => !allowed.has(key));
-  if (unexpected.length) throw new Error(`${label} has unsupported keys: ${unexpected.join(", ")}`);
-}
+export { LIFTOSAUR_CHECK_CONFIG } from "./config.mjs";
 
 function parseJson(text, label) {
   try {
@@ -31,62 +17,6 @@ function parseJson(text, label) {
   } catch (error) {
     throw new Error(`${label} is not valid JSON: ${error.message}`);
   }
-}
-
-function requireRelativePath(value, label) {
-  if (typeof value !== "string" || !value || path.isAbsolute(value)) {
-    throw new Error(`${label} must be a non-empty relative path`);
-  }
-  const normalized = value.replaceAll("\\", "/");
-  if (normalized.split("/").includes("..")) throw new Error(`${label} must stay inside the repository`);
-  return normalized;
-}
-
-function validateConfig(config) {
-  requireObject(config, "Check config");
-  requireAllowedKeys(
-    config,
-    new Set(["formatVersion", "implementation", "programs", "scenarios"]),
-    "Check config"
-  );
-  if (
-    config.formatVersion !== LIFTOSAUR_CHECK_CONFIG.formatVersion
-    || config.implementation !== LIFTOSAUR_CHECK_CONFIG.implementation
-  ) {
-    throw new Error("Unsupported check config format");
-  }
-  if (!Array.isArray(config.programs) || config.programs.length === 0) {
-    throw new Error("Check config programs must contain at least one glob");
-  }
-  const programs = config.programs.map((value, index) => (
-    requireRelativePath(value, `Check config programs[${index}]`)
-  ));
-  const scenarios = config.scenarios ?? [];
-  if (!Array.isArray(scenarios)) throw new Error("Check config scenarios must be an array");
-  const checkedScenarios = scenarios.map((value, index) => {
-    requireObject(value, `Check config scenarios[${index}]`);
-    requireAllowedKeys(value, new Set(["program", "scenario", "snapshot"]), `Check config scenarios[${index}]`);
-    return {
-      program: requireRelativePath(value.program, `Check config scenarios[${index}].program`),
-      scenario: requireRelativePath(value.scenario, `Check config scenarios[${index}].scenario`),
-      snapshot: requireRelativePath(value.snapshot, `Check config scenarios[${index}].snapshot`),
-    };
-  });
-  return { programs, scenarios: checkedScenarios };
-}
-
-async function discoverPrograms(root, patterns) {
-  const matches = new Set();
-  for (const pattern of patterns) {
-    for await (const file of glob(pattern, {
-      cwd: root,
-      exclude: ["**/.git/**", "**/.private/**", "**/node_modules/**"],
-    })) {
-      matches.add(file.replaceAll("\\", "/"));
-    }
-  }
-  if (matches.size === 0) throw new Error("Check config did not discover any programs");
-  return [...matches].sort();
 }
 
 function failure(error) {
@@ -116,10 +46,9 @@ function firstDifference(actual, expected, location = "$") {
 }
 
 export async function checkRepository(configFile) {
-  const configText = await readFile(configFile, "utf8");
-  const root = path.dirname(configFile);
-  const definition = validateConfig(parseJson(configText, "Check config"));
-  const programs = await discoverPrograms(root, definition.programs);
+  const definition = await loadLiftosaurConfig(configFile);
+  const root = definition.root;
+  const programs = await discoverConfiguredPrograms(definition);
   const programSet = new Set(programs);
   for (const scenario of definition.scenarios) {
     if (!programSet.has(scenario.program)) {

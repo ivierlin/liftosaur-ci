@@ -1,6 +1,6 @@
 {
-  "formatVersion": 1,
-  "implementation": "liftosaur-check-config-v1",
+  "formatVersion": 2,
+  "implementation": "liftosaur-check-config-v2",
   "programs": [
     "test/fixtures/check/*.liftoscript"
   ],
@@ -10,5 +10,12 @@
       "scenario": "test/fixtures/check/example.scenario.json",
       "snapshot": "test/fixtures/check/example.expected.json"
     }
-  ]
+  ],
+  "deployments": {
+    "example": {
+      "program": "test/fixtures/check/example.liftoscript",
+      "programIdEnv": "LIFTOSAUR_EXAMPLE_PROGRAM_ID",
+      "deployedProgramName": "Example"
+    }
+  }
 }

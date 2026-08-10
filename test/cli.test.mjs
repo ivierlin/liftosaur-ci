@@ -6,6 +6,8 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
+import { runCli } from "./helpers/run-cli.mjs";
+
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = path.dirname(testDirectory);
 const cli = path.join(repositoryRoot, "bin", "liftosaur-ci.mjs");
@@ -20,10 +22,7 @@ Squat / 3x5 100kg / ${timer}s / progress: custom(volume: ${volume}) {~ state.vol
 `;
 
 function run(args) {
-  return spawnSync(process.execPath, [cli, ...args], {
-    encoding: "utf8",
-    env: { ...process.env, LIFTOSAUR_RUNTIME: runtime },
-  });
+  return runCli(args, { ...process.env, LIFTOSAUR_RUNTIME: runtime });
 }
 
 async function fixture() {
@@ -52,6 +51,7 @@ test("CLI exposes every command without loading the Liftosaur runtime", () => {
   assert.match(result.stdout, /liftosaur-ci prepare \\/);
   assert.match(result.stdout, /liftosaur-ci prepare-git/);
   assert.match(result.stdout, /liftosaur-ci deploy/);
+  assert.match(result.stdout, /liftosaur-ci record-deployment/);
   assert.match(result.stdout, /liftosaur-ci check/);
 
   const commandHelp = spawnSync(process.execPath, [cli, "merge", "--help"], {
@@ -74,7 +74,7 @@ test("offline CLI writes a checksum-bound reviewed scenario snapshot", async () 
         sets: [{ reps: 5 }, { reps: 5 }, { reps: 5 }],
       }],
     }, null, 2)}\n`, "utf8");
-    const result = run([
+    const result = await run([
       "snapshot", "--program", paths.base,
       "--scenario", paths.scenario, "--output", paths.output,
     ]);
@@ -106,7 +106,7 @@ test("offline CLI writes an ordered multi-exposure snapshot", async () => {
         { name: "second", day: 1, entries },
       ],
     }, null, 2)}\n`, "utf8");
-    const result = run([
+    const result = await run([
       "snapshot", "--program", paths.base,
       "--scenario", paths.scenario, "--output", paths.output,
     ]);
@@ -127,7 +127,7 @@ test("offline CLI writes an ordered multi-exposure snapshot", async () => {
 test("offline CLI validates immutable input and records checksums", async () => {
   const { directory, paths } = await fixture();
   try {
-    const result = run([
+    const result = await run([
       "validate", "--program", paths.base, "--report", paths.report,
     ]);
     assert.equal(result.status, 0, result.stderr);
@@ -152,7 +152,7 @@ test("offline CLI writes a failed validation report", async () => {
   const { directory, paths } = await fixture();
   try {
     await writeFile(paths.base, `# Week 1\n## Day A\nSquat / not-a-prescription\n`, "utf8");
-    const result = run([
+    const result = await run([
       "validate", "--program", paths.base, "--report", paths.report,
     ]);
     assert.equal(result.status, 1);
@@ -172,7 +172,7 @@ test("offline CLI reports finish-script failures", async () => {
 base / used: none / 1x5 / progress: lp(5lb)
 Squat / ...base / progress: none
 `, "utf8");
-    const result = run([
+    const result = await run([
       "validate", "--program", paths.base, "--report", paths.report,
     ]);
     assert.equal(result.status, 1);
@@ -188,7 +188,7 @@ test("offline CLI refuses to overwrite an existing validation report", async () 
   const { directory, paths } = await fixture();
   try {
     await writeFile(paths.report, "keep me\n", "utf8");
-    const result = run([
+    const result = await run([
       "validate", "--program", paths.base, "--report", paths.report,
     ]);
     assert.equal(result.status, 1);
@@ -202,7 +202,7 @@ test("offline CLI refuses to overwrite an existing validation report", async () 
 test("offline CLI merges immutable inputs and records checksums", async () => {
   const { directory, paths } = await fixture();
   try {
-    const result = run([
+    const result = await run([
       "merge", "--base", paths.base, "--active", paths.active,
       "--candidate", paths.candidate, "--output", paths.output, "--report", paths.report,
     ]);
@@ -224,7 +224,7 @@ test("offline CLI reports conflicts without writing a merged program", async () 
   const { directory, paths } = await fixture();
   try {
     await writeFile(paths.candidate, source({ volume: 4 }), "utf8");
-    const result = run([
+    const result = await run([
       "merge", "--base", paths.base, "--active", paths.active,
       "--candidate", paths.candidate, "--output", paths.output, "--report", paths.report,
     ]);
@@ -243,7 +243,7 @@ test("offline CLI refuses to overwrite an existing output", async () => {
   const { directory, paths } = await fixture();
   try {
     await writeFile(paths.output, "keep me\n", "utf8");
-    const result = run([
+    const result = await run([
       "merge", "--base", paths.base, "--active", paths.active,
       "--candidate", paths.candidate, "--output", paths.output,
     ]);
@@ -259,7 +259,7 @@ test("offline CLI removes a new output when its requested report cannot be writt
   const { directory, paths } = await fixture();
   try {
     const missingReport = path.join(directory, "missing", "report.json");
-    const result = run([
+    const result = await run([
       "merge", "--base", paths.base, "--active", paths.active,
       "--candidate", paths.candidate, "--output", paths.output, "--report", missingReport,
     ]);

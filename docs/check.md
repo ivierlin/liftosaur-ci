@@ -12,8 +12,8 @@ directory. `.git`, `.private`, and `node_modules` are excluded from discovery.
 
 ```json
 {
-  "formatVersion": 1,
-  "implementation": "liftosaur-check-config-v1",
+  "formatVersion": 2,
+  "implementation": "liftosaur-check-config-v2",
   "programs": ["programs/*.liftoscript"],
   "scenarios": [
     {
@@ -21,13 +21,26 @@ directory. `.git`, `.private`, and `node_modules` are excluded from discovery.
       "scenario": "test/example.json",
       "snapshot": "test/example.expected.json"
     }
-  ]
+  ],
+  "deployments": {
+    "example": {
+      "program": "programs/example.liftoscript",
+      "programIdEnv": "LIFTOSAUR_EXAMPLE_PROGRAM_ID",
+      "deployedProgramName": "Example"
+    }
+  }
 }
 ```
 
 `programs` must contain at least one pattern and discovery must find at least
 one file. `scenarios` is optional. Each scenario program must be included by the
 program patterns.
+
+Version 2 adds optional named `deployments`. Each stable deployment ID connects
+a discovered program to a fixed resulting name and the name of an environment
+variable containing its exact Liftosaur program ID. Program IDs and credentials
+therefore stay out of the repository. Version 1 check-only configs remain
+supported.
 
 ## CI usage
 

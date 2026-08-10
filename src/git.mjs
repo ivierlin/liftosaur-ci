@@ -121,6 +121,7 @@ export async function prepareGitDeployment({
   outputDirectory,
   programId,
   deployedProgramName,
+  expectedBase = null,
   apiKey,
   apiBase,
 }) {
@@ -128,6 +129,15 @@ export async function prepareGitDeployment({
     throw new Error("Git deployment preparation requires an exact Liftosaur program ID");
   }
   const programs = readGitProgramPair({ repository, baseRef, candidateRef, programPath });
+  if (expectedBase && (
+    programs.source.remote !== expectedBase.remote
+    || programs.source.objectFormat !== expectedBase.objectFormat
+    || programs.source.programPath !== expectedBase.programPath
+    || programs.source.base.commitSha !== expectedBase.candidate?.commitSha
+    || programs.source.base.blobSha !== expectedBase.candidate?.blobSha
+  )) {
+    throw new Error("Resolved Git base does not match tracked deployment state");
+  }
   return prepareLiftosaurDeploymentFromContents({
     base: programs.base,
     candidate: programs.candidate,

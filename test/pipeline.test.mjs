@@ -1,14 +1,12 @@
 import assert from "node:assert/strict";
-import { spawn } from "node:child_process";
 import { createServer } from "node:http";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { fileURLToPath } from "node:url";
 
-const repositoryRoot = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const cli = path.join(repositoryRoot, "bin", "liftosaur-ci.mjs");
+import { runCli } from "./helpers/run-cli.mjs";
+
 const apiKey = `lftsk_${"pipeline_secret"}`;
 
 function source({ volume = 2, timer = 120 } = {}) {
@@ -20,22 +18,7 @@ Squat / 3x5 100kg / ${timer}s / progress: custom(volume: ${volume}) {~ state.vol
 `;
 }
 
-function run(args, environment) {
-  return new Promise((resolve, reject) => {
-    const child = spawn(process.execPath, [cli, ...args], {
-      env: environment,
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-    let stdout = "";
-    let stderr = "";
-    child.stdout.setEncoding("utf8");
-    child.stderr.setEncoding("utf8");
-    child.stdout.on("data", (chunk) => { stdout += chunk; });
-    child.stderr.on("data", (chunk) => { stderr += chunk; });
-    child.on("error", reject);
-    child.on("close", (code) => resolve({ code, stdout, stderr }));
-  });
-}
+const run = runCli;
 
 async function requestBody(request) {
   const chunks = [];
