@@ -24,9 +24,8 @@
   "scripts": {
     "setup:runtime": "node scripts/setup-runtime.mjs",
     "check:self": "node bin/liftosaur-ci.mjs check --config liftosaur-ci.json",
-    "test:unit": "node test/source-format.test.mjs && node --test --test-isolation=none --test-concurrency=1 test/frontend.test.mjs test/merge.test.mjs test/validate.test.mjs test/scenario.test.mjs test/check.test.mjs test/deployment.test.mjs test/pipeline.test.mjs test/git-pipeline.test.mjs test/cli.test.mjs",
+    "test:unit": "node test/source-format.test.mjs && node --test --test-isolation=none --test-concurrency=1 test/frontend.test.mjs test/merge.test.mjs test/validate.test.mjs test/scenario.test.mjs test/check.test.mjs test/deployment.test.mjs test/pipeline.test.mjs test/git-pipeline.test.mjs test/cli.test.mjs test/self-check.test.mjs",
     "test:corpus": "node --test --test-isolation=none --test-concurrency=1 test/builtin-corpus.test.mjs test/external-corpus.test.mjs",
-    "test:all": "node --test --test-isolation=none --test-concurrency=1 test/source-format.test.mjs test/frontend.test.mjs test/merge.test.mjs test/validate.test.mjs test/scenario.test.mjs test/check.test.mjs test/deployment.test.mjs test/pipeline.test.mjs test/git-pipeline.test.mjs test/cli.test.mjs test/builtin-corpus.test.mjs test/external-corpus.test.mjs test/self-check.test.mjs",
-    "test": "npm run test:all"
+    "test": "npm run test:unit && npm run test:corpus"
   }
 }
