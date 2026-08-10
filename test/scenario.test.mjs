@@ -31,6 +31,14 @@ const expected = JSON.parse(await readFile(
   path.join(testDirectory, "fixtures", "basic-beginner.expected.json"),
   "utf8"
 ));
+const sequence = JSON.parse(await readFile(
+  path.join(testDirectory, "fixtures", "basic-beginner-sequence.json"),
+  "utf8"
+));
+const sequenceExpected = JSON.parse(await readFile(
+  path.join(testDirectory, "fixtures", "basic-beginner-sequence.expected.json"),
+  "utf8"
+));
 
 function projectEntry(entry) {
   const displayWeight = (weight) => (
@@ -84,5 +92,33 @@ test("reviewed scenarios require explicit inputs for every workout entry", () =>
       }],
     }),
     /Scenario is missing exercise: Bent Over Row #1/
+  );
+});
+
+test("reviewed scenario sequences carry progression across exposures", () => {
+  const result = snapshotLiftosaurScenario(source, sequence);
+  const actual = {
+    scenario: result.snapshot.scenario,
+    steps: result.snapshot.steps.map((step) => ({
+      index: step.index,
+      name: step.name,
+      day: step.day,
+      nextExposure: projectRecord(step.nextExposure),
+      nextWorkout: projectRecord(step.nextWorkout),
+    })),
+  };
+
+  assert.deepEqual(actual, sequenceExpected);
+  assert.deepEqual(actual.steps[0].nextExposure, expected.scenarios[0].nextExposure);
+  assert.notDeepEqual(actual.steps[1].nextExposure, expected.scenarios[1].nextExposure);
+});
+
+test("reviewed scenario sequences require distinct named steps", () => {
+  assert.throws(
+    () => snapshotLiftosaurScenario(source, {
+      ...sequence,
+      steps: [sequence.steps[0], sequence.steps[0]],
+    }),
+    /Duplicate scenario step name: nominal/
   );
 });

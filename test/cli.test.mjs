@@ -87,6 +87,39 @@ test("offline CLI writes a checksum-bound reviewed scenario snapshot", async () 
   }
 });
 
+test("offline CLI writes an ordered multi-exposure snapshot", async () => {
+  const { directory, paths } = await fixture();
+  try {
+    const entries = [{
+      exercise: "Squat",
+      sets: [{ reps: 5 }, { reps: 5 }, { reps: 5 }],
+    }];
+    await writeFile(paths.scenario, `${JSON.stringify({
+      formatVersion: 2,
+      name: "reviewed sequence",
+      steps: [
+        { name: "first", day: 1, entries },
+        { name: "second", day: 1, entries },
+      ],
+    }, null, 2)}\n`, "utf8");
+    const result = run([
+      "snapshot", "--program", paths.base,
+      "--scenario", paths.scenario, "--output", paths.output,
+    ]);
+    assert.equal(result.status, 0, result.stderr);
+    const snapshot = JSON.parse(await readFile(paths.output, "utf8"));
+    assert.equal(snapshot.formatVersion, 2);
+    assert.equal(snapshot.implementation, "liftosaur-scenario-sequence-v1");
+    assert.deepEqual(snapshot.steps.map(({ index, name, day }) => ({ index, name, day })), [
+      { index: 1, name: "first", day: 1 },
+      { index: 2, name: "second", day: 1 },
+    ]);
+    assert.equal(snapshot.progressedSource.sha256.length, 64);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
 test("offline CLI validates immutable input and records checksums", async () => {
   const { directory, paths } = await fixture();
   try {

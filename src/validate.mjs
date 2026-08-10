@@ -14,6 +14,12 @@ export const LIFTOSAUR_SCENARIO_SNAPSHOT = Object.freeze({
   runtimeRevision: pinnedRuntimeRevision,
 });
 
+export const LIFTOSAUR_SCENARIO_SEQUENCE_SNAPSHOT = Object.freeze({
+  formatVersion: 2,
+  implementation: "liftosaur-scenario-sequence-v1",
+  runtimeRevision: pinnedRuntimeRevision,
+});
+
 export class LiftosaurValidationError extends Error {
   constructor(message, stage, details = []) {
     super(message);
@@ -223,28 +229,28 @@ function completeNominalSet({ set }) {
   set.isCompleted = true;
 }
 
-function completeReviewedSet(set, input, exerciseName, setIndex) {
+function completeReviewedSet(set, input, exerciseName, setIndex, label) {
   if (!input || !Number.isInteger(input.reps) || input.reps < 0) {
     throw new LiftosaurValidationError(
-      `Scenario requires non-negative integer reps for ${exerciseName} set ${setIndex + 1}`,
+      `${label} requires non-negative integer reps for ${exerciseName} set ${setIndex + 1}`,
       "scenario"
     );
   }
   if (input.rpe != null && (typeof input.rpe !== "number" || input.rpe < 0 || input.rpe > 10)) {
     throw new LiftosaurValidationError(
-      `Scenario RPE must be between 0 and 10 for ${exerciseName} set ${setIndex + 1}`,
+      `${label} RPE must be between 0 and 10 for ${exerciseName} set ${setIndex + 1}`,
       "scenario"
     );
   }
   if (set.logRpe && set.rpe == null && input.rpe == null) {
     throw new LiftosaurValidationError(
-      `Scenario must provide RPE for ${exerciseName} set ${setIndex + 1}`,
+      `${label} must provide RPE for ${exerciseName} set ${setIndex + 1}`,
       "scenario"
     );
   }
   if (set.weight == null && input.weight == null) {
     throw new LiftosaurValidationError(
-      `Scenario must provide weight for ${exerciseName} set ${setIndex + 1}`,
+      `${label} must provide weight for ${exerciseName} set ${setIndex + 1}`,
       "scenario"
     );
   }
@@ -257,10 +263,10 @@ function completeReviewedSet(set, input, exerciseName, setIndex) {
   set.isCompleted = true;
 }
 
-function completeDay(source, day, api, completeSet) {
+function completeDay(source, day, api, completeSet, context = {}) {
   const program = programFromSource(source, api);
-  const settings = api.Settings_build();
-  const stats = api.Stats_getEmpty();
+  const settings = context.settings ?? api.Settings_build();
+  const stats = context.stats ?? api.Stats_getEmpty();
   const evaluated = withoutLoggedErrors("lifecycle-evaluate", () => (
     api.Program_evaluate(program, settings)
   ));
@@ -388,37 +394,34 @@ function completeDay(source, day, api, completeSet) {
   };
 }
 
-function scenarioEntries(scenario) {
-  if (!scenario || scenario.formatVersion !== 1 || typeof scenario.name !== "string") {
-    throw new LiftosaurValidationError("Scenario must have formatVersion 1 and a name", "scenario");
+function scenarioEntries(step, label) {
+  if (!Number.isInteger(step.day) || step.day < 1) {
+    throw new LiftosaurValidationError(`${label} day must be a positive integer`, "scenario");
   }
-  if (!Number.isInteger(scenario.day) || scenario.day < 1) {
-    throw new LiftosaurValidationError("Scenario day must be a positive integer", "scenario");
-  }
-  if (!Array.isArray(scenario.entries) || scenario.entries.length === 0) {
-    throw new LiftosaurValidationError("Scenario must provide completed entries", "scenario");
+  if (!Array.isArray(step.entries) || step.entries.length === 0) {
+    throw new LiftosaurValidationError(`${label} must provide completed entries`, "scenario");
   }
   const entries = new Map();
-  for (const entry of scenario.entries) {
+  for (const entry of step.entries) {
     if (
       !entry
       || typeof entry.exercise !== "string"
       || !Array.isArray(entry.sets)
       || entry.sets.length === 0
     ) {
-      throw new LiftosaurValidationError("Scenario entries require exercise and sets", "scenario");
+      throw new LiftosaurValidationError(`${label} entries require exercise and sets`, "scenario");
     }
     const occurrence = entry.occurrence ?? 1;
     if (!Number.isInteger(occurrence) || occurrence < 1) {
       throw new LiftosaurValidationError(
-        `Scenario occurrence must be a positive integer for ${entry.exercise}`,
+        `${label} occurrence must be a positive integer for ${entry.exercise}`,
         "scenario"
       );
     }
     const key = JSON.stringify([entry.exercise, occurrence]);
     if (entries.has(key)) {
       throw new LiftosaurValidationError(
-        `Duplicate scenario exercise occurrence: ${entry.exercise} #${occurrence}`,
+        `${label} has duplicate exercise occurrence: ${entry.exercise} #${occurrence}`,
         "scenario"
       );
     }
@@ -427,13 +430,12 @@ function scenarioEntries(scenario) {
   return entries;
 }
 
-export function snapshotLiftosaurScenario(source, scenario) {
-  const api = loadApi();
-  const entries = scenarioEntries(scenario);
+function completeScenarioStep(source, step, api, context, label) {
+  const entries = scenarioEntries(step, label);
   const original = evaluateSource(source, api);
-  if (scenario.day > original.days) {
+  if (step.day > original.days) {
     throw new LiftosaurValidationError(
-      `Scenario day ${scenario.day} exceeds the program's ${original.days} days`,
+      `${label} day ${step.day} exceeds the program's ${original.days} days`,
       "scenario"
     );
   }
@@ -442,7 +444,7 @@ export function snapshotLiftosaurScenario(source, scenario) {
   const entryKeys = new Map();
   const result = completeDay(
     source,
-    scenario.day,
+    step.day,
     api,
     ({ set, exercise, entryIndex, setIndex }) => {
       if (!entryKeys.has(entryIndex)) {
@@ -455,19 +457,20 @@ export function snapshotLiftosaurScenario(source, scenario) {
       if (!definition) {
         const occurrence = seenOccurrences.get(exercise.fullName);
         throw new LiftosaurValidationError(
-          `Scenario is missing exercise: ${exercise.fullName} #${occurrence}`,
+          `${label} is missing exercise: ${exercise.fullName} #${occurrence}`,
           "scenario"
         );
       }
-      completeReviewedSet(set, definition.sets[setIndex], exercise.fullName, setIndex);
+      completeReviewedSet(set, definition.sets[setIndex], exercise.fullName, setIndex, label);
       usedSets.set(key, setIndex + 1);
-    }
+    },
+    context
   );
 
   for (const [key, definition] of entries) {
     if (usedSets.get(key) !== definition.sets.length) {
       throw new LiftosaurValidationError(
-        `Scenario set count does not match the progressed workout for `
+        `${label} set count does not match the progressed workout for `
         + `${definition.exercise} #${definition.occurrence}`,
         "scenario"
       );
@@ -479,7 +482,7 @@ export function snapshotLiftosaurScenario(source, scenario) {
       result.reloaded,
       result.settings,
       result.stats,
-      scenario.day
+      step.day
     )
   ));
   const nextWorkout = withoutLoggedErrors("scenario-next-workout", () => (
@@ -491,13 +494,79 @@ export function snapshotLiftosaurScenario(source, scenario) {
     )
   ));
   return {
+    result,
+    nextExposure: stableBehaviorRecord(nextExposure, result.reloadedEvaluation, api),
+    nextWorkout: stableBehaviorRecord(nextWorkout, result.reloadedEvaluation, api),
+  };
+}
+
+export function snapshotLiftosaurScenario(source, scenario) {
+  const api = loadApi();
+  if (!scenario || typeof scenario.name !== "string" || scenario.name.trim().length === 0) {
+    throw new LiftosaurValidationError("Scenario must have a name", "scenario");
+  }
+
+  if (scenario.formatVersion === 1) {
+    const completed = completeScenarioStep(source, scenario, api, undefined, "Scenario");
+    return {
+      snapshot: {
+        ...LIFTOSAUR_SCENARIO_SNAPSHOT,
+        scenario: { name: scenario.name, day: scenario.day },
+        nextExposure: completed.nextExposure,
+        nextWorkout: completed.nextWorkout,
+      },
+      serializedSource: completed.result.serializedSource,
+    };
+  }
+
+  if (scenario.formatVersion !== 2) {
+    throw new LiftosaurValidationError("Scenario formatVersion must be 1 or 2", "scenario");
+  }
+  if (!Array.isArray(scenario.steps) || scenario.steps.length < 2 || scenario.steps.length > 100) {
+    throw new LiftosaurValidationError(
+      "Scenario formatVersion 2 requires between 2 and 100 steps",
+      "scenario"
+    );
+  }
+
+  const names = new Set();
+  for (const [index, step] of scenario.steps.entries()) {
+    const label = `Scenario step ${index + 1}`;
+    if (!step || typeof step.name !== "string" || step.name.trim().length === 0) {
+      throw new LiftosaurValidationError(`${label} must have a name`, "scenario");
+    }
+    if (names.has(step.name)) {
+      throw new LiftosaurValidationError(`Duplicate scenario step name: ${step.name}`, "scenario");
+    }
+    names.add(step.name);
+  }
+
+  let serializedSource = source;
+  let context;
+  const steps = scenario.steps.map((step, index) => {
+    const label = `Scenario step ${index + 1}`;
+    const completed = completeScenarioStep(serializedSource, step, api, context, label);
+    serializedSource = completed.result.serializedSource;
+    context = {
+      settings: completed.result.settings,
+      stats: completed.result.stats,
+    };
+    return {
+      index: index + 1,
+      name: step.name,
+      day: step.day,
+      nextExposure: completed.nextExposure,
+      nextWorkout: completed.nextWorkout,
+    };
+  });
+
+  return {
     snapshot: {
-      ...LIFTOSAUR_SCENARIO_SNAPSHOT,
-      scenario: { name: scenario.name, day: scenario.day },
-      nextExposure: stableBehaviorRecord(nextExposure, result.reloadedEvaluation, api),
-      nextWorkout: stableBehaviorRecord(nextWorkout, result.reloadedEvaluation, api),
+      ...LIFTOSAUR_SCENARIO_SEQUENCE_SNAPSHOT,
+      scenario: { name: scenario.name },
+      steps,
     },
-    serializedSource: result.serializedSource,
+    serializedSource,
   };
 }
 
