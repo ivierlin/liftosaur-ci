@@ -1,0 +1,24 @@
+{
+  "formatVersion": 2,
+  "name": "nominal-then-underperformance",
+  "steps": [
+    {
+      "name": "nominal",
+      "day": 1,
+      "entries": [
+        { "exercise": "Bent Over Row", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] },
+        { "exercise": "Bench Press", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] },
+        { "exercise": "Squat", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] }
+      ]
+    },
+    {
+      "name": "underperformance",
+      "day": 1,
+      "entries": [
+        { "exercise": "Bent Over Row", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] },
+        { "exercise": "Bench Press", "sets": [{ "reps": 4 }, { "reps": 4 }, { "reps": 4 }] },
+        { "exercise": "Squat", "sets": [{ "reps": 5 }, { "reps": 5 }, { "reps": 5 }] }
+      ]
+    }
+  ]
+}

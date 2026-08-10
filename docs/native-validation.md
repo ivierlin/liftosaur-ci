@@ -40,20 +40,30 @@ all other built-ins must pass the full nominal lifecycle.
 
 ## Reviewed regression scenarios
 
-The `snapshot` command accepts a JSON scenario with `formatVersion`, `name`,
-`day`, and one entry for every non-suppressed exercise. Each entry identifies the
-evaluated exercise `fullName` and supplies one object per work set. `reps` is
-required. Repeated same-name exercises use `occurrence` (default 1). Optional
-`weight`, `rpe`, `repsLeft`, and `setTime` values override the prescription;
-omitted values retain the prescribed input. Sets requiring an RPE or weight must
-receive one when the prescription has none.
+The `snapshot` command accepts two scenario formats. Format 1 has `name`, `day`,
+and `entries` for one exposure. Format 2 has `name` and between 2 and 100 named,
+ordered `steps`; every step has its own `day` and `entries`. Each sequence step
+receives the exact serialized program produced by the prior step while sharing
+the same default settings and statistics context.
+
+Each entry identifies the evaluated exercise `fullName` and supplies one object
+per work set. `reps` is required. Repeated same-name exercises use `occurrence`
+(default 1). Optional `weight`, `rpe`, `repsLeft`, and `setTime` values override
+the prescription; omitted values retain the prescribed input. Sets requiring an
+RPE or weight must receive one when the prescription has none.
 
 The command fails if an exercise or set is missing or extra. Its immutable JSON
 output binds the source and scenario checksums and records persistent progression
-state, the next exposure, and the next scheduled workout. Both raw
-`originalWeight` and rounded displayed `weight` remain in the semantic snapshot.
+state, the next exposure, and the next scheduled workout. A sequence records
+those semantic results after every step and binds the final serialized source.
+Both raw `originalWeight` and rounded displayed `weight` remain in the semantic
+snapshot.
 
 The first reviewed fixtures use Liftosaur's Basic Beginner program with explicit
 nominal, underperformance, and overperformance repetitions. Their snapshots are
 behavior regressions only: the labels describe the supplied observations, not an
 independent claim that the resulting progression is correct.
+
+Sequence scenarios do not supply account history, custom settings, or body
+statistics. Programs requiring those inputs need a future explicit scenario
+contract rather than inferred test data.

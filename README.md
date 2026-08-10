@@ -67,10 +67,12 @@ node bin/liftosaur-ci.mjs snapshot \
   --output snapshot.json
 ```
 
-Scenario inputs explicitly identify the day, every exercise, and every completed
-work set. The immutable output records persistent progression state plus the next
-exposure and next scheduled workout prescriptions. Snapshot changes require
-review; they do not establish coaching correctness.
+Format 1 scenarios describe one exposure. Format 2 scenarios contain two or
+more named, ordered steps and feed each step the exact serialized result of the
+previous one. Inputs explicitly identify the day, every exercise, and every
+completed work set. The immutable output records persistent progression state
+plus the next exposure and next scheduled workout prescriptions after each step.
+Snapshot changes require review; they do not establish coaching correctness.
 
 ## Tests
 
