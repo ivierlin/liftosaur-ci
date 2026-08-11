@@ -28,13 +28,8 @@ function validateEntries(entries, label) {
 
 export function assertScenarioSchema(scenario) {
   requireObject(scenario, "Scenario");
-  if (scenario.formatVersion === 1) {
-    requireAllowedKeys(scenario, new Set(["formatVersion", "name", "day", "entries"]), "Scenario");
-    validateEntries(scenario.entries, "Scenario");
-    return scenario;
-  }
-  if (scenario.formatVersion === 2) {
-    requireAllowedKeys(scenario, new Set(["formatVersion", "name", "steps"]), "Scenario");
+  if (Object.hasOwn(scenario, "steps")) {
+    requireAllowedKeys(scenario, new Set(["name", "steps"]), "Scenario");
     if (Array.isArray(scenario.steps)) {
       for (const [index, step] of scenario.steps.entries()) {
         const label = `Scenario.steps[${index}]`;
@@ -44,5 +39,7 @@ export function assertScenarioSchema(scenario) {
     }
     return scenario;
   }
+  requireAllowedKeys(scenario, new Set(["name", "day", "entries"]), "Scenario");
+  validateEntries(scenario.entries, "Scenario");
   return scenario;
 }
