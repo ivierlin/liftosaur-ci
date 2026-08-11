@@ -24,6 +24,7 @@ jobs:
       - run: npm run test:fast
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+          LIFTOSAUR_BUILTIN_SEED: ${{ github.sha }}
 
   full:
     if: github.event_name != 'push' || github.ref == 'refs/heads/main'
