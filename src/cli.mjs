@@ -16,6 +16,7 @@ import {
   LIFTOSAUR_CI_CLI,
   sha256,
 } from "./report.mjs";
+import { updateConfiguredGitDeployment } from "./update.mjs";
 import {
   LIFTOSAUR_VALIDATOR,
   LiftosaurValidationError,
@@ -34,21 +35,11 @@ export class CliError extends Error {
 
 function usage() {
   return `Usage:
-  liftosaur-ci merge \\
-    --base <previously-deployed.liftoscript> \\
-    --active <current-liftosaur.liftoscript> \\
-    --candidate <new-git-source.liftoscript> \\
-    --output <merged.liftoscript> \\
-    [--report <merge-report.json>]
-
-  liftosaur-ci validate \\
-    --program <program.liftoscript> \\
-    [--report <validation-report.json>]
-
-  liftosaur-ci snapshot \\
-    --program <program.liftoscript> \\
-    --scenario <scenario.json> \\
-    --output <snapshot.json>
+  liftosaur-ci update \\
+    [--base-ref <bootstrap-ref>] \\
+    [--config <liftosaur-ci.json>] \\
+    [--deployment <stable-id>] \\
+    [--api-base <url>]
 
   liftosaur-ci prepare-git \\
     [--repository <git-worktree>] \\
@@ -75,6 +66,22 @@ function usage() {
 
 Advanced/offline building blocks:
 
+  liftosaur-ci merge \\
+    --base <previously-deployed.liftoscript> \\
+    --active <current-liftosaur.liftoscript> \\
+    --candidate <new-git-source.liftoscript> \\
+    --output <merged.liftoscript> \\
+    [--report <merge-report.json>]
+
+  liftosaur-ci validate \\
+    --program <program.liftoscript> \\
+    [--report <validation-report.json>]
+
+  liftosaur-ci snapshot \\
+    --program <program.liftoscript> \\
+    --scenario <scenario.json> \\
+    --output <snapshot.json>
+
   liftosaur-ci prepare \\
     --base <previously-deployed.liftoscript> \\
     --candidate <new-source.liftoscript> \\
@@ -94,10 +101,10 @@ Advanced/offline building blocks:
     [--config <liftosaur-ci.json>] \\
     [--report <check-report.json>]
 
-Configured Git preparation defaults to HEAD and may omit --deployment when the
-config contains exactly one deployment. "current" is resolved to an exact ID
-during preparation; deploy always writes that resolved ID and preserves the live
-program name. Existing output files and directories are never overwritten.`;
+After bootstrap, configured single-program repositories can run `liftosaur-ci update`
+with no arguments. HEAD is the candidate, tracked deployment state supplies the
+base, and Liftosaur supplies the live progression state. "current" is resolved to
+an exact ID before deployment and the live program name is preserved.`;
 }
 
 function parseOptions(argv, allowedNames) {
@@ -148,6 +155,32 @@ function requireDistinctPaths(inputs, outputs) {
   }
   if (outputs.report && outputs.report === outputs.output) {
     throw new CliError("Merge output and report must use different paths");
+  }
+}
+
+async function runUpdate(argv) {
+  const options = parseOptions(argv, ["base-ref", "config", "deployment", "api-base"]);
+  try {
+    const result = await updateConfiguredGitDeployment({
+      configFile: path.resolve(options.config ?? "liftosaur-ci.json"),
+      deploymentId: options.deployment ?? null,
+      baseRef: options["base-ref"] ?? null,
+      apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+      apiBase: options["api-base"],
+    });
+    console.log(
+      `Liftosaur update verified: ${result.target.name} (${result.target.id}); `
+      + `deployment state recorded: ${result.stateFile}`
+    );
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const recovery = error?.recoveryDirectory
+      ? `\nRecovery files retained at: ${error.recoveryDirectory}`
+      : "";
+    if (error instanceof LiftosaurPreparationError) {
+      throw new CliError(`${message}${recovery}`, error.exitCode);
+    }
+    throw new CliError(`${message}${recovery}`);
   }
 }
 
@@ -438,6 +471,7 @@ export async function runLiftosaurCi(argv) {
   }
   const [command, ...commandArgs] = argv;
   const commands = new Set([
+    "update",
     "merge",
     "validate",
     "snapshot",
@@ -453,7 +487,8 @@ export async function runLiftosaurCi(argv) {
     console.log(usage());
     return;
   }
-  if (command === "merge") await runMerge(commandArgs);
+  if (command === "update") await runUpdate(commandArgs);
+  else if (command === "merge") await runMerge(commandArgs);
   else if (command === "validate") await runValidate(commandArgs);
   else if (command === "snapshot") await runSnapshot(commandArgs);
   else if (command === "prepare-deployment") await runPrepareDeployment(commandArgs);
