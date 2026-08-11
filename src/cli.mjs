@@ -16,6 +16,7 @@ import {
   LIFTOSAUR_CI_CLI,
   sha256,
 } from "./report.mjs";
+import { rollbackRecoveryDirectory } from "./rollback.mjs";
 import { updateConfiguredGitDeployment } from "./update.mjs";
 import {
   LIFTOSAUR_VALIDATOR,
@@ -39,6 +40,10 @@ function usage() {
     [--base-ref <bootstrap-ref>] \\
     [--config <liftosaur-ci.json>] \\
     [--deployment <stable-id>] \\
+    [--api-base <url>]
+
+  liftosaur-ci rollback \\
+    --recovery <retained-recovery-directory> \\
     [--api-base <url>]
 
   liftosaur-ci prepare-git \\
@@ -177,11 +182,25 @@ async function runUpdate(argv) {
     const recovery = error?.recoveryDirectory
       ? `\nRecovery files retained at: ${error.recoveryDirectory}`
       : "";
+    const rollback = error?.recoveryDirectory && message.includes("outcome is ambiguous")
+      ? `\nTo restore the pre-update source explicitly:\n  liftosaur-ci rollback --recovery "${error.recoveryDirectory}"`
+      : "";
     if (error instanceof LiftosaurPreparationError) {
-      throw new CliError(`${message}${recovery}`, error.exitCode);
+      throw new CliError(`${message}${recovery}${rollback}`, error.exitCode);
     }
-    throw new CliError(`${message}${recovery}`);
+    throw new CliError(`${message}${recovery}${rollback}`);
   }
+}
+
+async function runRollback(argv) {
+  const options = parseOptions(argv, ["recovery", "api-base"]);
+  const report = await rollbackRecoveryDirectory({
+    recoveryDirectory: requireOption(options, "recovery"),
+    apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+    apiBase: options["api-base"],
+  });
+  const verb = report.status === "already-restored" ? "already restored" : "restored";
+  console.log(`Liftosaur rollback verified: ${report.target.name} (${report.target.id}) ${verb}`);
 }
 
 async function runMerge(argv) {
@@ -471,6 +490,7 @@ export async function runLiftosaurCi(argv) {
   const [command, ...commandArgs] = argv;
   const commands = new Set([
     "update",
+    "rollback",
     "merge",
     "validate",
     "snapshot",
@@ -487,6 +507,7 @@ export async function runLiftosaurCi(argv) {
     return;
   }
   if (command === "update") await runUpdate(commandArgs);
+  else if (command === "rollback") await runRollback(commandArgs);
   else if (command === "merge") await runMerge(commandArgs);
   else if (command === "validate") await runValidate(commandArgs);
   else if (command === "snapshot") await runSnapshot(commandArgs);
