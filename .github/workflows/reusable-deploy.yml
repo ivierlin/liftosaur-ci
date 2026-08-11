@@ -4,8 +4,9 @@ on:
   workflow_call:
     inputs:
       deployment:
-        description: Stable deployment ID from liftosaur-ci.json
-        required: true
+        description: Configured deployment ID; defaults to program
+        required: false
+        default: program
         type: string
       candidate_ref:
         description: Reviewed commit or tag to deploy; defaults to the caller commit
