@@ -75,6 +75,8 @@ jobs:
           unit_pid=$!
           npm run test:corpus > corpus.log 2>&1 &
           corpus_pid=$!
+          npm run test:history > history.log 2>&1 &
+          history_pid=$!
 
           if wait "$unit_pid"; then
             unit_status=0
@@ -92,7 +94,15 @@ jobs:
           printf '\n=== built-in corpus ===\n'
           cat corpus.log
 
-          if (( unit_status != 0 || corpus_status != 0 )); then
+          if wait "$history_pid"; then
+            history_status=0
+          else
+            history_status=$?
+          fi
+          printf '\n=== historical updates ===\n'
+          cat history.log
+
+          if (( unit_status != 0 || corpus_status != 0 || history_status != 0 )); then
             exit 1
           fi
         env:

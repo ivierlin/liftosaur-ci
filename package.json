@@ -27,9 +27,10 @@
     "test:unit": "node test/source-format.test.mjs && node --test --test-isolation=none --test-concurrency=1 test/frontend.test.mjs test/merge.test.mjs test/validate.test.mjs test/scenario.test.mjs test/partial-scenario.test.mjs test/check.test.mjs test/deployment.test.mjs test/rollback.test.mjs test/restore.test.mjs test/pipeline.test.mjs test/git-pipeline.test.mjs test/update.test.mjs test/cli.test.mjs test/cli-surface.test.mjs test/rollback-cli.test.mjs test/restore-cli.test.mjs test/github-actions.test.mjs test/self-check.test.mjs",
     "test:corpus:smoke": "node --test --test-isolation=none --test-concurrency=1 test/builtin-smoke.test.mjs",
     "test:corpus": "node --test --test-isolation=none --test-concurrency=1 test/builtin-corpus.test.mjs",
+    "test:history": "node --test --test-isolation=none --test-concurrency=1 test/rp-hypertrophy-history.test.mjs",
     "test:external": "node --test --test-isolation=none --test-concurrency=1 test/external-corpus.test.mjs",
     "update:builtin-snapshots": "node scripts/update-builtin-snapshots.mjs",
     "test:fast": "npm run test:unit && npm run test:corpus:smoke",
-    "test": "npm run test:unit && npm run test:corpus"
+    "test": "npm run test:unit && npm run test:corpus && npm run test:history"
   }
 }

@@ -1,0 +1,960 @@
+# Start
+## Day 1 - Upper A
+day01Chest00: Bench Press[1,1-3] / 135lb / warmup: 1x10 50%, 1x6 75%, 1x2 103% \
+/ ...rpHypertrophy / id: tags(10100) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 5, targetMaxReps: 10, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating: 0, rateGroup: 0, ratingIndex: 0, numRatingExercises: 0, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day01Chest01: Incline Chest Fly[2,1-3] / 25lb / warmup: 1x5 75% \
+/ ...rpHypertrophy / id: tags(10101) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 1, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 301, ratingIndex: 0, numRatingExercises: 2, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day01Triceps00: Triceps Extension, Cable[3,1-3] / 30lb / warmup: 1x5 75% \
+/ ...rpHypertrophy / id: tags(10400) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 304, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day01Back00: Seated Row, Leverage Machine[4,1-3] / 100lb / warmup: 1x5 65%, 1x3 85% \
+/ ...rpHypertrophy / id: tags(10500) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 1, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating: 0, rateGroup: 0, ratingIndex: 0, numRatingExercises: 0, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day01Back01: Lat Pulldown[5,1-3] / 100lb / warmup: 1x5 75% \
+/ ...rpHypertrophy / id: tags(10501) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 305, ratingIndex: 0, numRatingExercises: 2, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day01Biceps00: Bicep Curl, Cable[6,1-3] / 25lb \
+/ ...rpHypertrophy / id: tags(10600) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 15, targetMaxReps: 20, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 306, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+## Day 2 - Lower A
+day02Quads00: Squat[1,1-3] / 200lb / warmup: 1x10 50%, 1x6 75%, 1x2 103% \
+/ ...rpHypertrophy / id: tags(20800) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 5, targetMaxReps: 10, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 408, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day02Hamstrings00: Lying Leg Curl, Leverage Machine[2,1-3] / 75lb / warmup: 1x5 65%, 1x3 85% \
+/ ...rpHypertrophy / id: tags(21000) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 410, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day02Calves00: Calf Press on Leg Press[3,1-3] / 200lb / warmup: 1x4 65%, 1x2 85% \
+/ ...rpHypertrophy / id: tags(21100) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 8, targetMaxReps: 12, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 411, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day02Glutes00: Hip Abductor, Leverage Machine[4,1-3] / 10lb / warmup: 1x5 75% \
+/ ...rpHypertrophy / id: tags(20900) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 1, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 409, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day02Delts00: Lateral Raise, Cable[5,1-3] / 15lb \
+/ ...rpHypertrophy / id: tags(20200) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 402, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day02Abs00: Crunch, Cable[6,1-3] / 40lb \
+/ ...rpHypertrophy / id: tags(20700) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 407, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+## Day 3 - Upper B
+day03Back00: Pull Up[1,1-3] / 180lb / warmup: 1x10 50%, 1x6 75%, 1x2 100% \
+/ ...rpHypertrophy / id: tags(30500) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 5, targetMaxReps: 10, startNumSets: 1, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating: 0, rateGroup: 0, ratingIndex: 0, numRatingExercises: 0, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day03Back01: Seated Row[2,1-3] / 100lb / warmup: 1x3 75% \
+/ ...rpHypertrophy / id: tags(30501) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 5, targetMaxReps: 10, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 105, ratingIndex: 0, numRatingExercises: 2, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day03Biceps00: Preacher Curl, EZ Bar[3,1-3] / 50lb / warmup: 1x5 65%, 1x3 85% \
+/ ...rpHypertrophy / id: tags(30600) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 106, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day03Chest00: Incline Bench Press, Smith Machine[4,1-3] / 135lb / warmup: 1x5 65%, 1x3 85% \
+/ ...rpHypertrophy / id: tags(30100) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating: 0, rateGroup: 0, ratingIndex: 0, numRatingExercises: 0, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day03Chest01: Chest Fly, Cable[5,1-3] / 25lb \
+/ ...rpHypertrophy / id: tags(30101) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 15, targetMaxReps: 20, startNumSets: 1, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 101, ratingIndex: 0, numRatingExercises: 2, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day03Triceps00: Triceps Pushdown[6,1-3] / 30lb / warmup: 1x8 75% \
+/ ...rpHypertrophy / id: tags(30400) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 15, targetMaxReps: 20, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 104, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+## Day 4 - Lower B
+day04Hamstrings00: Romanian Deadlift, Barbell[1,1-3] / 150lb / warmup: 1x10 50%, 1x6 75%, 1x2 103% \
+/ ...rpHypertrophy / id: tags(41000) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 5, targetMaxReps: 10, startNumSets: 1, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 210, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 1, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day04Glutes00: Bulgarian Split Squat[2,1-3] / 25lb / warmup: 1x8 0lb \
+/ ...rpHypertrophy / id: tags(40900) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 10, targetMaxReps: 15, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 209, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day04Quads00: Leg Extension[3,1-3] / 70lb \
+/ ...rpHypertrophy / id: tags(40800) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 15, targetMaxReps: 20, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 208, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day04Calves00: Standing Calf Raise, Leverage Machine[4,1-3] / 150lb / warmup: 1x8 65%, 1x3 85% \
+/ ...rpHypertrophy / id: tags(41100) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 15, targetMaxReps: 20, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 211, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day04Delts00: Lateral Raise[5,1-3] / 15lb / warmup: 1x8 75% \
+/ ...rpHypertrophy / id: tags(40200) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 15, targetMaxReps: 20, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 202, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+day04Abs00: Hanging Leg Raise[6,1-3] / 0lb \
+/ ...rpHypertrophy / id: tags(40700) \
+/ progress: custom(increment: 0.02, progressType: 1, targetMinReps: 8, targetMaxReps: 12, startNumSets: 2, type: 1, deloadWeightRatio: 0.5, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating+: 0, rateGroup: 207, ratingIndex: 0, numRatingExercises: 1, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7, autoDownSetMode: 1) { ...rpHypertrophy }
+
+
+// Manually repeat this week as many times as necessary to create desired mesocycle length
+# Accumulation
+## Day 1 - Upper A
+
+
+## Day 2 - Lower A
+
+
+## Day 3 - Upper B
+
+
+## Day 4 - Lower B
+
+
+
+# Deload
+## Day 1 - Upper A
+
+
+## Day 2 - Lower A
+
+
+## Day 3 - Upper B
+
+
+## Day 4 - Lower B
+///***Muscle Group IDs***/
+/// 01 => Chest
+/// 02 => Delts
+/// 03 => Traps
+/// 04 => Triceps
+/// 05 => Back
+/// 06 => Biceps
+/// 07 => Abs
+/// 08 => Quads
+/// 09 => Glutes
+/// 10 => Hamstrings
+/// 11 => Calves
+/// 12 => NeckFlexors
+/// 13 => NeckExtensors
+/// 14 => ForearmFlexors
+/// 15 => ForearmExtensors
+/// 16 => ForearmRotators
+/// 17 => LowBack
+/// 18 => Tibialis
+
+/// Full tag is created by combining digits from:
+/// Day (1-2 digits) & Muscle Group ID (2-digits) & Index (2 digits, 0-based)
+/// to create 5-6 digit long unique tag.
+///
+/// Ex:
+/// 3 Quad exercises on day 4 would have tags:
+/// 040800, 040801, 040802 like so:
+///
+/// Squat, Barbell / id: tags(40800) / ...
+/// Split Squat, Dumbbell / id: tags(40801) / ...
+/// Leg Extension, Leverage Machine / id: tags(40802) / ...
+///
+/// 04 => 4th day of week
+/// 08 => Quads Muscle Group ID
+/// 00, 01, 02 => Index/count of exercise for muscle group in that day, starting at 00.
+
+///*****PROGRAM LOGIC*****///
+rpHypertrophy[1-3] / used: none / 2+x5-30 / 5lb @7 / warmup: none / update: custom() {~
+  /// Minimum reps for any set to be in the hypertrophy range (based on RP
+  /// guidelines of about 5-30 reps between 3-0 RIR for hypertrophy as of
+  /// early 2024)
+  var.MIN_HYP_REPS = 5
+
+  /// Automatic down sets variables
+  var.AUTO_DOWN_SET_MODE_DISABLED = 0 /// Don't create any down sets
+  var.AUTO_DOWN_SET_MODE_HYP = 1 /// Create when near bottom of hypertrophy rep range (defined as var.MIN_HYP_REPS+1)
+  var.AUTO_DOWN_SET_MODE_TARGET = 2 /// Create when at bottom of target rep range (i.e. state.targetMinReps)
+  var.AUTO_DOWN_SET_PERCENTAGE = 0.80 /// Percentage of last completed set working weight to use for down set
+
+  /// Bilateral exercise (both sides at the same time)
+  var.TYPE_BILATERAL = 1
+  /// Unilateral exercise (left/right side done as separate sets)
+  var.TYPE_UNILATERAL = 2
+
+  /// Minimum increment value that will be treated as a fixed weight rather than percentage
+  var.FIXED_WEIGHT_INCR_MIN = 0.25
+
+  /// Disable progression and match or beat system, just repeat targets
+  var.PROG_TYPE_NONE = 0
+  /// Linear - Add weight each week keeping a fixed single rep target after
+  /// week 1, unless at the minimum for hypertrophy, in that case add 1 rep.
+  var.PROG_TYPE_WEIGHT = 1
+  /// Double - Add reps until hitting the top of the target rep range, then
+  /// add weight and reset rep targets to the original range
+  var.PROG_TYPE_REPS = 2
+
+  /// Number of expected accumulation weeks to estimate RPE/RIR progression
+  var.ACCUM_WEEKS = 4
+  /// Week number to determine when progression vs deload logic applies (should
+  /// be last week number defined in program)
+  var.DELOAD_WEEK = 3
+
+  /// Default target RPE for week 1 of the program
+  var.RPE_START = 7
+  /// Target RPE for final accumulation week
+  var.RPE_END = 10
+  /// How much RPE should increase each week to reach RPE_END by final accumulation week
+  var.RPE_INCR = (var.RPE_END-var.RPE_START)/(var.ACCUM_WEEKS-1)
+  /// RPE value for deload and triggers recovery session logic to update all sets in that session
+  var.RPE_RECOVERY = 3
+
+  /// Prepare workout and handle set progression
+  if (setIndex == 0) {
+    /// Always start mesocycle with defined number of sets and values
+    if (week == 1) {
+      /// Ensure we have an even number of sets for unilateral exercises
+      numberOfSets = state.startNumSets % state.type == 0 ? state.startNumSets : state.startNumSets+1
+      if (numberOfSets > 0) {
+        /// Check if user set different starting RPE to override default var.RPE_START
+        var.rpe = RPE[1] <= var.RPE_RECOVERY ? var.RPE_START : RPE[1]
+        /// Make all sets AMRAP during week 1 since we're targetting a rep range & RIR, keeping all other values the same
+        sets(1, state.type, state.targetMinReps, state.targetMaxReps, 1, weights[1], 0, var.rpe, 0)
+        sets(state.type+1, numberOfSets, var.MIN_HYP_REPS, var.MIN_HYP_REPS, 1, weights[1], 0, var.rpe, 0)
+      }
+    }
+    /// Only do set progression during accumulation weeks
+    else if (week < var.DELOAD_WEEK) {
+      /// If progress is enabled, modify set volume based on setsModifier value set by ratings
+      var.numSets = state.progressType == var.PROG_TYPE_NONE ?
+        state.numSets : state.numSets + state.setsModifier*state.type /// Double for unilateral exercises
+
+      /// Liftosaur doesn't like setting numberOfSets to 0 (causes errors) so the minimum sets must be 1 or 2
+      /// depending on if the exercise is bilateral or unilateral
+      numberOfSets = var.numSets > 0 ? var.numSets : state.type
+      
+      var.rpe = 0
+      var.amrap = 0
+      /// Check if sets were added since last time
+      if (state.setsModifier > 0) {
+        /// Offset RPE by 1 increment since sets have increased and we don't want to progress sets & proximity
+        /// to failure at the same time per critiques of RP methodolgy from sources like Eric Helms and MASS
+        var.rpe = state.targetRpe - var.RPE_INCR
+        var.rpe = var.rpe >= var.RPE_START ? var.rpe : var.RPE_START
+        var.rpe = var.rpe <= var.RPE_END ? var.rpe : var.RPE_END
+        var.amrap = 1
+        
+        /// Undo previous weight progression when adding sets and doing linear progression so multiple variables
+        /// are not progressing at once. Only reverse if we increased by a single increment over last time.
+        if (state.progressType == var.PROG_TYPE_WEIGHT && weights[1] > state.lastWeight && state.increment > 0) {
+          /// Handle reversing fixed increments or percentage based increments
+          if ((state.increment >= var.FIXED_WEIGHT_INCR_MIN && roundWeight(state.lastWeight + state.increment) == weights[1]) ||
+            (state.increment < var.FIXED_WEIGHT_INCR_MIN && roundWeight(state.lastWeight + state.lastWeight*state.increment) == weights[1])) {
+            var.roundedIncrement = weights[1] - state.lastWeight
+            weights -= var.roundedIncrement
+          }
+        }
+
+        /// Configure sets added today as RPE target & AMRAP and keeping weight of previous last set
+        /// sets(fromIndex,        toIndex,         minReps,         maxReps,  isAmrap,       weight,        timer, rpe, shouldLogRpe)
+        sets(state.numSets+1, numberOfSets, var.MIN_HYP_REPS, var.MIN_HYP_REPS, 1, originalWeights[state.numSets], 0, var.rpe, 0) 
+      }
+      /// First set is a rep range (not just single rep increase from double progression) so show the RPE targets
+      /// and make it prompt for completed reps
+      else if (numberOfSets > 0 && minReps[1] < reps[1]-1) {
+        var.rpe = state.targetRpe
+        var.rpe = var.rpe >= var.RPE_START ? var.rpe : var.RPE_START
+        var.rpe = var.rpe <= var.RPE_END ? var.rpe : var.RPE_END
+        var.amrap = 1
+      }
+
+      /// Configure pre-existing sets in case we are targetting an RPE today instead of just match/beat previous session.
+      /// Useful as a signal that I shouldn't just hit rep targets today and instead try to focus on hitting RPE/RIR
+      for (var.set in reps) {
+        if (var.set <= state.numSets) {
+          sets(var.set, var.set, minReps[var.set], reps[var.set], var.amrap, originalWeights[var.set], 0, var.rpe, 0)
+        }
+      }
+    }
+    /// Deload week
+    else {
+      var.deloadSets = floor(state.numSets * state.deloadSetsRatio)
+      /// Ensure we have an even number of deload sets for unilateral exercises (erring on side of doing less)
+      if (var.deloadSets % state.type != 0) {
+        var.deloadSets = var.deloadSets - 1
+      }
+      /// Ensure deloadSets is not 0 or negative (Liftosaur doesn't like that)
+      if (var.deloadSets <= 0) {
+        var.deloadSets = state.type
+      }
+      numberOfSets = var.deloadSets
+
+      for (var.set in weights) {
+        var.reps = floor(reps[var.set] * state.deloadRepsRatio) 
+        reps[var.set] = var.reps
+        minReps[var.set] = 0
+      }
+    }
+    /// Ensure we have an even number of sets for unilateral exercises
+    numberOfSets = numberOfSets % state.type == 0 ? numberOfSets : numberOfSets+1
+  }
+  else if (week < var.DELOAD_WEEK) {
+    /// Check if recovery session is being done/started by having marked a set as low
+    /// RPE, and if so, we want to use that same low weight and RPE for the rest of the
+    /// session
+    if (RPE[setIndex] > 0 && RPE[setIndex] <= var.RPE_RECOVERY) {
+      RPE = RPE[setIndex]
+      weights = completedWeights[setIndex]
+    }
+    /// Create or undo automatic down sets if we still have some sets remaining to do. Only do this
+    /// on even numbered sets if exercise is unilateral (so we don't switch weight having only done
+    /// 1 side) and if we were within the target reps on the last done set (so we don't change weights
+    /// when we miss reps and mess up progression with a potential one-off bad set/day)
+    else if (state.autoDownSetMode != var.AUTO_DOWN_SET_MODE_DISABLED && numberOfSets >= setIndex+state.type && setIndex % state.type == 0
+      && completedReps[setIndex] >= minReps[setIndex]) {
+      var.autoDownSetRepCutoff = state.autoDownSetMode == var.AUTO_DOWN_SET_MODE_HYP ? var.MIN_HYP_REPS : state.targetMinReps
+      /// If last completed set was at or below the minimum rep cut-off then drop weight of all following sets
+      if (completedReps[setIndex] <= var.autoDownSetRepCutoff) {
+        for (var.set in weights) {
+          /// Only drop weight for remaining sets if weight is same as last completed set
+          /// as we may have already dropped weight in previous weeks
+          if (var.set > setIndex && weights[var.set] == completedWeights[setIndex]) {
+            weights[var.set] = weights[var.set] * var.AUTO_DOWN_SET_PERCENTAGE
+          }
+        }
+      }
+      /// If next set is a down set but we have room to drop reps and remain in the desired rep zone make the
+      /// weight the same as the last completed set and add an RPE/RIR target (i.e. undo down set)
+      else if (weights[setIndex+1] < completedWeights[setIndex] && completedReps[setIndex] > var.autoDownSetRepCutoff+1) {
+        var.rpe = RPE[setIndex+1] > 0 ? RPE[setIndex+1] : state.targetRpe /// use existing RPE if available
+        var.rpe = var.rpe >= var.RPE_START ? var.rpe : var.RPE_START
+        var.rpe = var.rpe <= var.RPE_END ? var.rpe : var.RPE_END
+        sets(setIndex+1, setIndex+state.type, var.MIN_HYP_REPS, completedReps[setIndex], 1, completedWeights[setIndex], 0, var.rpe, 0)
+      }
+    }
+  }
+~} / progress: custom(increment: 0.02, progressType: 1, targetMinReps: 5, targetMaxReps: 30, startNumSets: 2, type: 1, autoDownSetMode: 1, deloadWeightRatio: 0.85, deloadRepsRatio: 0.67, deloadSetsRatio: 0.67, rating: 0, rateGroup: 0, numRatingExercises: 0, ratingIndex: 0, lastWeight: 0lb, numSets: 2, setsModifier: 0, mesoWeek: 1, targetRpe: 7) {~
+///***PARAMETERS***///
+  /// increment: amount to progress weight by when progressType targets are hit. Treated as fixed lb/kg value if at least 0.25lb/kg (i.e. var.FIXED_WEIGHT_INCR_MIN) or higher, otherwise, decimal percentage (ex. 0.1lb/kg => 10%). Always include lb or kg label even when setting a percentage.
+  /// progressType: 0 = none, 1 = linear progression (add increment each time targets are hit), 2 = double progression (add reps until hitting top of rep range, then increment)
+  /// targetMinReps: minimum target reps for week 1 set 1 (following sets can drop below this)
+  /// targetMaxReps: max target reps for week 1 set 1
+  /// startNumSets: # of sets we started the meso and estimate for maximum adaptive volume (MAV) in week 1. Set manually initially, then updated by auto-calculations to adjust starting volume based on previous meso set volumes & performance.
+  /// type: movement lateral type. 1 = bilateral, 2 = unilateral. Unilateral exercises should always have an even number of sets to record left/right side separately, 1 set per side.
+  /// autoDownSetMode: automatically reduce weight on remaining sets (based on var.AUTO_DOWN_SET_PERCENTAGE) when last completed set is at or below certain reps: 0 => disabled, 1 => hypertrophy rep range (MIN_HYP_REPS), 2 => target rep range minimum (state.targetMinReps)
+  /// deloadWeightRatio: percent to change weight by for deload week (decimal 0 to 1)
+  /// deloadRepsRatio: percent to change reps by for deload week (decimal 0 to 1)
+  /// deloadSetsRatio: percent to change number of sets by for deload week (decimal 0 to 1)
+  /// rating: set progression rating, prompted for during workout. Evalute recovery from previous session & performance/workload today and set value to add/subtract sets to exercises for the same muscle group from previous session (typically -2 to 2). 0 keeps set volume the same.
+  /// rateGroup: target group of tagged exercises to apply rating. Typically 3-4 digits: first 1-2 are day in week, last 2 are muscle group ID.
+  /// numRatingExercises: how many exercises are in that muscle group target where rating applies (i.e. basically how many exercises for a given muscle group are in the preceding session and have the rateGroup tag prefix)
+  /// ratingIndex: index of exercise in group to apply next rating to (combined with rateGroup to create full tag, then gets incremented after applying rating so rating may apply to different exercise next time)
+  /// lastWeight: weight used during set 1 of the last working session (automatically set by code and used in some calculations to undo progression when adding sets)
+  /// numSets: last completed number of sets in previous working session, basis for how many sets to do again next time.
+  /// setsModifier: number of sets to add/remove relative to last done number of sets (numSets). Usually updated via the in-workout rating prompt during the following session which hits the same muscle group so it will modify volume for future sessions.
+  /// mesoWeek: current week in mesocycle
+  /// targetRpe: underlying estimated RPE/RIR target for current working week based on meso length and start/end RPE targets (mainly displayed when new sets are added or rep ranges are used)
+
+///***CONSTANTS***///
+  /// Minimum reps for any set to be in the hypertrophy range (based on RP
+  /// guidelines of about 5-30 reps between 3-0 RIR for hypertrophy as of
+  /// early 2024)
+  var.MIN_HYP_REPS = 5
+  
+  /// Disable progression and match or beat system, just repeat targets
+  var.PROG_TYPE_NONE = 0
+  /// Linear - Add weight each week keeping a fixed single rep target after
+  /// week 1, unless at/under the minimum for hypertrophy, in that case add
+  /// reps.
+  var.PROG_TYPE_WEIGHT = 1
+  /// Double - Add reps until hitting the top of the target rep range, then
+  /// add weight and reset rep targets to the original range
+  var.PROG_TYPE_REPS = 2
+
+  /// Bilateral exercise (both sides at the same time)
+  var.TYPE_BILATERAL = 1
+  /// Unilateral exercise (left/right side done as separate sets)
+  var.TYPE_UNILATERAL = 2
+
+  /// Maximum weight increment value that will be treated as a percentage rather than fixed weight
+  var.FIXED_WEIGHT_INCR_MIN = 0.25
+  /// Default increment used when starting weight is 0 and using percentage increments to ensure progression happens
+  var.DEFAULT_NONZERO_INCREMENT = 1lb
+
+  /// Number of expected accumulation weeks to control RPE/RIR progression. Can
+  /// be different than number of weeks defined in the program to allow smaller
+  /// programs where weeks are manually repeated or larger programs to allow
+  /// autoregulating mesocycle length while still having weeks auto-progress.
+  var.ACCUM_WEEKS = 4
+  /// Week number to determine when progression vs deload logic applies (should
+  /// be same as number of weeks defined in program since deload should be the
+  /// final week)
+  var.DELOAD_WEEK = 3
+
+  /// Default number of sets to start the meso for most exercises to be around max adaptive volume (MAV).
+  /// Used in auto-calculation for updating starting set numbers.
+  /// Set to -1 to disable automatic start volume adjustment.
+  var.START_MAV_DEFAULT = 2
+
+  /// Default target RPE for week 1 of the program
+  var.RPE_START = 7
+  /// Target RPE for final accumulation week
+  var.RPE_END = 10
+  /// How much RPE should increase each week to reach RPE_END by final accumulation week
+  var.RPE_INCR = (var.RPE_END-var.RPE_START)/(var.ACCUM_WEEKS-1)
+  /// RPE that indicates a recovery or deload session/set
+  var.RPE_RECOVERY = 3
+
+///***Useful Variables***///
+  /// Ensure type is valid
+  state.type = state.type == var.TYPE_BILATERAL || state.type == var.TYPE_UNILATERAL ? 
+    state.type : var.TYPE_BILATERAL
+
+  /// Ensure the progress type is valid, default is weight progression
+  state.progressType = state.progressType == var.PROG_TYPE_NONE
+  || state.progressType == var.PROG_TYPE_WEIGHT || state.progressType == var.PROG_TYPE_REPS ?
+    state.progressType : var.PROG_TYPE_WEIGHT
+
+  /// Indicates if current day was for recovery
+  var.recoveryDay = numberOfSets <= 0 || (RPE[numberOfSets] > 0 && RPE[numberOfSets] <= var.RPE_RECOVERY)
+
+  /// Indicates if current day was a real working day that may produce progression
+  var.progressDay = !var.recoveryDay && state.progressType != var.PROG_TYPE_NONE
+    && completedReps[1] > 0
+
+  /// If it's program week 1, and this isn't the first time we're doing the program,
+  /// we may have skipped deload so ensure variables are set to restart progression
+  if (week == 1) {
+    state.mesoWeek = 1
+    state.lastWeight = 0lb
+    state.ratingIndex = 0
+    state.startNumSets = var.progressDay ? numberOfSets : state.startNumSets
+    state.numSets = state.startNumSets
+    state.setsModifier = 0
+    state.targetRpe = RPE[1] > var.RPE_RECOVERY ? RPE[1] : var.RPE_START
+  }
+
+///***Now we do progression and setup future workouts/meso***///
+
+  /// Still in acumulation weeks
+  if (week < var.DELOAD_WEEK) {    
+    /// Ensure target RPE for this session is set correctly based on if sets were added
+    /// compared to last time and/or if we're doing a recovery session
+    state.targetRpe = state.setsModifier <= 0 || var.recoveryDay ? state.targetRpe : state.targetRpe - var.RPE_INCR
+    /// Since targetRpe can go past 10 (to allow repeating failure weeks while adding sets and not having RPE go back to 9)
+    /// we constrain it to be within the desired range for use in calculations
+    var.realRpe = state.targetRpe <= var.RPE_END ? state.targetRpe : var.RPE_END
+
+    var.sumLastReps = 0 /// sum of minimum rep targets for same num sets as last time (i.e last session performance or target range)
+    var.sumCompletedReps = 0 /// sum of completed reps today for same num sets as last time
+    var.newSetsAboveMin = 1 /// signifies all new sets added today completed reps above minimum reps
+    var.allSetsInHypRange = 1 /// signifies all sets were above minimum reps for hypertrophy
+    for (var.set in completedReps) {
+      /// Compare sets from previous session to todays performance to determine if we
+      /// at least matched performance/volume in those initial pre-existing sets
+      if (var.set <= state.numSets) {
+        var.sumLastReps = var.sumLastReps + minReps[var.set]
+        var.sumCompletedReps = var.sumCompletedReps + completedReps[var.set]
+      }
+      /// Check that newly added sets were above the minium reps
+      else if (completedReps[var.set] < minReps[var.set]) {
+        var.newSetsAboveMin = 0
+      }
+
+      /// Check if we missed the hypertrophy range on any set
+      if (completedReps[var.set] < var.MIN_HYP_REPS) {
+        var.allSetsInHypRange = 0
+      }
+    }
+
+    /// Signifies if rep targets were hit in this session.
+    ///
+    /// We compare sums to allow missing the rep target on one set but then make up for
+    /// it in another set so long as it balances out (i.e. set 1 did 2 LESS reps than
+    /// target, but then set 2 did 2+ MORE reps than target which balances it out and we
+    /// still should progress as volume-load should be about the same)
+    var.hitReps = completedReps[1] >= state.targetMinReps
+      && var.sumCompletedReps >= var.sumLastReps && var.newSetsAboveMin
+      && var.allSetsInHypRange == 1
+
+    /// Update target number of sets based on what was done
+    if (var.progressDay) {
+      /// Set the baseline number of sets for the program. Must be done before we record/update
+      /// the program based on reps/weight done today so there is a set in the program file to
+      /// record new values if sets increased today.
+      numberOfSets = numberOfSets
+
+      /// Save the number of sets if we hit the targets. Otherwise we will try to repeat again
+      /// next time and if we added a set today we don't want that saved since we missed targets
+      /// and keeping the old numSets and setsModifier value activates the logic to show the
+      /// same targets and RPE and all that as if a new set was added again next time.
+      if (week == 1 || var.hitReps) {
+        state.numSets = numberOfSets 
+      }
+
+      /// Check different conditions around volume to potentially adjust starting sets to be closer to max adaptive volume (MAV)
+      if (var.START_MAV_DEFAULT >= 0 && week > 1 && state.mesoWeek > 1) {
+        /// Since we modified sets immediately going into week 2 we could probably start with this adjusted
+        /// # of sets in week 1 to be closer our MAV landmark
+        if (state.mesoWeek == 2 && numberOfSets != state.startNumSets) {
+          state.startNumSets = numberOfSets
+        }
+        /// If we ever end up doing fewer sets than what we started the meso then we probably
+        /// started with too much volume and can make this new number the next starting volume
+        else if (numberOfSets < state.startNumSets) {
+          state.startNumSets = numberOfSets
+        }
+        /// If our meso lasted more than expected # of accumulation weeks and we're still hitting
+        /// targets (i.e. recovering well) we can check if sets have on average been added on over
+        /// half the weeks then we probably can do more to start in week 1
+        else if (state.mesoWeek > var.ACCUM_WEEKS && var.hitReps && (numberOfSets - state.startNumSets) >= ceil(state.mesoWeek/2)) {
+          /// Add half the difference between current number of sets and previous starting number (and ensuring it's even for unilateral movements)
+          var.newStartVolEstimate = floor(state.startNumSets + (numberOfSets - state.startNumSets)/2)
+          var.newStartVolEstimate = var.newStartVolEstimate % state.type == 0 ? var.newStartVolEstimate : var.newStartVolEstimate + 1
+          state.startNumSets = var.newStartVolEstimate
+        }
+        /// If it's been less than the expected # of accumulation weeks and we're already missing
+        /// targets we may have started volume too high since we seem to be over our max recoverable
+        /// volume (MRV) and should probably reduce the starting # of sets by 1 notch for this exercise
+        else if (state.mesoWeek < var.ACCUM_WEEKS && !var.hitReps && numberOfSets > var.START_MAV_DEFAULT*state.type && state.startNumSets > state.type) {
+          state.startNumSets = state.startNumSets - state.type
+        }
+      }
+    }
+
+    /// Potentially change weight by more than 1 increment in a few situations where
+    /// we will set this value to indicate the reason and number of extra increments.
+    /// <= -1 => weight was too heavy, so decreased by 1 or more increments
+    /// == 0 => weight was inappropriate, but user manually corrected by last set today
+    /// == 1 => weight was appropriate, normal progression logic applies
+    /// >= 2 => weight was too light, so increased by multiple increments
+    var.incrementModifier = 1
+    
+    /// Indicates if the first set progressed by weight or reps so later sets can
+    /// follow. Will be modified in main progression logic loop below
+    var.firstSetProgType = state.progressType
+    
+    /// Only record/update program if this was not a recovery session
+    if (!var.recoveryDay) {
+      /// Loop through sets and do main progression logic
+      for (var.set in completedReps) {
+        /// Check if weight rounded up to next available increment today or if user did different weight than programmed
+        /// and use that for progression, otherwise use the raw original program value
+        var.weight = completedWeights[var.set] > originalWeights[var.set] || completedWeights[var.set] != weights[var.set]
+          ? completedWeights[var.set] : originalWeights[var.set]
+        var.reps = reps[var.set]
+        var.minReps = minReps[var.set]
+        /// Save values from today before incrementing for setting up deload later
+        var.todaysWeight = completedWeights[var.set]
+        var.todaysReps = var.reps
+        /// Size of rep range (for adjusting weight when falling outside target and using double progression)
+        var.repRangeSize = state.targetMaxReps - state.targetMinReps
+
+        /// Do unique logic for set 1
+        if (var.set == 1) {    
+          if (var.progressDay) {            
+            /// We didn't hit targets in week 1, weight is too heavy for the desired rep
+            /// range for this mesocycle so we need to decrease it
+            if (week == 1 && completedReps[var.set] < state.targetMinReps) {
+              /// Check if we manually lowered weights in later sets so we can re-use that
+              if (completedWeights[numberOfSets] < completedWeights[var.set]) {
+                var.weight = completedWeights[numberOfSets]
+                var.incrementModifier = 0
+              }
+              else {
+                /// Linear progression just subtract 1 increment for every rep we missed
+                if (state.progressType == var.PROG_TYPE_WEIGHT) {
+                  var.incrementModifier = completedReps[var.set] - state.targetMinReps
+                }
+                /// For double progression find out how many deviations we are away from
+                /// the target rep range and subtract 1 increment for every rep range size
+                /// amount of reps we are below the target minimum
+                else {
+                  var.repDifference = state.targetMinReps - completedReps[var.set]
+                  var.incrementModifier = ceil(var.repDifference / var.repRangeSize)*-1
+                }
+
+                /// Fixed weight increments
+                if (state.increment >= var.FIXED_WEIGHT_INCR_MIN) {
+                  var.weight = completedWeights[var.set] + (var.incrementModifier*state.increment)
+                }
+                /// Percentage based increments
+                else {
+                  var.weight = completedWeights[var.set] + (completedWeights[var.set]*state.increment)*var.incrementModifier
+                }
+              }
+
+              /// Ensure weight is positive, Liftosaur doesn't seem to like negative values
+              var.weight = var.weight >= 0lb ? var.weight : 0lb
+            }
+            /// Otherwise, if we hit the target reps calculate the next increment weight value
+            else if (var.hitReps) {
+              /// Save todays reps as the new baseline to be recorded to the program later
+              var.reps = completedReps[var.set]
+              var.minReps = var.reps
+              var.todaysReps = var.reps
+              /// Save the last used weight for set 1 (used in update code when sets are added so we can undo
+              /// weight progression and restore the previously used weight if needed)
+              state.lastWeight = var.weight
+              
+              /// Linear progression
+              if (state.progressType == var.PROG_TYPE_WEIGHT) {
+                /// Options for indicating weight was too light and should be adjusted heavier:
+                /// 1. Do more reps than the target rep range max
+                /// 2. Manually mark as 1.5+ lower RPE than this week's target
+                if (var.reps > state.targetMaxReps || (RPE[var.set] > 0 && RPE[var.set] <= var.realRpe-1.5)) {
+                  /// Check if we manually adjusted weight in later sets during this workout and
+                  /// just use the weight from the last set as the new weight to base progression
+                  if (completedWeights[numberOfSets] > completedWeights[var.set]) {
+                    var.weight = completedWeights[numberOfSets]
+                    var.incrementModifier = 0
+                    /// If even on later sets we did more than the target reps then the weight is
+                    /// probably too light and we should increase based on however many extra reps
+                    /// were done above the min or max target (ensuring at least 2 increments).
+                    if (completedReps[numberOfSets] > state.targetMaxReps) {
+                      var.incrementModifier = (completedReps[numberOfSets] - state.targetMaxReps) + 1
+                    }
+                    /// Otherwise, if last set with heavier weight was still notably above min reps
+                    /// we can increase the weight based on how far we are from bottom of rep range
+                    else if (completedReps[numberOfSets] >= state.targetMinReps+3) {
+                      /// Subtract 1 so we aren't incrementing so much it brings reps to the bottom of range
+                      var.incrementModifier = (completedReps[numberOfSets] - state.targetMinReps) - 1
+                    }
+                  }
+                  /// Otherwise, modify the number of increments we add for next time based on extra
+                  /// reps done in set 1
+                  else {
+                    var.diff = var.reps > state.targetMaxReps ?
+                      var.reps - state.targetMaxReps : var.realRpe - RPE[var.set]
+                    var.incrementModifier = var.diff + 1 /// Add 1 to ensure change larger than 1 increment
+                  }
+                }
+                
+                /// Only increase weight if we aren't around the minimum reps for hypertrophy
+                if (var.reps > var.MIN_HYP_REPS) {
+                  var.singleIncrWeight = completedWeights[1] /// Store what a single increment from todays completed weight would be
+                  /// Fixed weight increments
+                  if (state.increment >= var.FIXED_WEIGHT_INCR_MIN) {
+                    var.weight += state.increment*var.incrementModifier
+                    var.singleIncrWeight += state.increment
+                  }
+                  /// Percentage based increments
+                  else {
+                    var.weight += var.weight*state.increment*var.incrementModifier
+                    /// Ensure some progression occurs when initial weight is 0
+                    if (var.weight == 0 && state.increment > 0 && var.incrementModifier > 0) {
+                      var.weight = var.DEFAULT_NONZERO_INCREMENT
+                    }
+                    
+                    var.singleIncrWeight += var.singleIncrWeight*state.increment
+                    if (var.singleIncrWeight == 0 && state.increment > 0) {
+                      var.singleIncrWeight = var.DEFAULT_NONZERO_INCREMENT
+                    }
+                  }
+                  var.firstSetProgType = var.PROG_TYPE_WEIGHT
+
+                  var.nextWeightRounded = roundWeight(var.weight)
+                  /// Check if we incremented to a weight that is unavailable due to equipment/rounding restrictions
+                  /// and will instead be rounded to the same weight as today for next week, in that case ensure
+                  /// we add a rep since we hit targets today so we keep progressing
+                  if (var.nextWeightRounded <= completedWeights[var.set]) {
+                    var.reps += 1
+                    var.minReps = var.reps
+                    var.incrementModifier = 1
+                    var.firstSetProgType = var.PROG_TYPE_REPS
+                  }
+                  /// If next incremented weight is available then use the rounded value for next sessions target weight
+                  else {
+                    /// Check if the next weight is more than 1 increment away from today's working weights and if so mark
+                    /// the increment modifier so that the rep range is used next time rather than single rep target
+                    if (roundWeight(var.singleIncrWeight) < var.nextWeightRounded) {
+                      var.incrementModifier = 2
+                    }
+                    var.weight = var.nextWeightRounded
+                  }
+                }
+                /// Otherwise increase reps instead so we have some room to drop reps in
+                /// following sets without dropping weight since this is still the 1st set
+                else {
+                  var.reps += 1
+                  var.minReps = var.reps
+                  var.firstSetProgType = var.PROG_TYPE_REPS
+                }
+              }
+              /// Double progression
+              else if (var.reps >= state.targetMaxReps && var.reps >= reps[var.set]) {
+                /// Check if we did way more reps than target double progression range.
+                ///
+                /// Increase weight by multiple increments if we did 1+ deviation
+                /// above max reps based on the target rep range size.
+                ///
+                /// Ex: Min-Max = 10-15 reps => rep range size = 5, so if you do 5+ more
+                /// reps than the max (i.e. 20+ reps), we need to increase weight
+                /// by more than 1 increment to likely bring you back to the 10-15 range
+                if (var.reps >= state.targetMaxReps + var.repRangeSize) {
+                  var.repDifference = var.reps - state.targetMaxReps
+                  var.deviations = floor(var.repDifference / var.repRangeSize)
+                  var.incrementModifier = var.deviations + 1 /// Add 1 to ensure change larger than 1 increment
+                }
+                
+                /// Fixed weight increments
+                if (state.increment >= var.FIXED_WEIGHT_INCR_MIN) {
+                  var.weight += state.increment*var.incrementModifier
+                }
+                /// Percentage based increments
+                else {
+                  var.weight += var.weight*state.increment*var.incrementModifier
+                  /// Ensure some progression occurs when initial weight is 0
+                  if (var.weight == 0 && state.increment > 0 && var.incrementModifier > 0) {
+                    var.weight = var.DEFAULT_NONZERO_INCREMENT
+                  }
+                }
+
+                var.nextWeightRounded = roundWeight(var.weight)
+                
+                /// Check if we incremented to a weight that is unavailable due to equipment/rounding restrictions
+                /// and will instead be rounded down to the same weight as today for next week, in that case ensure
+                /// we add a rep since we hit targets today so we keep progressing
+                if (var.nextWeightRounded <= completedWeights[var.set]) {
+                  var.reps += 1
+                  var.incrementModifier = 1
+                  var.firstSetProgType = var.PROG_TYPE_REPS
+                }
+                else {
+                  var.minReps = state.targetMinReps
+                  var.reps = state.targetMaxReps
+                  var.weight = var.nextWeightRounded /// Save rounded value as next week target
+                  var.firstSetProgType = var.PROG_TYPE_WEIGHT
+                }
+              }
+              else {
+                var.reps = var.reps + 1
+                var.firstSetProgType = var.PROG_TYPE_REPS
+              }
+            }
+          }
+
+          /// Set new baseline targets for entire program if it's week 1 or we hit the targets
+          /// for the current week
+          if (week == 1 || var.hitReps) {
+            /// Default is all sets will use same weight from set 1 and must be bewteen
+            /// the minimum hypertrophy range reps up to the target rep range max
+            weights = var.weight
+            minReps = var.MIN_HYP_REPS
+            reps = state.targetMaxReps
+            
+            /// Set match or beat targets if weight was appropriate for target reps
+            if (var.incrementModifier == 1) {
+              minReps[var.set] = var.minReps
+              reps[var.set] = var.reps      
+            }
+            /// Otherwise, we've made a larger adjustment to the weight so set 1 uses the target
+            /// rep range minimum as the bottom bound
+            else {
+              minReps[var.set] = state.targetMinReps
+              /// Unilateral exercises use a separate set for each side so set 2 is also
+              /// the "first" set for one side and should be set similarly
+              if (state.type == var.TYPE_UNILATERAL && numberOfSets >= 2) {
+                minReps[2] = state.targetMinReps
+              }
+            }
+          }
+        }
+        /// Repeat simpler logic for rest of the sets
+        else {
+          /// Only calculate changes for secondary sets if we had a normal increment based
+          /// on set 1's performance
+          if (var.progressDay) {
+            if (var.hitReps) {
+              var.reps = completedReps[var.set]
+              var.minReps = var.reps
+              var.todaysReps = var.reps
+              
+              if (var.firstSetProgType == var.PROG_TYPE_WEIGHT) {
+                /// Fixed weight increments
+                if (state.increment >= var.FIXED_WEIGHT_INCR_MIN) {
+                  var.weight = var.weight + state.increment
+                }
+                /// Percentage based increments
+                else {
+                  var.weight = var.weight + (var.weight*state.increment)
+                  /// Ensure some progression occurs when initial weight is 0
+                  if (var.weight == 0 && state.increment > 0 && var.incrementModifier > 0) {
+                    var.weight = var.DEFAULT_NONZERO_INCREMENT
+                  }
+                }
+
+                /// Ensure the weight increments when the first set does if the cofigured increment state variable
+                /// is not large enough to actually reach the next available weight increment based on
+                /// equipment/rounding settings
+                if (roundWeight(var.weight) <= increment(completedWeights[var.set])) {
+                  var.weight = increment(completedWeights[var.set])
+                }
+                
+                /// If progressing by reps ensure the rep range target is set since weight has changed
+                /// and the exercise is set to use double progression
+                if (state.progressType == var.PROG_TYPE_REPS) {
+                  /// Unilateral exercise should use target rep range for 2nd set as well, otherwise hypertrophy range
+                  var.minReps = var.set == 2 && state.type == var.TYPE_UNILATERAL ? state.targetMinReps : var.MIN_HYP_REPS
+                  var.reps = state.targetMaxReps
+                }
+              }
+              else {
+                var.reps += 1
+                /// If we are progressing by reps this session but exercise progress type is set to weight that means next increment wasn't available
+                /// or we were at the bottom of the rep range so we should keep minReps the same as reps when using weight/linear progression
+                if (state.progressType == var.PROG_TYPE_WEIGHT) {
+                  var.minReps = var.reps
+                }
+              }
+            }
+          }
+  
+          var.weight = var.weight >= 0lb ? var.weight : 0lb
+
+          if (week == 1 || var.hitReps) {
+            /// Override default values set earlier so we can match/beat performance
+            if (var.incrementModifier == 1) {
+              if (completedWeights[var.set] != completedWeights[1]) {
+                weights[var.set] = var.weight
+              }
+              minReps[var.set] = var.minReps
+              reps[var.set] = var.reps
+            }
+          }
+        }
+
+        /// Update deload week based on todays performance if we hit targets in case
+        /// we deload early. We update the value for all days rather than just this
+        /// day of the week since some exercises may change days during deloads
+        if (week == 1 || var.hitReps) {
+          weights[var.DELOAD_WEEK:*:*:var.set] = roundWeight(var.todaysWeight * state.deloadWeightRatio)
+          minReps[var.DELOAD_WEEK:*:*:var.set] = 0
+          reps[var.DELOAD_WEEK:*:*:var.set] = var.todaysReps
+        }
+      }
+    }
+
+    /// Ensure sets modifier is 0 so we don't add sets again. Must be done before processing the
+    /// rating since you may be rating this same exercise which will then modify setsModifier again.
+    /// But only set it if we hit the targets today, otherwise repeat the targets for next week and
+    /// show the newly added set again as if it's new by keeping setsModifier the same.
+    if (var.progressDay == 1 && var.hitReps == 1) {
+      state.setsModifier = 0 
+    }
+    
+    /// Do set progression if rating and target exercise values are set
+    if (state.rating != 0 && state.rateGroup != 0 && state.numRatingExercises > 0) {
+      /// Ensure rating is in valid range of -2 to 2
+      state.rating = state.rating < -2 ? -2 : state.rating
+      state.rating = state.rating > 2 ? 2 : state.rating
+      
+      var.modifier = state.rating
+      /// If the rating is indicating a large change in volume, and we have multiple exercises in the
+      /// rate group, we can apply the modifier to change 2 exercises by 1 set each rather than just
+      /// changing 1 exercise by 2 sets
+      if ((state.rating <= -2 || state.rating >= 2) && state.numRatingExercises >= 2) {
+        var.modifier = state.rating/2
+      }
+      
+      /// Combine group + index to create full unique tag and apply rating to target
+      var.tag = state.rateGroup*100 + state.ratingIndex
+      state[var.tag].setsModifier = var.modifier
+      state.ratingIndex = (state.ratingIndex + 1) % state.numRatingExercises
+
+      /// Apply rating to second exercise if necessary
+      if ((state.rating <= -2 || state.rating >= 2) && state.numRatingExercises >= 2) {
+        var.tag = state.rateGroup*100 + state.ratingIndex
+        state[var.tag].setsModifier = var.modifier
+        state.ratingIndex = (state.ratingIndex + 1) % state.numRatingExercises
+      }
+    }
+    
+    /// Calculate weight for start of next meso based on performance achieved today
+    /// since we could deload early or do recovery weeks or whatnot and restart a meso
+    /// at any time.
+    /// Logic here just ensures the weight we pick keeps us in the target rep range
+    /// for week 1 of the meso based on the last non-recovery weight and RIR/RPE we
+    /// did.
+    if (var.progressDay == 1 && var.hitReps == 1) {      
+      /// RIR value where we want to start the meso
+      var.startRir = 10 - floor(var.RPE_START)
+      /// Based on RPE of set 1 today we can convert to how many reps-in-reserve
+      var.todayRir = 10 - ceil(RPE[1] > 0 ? RPE[1] : var.realRpe)
+      
+      /// Calculate an estimate for maximum number of reps possible at todays weight.
+      /// Add 1 rep to assume we adapt and get a little stronger after this session.
+      /// i.e. Estimate how many reps would be 0 RIR/failure with todays weight
+      var.estMaxRepsAfterRecovering = completedReps[1] + var.todayRir + 1
+      
+      /// Determine estimate for how many reps would correspond to the starting RIR
+      /// i.e. how many reps would be the target given the RIR we want to start at
+      /// subtracted from the max reps possible with todays performance
+      var.startRepEstimate = var.estMaxRepsAfterRecovering - var.startRir
+
+      /// Next, based on how many starting reps we estimated, determine how many
+      /// increments to modify the weight to keep us within our target rep range
+      /// for week 1 set 1.
+      var.numIncrements = 0
+      
+      /// If estimated reps for a starting RIR set with todays weight would be at or higher
+      /// than the target max reps we can increase weight to start next meso
+      if (var.startRepEstimate >= state.targetMaxReps) {
+        /// Linear progression: increase by 1 increment for every rep above the target max
+        /// since we assume that every increment drops about 1 rep worth of strength
+        if (state.progressType == var.PROG_TYPE_WEIGHT) {
+          /// + 1 to ensure we land more inside in the target range and not exactly
+          /// at the max reps
+          var.numIncrements = (var.startRepEstimate - state.targetMaxReps) + 1
+        }
+        /// Double progression: just go up by 1 weight increment
+        else {
+          var.numIncrements = 1
+        }
+      }
+      /// Otherwise, if starting RIR w/todays weight would be below the minimum reps we
+      /// need to decrease the weight to ensure we get more reps next time to put us in
+      /// the target rep range (numIncrements will be negative)
+      else if (var.startRepEstimate < state.targetMinReps) {
+        /// Linear progression: Decrease by 1 increment for every rep below the target min
+        /// since we assume that every decrement adds about 1 rep worth of strength
+        if (state.progressType == var.PROG_TYPE_WEIGHT) {
+          var.numIncrements = (var.startRepEstimate - state.targetMinReps)
+        }
+        /// Double progression: just go down by 1 weight increment
+        else {
+          var.numIncrements = -1
+        }
+      }
+
+      /// Set starting weight for next meso based on fixed or percentage based increments
+      if (state.increment >= var.FIXED_WEIGHT_INCR_MIN) {
+        var.weight = completedWeights[1] + var.numIncrements*state.increment
+      }
+      else {
+        var.weight = completedWeights[1] + completedWeights[1]*var.numIncrements*state.increment
+      }
+      weights[1:*:*:*] = var.weight >= 0lb ? var.weight : 0lb
+    }
+
+    /// Set RPE target for next session. Don't increment RPE if progression is disabled
+    /// and ensure it's always >= the mesocycle starting value and <= to the max allowed
+    var.nextRpe = var.progressDay ? state.targetRpe + var.RPE_INCR : state.targetRpe
+    var.nextRpe = var.nextRpe >= var.RPE_START ? var.nextRpe : var.RPE_START
+    state.targetRpe = var.nextRpe
+
+    state.mesoWeek += 1
+  }
+  /// Deload week is done, so reset start of meso targets
+  else {
+    state.mesoWeek = 1
+    state.lastWeight = 0lb
+    state.ratingIndex = 0
+    state.setsModifier = 0
+    state.targetRpe = var.RPE_START
+  }
+
+  /// Always ensure default state of keeping sets the same for related rating target exercise(s)
+  state.rating = 0
+  RPE[var.DELOAD_WEEK:*:*:*] = var.RPE_RECOVERY
+~}
+
+
