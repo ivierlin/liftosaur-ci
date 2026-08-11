@@ -45,7 +45,7 @@ on:
       runs_on:
         description: JSON array of runner labels
         required: false
-        default: '["self-hosted","Linux","X64"]'
+        default: '["self-hosted"]'
         type: string
     secrets:
       liftosaur_api_key:
