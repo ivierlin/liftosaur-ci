@@ -130,6 +130,10 @@ branch, print its contents to the workflow log, or store it with long-lived
 public build artifacts. The ordinary deployment-state pull request remains safe
 because it contains only Git identity metadata.
 
+If a repository needs stronger privacy than its normal Actions artifact access
+model provides, omit `--conflict-output` entirely and reproduce the conflict in a
+trusted local environment instead.
+
 ## Multiple programs and advanced overrides
 
 Repositories with multiple configured deployments pass `deployment`. A specific
