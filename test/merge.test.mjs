@@ -241,15 +241,19 @@ test("fails closed on a renamed actively changed block", async () => {
   assert.equal(result.report.blockFallback.stage, "block-removal");
 });
 
-test("rejects duplicate statement identities", async () => {
+test("supports repeated exercise statements by occurrence", async () => {
   const duplicate = `${blockSource()}// ...shared
 Squat / ...shared / progress: custom(volume: 2) { ...shared }
 `;
 
-  await assert.rejects(
-    mergeLiftosaurSources({ base: duplicate, active: duplicate, candidate: duplicate }),
-    /Duplicate Liftosaur statement identity/
-  );
+  const result = await mergeLiftosaurSources({
+    base: duplicate,
+    active: duplicate,
+    candidate: duplicate,
+  });
+
+  assert.equal(result.report.status, "merged");
+  assert.equal((result.source.match(/^Squat \/ /gm) ?? []).length, 2);
 });
 
 test("fails closed when active and candidate change a description differently", async () => {
