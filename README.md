@@ -126,12 +126,23 @@ explicit inputs; no hosted runner image is assumed.
 
 ## Tests
 
+For normal development:
+
+```sh
+npm run test:fast
+```
+
+This runs the unit/integration suite plus a deterministic sample of three pinned
+Liftosaur built-in programs. Branch pushes use this fast tier.
+
+The full deterministic suite is:
+
 ```sh
 npm test
 ```
 
-The deterministic default suite includes unit/integration tests and every program
-in the pinned Liftosaur built-in catalog. The digest-pinned public RP
+It checks every program in the pinned Liftosaur built-in catalog and is used on
+pull requests, `main`, and manual CI runs. The digest-pinned public RP
 Hypertrophy v4.1 network corpus is available separately with:
 
 ```sh
