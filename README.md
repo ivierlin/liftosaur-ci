@@ -22,8 +22,6 @@ target:
 
 ```json
 {
-  "formatVersion": 3,
-  "implementation": "liftosaur-check-config-v3",
   "deployments": {
     "program": {
       "program": "programs/example.liftoscript",
