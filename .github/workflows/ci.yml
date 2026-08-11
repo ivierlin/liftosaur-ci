@@ -42,6 +42,32 @@ jobs:
       - run: node scripts/setup-runtime.mjs
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
-      - run: npm test
+      - name: Run full validation in parallel
+        shell: bash
+        run: |
+          npm run test:unit > unit.log 2>&1 &
+          unit_pid=$!
+          npm run test:corpus > corpus.log 2>&1 &
+          corpus_pid=$!
+
+          if wait "$unit_pid"; then
+            unit_status=0
+          else
+            unit_status=$?
+          fi
+          printf '\n=== unit tests ===\n'
+          cat unit.log
+
+          if wait "$corpus_pid"; then
+            corpus_status=0
+          else
+            corpus_status=$?
+          fi
+          printf '\n=== built-in corpus ===\n'
+          cat corpus.log
+
+          if (( unit_status != 0 || corpus_status != 0 )); then
+            exit 1
+          fi
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
