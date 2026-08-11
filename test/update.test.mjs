@@ -104,7 +104,7 @@ test("update bootstraps once and then needs no deployment inputs", async () => {
       "--api-base", apiBase,
     ], environment);
     assert.equal(bootstrap.code, 0, `${bootstrap.stdout}\n${bootstrap.stderr}`);
-    assert.match(bootstrap.stdout, /Liftosaur update verified/);
+    assert.equal(bootstrap.stdout, "Liftosaur updated: Keep this name\n");
     assert.equal(program.name, "Keep this name");
     assert.match(program.text, /180s/);
     assert.match(program.text, /volume: 3/);
@@ -121,6 +121,7 @@ test("update bootstraps once and then needs no deployment inputs", async () => {
     requests.length = 0;
     const updated = await runCli(["update", "--api-base", apiBase], environment);
     assert.equal(updated.code, 0, `${updated.stdout}\n${updated.stderr}`);
+    assert.equal(updated.stdout, "Liftosaur updated: Keep this name\n");
     assert.deepEqual(requests.map(([method]) => method), ["GET", "GET", "PUT", "GET"]);
     assert.deepEqual(requests.map(([, url]) => url), [
       "/api/v1/programs/current",
