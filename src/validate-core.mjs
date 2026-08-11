@@ -180,9 +180,15 @@ function programFromSource(source, api) {
   };
 }
 
-function evaluateSource(source, api) {
-  const program = programFromSource(source, api);
+function buildScenarioContext(api, units) {
+  if (units == null) return undefined;
   const settings = api.Settings_build();
+  settings.units = units;
+  return { settings, stats: api.Stats_getEmpty() };
+}
+
+function evaluateSource(source, api, settings = api.Settings_build()) {
+  const program = programFromSource(source, api);
   const evaluated = withoutLoggedErrors("evaluate", () => api.Program_evaluate(program, settings));
   const errors = evaluationErrors(evaluated);
   if (errors.length > 0) {
@@ -423,7 +429,7 @@ function scenarioEntries(step, label) {
 
 function completeScenarioStep(source, step, api, context, label) {
   const entries = scenarioEntries(step, label);
-  const original = evaluateSource(source, api);
+  const original = evaluateSource(source, api, context?.settings);
   if (step.day > original.days) {
     throw new LiftosaurValidationError(
       `${label} day ${step.day} exceeds the program's ${original.days} days`,
@@ -505,11 +511,16 @@ export function snapshotLiftosaurScenario(source, scenario) {
   }
 
   if (!Object.hasOwn(scenario, "steps")) {
-    const completed = completeScenarioStep(source, scenario, api, undefined, "Scenario");
+    const context = buildScenarioContext(api, scenario.units);
+    const completed = completeScenarioStep(source, scenario, api, context, "Scenario");
     return {
       snapshot: {
         runtimeRevision: pinnedRuntimeRevision,
-        scenario: { name: scenario.name, day: scenario.day },
+        scenario: {
+          name: scenario.name,
+          day: scenario.day,
+          ...(scenario.units == null ? {} : { units: scenario.units }),
+        },
         nextExposure: completed.nextExposure,
         nextWorkout: completed.nextWorkout,
       },
@@ -537,7 +548,7 @@ export function snapshotLiftosaurScenario(source, scenario) {
   }
 
   let serializedSource = source;
-  let context;
+  let context = buildScenarioContext(api, scenario.units);
   const steps = scenario.steps.map((step, index) => {
     const label = `Scenario step ${index + 1}`;
     const completed = completeScenarioStep(serializedSource, step, api, context, label);
@@ -558,7 +569,10 @@ export function snapshotLiftosaurScenario(source, scenario) {
   return {
     snapshot: {
       runtimeRevision: pinnedRuntimeRevision,
-      scenario: { name: scenario.name },
+      scenario: {
+        name: scenario.name,
+        ...(scenario.units == null ? {} : { units: scenario.units }),
+      },
       steps,
     },
     serializedSource,
