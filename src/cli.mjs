@@ -55,18 +55,15 @@ function usage() {
     --program <validated-program.liftoscript> \\
     --validation-report <validation-report.json> \\
     [--merge-report <merge-report.json>] \\
-    --program-id <liftosaur-program-id> \\
-    --expected-program-name <current-name> \\
-    --expected-current <true|false> \\
-    --deployed-program-name <new-name> \\
+    --program-id <resolved-liftosaur-program-id> \\
+    [--deployed-program-name <new-name>] \\
     --output <deployment-bundle-directory>
 
   liftosaur-ci prepare \\
     --base <previously-deployed.liftoscript> \\
     --candidate <new-git-source.liftoscript> \\
     --program-id <liftosaur-program-id|current> \\
-    --expected-program-name <current-name> \\
-    --deployed-program-name <new-name> \\
+    [--deployed-program-name <new-name>] \\
     --output <deployment-bundle-directory> \\
     [--api-base <url>]
 
@@ -76,7 +73,7 @@ function usage() {
     [--base-ref <last-deployed-ref>] \\
     --candidate-ref <reviewed-ref> \\
     [--program <repository-relative-path>] \\
-    [--program-id <exact-liftosaur-program-id>] \\
+    [--program-id <liftosaur-program-id|current>] \\
     [--deployed-program-name <new-name>] \\
     --output <deployment-bundle-directory> \\
     [--api-base <url>]
@@ -84,8 +81,7 @@ function usage() {
   liftosaur-ci deploy \\
     --bundle <deployment-bundle-directory> \\
     [--config <liftosaur-ci.json> --deployment <stable-id>] \\
-    [--confirm-program-id <liftosaur-program-id>] \\
-    [--confirm-program-name <new-name>] \\
+    [--confirm-program-id <resolved-liftosaur-program-id>] \\
     --output <private-deployment-record-directory> \\
     [--max-age-hours <hours>] \\
     [--api-base <url>]
@@ -100,8 +96,9 @@ function usage() {
     [--report <check-report.json>]
 
 Merge, validation, snapshots, checks, and prepare-deployment are offline.
-Prepare and prepare-git read LIFTOSAUR_API_KEY but only read Liftosaur. Deploy
-uses the same environment variable and changes exactly one prepared target.
+Prepare and prepare-git read LIFTOSAUR_API_KEY but only read Liftosaur. The
+special program ID "current" is resolved to an exact ID during preparation.
+Deploy always writes the exact resolved ID stored in the prepared bundle.
 Existing output files and directories are never overwritten.`;
 }
 
@@ -170,7 +167,6 @@ async function runMerge(argv) {
   requireDistinctPaths(inputs, outputs);
   await requireNewFile(outputs.output, "Merge output");
   if (outputs.report) await requireNewFile(outputs.report, "Merge report");
-
   const [base, active, candidate] = await Promise.all(
     Object.values(inputs).map((file) => readFile(file, "utf8"))
   );
@@ -264,14 +260,12 @@ async function runPrepareDeployment(argv) {
     "validation-report",
     "merge-report",
     "program-id",
-    "expected-program-name",
-    "expected-current",
     "deployed-program-name",
     "output",
   ]);
-  const expectedCurrent = requireTextOption(options, "expected-current");
-  if (expectedCurrent !== "true" && expectedCurrent !== "false") {
-    throw new CliError("--expected-current must be true or false");
+  const programId = requireTextOption(options, "program-id");
+  if (programId === "current") {
+    throw new CliError("prepare-deployment is offline and requires a resolved program ID, not current");
   }
   const outputDirectory = requireOption(options, "output");
   await prepareDeploymentBundle({
@@ -280,12 +274,8 @@ async function runPrepareDeployment(argv) {
     validationReportFile: requireOption(options, "validation-report"),
     mergeReportFile: options["merge-report"] ? path.resolve(options["merge-report"]) : null,
     outputDirectory,
-    target: {
-      id: requireTextOption(options, "program-id"),
-      name: requireTextOption(options, "expected-program-name"),
-      isCurrent: expectedCurrent === "true",
-    },
-    deployedName: requireTextOption(options, "deployed-program-name"),
+    target: { id: programId },
+    deployedName: options["deployed-program-name"] ?? null,
   });
   console.log(`Liftosaur deployment bundle prepared: ${outputDirectory}`);
 }
@@ -295,7 +285,6 @@ async function runPrepare(argv) {
     "base",
     "candidate",
     "program-id",
-    "expected-program-name",
     "deployed-program-name",
     "output",
     "api-base",
@@ -307,14 +296,13 @@ async function runPrepare(argv) {
       candidateFile: requireOption(options, "candidate"),
       outputDirectory,
       programId: requireTextOption(options, "program-id"),
-      expectedProgramName: requireTextOption(options, "expected-program-name"),
-      deployedProgramName: requireTextOption(options, "deployed-program-name"),
+      deployedProgramName: options["deployed-program-name"] ?? null,
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
     });
     console.log(
-      `Liftosaur deployment prepared: ${result.manifest.target.name} → `
-      + `${result.manifest.deployment.name}; ${result.validation.days} days validated`
+      `Liftosaur deployment prepared for ${result.manifest.target.id}; `
+      + `${result.validation.days} days validated`
     );
   } catch (error) {
     if (error instanceof LiftosaurPreparationError) {
@@ -362,7 +350,7 @@ async function runPrepareGit(argv) {
         candidateRef: requireTextOption(options, "candidate-ref"),
         programPath: requireTextOption(options, "program"),
         programId: requireTextOption(options, "program-id"),
-        deployedProgramName: requireTextOption(options, "deployed-program-name"),
+        deployedProgramName: options["deployed-program-name"] ?? null,
         expectedBase: null,
       };
     }
@@ -406,7 +394,6 @@ async function runDeploy(argv) {
     "config",
     "deployment",
     "confirm-program-id",
-    "confirm-program-name",
     "output",
     "max-age-hours",
     "api-base",
@@ -414,31 +401,30 @@ async function runDeploy(argv) {
   const outputDirectory = requireOption(options, "output");
   const configured = options.config || options.deployment;
   let expectedProgramId;
-  let expectedDeployedName;
   if (configured) {
     if (!options.config || !options.deployment) {
       throw new CliError("--config and --deployment must be provided together");
     }
-    if (options["confirm-program-id"] || options["confirm-program-name"]) {
+    if (options["confirm-program-id"]) {
       throw new CliError("Configured deploy must not override program deployment settings");
     }
     const resolved = await configuredDeployment(path.resolve(options.config), options.deployment);
     expectedProgramId = resolved.deployment.programId;
-    expectedDeployedName = resolved.deployment.deployedProgramName;
   } else {
     expectedProgramId = requireTextOption(options, "confirm-program-id");
-    expectedDeployedName = requireTextOption(options, "confirm-program-name");
+    if (expectedProgramId === "current") {
+      throw new CliError("Deployment confirmation requires the exact resolved program ID, not current");
+    }
   }
   const report = await deployPreparedBundle({
     bundleDirectory: requireOption(options, "bundle"),
     outputDirectory,
     apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
     expectedProgramId,
-    expectedDeployedName,
     apiBase: options["api-base"],
     maxAgeHours: Number(options["max-age-hours"] ?? "24"),
   });
-  console.log(`Liftosaur deployment verified: ${report.target.name} (${report.target.id})`);
+  console.log(`Liftosaur deployment verified: ${report.target.name ?? "program"} (${report.target.id})`);
 }
 
 async function runCheck(argv) {
