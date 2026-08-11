@@ -118,6 +118,10 @@ preparation fails. Keep retention short:
     path: ${{ runner.temp }}/liftosaur-conflict
     if-no-files-found: ignore
     retention-days: 1
+
+- name: Remove private conflict workspace
+  if: always()
+  run: rm -rf "$RUNNER_TEMP/liftosaur-conflict"
 ```
 
 The conflict artifact may contain `active.liftoscript` and therefore must be
