@@ -227,7 +227,6 @@ export async function mergeLiftosaurSources({ base, active, candidate }) {
       };
     }
     const report = {
-      formatVersion: 1,
       strategy: "git-three-way-with-liftosaur-projection",
       frontend: LIFTOSAUR_MERGE_FRONTEND,
       status: merged.conflict ? "conflict" : "merged",
