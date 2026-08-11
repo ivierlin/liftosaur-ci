@@ -45,6 +45,8 @@ export function createScenarioSnapshot(source, scenarioText, result) {
       program: { sha256: sha256(source) },
       scenario: { sha256: sha256(scenarioText) },
     },
-    progressedSource: { sha256: sha256(result.serializedSource) },
+    ...(result.serializedSource == null
+      ? {}
+      : { progressedSource: { sha256: sha256(result.serializedSource) } }),
   };
 }
