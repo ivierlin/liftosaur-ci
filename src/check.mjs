@@ -10,8 +10,6 @@ import {
   validateLiftosaurSource,
 } from "./validate.mjs";
 
-export { LIFTOSAUR_CHECK_CONFIG } from "./config.mjs";
-
 function parseJson(text, label) {
   try {
     return JSON.parse(text);
@@ -105,7 +103,6 @@ export async function checkRepository(configFile) {
 
   const passed = results.filter(({ status }) => status === "passed").length;
   return {
-    formatVersion: 1,
     command: "check",
     status: passed === results.length ? "passed" : "failed",
     config: path.basename(configFile),
