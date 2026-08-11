@@ -22,7 +22,7 @@ async function requestBody(request) {
   return Buffer.concat(chunks).toString("utf8");
 }
 
-async function fixture(root, name, deployedName = "Deployed") {
+async function fixture(root, name) {
   const input = path.join(root, `${name}-input`);
   const bundle = path.join(root, `${name}-bundle`);
   await mkdir(input);
@@ -53,10 +53,9 @@ async function fixture(root, name, deployedName = "Deployed") {
     mergeReportFile: mergeFile,
     outputDirectory: bundle,
     target: { id: "program-1" },
-    deployedName,
   });
   assert.equal(manifest.target.id, "program-1");
-  assert.equal(manifest.deployment.name, deployedName);
+  assert.deepEqual(Object.keys(manifest.deployment), ["sourceSha256"]);
   await assert.rejects(readFile(path.join(bundle, "SHA256SUMS"), "utf8"), { code: "ENOENT" });
   return bundle;
 }
@@ -83,10 +82,10 @@ test("current is resolved during preparation and exact IDs are retained", async 
   }
 });
 
-test("prepared deployment verifies exact state and never rolls back an unknown state", async () => {
+test("prepared deployment preserves the live name and never rolls back an unknown state", async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "liftosaur-deployment-"));
   const requests = [];
-  let programName = "Active";
+  let programName = "Keep me";
   let programText = active;
   let forceMismatch = false;
   let ambiguousWrite = false;
@@ -142,22 +141,9 @@ test("prepared deployment verifies exact state and never rolls back an unknown s
       apiBase,
     });
     assert.equal(report.deploymentPerformed, true);
-    assert.equal(programName, "Deployed");
-    assert.equal(programText, deploy);
-
-    programName = "Keep me";
-    programText = active;
-    requests.length = 0;
-    const preserveNameBundle = await fixture(root, "preserve-name", null);
-    const preserveReport = await deployPreparedBundle({
-      bundleDirectory: preserveNameBundle,
-      outputDirectory: path.join(root, "preserve-name-record"),
-      apiKey,
-      expectedProgramId: "program-1",
-      apiBase,
-    });
-    assert.equal(preserveReport.target.name, "Keep me");
     assert.equal(programName, "Keep me");
+    assert.equal(report.target.name, "Keep me");
+    assert.equal(programText, deploy);
 
     programName = "Active";
     programText = active;
