@@ -149,6 +149,7 @@ jobs:
           name: liftosaur-deployment-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/liftosaur-deployment
       - name: Deploy and verify
+        shell: bash
         run: >-
           node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" deploy
           --bundle "$RUNNER_TEMP/liftosaur-deployment"
@@ -160,6 +161,7 @@ jobs:
           DEPLOYMENT: ${{ inputs.deployment }}
           LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
       - name: Record verified Git deployment state
+        shell: bash
         run: >-
           node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" record-deployment
           --config "$GITHUB_WORKSPACE/repository/${CONFIG}"

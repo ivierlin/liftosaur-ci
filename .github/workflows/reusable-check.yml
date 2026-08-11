@@ -56,6 +56,7 @@ jobs:
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
       - name: Check programs and reviewed snapshots
+        shell: bash
         run: >-
           node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" check
           --config "$GITHUB_WORKSPACE/repository/${{ inputs.config }}"
