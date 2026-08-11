@@ -93,9 +93,16 @@ The three inputs are:
 - the current Liftosaur source containing accumulated progression,
 - the new reviewed Git source.
 
-Independent live progression is carried forward while reviewed program changes
-are applied. Conflicting changes fail closed instead of being guessed. Repeated
-same-exercise statements are distinguished by occurrence.
+Program logic inside Liftoscript `{ ... }` bodies belongs to Git. If the live
+Liftosaur source has changed inside one of those bodies since the previous Git
+version, liftosaur-ci stops and asks the author to either commit that edit in Git
+or discard it in Liftosaur. It does not try to merge program-code edits made in
+the app.
+
+Everything outside those bodies is eligible live progression. Independent live
+changes are carried forward while reviewed Git changes are applied; incompatible
+changes to the same mergeable region still fail closed instead of being guessed.
+Repeated same-exercise statements are distinguished by occurrence.
 
 Git revisions are resolved to immutable commits and blobs, so unrelated dirty
 worktree files cannot affect the source being deployed. Before deployment, the
