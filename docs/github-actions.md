@@ -2,30 +2,36 @@
 
 Two reusable workflows provide the baseline GitHub integration:
 
-- `reusable-check.yml` validates all configured programs and reviewed snapshots.
+- `reusable-check.yml` validates configured programs and reviewed snapshots.
 - `reusable-deploy.yml` prepares an immutable bundle, pauses at a protected
-  environment, deploys with read-back verification and automatic rollback, then
-  opens a pull request containing the non-sensitive deployment state.
+  environment, deploys with read-back verification, then opens a pull request
+  containing the non-sensitive deployment state.
 
 The workflows use caller-selected runner labels and a caller-pinned tool
-revision. They do not assume a GitHub-hosted runner.
+revision. They do not assume a GitHub-hosted runner. `liftosaur-ci` itself has no
+npm dependencies, so the workflows do not run `npm ci` or maintain an npm cache;
+the pinned Liftosaur runtime has its own setup/cache path.
 
 ## Repository setup
 
-Use `LIFTOSAUR_PROGRAM_ID` as `programIdEnv` for deployments run by the reusable
-workflow. Store that program ID and `LIFTOSAUR_API_KEY` as Actions secrets. Create
-a protected environment such as `liftosaur` and require approval before a job can
-enter it.
+Put the Liftosaur target directly in the deployment entry in
+`liftosaur-ci.json`. It may be an exact ID or `current`. Only
+`LIFTOSAUR_API_KEY` needs to be stored as a deployment secret.
 
-The deployment candidate should already be contained in `state_branch`, normally
-`main`. The workflow commits only `.liftosaur-ci/deployments/<id>.json` on a new
-branch and opens a pull request back to that branch. The private bundle and
-deployment receipt are retained as workflow artifacts for one day.
+Create a protected environment such as `liftosaur` and require approval before a
+job can enter it. The preparation job can read Liftosaur but cannot write it; the
+live write starts only after the environment admits the deploy job.
 
-The caller must grant `contents: write` and `pull-requests: write` to the deploy
-workflow, and repository settings must allow GitHub Actions to create pull
-requests. Store the Liftosaur values as repository or organization secrets; a
-caller job cannot pass environment-only secrets to a reusable workflow. If
+After a verified deployment, the workflow creates
+`.liftosaur-ci/deployments/<id>.json`. It copies that generated state onto a new
+branch created from `state_branch` and opens a pull request back to
+`state_branch`. Starting from the state branch guarantees that the state PR
+contains only the state update even when `candidate_ref` came from another
+branch.
+
+The private bundle and deployment receipt are retained as workflow artifacts for
+one day. The caller must grant `contents: write` and `pull-requests: write`, and
+repository settings must allow GitHub Actions to create pull requests. If
 `liftosaur-ci` is private, pass a read-only `tool_token`; it is not needed when
 the tool repository is public.
 
@@ -66,7 +72,7 @@ on:
         required: true
         type: string
       candidate_ref:
-        description: Reviewed commit or tag already on main
+        description: Reviewed commit or tag to deploy
         required: true
         type: string
       base_ref:
@@ -91,10 +97,11 @@ jobs:
       runs_on: '["self-hosted","Linux","X64"]'
     secrets:
       liftosaur_api_key: ${{ secrets.LIFTOSAUR_API_KEY }}
-      liftosaur_program_id: ${{ secrets.LIFTOSAUR_PROGRAM_ID }}
 ```
 
-Preparation reads the exact current Liftosaur source but cannot write it. The
-live write begins only after the protected `liftosaur` environment admits the
-deploy job. On success, merge the generated state pull request before preparing
-the next deployment.
+If a configured deployment uses `current`, preparation resolves it to the exact
+ID returned by Liftosaur and stores that ID in the private bundle. The approved
+deploy job subsequently reads and writes only that exact ID.
+
+On success, merge the generated state pull request before preparing the next
+deployment.
