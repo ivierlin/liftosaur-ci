@@ -54,16 +54,15 @@ async function readState(config, deploymentId) {
 
 export async function configuredGitPreparation({
   configFile,
-  deploymentId,
-  candidateRef,
+  deploymentId = null,
+  candidateRef = "HEAD",
   baseRef = null,
   repository = null,
 }) {
-  if (!candidateRef) throw new Error("Candidate Git ref is required");
   const { config, deployment } = await configuredDeployment(configFile, deploymentId);
-  const tracked = await readState(config, deploymentId);
+  const tracked = await readState(config, deployment.id);
   if (!tracked.state && !baseRef) {
-    throw new Error(`Deployment ${deploymentId} has no tracked base; provide --base-ref for the first preparation`);
+    throw new Error(`Deployment ${deployment.id} has no tracked base; provide --base-ref for the first preparation`);
   }
   return {
     repository: path.resolve(repository ?? config.root),
@@ -71,15 +70,15 @@ export async function configuredGitPreparation({
     candidateRef,
     programPath: deployment.program,
     programId: deployment.programId,
-    deployedProgramName: deployment.deployedProgramName,
     expectedBase: tracked.state,
     stateFile: tracked.file,
+    deploymentId: deployment.id,
   };
 }
 
 export async function recordDeploymentState({
   configFile,
-  deploymentId,
+  deploymentId = null,
   reportFile,
 }) {
   const { config, deployment } = await configuredDeployment(configFile, deploymentId);
@@ -98,7 +97,7 @@ export async function recordDeploymentState({
   ) {
     throw new Error("Deployment report lacks matching Git provenance");
   }
-  const tracked = await readState(config, deploymentId);
+  const tracked = await readState(config, deployment.id);
   if (tracked.state && (
     tracked.state.commitSha !== source.base?.commitSha
     || tracked.state.blobSha !== source.base?.blobSha
@@ -109,7 +108,7 @@ export async function recordDeploymentState({
     ...LIFTOSAUR_DEPLOYMENT_STATE,
     commitSha: source.candidate?.commitSha,
     blobSha: source.candidate?.blobSha,
-  }, deploymentId);
+  }, deployment.id);
   await mkdir(path.dirname(tracked.file), { recursive: true });
   const temporary = `${tracked.file}.${randomUUID()}.tmp`;
   try {
@@ -118,5 +117,5 @@ export async function recordDeploymentState({
   } finally {
     await rm(temporary, { force: true });
   }
-  return { file: tracked.file, state };
+  return { file: tracked.file, state, deploymentId: deployment.id };
 }
