@@ -49,9 +49,6 @@ on:
       liftosaur_api_key:
         description: Liftosaur API key
         required: true
-      liftosaur_program_id:
-        description: Exact Liftosaur program ID
-        required: true
       tool_token:
         description: Token able to read liftosaur-ci when it is private
         required: false
@@ -84,14 +81,9 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
-          cache: npm
-          cache-dependency-path: tool/package-lock.json
-      - name: Install liftosaur-ci
-        working-directory: tool
-        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Set up cached Liftosaur runtime
         working-directory: tool
-        run: npm run setup:runtime
+        run: node scripts/setup-runtime.mjs
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
       - name: Prepare immutable deployment bundle
@@ -114,7 +106,6 @@ jobs:
           CONFIG: ${{ inputs.config }}
           DEPLOYMENT: ${{ inputs.deployment }}
           LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
-          LIFTOSAUR_PROGRAM_ID: ${{ secrets.liftosaur_program_id }}
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
       - name: Retain private bundle for the approval gate
         uses: actions/upload-artifact@v7
@@ -166,7 +157,6 @@ jobs:
           CONFIG: ${{ inputs.config }}
           DEPLOYMENT: ${{ inputs.deployment }}
           LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
-          LIFTOSAUR_PROGRAM_ID: ${{ secrets.liftosaur_program_id }}
       - name: Record verified Git deployment state
         run: >-
           node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" record-deployment
@@ -176,7 +166,6 @@ jobs:
         env:
           CONFIG: ${{ inputs.config }}
           DEPLOYMENT: ${{ inputs.deployment }}
-          LIFTOSAUR_PROGRAM_ID: ${{ secrets.liftosaur_program_id }}
       - name: Commit deployment state
         id: state
         working-directory: repository
@@ -184,15 +173,23 @@ jobs:
         run: |
           set -eu
           branch="liftosaur-ci/state-${DEPLOYMENT}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          state_file=".liftosaur-ci/deployments/${DEPLOYMENT}.json"
+          state_copy="$RUNNER_TEMP/deployment-state.json"
+          cp "$state_file" "$state_copy"
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin "$STATE_BRANCH"
+          git switch --detach "origin/$STATE_BRANCH"
           git switch -c "$branch"
-          git add -- ".liftosaur-ci/deployments/${DEPLOYMENT}.json"
+          mkdir -p "$(dirname "$state_file")"
+          cp "$state_copy" "$state_file"
+          git add -- "$state_file"
           git commit -m "Record ${DEPLOYMENT} deployment state"
           git push origin "HEAD:refs/heads/$branch"
           printf 'branch=%s\n' "$branch" >> "$GITHUB_OUTPUT"
         env:
           DEPLOYMENT: ${{ inputs.deployment }}
+          STATE_BRANCH: ${{ inputs.state_branch }}
       - name: Open deployment-state pull request
         uses: actions/github-script@v9
         env:
