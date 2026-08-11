@@ -2,13 +2,31 @@ name: CI
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  test:
+  fast:
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: node scripts/setup-runtime.mjs
+        env:
+          LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+      - run: npm run test:fast
+        env:
+          LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+
+  full:
+    if: github.event_name != 'push' || github.ref == 'refs/heads/main'
     runs-on: [self-hosted, Linux, X64]
     timeout-minutes: 30
     steps:
