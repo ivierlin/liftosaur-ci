@@ -100,6 +100,31 @@ read-back. Before writing, it also saves the currently observed unknown source i
 the same private recovery directory, so an explicit rollback does not destroy the
 state it replaces.
 
+## Rolling back versions
+
+For an ordinary version rollback, Git remains the source of truth: revert the
+program change or select the older reviewed Git revision and run the normal update
+path. The current Liftosaur source is still the live side of the merge, so today's
+progression is preserved while the older program logic is deployed.
+
+For disaster recovery, an advanced restore can instead push the exact source from
+an extracted historical deployment bundle:
+
+```sh
+LIFTOSAUR_API_KEY=... liftosaur-ci restore \
+  --artifact /path/to/historical-deployment-bundle
+```
+
+`restore` intentionally rewinds the full Liftosaur source, including progression.
+It verifies the bundle's exact target ID and source hash, preserves the current
+program name, saves the displaced live source in a private temporary recovery
+directory before writing, and verifies the read-back. It does **not** update Git
+deployment state automatically.
+
+Historical deployment bundles contain live program state. Keep them private. The
+reusable workflow intentionally keeps its uploaded bundle short-lived by default;
+author-controlled archival is separate from the deployment workflow.
+
 ## Why the merge is safe
 
 The three inputs are:
@@ -161,6 +186,7 @@ See the [repository check contract](docs/check.md).
 building blocks for custom tooling, debugging, and approval-gated automation:
 
 - `rollback` — explicitly restore the pre-update source after an ambiguous write.
+- `restore` — advanced exact historical-snapshot restore; progression is rewound.
 - `prepare-git` — prepare an immutable Git-backed deployment bundle.
 - `deploy` — verify and write a prepared bundle.
 - `record-deployment` — record the verified deployed Git identity.

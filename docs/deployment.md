@@ -127,6 +127,46 @@ If rollback itself cannot be verified, the originally observed unknown state
 remains in the recovery directory and any readable post-attempt state is retained
 as additional private recovery material.
 
+## Version rollback through Git
+
+Rolling back program logic is normally just another reviewed Git change. Revert
+the unwanted commit or select the older candidate revision, then use the ordinary
+update pipeline. Because the current Liftosaur source remains the live side of the
+merge, accumulated progression is carried into the older program logic rather
+than rewound.
+
+This is distinct from the emergency `rollback` command above: Git rollback changes
+reviewed program logic, while emergency rollback restores the source that existed
+immediately before one ambiguous write.
+
+## Advanced historical restore
+
+`restore` is the deliberately destructive disaster-recovery path. Given an
+extracted historical deployment bundle, it writes the exact historical
+`deploy.liftoscript` back to the bundle's exact resolved program ID:
+
+```sh
+LIFTOSAUR_API_KEY=... liftosaur-ci restore \
+  --artifact /path/to/historical-deployment-bundle
+```
+
+The command validates the historical source against the bundle manifest but does
+not apply the normal deployment age or prepared-live-source checks: those checks
+would defeat the purpose of restoring a historical snapshot. Before writing, it
+fetches today's exact target and saves that complete source in a private temporary
+recovery directory. It preserves the current program name, writes the historical
+source, and verifies the read-back.
+
+A historical restore therefore rewinds **all** serialized source state, including
+progression accumulated after that artifact. It does not modify tracked Git
+deployment state; after recovery, the author must deliberately decide what Git
+revision should become the next normal candidate/base relationship.
+
+Deployment bundles contain live program state and must remain private. The
+reusable workflow keeps uploaded bundles short-lived by default; long-term backup
+or archival is an explicit author responsibility rather than part of normal
+continuous deployment.
+
 ## Approval-gated automation
 
 The reusable GitHub Actions workflow deliberately keeps preparation and deploy as
@@ -138,11 +178,12 @@ verified deployment. See [GitHub Actions integration](github-actions.md).
 
 `prepare-git`, `deploy`, and `record-deployment` expose the three stages used by
 `update` and the GitHub workflow. `rollback` provides the explicit recovery path
-for an ambiguous one-command update. `prepare` provides the same merge and
-validation path for caller-supplied base and candidate files. `prepare-deployment`
-assembles a bundle from already prepared active/deploy sources and validation
-evidence; because it is offline, it requires an already resolved exact program
-ID.
+for an ambiguous one-command update. `restore` provides exact historical-snapshot
+recovery and intentionally rewinds progression. `prepare` provides the same merge
+and validation path for caller-supplied base and candidate files.
+`prepare-deployment` assembles a bundle from already prepared active/deploy sources
+and validation evidence; because it is offline, it requires an already resolved
+exact program ID.
 
 Bundles and deployment receipts contain private program state and should not be
 committed or published.
