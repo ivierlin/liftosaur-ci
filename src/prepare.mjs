@@ -21,7 +21,6 @@ export async function prepareLiftosaurDeployment({
   candidateFile,
   outputDirectory,
   programId,
-  deployedProgramName = null,
   apiKey,
   apiBase,
 }) {
@@ -34,7 +33,6 @@ export async function prepareLiftosaurDeployment({
     candidate,
     outputDirectory,
     programId,
-    deployedProgramName,
     apiKey,
     apiBase,
   });
@@ -45,7 +43,6 @@ export async function prepareLiftosaurDeploymentFromContents({
   candidate,
   outputDirectory,
   programId,
-  deployedProgramName = null,
   apiKey,
   apiBase,
   source = null,
@@ -88,7 +85,6 @@ export async function prepareLiftosaurDeploymentFromContents({
     mergeText: `${JSON.stringify(mergeReport, null, 2)}\n`,
     outputDirectory,
     target: { id: activeProgram.id },
-    deployedName: deployedProgramName,
     source,
   });
   return {
