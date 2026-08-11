@@ -21,8 +21,6 @@ export async function prepareLiftosaurDeployment({
   candidateFile,
   outputDirectory,
   programId,
-  expectedProgramName,
-  deployedProgramName,
   apiKey,
   apiBase,
 }) {
@@ -35,8 +33,6 @@ export async function prepareLiftosaurDeployment({
     candidate,
     outputDirectory,
     programId,
-    expectedProgramName,
-    deployedProgramName,
     apiKey,
     apiBase,
   });
@@ -47,18 +43,11 @@ export async function prepareLiftosaurDeploymentFromContents({
   candidate,
   outputDirectory,
   programId,
-  expectedProgramName = null,
-  deployedProgramName,
   apiKey,
   apiBase,
   source = null,
 }) {
-  const activeProgram = await fetchDeploymentTarget({
-    programId,
-    expectedName: expectedProgramName,
-    apiKey,
-    apiBase,
-  });
+  const activeProgram = await fetchDeploymentTarget({ programId, apiKey, apiBase });
   const active = activeProgram.text;
 
   let merged;
@@ -95,12 +84,7 @@ export async function prepareLiftosaurDeploymentFromContents({
     validationText: `${JSON.stringify(validationReport, null, 2)}\n`,
     mergeText: `${JSON.stringify(mergeReport, null, 2)}\n`,
     outputDirectory,
-    target: {
-      id: activeProgram.id,
-      name: activeProgram.name,
-      isCurrent: activeProgram.isCurrent,
-    },
-    deployedName: deployedProgramName,
+    target: { id: activeProgram.id },
     source,
   });
   return {

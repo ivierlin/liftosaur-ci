@@ -1,35 +1,71 @@
 # GitHub Actions integration
 
-Two reusable workflows provide the baseline GitHub integration:
+Two reusable workflows provide the baseline integration:
 
-- `reusable-check.yml` validates all configured programs and reviewed snapshots.
-- `reusable-deploy.yml` prepares an immutable bundle, pauses at a protected
-  environment, deploys with read-back verification and automatic rollback, then
-  opens a pull request containing the non-sensitive deployment state.
+- `reusable-check.yml` validates configured programs and reviewed snapshots.
+- `reusable-deploy.yml` prepares the updated program, pauses at a protected
+  environment, deploys with read-back verification, then opens a pull request
+  containing the non-sensitive deployment state.
 
-The workflows use caller-selected runner labels and a caller-pinned tool
-revision. They do not assume a GitHub-hosted runner.
+## Minimal setup
 
-## Repository setup
+Use the conventional deployment ID `program` and configure only the program path
+and Liftosaur target:
 
-Use `LIFTOSAUR_PROGRAM_ID` as `programIdEnv` for deployments run by the reusable
-workflow. Store that program ID and `LIFTOSAUR_API_KEY` as Actions secrets. Create
-a protected environment such as `liftosaur` and require approval before a job can
-enter it.
+```json
+{
+  "deployments": {
+    "program": {
+      "program": "programs/example.liftoscript",
+      "programId": "current"
+    }
+  }
+}
+```
 
-The deployment candidate should already be contained in `state_branch`, normally
-`main`. The workflow commits only `.liftosaur-ci/deployments/<id>.json` on a new
-branch and opens a pull request back to that branch. The private bundle and
-deployment receipt are retained as workflow artifacts for one day.
+Only `LIFTOSAUR_API_KEY` needs to be stored as a deployment secret. Create a
+protected environment such as `liftosaur` and require approval before the live
+write.
 
-The caller must grant `contents: write` and `pull-requests: write` to the deploy
-workflow, and repository settings must allow GitHub Actions to create pull
-requests. Store the Liftosaur values as repository or organization secrets; a
-caller job cannot pass environment-only secrets to a reusable workflow. If
-`liftosaur-ci` is private, pass a read-only `tool_token`; it is not needed when
-the tool repository is public.
+The reusable deployment workflow defaults to deployment `program` and to the
+caller commit, so a normal caller does not need to pass a program ID, program
+path, program name, deployment ID, or candidate ref.
 
-## Pull-request and push checks
+```yaml
+name: Deploy Liftosaur program
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_ref:
+        description: Bootstrap base; leave empty after the first tracked deployment
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deploy:
+    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-deploy.yml@TOOL_COMMIT
+    with:
+      base_ref: ${{ inputs.base_ref }}
+      tool_ref: TOOL_COMMIT
+    secrets:
+      liftosaur_api_key: ${{ secrets.LIFTOSAUR_API_KEY }}
+```
+
+`base_ref` is required only for the first deployment, when liftosaur-ci needs to
+know which Git revision corresponds to the program already in the app. After the
+resulting deployment-state pull request is merged, later deployments infer that
+base automatically.
+
+If `programId` is `current`, preparation resolves it to the exact ID returned by
+Liftosaur. The approved deployment later reads and writes only that exact ID.
+The live program name is preserved automatically.
+
+## Checks
 
 ```yaml
 name: Liftosaur check
@@ -47,54 +83,26 @@ jobs:
     uses: ivierlin/liftosaur-ci/.github/workflows/reusable-check.yml@TOOL_COMMIT
     with:
       tool_ref: TOOL_COMMIT
-      runs_on: '["self-hosted","Linux","X64"]'
 ```
 
-Replace `TOOL_COMMIT` with one reviewed commit in both locations. When the tool
-repository is private, pass `tool_token` from a read-only repository secret.
+Replace `TOOL_COMMIT` with one reviewed liftosaur-ci commit in both locations.
+Runner labels may be overridden with `runs_on`; the default is a self-hosted
+Linux X64 runner. If the tool repository is private, pass a read-only
+`tool_token`.
 
-## Manual prepare and deployment
+## Multiple programs and advanced overrides
 
-```yaml
-name: Deploy Liftosaur program
+Repositories with multiple configured deployments pass `deployment`. A specific
+reviewed commit or tag can be selected with `candidate_ref`. `environment`,
+`state_branch`, `config`, `runs_on`, and `tool_repository` are also overridable,
+but none are required for the common single-program layout.
 
-on:
-  workflow_dispatch:
-    inputs:
-      deployment:
-        description: Configured deployment ID
-        required: true
-        type: string
-      candidate_ref:
-        description: Reviewed commit or tag already on main
-        required: true
-        type: string
-      base_ref:
-        description: Bootstrap base; leave empty after state is tracked
-        required: false
-        type: string
+After a verified deployment, the workflow creates
+`.liftosaur-ci/deployments/<id>.json`, copies only that state onto a branch based
+on `state_branch`, and opens a pull request. This prevents candidate code changes
+from leaking into the state-only PR.
 
-permissions:
-  contents: write
-  pull-requests: write
-
-jobs:
-  deploy:
-    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-deploy.yml@TOOL_COMMIT
-    with:
-      deployment: ${{ inputs.deployment }}
-      candidate_ref: ${{ inputs.candidate_ref }}
-      base_ref: ${{ inputs.base_ref }}
-      tool_ref: TOOL_COMMIT
-      environment: liftosaur
-      state_branch: main
-      runs_on: '["self-hosted","Linux","X64"]'
-    secrets:
-      liftosaur_api_key: ${{ secrets.LIFTOSAUR_API_KEY }}
-      liftosaur_program_id: ${{ secrets.LIFTOSAUR_PROGRAM_ID }}
-```
-
-Preparation reads the exact current Liftosaur source but cannot write it. The
-live write begins only after the protected `liftosaur` environment admits the
-deploy job. On success, merge the generated state pull request before preparing
-the next deployment.
+The private bundle and deployment receipt are retained as workflow artifacts for
+one day. `liftosaur-ci` itself has no npm dependencies, so the workflows skip
+`npm ci` and npm caching; the pinned Liftosaur runtime has its own setup/cache
+path.

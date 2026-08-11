@@ -4,12 +4,11 @@ import { isDeepStrictEqual } from "node:util";
 
 import { discoverConfiguredPrograms, loadLiftosaurConfig } from "./config.mjs";
 import { createScenarioSnapshot } from "./report.mjs";
+import { assertScenarioSchema } from "./scenario-schema.mjs";
 import {
   snapshotLiftosaurScenario,
   validateLiftosaurSource,
 } from "./validate.mjs";
-
-export { LIFTOSAUR_CHECK_CONFIG } from "./config.mjs";
 
 function parseJson(text, label) {
   try {
@@ -49,12 +48,6 @@ export async function checkRepository(configFile) {
   const definition = await loadLiftosaurConfig(configFile);
   const root = definition.root;
   const programs = await discoverConfiguredPrograms(definition);
-  const programSet = new Set(programs);
-  for (const scenario of definition.scenarios) {
-    if (!programSet.has(scenario.program)) {
-      throw new Error(`Scenario program is not discovered by programs globs: ${scenario.program}`);
-    }
-  }
 
   const results = [];
   for (const program of programs) {
@@ -76,6 +69,7 @@ export async function checkRepository(configFile) {
           readFile(path.join(root, scenario.snapshot), "utf8"),
         ]);
         const scenarioDefinition = parseJson(scenarioText, `Scenario ${scenario.scenario}`);
+        assertScenarioSchema(scenarioDefinition);
         const expected = parseJson(expectedText, `Snapshot ${scenario.snapshot}`);
         const actual = JSON.parse(JSON.stringify(createScenarioSnapshot(
           source,
@@ -109,7 +103,6 @@ export async function checkRepository(configFile) {
 
   const passed = results.filter(({ status }) => status === "passed").length;
   return {
-    formatVersion: 1,
     command: "check",
     status: passed === results.length ? "passed" : "failed",
     config: path.basename(configFile),

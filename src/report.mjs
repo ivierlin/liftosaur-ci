@@ -11,7 +11,6 @@ export function sha256(value) {
 
 export function createMergeReport({ base, active, candidate }, result) {
   return {
-    formatVersion: 1,
     command: "merge",
     cli: LIFTOSAUR_CI_CLI,
     status: result.report.status,
@@ -27,7 +26,6 @@ export function createMergeReport({ base, active, candidate }, result) {
 
 export function createValidationReport(source, result) {
   return {
-    formatVersion: 1,
     command: "validate",
     cli: LIFTOSAUR_CI_CLI,
     status: "passed",

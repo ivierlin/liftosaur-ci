@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
@@ -57,10 +58,28 @@ function replaceRange(source, start, end, replacement) {
   return `${source.slice(0, start)}${replacement}${source.slice(end)}`;
 }
 
-const filenames = (await readdir(builtinDirectory))
+function sampleFilenames(filenames) {
+  const requested = process.env.LIFTOSAUR_BUILTIN_SAMPLE;
+  if (!requested) return filenames;
+  const count = Number(requested);
+  assert.ok(Number.isInteger(count) && count > 0, "LIFTOSAUR_BUILTIN_SAMPLE must be a positive integer");
+  if (count >= filenames.length) return filenames;
+  const seed = process.env.LIFTOSAUR_BUILTIN_SEED ?? "liftosaur-ci-smoke-v1";
+  return [...filenames]
+    .sort((left, right) => {
+      const leftHash = createHash("sha256").update(`${seed}\0${left}`).digest("hex");
+      const rightHash = createHash("sha256").update(`${seed}\0${right}`).digest("hex");
+      return leftHash.localeCompare(rightHash);
+    })
+    .slice(0, count)
+    .sort();
+}
+
+const allFilenames = (await readdir(builtinDirectory))
   .filter((filename) => filename.endsWith(".md"))
   .sort();
-assert.ok(filenames.length > 0, "Pinned Liftosaur runtime has no built-in programs");
+assert.ok(allFilenames.length > 0, "Pinned Liftosaur runtime has no built-in programs");
+const filenames = sampleFilenames(allFilenames);
 
 const programs = await Promise.all(filenames.map(async (filename) => ({
   filename,

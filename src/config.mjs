@@ -1,16 +1,6 @@
 import { glob, readFile } from "node:fs/promises";
 import path from "node:path";
 
-export const LIFTOSAUR_CHECK_CONFIG_V1 = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-check-config-v1",
-});
-
-export const LIFTOSAUR_CHECK_CONFIG = Object.freeze({
-  formatVersion: 2,
-  implementation: "liftosaur-check-config-v2",
-});
-
 function requireObject(value, label) {
   if (!value || Array.isArray(value) || typeof value !== "object") {
     throw new Error(`${label} must be a JSON object`);
@@ -60,21 +50,13 @@ function validateDeployments(deployments = {}) {
   for (const [id, value] of Object.entries(deployments)) {
     if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) throw new Error(`Invalid deployment ID: ${id}`);
     requireObject(value, `Check config deployment ${id}`);
-    requireAllowedKeys(
-      value,
-      new Set(["program", "programIdEnv", "deployedProgramName"]),
-      `Check config deployment ${id}`
-    );
-    if (!/^[A-Z_][A-Z0-9_]*$/.test(value.programIdEnv ?? "")) {
-      throw new Error(`Check config deployment ${id} programIdEnv must be an environment variable name`);
-    }
-    if (typeof value.deployedProgramName !== "string" || !value.deployedProgramName.trim()) {
-      throw new Error(`Check config deployment ${id} deployedProgramName is required`);
+    requireAllowedKeys(value, new Set(["program", "programId"]), `Check config deployment ${id}`);
+    if (typeof value.programId !== "string" || !value.programId.trim()) {
+      throw new Error(`Check config deployment ${id} programId is required`);
     }
     result[id] = {
       program: requireRelativePath(value.program, `Check config deployment ${id}.program`),
-      programIdEnv: value.programIdEnv,
-      deployedProgramName: value.deployedProgramName,
+      programId: value.programId.trim(),
     };
   }
   return result;
@@ -84,35 +66,31 @@ export async function loadLiftosaurConfig(configFile) {
   const text = await readFile(configFile, "utf8");
   const config = parseJson(text, "Check config");
   requireObject(config, "Check config");
-  const isV1 = config.formatVersion === LIFTOSAUR_CHECK_CONFIG_V1.formatVersion
-    && config.implementation === LIFTOSAUR_CHECK_CONFIG_V1.implementation;
-  const isV2 = config.formatVersion === LIFTOSAUR_CHECK_CONFIG.formatVersion
-    && config.implementation === LIFTOSAUR_CHECK_CONFIG.implementation;
-  if (!isV1 && !isV2) throw new Error("Unsupported check config format");
   requireAllowedKeys(
     config,
-    new Set(["formatVersion", "implementation", "programs", "scenarios", ...(isV2 ? ["deployments"] : [])]),
+    new Set(["programs", "scenarios", "deployments"]),
     "Check config"
   );
-  if (!Array.isArray(config.programs) || config.programs.length === 0) {
-    throw new Error("Check config programs must contain at least one glob");
+  if (config.programs != null && !Array.isArray(config.programs)) {
+    throw new Error("Check config programs must be an array");
   }
-  const programs = config.programs.map((value, index) => (
+  const programs = (config.programs ?? []).map((value, index) => (
     requireRelativePath(value, `Check config programs[${index}]`)
   ));
   return {
-    formatVersion: config.formatVersion,
-    implementation: config.implementation,
     file: path.resolve(configFile),
     root: path.dirname(path.resolve(configFile)),
     programs,
     scenarios: validateScenarios(config.scenarios),
-    deployments: isV2 ? validateDeployments(config.deployments) : {},
+    deployments: validateDeployments(config.deployments),
   };
 }
 
 export async function discoverConfiguredPrograms(config) {
-  const matches = new Set();
+  const matches = new Set([
+    ...config.scenarios.map(({ program }) => program),
+    ...Object.values(config.deployments).map(({ program }) => program),
+  ]);
   for (const pattern of config.programs) {
     for await (const file of glob(pattern, {
       cwd: config.root,
@@ -121,21 +99,21 @@ export async function discoverConfiguredPrograms(config) {
       matches.add(file.replaceAll("\\", "/"));
     }
   }
-  if (matches.size === 0) throw new Error("Check config did not discover any programs");
+  if (matches.size === 0) throw new Error("Check config does not reference any programs");
   return [...matches].sort();
 }
 
-export async function configuredDeployment(configFile, deploymentId, environment = process.env) {
+export async function configuredDeployment(configFile, deploymentId = null) {
   const config = await loadLiftosaurConfig(configFile);
-  const deployment = config.deployments[deploymentId];
-  if (!deployment) throw new Error(`Unknown configured deployment: ${deploymentId}`);
-  const programs = await discoverConfiguredPrograms(config);
-  if (!programs.includes(deployment.program)) {
-    throw new Error(`Configured deployment program is not discovered: ${deployment.program}`);
+  let id = deploymentId;
+  if (!id) {
+    const ids = Object.keys(config.deployments);
+    if (ids.length !== 1) {
+      throw new Error("Deployment ID is required unless exactly one deployment is configured");
+    }
+    [id] = ids;
   }
-  const programId = environment[deployment.programIdEnv]?.trim();
-  if (!programId || programId === "current") {
-    throw new Error(`${deployment.programIdEnv} must contain an exact Liftosaur program ID`);
-  }
-  return { config, deployment: { id: deploymentId, ...deployment, programId } };
+  const deployment = config.deployments[id];
+  if (!deployment) throw new Error(`Unknown configured deployment: ${id}`);
+  return { config, deployment: { id, ...deployment } };
 }

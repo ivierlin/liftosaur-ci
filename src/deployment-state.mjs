@@ -3,12 +3,6 @@ import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { configuredDeployment } from "./config.mjs";
-import { sha256 } from "./report.mjs";
-
-export const LIFTOSAUR_DEPLOYMENT_STATE = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-deployment-state-v1",
-});
 
 function statePath(config, deploymentId) {
   return path.join(config.root, ".liftosaur-ci", "deployments", `${deploymentId}.json`);
@@ -32,26 +26,11 @@ function parseJson(text, label) {
 function validateState(state, deploymentId) {
   requireObject(state, "Deployment state");
   if (
-    state.formatVersion !== LIFTOSAUR_DEPLOYMENT_STATE.formatVersion
-    || state.implementation !== LIFTOSAUR_DEPLOYMENT_STATE.implementation
-    || state.deployment !== deploymentId
-    || typeof state.remote !== "string"
-    || !state.remote
-    || typeof state.programPath !== "string"
-    || !state.programPath
-    || !["sha1", "sha256"].includes(state.objectFormat)
+    Object.keys(state).some((key) => !["commitSha", "blobSha"].includes(key))
+    || !/^[a-f0-9]{40,64}$/.test(state.commitSha ?? "")
+    || !/^[a-f0-9]{40,64}$/.test(state.blobSha ?? "")
   ) {
     throw new Error(`Deployment state is invalid for ${deploymentId}`);
-  }
-  const objectPattern = state.objectFormat === "sha1" ? /^[a-f0-9]{40}$/ : /^[a-f0-9]{64}$/;
-  if (
-    !objectPattern.test(state.candidate?.commitSha ?? "")
-    || !objectPattern.test(state.candidate?.blobSha ?? "")
-    || typeof state.recordedAt !== "string"
-    || !Number.isFinite(Date.parse(state.recordedAt))
-    || !/^[a-f0-9]{64}$/.test(state.receiptSha256 ?? "")
-  ) {
-    throw new Error(`Deployment state revision is invalid for ${deploymentId}`);
   }
   return state;
 }
@@ -69,81 +48,60 @@ async function readState(config, deploymentId) {
 
 export async function configuredGitPreparation({
   configFile,
-  deploymentId,
-  candidateRef,
+  deploymentId = null,
+  candidateRef = "HEAD",
   baseRef = null,
   repository = null,
-  environment = process.env,
 }) {
-  if (!candidateRef) throw new Error("Candidate Git ref is required");
-  const { config, deployment } = await configuredDeployment(configFile, deploymentId, environment);
-  const tracked = await readState(config, deploymentId);
+  const { config, deployment } = await configuredDeployment(configFile, deploymentId);
+  const tracked = await readState(config, deployment.id);
   if (!tracked.state && !baseRef) {
-    throw new Error(`Deployment ${deploymentId} has no tracked base; provide --base-ref for the first preparation`);
+    throw new Error(`Deployment ${deployment.id} has no tracked base; provide --base-ref for the first preparation`);
   }
   return {
     repository: path.resolve(repository ?? config.root),
-    baseRef: baseRef ?? tracked.state.candidate.commitSha,
+    baseRef: baseRef ?? tracked.state.commitSha,
     candidateRef,
     programPath: deployment.program,
     programId: deployment.programId,
-    deployedProgramName: deployment.deployedProgramName,
     expectedBase: tracked.state,
     stateFile: tracked.file,
+    deploymentId: deployment.id,
   };
-}
-
-function sameRevision(left, right) {
-  return left?.commitSha === right?.commitSha && left?.blobSha === right?.blobSha;
 }
 
 export async function recordDeploymentState({
   configFile,
-  deploymentId,
+  deploymentId = null,
   reportFile,
-  environment = process.env,
 }) {
-  const { config, deployment } = await configuredDeployment(configFile, deploymentId, environment);
-  const reportText = await readFile(reportFile, "utf8");
-  const report = parseJson(reportText, "Deployment report");
+  const { config, deployment } = await configuredDeployment(configFile, deploymentId);
+  const report = parseJson(await readFile(reportFile, "utf8"), "Deployment report");
   requireObject(report, "Deployment report");
   if (report.command !== "deploy" || report.deploymentPerformed !== true || !report.deployedAt) {
     throw new Error("Deployment report does not record a verified deployment");
   }
-  if (report.target?.id !== deployment.programId || report.target?.name !== deployment.deployedProgramName) {
+  if (deployment.programId !== "current" && report.target?.id !== deployment.programId) {
     throw new Error("Deployment report target does not match configured deployment");
   }
   const source = report.source;
   if (
-    source?.implementation !== "liftosaur-git-source-v1"
+    !source
     || source.programPath !== deployment.program
   ) {
     throw new Error("Deployment report lacks matching Git provenance");
   }
-  const tracked = await readState(config, deploymentId);
-  if (tracked.state) {
-    if (
-      tracked.state.remote !== source.remote
-      || tracked.state.objectFormat !== source.objectFormat
-      || tracked.state.programPath !== source.programPath
-      || !sameRevision(tracked.state.candidate, source.base)
-    ) {
-      throw new Error("Deployment report base does not match tracked deployment state");
-    }
+  const tracked = await readState(config, deployment.id);
+  if (tracked.state && (
+    tracked.state.commitSha !== source.base?.commitSha
+    || tracked.state.blobSha !== source.base?.blobSha
+  )) {
+    throw new Error("Deployment report base does not match tracked deployment state");
   }
   const state = validateState({
-    ...LIFTOSAUR_DEPLOYMENT_STATE,
-    deployment: deploymentId,
-    remote: source.remote,
-    objectFormat: source.objectFormat,
-    programPath: source.programPath,
-    candidate: {
-      commitSha: source.candidate.commitSha,
-      blobSha: source.candidate.blobSha,
-    },
-    recordedAt: report.deployedAt,
-    receiptSha256: sha256(reportText),
-  }, deploymentId);
+    commitSha: source.candidate?.commitSha,
+    blobSha: source.candidate?.blobSha,
+  }, deployment.id);
   await mkdir(path.dirname(tracked.file), { recursive: true });
   const temporary = `${tracked.file}.${randomUUID()}.tmp`;
   try {
@@ -152,5 +110,5 @@ export async function recordDeploymentState({
   } finally {
     await rm(temporary, { force: true });
   }
-  return { file: tracked.file, state };
+  return { file: tracked.file, state, deploymentId: deployment.id };
 }

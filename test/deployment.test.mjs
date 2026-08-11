@@ -5,7 +5,11 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 
-import { deployPreparedBundle, prepareDeploymentBundle } from "../src/deployment.mjs";
+import {
+  deployPreparedBundle,
+  fetchDeploymentTarget,
+  prepareDeploymentBundle,
+} from "../src/deployment.mjs";
 import { sha256 } from "../src/report.mjs";
 
 const active = "# Week 1\n## Active\nSquat / 1x5\n\n\n";
@@ -30,34 +34,56 @@ async function fixture(root, name) {
     writeFile(activeFile, active, "utf8"),
     writeFile(deployFile, deploy, "utf8"),
     writeFile(validationFile, `${JSON.stringify({
-      formatVersion: 1,
       command: "validate",
       status: "passed",
       input: { sha256: sha256(deploy) },
     })}\n`, "utf8"),
     writeFile(mergeFile, `${JSON.stringify({
-      formatVersion: 1,
       command: "merge",
       status: "merged",
       output: { sha256: sha256(deploy) },
     })}\n`, "utf8"),
   ]);
-  await prepareDeploymentBundle({
+  const manifest = await prepareDeploymentBundle({
     activeFile,
     deployFile,
     validationReportFile: validationFile,
     mergeReportFile: mergeFile,
     outputDirectory: bundle,
-    target: { id: "program-1", name: "Active", isCurrent: true },
-    deployedName: "Deployed",
+    target: { id: "program-1" },
   });
+  assert.equal(manifest.target.id, "program-1");
+  assert.deepEqual(Object.keys(manifest.deployment), ["sourceSha256"]);
+  await assert.rejects(readFile(path.join(bundle, "SHA256SUMS"), "utf8"), { code: "ENOENT" });
   return bundle;
 }
 
-test("prepared deployment verifies writes and rolls back only known failures", async () => {
+test("current is resolved during preparation and exact IDs are retained", async () => {
+  const server = createServer((request, response) => {
+    response.setHeader("content-type", "application/json");
+    assert.equal(request.url, "/api/v1/programs/current");
+    response.end(JSON.stringify({
+      data: { id: "resolved-1", name: "Current program", text: active, isCurrent: true },
+    }));
+  });
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  try {
+    const target = await fetchDeploymentTarget({
+      programId: "current",
+      apiKey,
+      apiBase: `http://127.0.0.1:${server.address().port}/api/v1`,
+    });
+    assert.equal(target.id, "resolved-1");
+    assert.equal(target.isCurrent, true);
+  } finally {
+    await new Promise((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));
+  }
+});
+
+test("prepared deployment preserves the live name and never rolls back an unknown state", async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "liftosaur-deployment-"));
   const requests = [];
-  let programName = "Active";
+  let programName = "Keep me";
   let programText = active;
   let forceMismatch = false;
   let ambiguousWrite = false;
@@ -105,18 +131,16 @@ test("prepared deployment verifies writes and rolls back only known failures", a
 
   try {
     const successBundle = await fixture(root, "success");
-    const successRecord = path.join(root, "success-record");
     const report = await deployPreparedBundle({
       bundleDirectory: successBundle,
-      outputDirectory: successRecord,
+      outputDirectory: path.join(root, "success-record"),
       apiKey,
       expectedProgramId: "program-1",
-      expectedDeployedName: "Deployed",
       apiBase,
     });
     assert.equal(report.deploymentPerformed, true);
-    assert.equal(report.rollbackAttempted, false);
-    assert.equal(programName, "Deployed");
+    assert.equal(programName, "Keep me");
+    assert.equal(report.target.name, "Keep me");
     assert.equal(programText, deploy);
 
     programName = "Active";
@@ -130,7 +154,6 @@ test("prepared deployment verifies writes and rolls back only known failures", a
         outputDirectory: path.join(root, "rejected-record"),
         apiKey,
         expectedProgramId: "program-1",
-        expectedDeployedName: "Deployed",
         apiBase,
       }),
       /update did not take effect/
@@ -142,25 +165,19 @@ test("prepared deployment verifies writes and rolls back only known failures", a
     programText = active;
     forceMismatch = true;
     requests.length = 0;
-    const rollbackBundle = await fixture(root, "rollback");
-    const rollbackRecord = path.join(root, "rollback-record");
+    const mismatchBundle = await fixture(root, "mismatch");
     await assert.rejects(
       deployPreparedBundle({
-        bundleDirectory: rollbackBundle,
-        outputDirectory: rollbackRecord,
+        bundleDirectory: mismatchBundle,
+        outputDirectory: path.join(root, "mismatch-record"),
         apiKey,
         expectedProgramId: "program-1",
-        expectedDeployedName: "Deployed",
         apiBase,
       }),
-      /rollback source were restored successfully/
+      /no automatic rollback was attempted/
     );
-    const rollbackReport = JSON.parse(await readFile(path.join(rollbackRecord, "deployment-report.json"), "utf8"));
-    assert.equal(rollbackReport.rollbackAttempted, true);
-    assert.equal(rollbackReport.rollbackRestored, true);
-    assert.equal(programName, "Active");
-    assert.equal(programText, active);
-    assert.deepEqual(requests, ["GET", "PUT", "GET", "PUT", "GET"]);
+    assert.equal(programText, "# Unexpected\n\n\n");
+    assert.deepEqual(requests, ["GET", "PUT", "GET"]);
 
     forceMismatch = false;
     ambiguousWrite = true;
@@ -174,7 +191,6 @@ test("prepared deployment verifies writes and rolls back only known failures", a
         outputDirectory: path.join(root, "ambiguous-record"),
         apiKey,
         expectedProgramId: "program-1",
-        expectedDeployedName: "Deployed",
         apiBase,
       }),
       /no automatic rollback was attempted/
@@ -207,7 +223,6 @@ test("deployment refuses changed targets and corrupted bundles before writing", 
         outputDirectory: path.join(root, "wrong-target-record"),
         apiKey,
         expectedProgramId: "different-program",
-        expectedDeployedName: "Deployed",
         apiBase,
       }),
       /confirmation does not match the prepared target ID/
@@ -221,7 +236,6 @@ test("deployment refuses changed targets and corrupted bundles before writing", 
         outputDirectory: path.join(root, "changed-record"),
         apiKey,
         expectedProgramId: "program-1",
-        expectedDeployedName: "Deployed",
         apiBase,
       }),
       /changed after deployment preparation/
@@ -237,10 +251,9 @@ test("deployment refuses changed targets and corrupted bundles before writing", 
         outputDirectory: path.join(root, "corrupt-record"),
         apiKey,
         expectedProgramId: "program-1",
-        expectedDeployedName: "Deployed",
         apiBase,
       }),
-      /Checksum mismatch/
+      /Deployment source hash disagrees/
     );
     assert.equal(requests, 0);
   } finally {

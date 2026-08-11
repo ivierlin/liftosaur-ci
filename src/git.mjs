@@ -3,10 +3,6 @@ import path from "node:path";
 
 import { prepareLiftosaurDeploymentFromContents } from "./prepare.mjs";
 
-export const LIFTOSAUR_GIT_SOURCE = Object.freeze({
-  implementation: "liftosaur-git-source-v1",
-});
-
 function git(repository, args, label) {
   const result = spawnSync("git", ["-C", repository, ...args], {
     encoding: "utf8",
@@ -78,11 +74,9 @@ function revision(repository, requestedRef, programPath, label) {
   return { requestedRef: ref, commitSha, blobSha, source };
 }
 
-export function readGitProgramPair({ repository, baseRef, candidateRef, programPath }) {
+export function readGitProgramPair({ repository, baseRef, candidateRef = "HEAD", programPath }) {
   const requestedRepository = path.resolve(repository);
   const root = git(requestedRepository, ["rev-parse", "--show-toplevel"], "Not a Git repository").trim();
-  const status = git(root, ["status", "--porcelain=v1", "--untracked-files=all"], "Cannot inspect Git worktree");
-  if (status) throw new Error("Git worktree must be clean before deployment preparation");
   const cleanPath = requireProgramPath(programPath);
   const objectFormat = git(root, ["rev-parse", "--show-object-format"], "Cannot identify Git object format").trim();
   if (objectFormat !== "sha1" && objectFormat !== "sha256") {
@@ -95,7 +89,6 @@ export function readGitProgramPair({ repository, baseRef, candidateRef, programP
     base: base.source,
     candidate: candidate.source,
     source: {
-      ...LIFTOSAUR_GIT_SOURCE,
       remote,
       objectFormat,
       programPath: cleanPath,
@@ -116,25 +109,19 @@ export function readGitProgramPair({ repository, baseRef, candidateRef, programP
 export async function prepareGitDeployment({
   repository,
   baseRef,
-  candidateRef,
+  candidateRef = "HEAD",
   programPath,
   outputDirectory,
   programId,
-  deployedProgramName,
   expectedBase = null,
   apiKey,
   apiBase,
 }) {
-  if (!programId || programId === "current") {
-    throw new Error("Git deployment preparation requires an exact Liftosaur program ID");
-  }
+  if (!programId) throw new Error("Git deployment preparation requires a Liftosaur program ID or current");
   const programs = readGitProgramPair({ repository, baseRef, candidateRef, programPath });
   if (expectedBase && (
-    programs.source.remote !== expectedBase.remote
-    || programs.source.objectFormat !== expectedBase.objectFormat
-    || programs.source.programPath !== expectedBase.programPath
-    || programs.source.base.commitSha !== expectedBase.candidate?.commitSha
-    || programs.source.base.blobSha !== expectedBase.candidate?.blobSha
+    programs.source.base.commitSha !== expectedBase.commitSha
+    || programs.source.base.blobSha !== expectedBase.blobSha
   )) {
     throw new Error("Resolved Git base does not match tracked deployment state");
   }
@@ -143,7 +130,6 @@ export async function prepareGitDeployment({
     candidate: programs.candidate,
     outputDirectory,
     programId,
-    deployedProgramName,
     apiKey,
     apiBase,
     source: programs.source,

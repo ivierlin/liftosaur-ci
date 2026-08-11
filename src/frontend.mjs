@@ -13,8 +13,6 @@ const STATEMENT_END = "__LIFTOSAUR_CI_STATEMENT_END__";
 export const BLOCK_MARKER = "__LIFTOSAUR_CI_BLOCK__";
 
 export const LIFTOSAUR_MERGE_FRONTEND = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-parser-v1",
   runtimeRevision: pinnedRuntimeRevision,
 });
 
@@ -196,6 +194,7 @@ export function parseLiftosaurMergeDocument(source) {
   const manifest = [];
   const order = [];
   const blocks = new Map();
+  const statementIdentities = new Map();
   let pending = [];
   let week = "";
   let day = "";
@@ -249,7 +248,10 @@ export function parseLiftosaurMergeDocument(source) {
       && exerciseFunctionName(normalized, section) === "custom"
     ));
     if (isProgressStatement) {
-      addBlock(JSON.stringify(["statement", week, day, label]), text);
+      const identityBase = JSON.stringify([week, day, label]);
+      const occurrence = (statementIdentities.get(identityBase) ?? 0) + 1;
+      statementIdentities.set(identityBase, occurrence);
+      addBlock(JSON.stringify(["statement", week, day, label, occurrence]), text);
       continue;
     }
     const isDefinition = /^[A-Za-z][A-Za-z0-9_-]*$/.test(label)

@@ -20,7 +20,7 @@ on:
       runs_on:
         description: JSON array of runner labels
         required: false
-        default: '["self-hosted","Linux","X64"]'
+        default: '["self-hosted"]'
         type: string
     secrets:
       tool_token:
@@ -50,14 +50,9 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version: 24
-          cache: npm
-          cache-dependency-path: tool/package-lock.json
-      - name: Install liftosaur-ci
-        working-directory: tool
-        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Set up cached Liftosaur runtime
         working-directory: tool
-        run: npm run setup:runtime
+        run: node scripts/setup-runtime.mjs
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
       - name: Check programs and reviewed snapshots

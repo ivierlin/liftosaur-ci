@@ -83,7 +83,6 @@ test("reviewed Basic Beginner scenarios snapshot distinct outcomes", () => {
 test("reviewed scenarios require explicit inputs for every workout entry", () => {
   assert.throws(
     () => snapshotLiftosaurScenario(source, {
-      formatVersion: 1,
       name: "incomplete",
       day: 1,
       entries: [{

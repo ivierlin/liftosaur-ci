@@ -3,20 +3,6 @@ import { isDeepStrictEqual } from "node:util";
 import { loadLiftosaurRuntime, pinnedRuntimeRevision } from "./runtime.mjs";
 
 export const LIFTOSAUR_VALIDATOR = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-native-v1",
-  runtimeRevision: pinnedRuntimeRevision,
-});
-
-export const LIFTOSAUR_SCENARIO_SNAPSHOT = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-scenario-v1",
-  runtimeRevision: pinnedRuntimeRevision,
-});
-
-export const LIFTOSAUR_SCENARIO_SEQUENCE_SNAPSHOT = Object.freeze({
-  formatVersion: 2,
-  implementation: "liftosaur-scenario-sequence-v1",
   runtimeRevision: pinnedRuntimeRevision,
 });
 
@@ -506,11 +492,11 @@ export function snapshotLiftosaurScenario(source, scenario) {
     throw new LiftosaurValidationError("Scenario must have a name", "scenario");
   }
 
-  if (scenario.formatVersion === 1) {
+  if (!Object.hasOwn(scenario, "steps")) {
     const completed = completeScenarioStep(source, scenario, api, undefined, "Scenario");
     return {
       snapshot: {
-        ...LIFTOSAUR_SCENARIO_SNAPSHOT,
+        runtimeRevision: pinnedRuntimeRevision,
         scenario: { name: scenario.name, day: scenario.day },
         nextExposure: completed.nextExposure,
         nextWorkout: completed.nextWorkout,
@@ -519,12 +505,9 @@ export function snapshotLiftosaurScenario(source, scenario) {
     };
   }
 
-  if (scenario.formatVersion !== 2) {
-    throw new LiftosaurValidationError("Scenario formatVersion must be 1 or 2", "scenario");
-  }
   if (!Array.isArray(scenario.steps) || scenario.steps.length < 2 || scenario.steps.length > 100) {
     throw new LiftosaurValidationError(
-      "Scenario formatVersion 2 requires between 2 and 100 steps",
+      "Scenario sequence requires between 2 and 100 steps",
       "scenario"
     );
   }
@@ -562,7 +545,7 @@ export function snapshotLiftosaurScenario(source, scenario) {
 
   return {
     snapshot: {
-      ...LIFTOSAUR_SCENARIO_SEQUENCE_SNAPSHOT,
+      runtimeRevision: pinnedRuntimeRevision,
       scenario: { name: scenario.name },
       steps,
     },

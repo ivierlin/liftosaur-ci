@@ -23,7 +23,10 @@ test("native validation constructs every day and preserves prescriptions", () =>
     completedDays: 2,
     completedSets: 5,
   });
-  assert.equal(result.validator.implementation, "liftosaur-native-v1");
+  assert.equal(
+    result.validator.runtimeRevision,
+    "f9c1b1453aaa22ab177d8e7473da08d707c28b60"
+  );
   assert.match(result.serializedSource, /# Week 1/);
 });
 

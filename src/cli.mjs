@@ -16,6 +16,8 @@ import {
   LIFTOSAUR_CI_CLI,
   sha256,
 } from "./report.mjs";
+import { rollbackRecoveryDirectory } from "./rollback.mjs";
+import { updateConfiguredGitDeployment } from "./update.mjs";
 import {
   LIFTOSAUR_VALIDATOR,
   LiftosaurValidationError,
@@ -34,6 +36,41 @@ export class CliError extends Error {
 
 function usage() {
   return `Usage:
+  liftosaur-ci update \\
+    [--base-ref <bootstrap-ref>] \\
+    [--config <liftosaur-ci.json>] \\
+    [--deployment <stable-id>] \\
+    [--api-base <url>]
+
+  liftosaur-ci rollback \\
+    --recovery <retained-recovery-directory> \\
+    [--api-base <url>]
+
+  liftosaur-ci prepare-git \\
+    [--repository <git-worktree>] \\
+    [--config <liftosaur-ci.json> [--deployment <stable-id>]] \\
+    [--base-ref <last-deployed-ref>] \\
+    [--candidate-ref <reviewed-ref>] \\
+    [--program <repository-relative-path>] \\
+    [--program-id <liftosaur-program-id|current>] \\
+    --output <deployment-bundle-directory> \\
+    [--api-base <url>]
+
+  liftosaur-ci deploy \\
+    --bundle <deployment-bundle-directory> \\
+    [--config <liftosaur-ci.json> [--deployment <stable-id>]] \\
+    [--confirm-program-id <resolved-liftosaur-program-id>] \\
+    --output <private-deployment-record-directory> \\
+    [--max-age-hours <hours>] \\
+    [--api-base <url>]
+
+  liftosaur-ci record-deployment \\
+    --config <liftosaur-ci.json> \\
+    [--deployment <stable-id>] \\
+    --report <private-deployment-report.json>
+
+Advanced/offline building blocks:
+
   liftosaur-ci merge \\
     --base <previously-deployed.liftoscript> \\
     --active <current-liftosaur.liftoscript> \\
@@ -50,59 +87,29 @@ function usage() {
     --scenario <scenario.json> \\
     --output <snapshot.json>
 
+  liftosaur-ci prepare \\
+    --base <previously-deployed.liftoscript> \\
+    --candidate <new-source.liftoscript> \\
+    --program-id <liftosaur-program-id|current> \\
+    --output <deployment-bundle-directory> \\
+    [--api-base <url>]
+
   liftosaur-ci prepare-deployment \\
     --active <current-liftosaur.liftoscript> \\
     --program <validated-program.liftoscript> \\
     --validation-report <validation-report.json> \\
     [--merge-report <merge-report.json>] \\
-    --program-id <liftosaur-program-id> \\
-    --expected-program-name <current-name> \\
-    --expected-current <true|false> \\
-    --deployed-program-name <new-name> \\
+    --program-id <resolved-liftosaur-program-id> \\
     --output <deployment-bundle-directory>
-
-  liftosaur-ci prepare \\
-    --base <previously-deployed.liftoscript> \\
-    --candidate <new-git-source.liftoscript> \\
-    --program-id <liftosaur-program-id|current> \\
-    --expected-program-name <current-name> \\
-    --deployed-program-name <new-name> \\
-    --output <deployment-bundle-directory> \\
-    [--api-base <url>]
-
-  liftosaur-ci prepare-git \\
-    [--repository <git-worktree>] \\
-    [--config <liftosaur-ci.json> --deployment <stable-id>] \\
-    [--base-ref <last-deployed-ref>] \\
-    --candidate-ref <reviewed-ref> \\
-    [--program <repository-relative-path>] \\
-    [--program-id <exact-liftosaur-program-id>] \\
-    [--deployed-program-name <new-name>] \\
-    --output <deployment-bundle-directory> \\
-    [--api-base <url>]
-
-  liftosaur-ci deploy \\
-    --bundle <deployment-bundle-directory> \\
-    [--config <liftosaur-ci.json> --deployment <stable-id>] \\
-    [--confirm-program-id <liftosaur-program-id>] \\
-    [--confirm-program-name <new-name>] \\
-    --output <private-deployment-record-directory> \\
-    [--max-age-hours <hours>] \\
-    [--api-base <url>]
-
-  liftosaur-ci record-deployment \\
-    --config <liftosaur-ci.json> \\
-    --deployment <stable-id> \\
-    --report <private-deployment-report.json>
 
   liftosaur-ci check \\
     [--config <liftosaur-ci.json>] \\
     [--report <check-report.json>]
 
-Merge, validation, snapshots, checks, and prepare-deployment are offline.
-Prepare and prepare-git read LIFTOSAUR_API_KEY but only read Liftosaur. Deploy
-uses the same environment variable and changes exactly one prepared target.
-Existing output files and directories are never overwritten.`;
+After bootstrap, configured single-program repositories can run liftosaur-ci update
+with no arguments. HEAD is the candidate, tracked deployment state supplies the
+base, and Liftosaur supplies the live progression state. "current" is resolved to
+an exact ID before deployment and the live program name is preserved.`;
 }
 
 function parseOptions(argv, allowedNames) {
@@ -156,6 +163,46 @@ function requireDistinctPaths(inputs, outputs) {
   }
 }
 
+async function runUpdate(argv) {
+  const options = parseOptions(argv, ["base-ref", "config", "deployment", "api-base"]);
+  try {
+    const result = await updateConfiguredGitDeployment({
+      configFile: path.resolve(options.config ?? "liftosaur-ci.json"),
+      deploymentId: options.deployment ?? null,
+      baseRef: options["base-ref"] ?? null,
+      apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+      apiBase: options["api-base"],
+    });
+    console.log(
+      `Liftosaur update verified: ${result.target.name} (${result.target.id}); `
+      + `deployment state recorded: ${result.stateFile}`
+    );
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    const recovery = error?.recoveryDirectory
+      ? `\nRecovery files retained at: ${error.recoveryDirectory}`
+      : "";
+    const rollback = error?.recoveryDirectory && message.includes("outcome is ambiguous")
+      ? `\nTo restore the pre-update source explicitly:\n  liftosaur-ci rollback --recovery "${error.recoveryDirectory}"`
+      : "";
+    if (error instanceof LiftosaurPreparationError) {
+      throw new CliError(`${message}${recovery}${rollback}`, error.exitCode);
+    }
+    throw new CliError(`${message}${recovery}${rollback}`);
+  }
+}
+
+async function runRollback(argv) {
+  const options = parseOptions(argv, ["recovery", "api-base"]);
+  const report = await rollbackRecoveryDirectory({
+    recoveryDirectory: requireOption(options, "recovery"),
+    apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+    apiBase: options["api-base"],
+  });
+  const verb = report.status === "already-restored" ? "already restored" : "restored";
+  console.log(`Liftosaur rollback verified: ${report.target.name} (${report.target.id}) ${verb}`);
+}
+
 async function runMerge(argv) {
   const options = parseOptions(argv, ["base", "active", "candidate", "output", "report"]);
   const inputs = {
@@ -170,7 +217,6 @@ async function runMerge(argv) {
   requireDistinctPaths(inputs, outputs);
   await requireNewFile(outputs.output, "Merge output");
   if (outputs.report) await requireNewFile(outputs.report, "Merge report");
-
   const [base, active, candidate] = await Promise.all(
     Object.values(inputs).map((file) => readFile(file, "utf8"))
   );
@@ -214,7 +260,6 @@ async function runValidate(argv) {
   } catch (error) {
     if (!(error instanceof LiftosaurValidationError)) throw error;
     const report = {
-      formatVersion: 1,
       command: "validate",
       cli: LIFTOSAUR_CI_CLI,
       status: "failed",
@@ -264,14 +309,11 @@ async function runPrepareDeployment(argv) {
     "validation-report",
     "merge-report",
     "program-id",
-    "expected-program-name",
-    "expected-current",
-    "deployed-program-name",
     "output",
   ]);
-  const expectedCurrent = requireTextOption(options, "expected-current");
-  if (expectedCurrent !== "true" && expectedCurrent !== "false") {
-    throw new CliError("--expected-current must be true or false");
+  const programId = requireTextOption(options, "program-id");
+  if (programId === "current") {
+    throw new CliError("prepare-deployment is offline and requires a resolved program ID, not current");
   }
   const outputDirectory = requireOption(options, "output");
   await prepareDeploymentBundle({
@@ -280,26 +322,13 @@ async function runPrepareDeployment(argv) {
     validationReportFile: requireOption(options, "validation-report"),
     mergeReportFile: options["merge-report"] ? path.resolve(options["merge-report"]) : null,
     outputDirectory,
-    target: {
-      id: requireTextOption(options, "program-id"),
-      name: requireTextOption(options, "expected-program-name"),
-      isCurrent: expectedCurrent === "true",
-    },
-    deployedName: requireTextOption(options, "deployed-program-name"),
+    target: { id: programId },
   });
   console.log(`Liftosaur deployment bundle prepared: ${outputDirectory}`);
 }
 
 async function runPrepare(argv) {
-  const options = parseOptions(argv, [
-    "base",
-    "candidate",
-    "program-id",
-    "expected-program-name",
-    "deployed-program-name",
-    "output",
-    "api-base",
-  ]);
+  const options = parseOptions(argv, ["base", "candidate", "program-id", "output", "api-base"]);
   const outputDirectory = requireOption(options, "output");
   try {
     const result = await prepareLiftosaurDeployment({
@@ -307,14 +336,12 @@ async function runPrepare(argv) {
       candidateFile: requireOption(options, "candidate"),
       outputDirectory,
       programId: requireTextOption(options, "program-id"),
-      expectedProgramName: requireTextOption(options, "expected-program-name"),
-      deployedProgramName: requireTextOption(options, "deployed-program-name"),
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
     });
     console.log(
-      `Liftosaur deployment prepared: ${result.manifest.target.name} → `
-      + `${result.manifest.deployment.name}; ${result.validation.days} days validated`
+      `Liftosaur deployment prepared for ${result.manifest.target.id}; `
+      + `${result.validation.days} days validated`
     );
   } catch (error) {
     if (error instanceof LiftosaurPreparationError) {
@@ -333,25 +360,22 @@ async function runPrepareGit(argv) {
     "candidate-ref",
     "program",
     "program-id",
-    "deployed-program-name",
     "output",
     "api-base",
   ]);
   const outputDirectory = requireOption(options, "output");
   try {
-    const configured = options.config || options.deployment;
+    const configured = Boolean(options.config || options.deployment);
     let preparation;
     if (configured) {
-      if (!options.config || !options.deployment) {
-        throw new CliError("--config and --deployment must be provided together");
-      }
-      if (options.program || options["program-id"] || options["deployed-program-name"]) {
+      if (!options.config) throw new CliError("--deployment requires --config");
+      if (options.program || options["program-id"]) {
         throw new CliError("Configured prepare-git must not override program deployment settings");
       }
       preparation = await configuredGitPreparation({
         configFile: path.resolve(options.config),
-        deploymentId: options.deployment,
-        candidateRef: requireTextOption(options, "candidate-ref"),
+        deploymentId: options.deployment ?? null,
+        candidateRef: options["candidate-ref"] ?? "HEAD",
         baseRef: options["base-ref"] ?? null,
         repository: options.repository ? path.resolve(options.repository) : null,
       });
@@ -359,10 +383,9 @@ async function runPrepareGit(argv) {
       preparation = {
         repository: path.resolve(options.repository ?? "."),
         baseRef: requireTextOption(options, "base-ref"),
-        candidateRef: requireTextOption(options, "candidate-ref"),
+        candidateRef: options["candidate-ref"] ?? "HEAD",
         programPath: requireTextOption(options, "program"),
         programId: requireTextOption(options, "program-id"),
-        deployedProgramName: requireTextOption(options, "deployed-program-name"),
         expectedBase: null,
       };
     }
@@ -373,7 +396,6 @@ async function runPrepareGit(argv) {
       programPath: preparation.programPath,
       outputDirectory,
       programId: preparation.programId,
-      deployedProgramName: preparation.deployedProgramName,
       expectedBase: preparation.expectedBase,
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
@@ -394,7 +416,7 @@ async function runRecordDeployment(argv) {
   const options = parseOptions(argv, ["config", "deployment", "report"]);
   const result = await recordDeploymentState({
     configFile: requireOption(options, "config"),
-    deploymentId: requireTextOption(options, "deployment"),
+    deploymentId: options.deployment ?? null,
     reportFile: requireOption(options, "report"),
   });
   console.log(`Deployment state recorded: ${result.file}`);
@@ -406,39 +428,35 @@ async function runDeploy(argv) {
     "config",
     "deployment",
     "confirm-program-id",
-    "confirm-program-name",
     "output",
     "max-age-hours",
     "api-base",
   ]);
   const outputDirectory = requireOption(options, "output");
-  const configured = options.config || options.deployment;
+  const configured = Boolean(options.config || options.deployment);
   let expectedProgramId;
-  let expectedDeployedName;
   if (configured) {
-    if (!options.config || !options.deployment) {
-      throw new CliError("--config and --deployment must be provided together");
-    }
-    if (options["confirm-program-id"] || options["confirm-program-name"]) {
+    if (!options.config) throw new CliError("--deployment requires --config");
+    if (options["confirm-program-id"]) {
       throw new CliError("Configured deploy must not override program deployment settings");
     }
-    const resolved = await configuredDeployment(path.resolve(options.config), options.deployment);
+    const resolved = await configuredDeployment(path.resolve(options.config), options.deployment ?? null);
     expectedProgramId = resolved.deployment.programId;
-    expectedDeployedName = resolved.deployment.deployedProgramName;
   } else {
     expectedProgramId = requireTextOption(options, "confirm-program-id");
-    expectedDeployedName = requireTextOption(options, "confirm-program-name");
+    if (expectedProgramId === "current") {
+      throw new CliError("Deployment confirmation requires the exact resolved program ID, not current");
+    }
   }
   const report = await deployPreparedBundle({
     bundleDirectory: requireOption(options, "bundle"),
     outputDirectory,
     apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
     expectedProgramId,
-    expectedDeployedName,
     apiBase: options["api-base"],
     maxAgeHours: Number(options["max-age-hours"] ?? "24"),
   });
-  console.log(`Liftosaur deployment verified: ${report.target.name} (${report.target.id})`);
+  console.log(`Liftosaur deployment verified: ${report.target.name ?? "program"} (${report.target.id})`);
 }
 
 async function runCheck(argv) {
@@ -471,6 +489,8 @@ export async function runLiftosaurCi(argv) {
   }
   const [command, ...commandArgs] = argv;
   const commands = new Set([
+    "update",
+    "rollback",
     "merge",
     "validate",
     "snapshot",
@@ -486,7 +506,9 @@ export async function runLiftosaurCi(argv) {
     console.log(usage());
     return;
   }
-  if (command === "merge") await runMerge(commandArgs);
+  if (command === "update") await runUpdate(commandArgs);
+  else if (command === "rollback") await runRollback(commandArgs);
+  else if (command === "merge") await runMerge(commandArgs);
   else if (command === "validate") await runValidate(commandArgs);
   else if (command === "snapshot") await runSnapshot(commandArgs);
   else if (command === "prepare-deployment") await runPrepareDeployment(commandArgs);

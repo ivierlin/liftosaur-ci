@@ -3,49 +3,161 @@
 Unofficial Git-based migration, validation, and deployment tooling for
 [Liftosaur](https://www.liftosaur.com/).
 
-## Status
+## What it does
 
-This repository is an early extraction from a proven migration experiment. It
-contains offline three-way merge, native validation, reviewed regression,
-repository check, prepared deployment commands, and reusable GitHub workflows.
-Credential storage and deployment approval remain the responsibility of the
-calling repository.
+The normal workflow is intentionally small:
+
+1. Keep your Liftosaur program in Git.
+2. Change and commit the program as usual.
+3. Run `liftosaur-ci update`.
+4. The tool merges in the progression data accumulated in the app, validates the
+   result, and writes it back to the same Liftosaur program.
+
+The goal is **updated program logic without losing real-world exercise state**.
+The normal user should not need to describe that state, rename the program, or
+configure merge rules manually.
+
+A minimal deployment config contains only the Git program path and Liftosaur
+target:
+
+```json
+{
+  "deployments": {
+    "program": {
+      "program": "programs/example.liftoscript",
+      "programId": "current"
+    }
+  }
+}
+```
+
+`programId` may be an exact Liftosaur ID or `current`. `current` is resolved once
+during each preparation to the exact returned ID, and that exact ID is used for
+every later read and write. The live program name is preserved automatically.
 
 ## Setup
 
 Requirements: Node.js 24, npm, and Git.
 
 ```sh
-npm ci
-npm run setup:runtime
+node scripts/setup-runtime.mjs
 ```
 
-Runtime setup fetches the exact Liftosaur revision recorded in
-`runtime/liftosaur.version` into `.private/liftosaur-runtime` and installs its
-dependencies. Set `LIFTOSAUR_RUNTIME` to use another dedicated checkout. CI
-may keep this checkout in a persistent cache and reuse it while the pinned
-revision and Node ABI remain unchanged.
+`liftosaur-ci` itself has no npm dependencies. Runtime setup fetches the exact
+Liftosaur revision recorded in `runtime/liftosaur.version` into
+`.private/liftosaur-runtime` and installs that runtime's dependencies. Set
+`LIFTOSAUR_RUNTIME` to use another dedicated checkout. CI may keep this checkout
+in a persistent cache while the pinned revision and Node ABI remain unchanged.
 
-## Offline merge
+## Update a program
+
+The first update needs one extra fact: which Git revision corresponds to the
+program version currently in Liftosaur.
 
 ```sh
-node bin/liftosaur-ci.mjs merge \
-  --base previously-deployed.liftoscript \
-  --active current-liftosaur.liftoscript \
-  --candidate new-git-source.liftoscript \
-  --output merged.liftoscript \
-  --report merge-report.json
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update \
+  --base-ref first-deployed-ref
 ```
 
-The inputs are read without modification. Existing output files are never
-overwritten. A successful merge exits with status 0. An unresolved merge exits
-with status 2, writes no program, and may write the requested conflict report.
-Other failures exit with status 1.
+That is the bootstrap. After a successful update, liftosaur-ci records the
+deployed Git commit and program blob in `.liftosaur-ci/deployments/program.json`.
+Commit that small state file with your repository.
 
-The JSON report binds the exact input and output bytes with SHA-256 values and
-includes the versioned parser frontend and merge-core evidence.
+From then on, the normal command is simply:
 
-## Validation
+```sh
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update
+```
+
+With one configured deployment, everything else is inferred:
+
+- `HEAD` is the new reviewed Git version,
+- the tracked deployment state identifies the previous deployed Git version,
+- the configured program ID or `current` identifies the Liftosaur program,
+- Liftosaur provides the live progression state accumulated since the previous
+  update.
+
+The command performs the three-way merge, native validation, exact-ID deployment,
+read-back verification, and deployment-state update as one operation.
+
+Repositories with multiple deployments add `--deployment <id>`. The reusable
+GitHub Actions workflow keeps the same logic but separates preparation and the
+live write with a protected approval gate; see
+[GitHub Actions integration](docs/github-actions.md).
+
+If a write was attempted but its result cannot be determined safely, `update`
+stops without guessing and retains a private recovery directory. The error prints
+the corresponding explicit recovery command:
+
+```sh
+liftosaur-ci rollback --recovery "/path/reported/by/update"
+```
+
+`rollback` is deliberately limited to that ambiguous-write case rather than being
+a general version-revert command. It restores the source that was live immediately
+before the attempted update, preserves the current program name, and verifies the
+read-back. Before writing, it also saves the currently observed unknown source in
+the same private recovery directory, so an explicit rollback does not destroy the
+state it replaces.
+
+## Rolling back versions
+
+For an ordinary version rollback, Git remains the source of truth: revert the
+program change or select the older reviewed Git revision and run the normal update
+path. The current Liftosaur source is still the live side of the merge, so today's
+progression is preserved while the older program logic is deployed.
+
+For disaster recovery, an advanced restore can instead push the exact source from
+an extracted historical deployment bundle:
+
+```sh
+LIFTOSAUR_API_KEY=... liftosaur-ci restore \
+  --artifact /path/to/historical-deployment-bundle
+```
+
+`restore` intentionally rewinds the full Liftosaur source, including progression.
+It verifies the bundle's exact target ID and source hash, preserves the current
+program name, saves the displaced live source in a private temporary recovery
+directory before writing, and verifies the read-back. It does **not** update Git
+deployment state automatically.
+
+Historical deployment bundles contain live program state. Keep them private. The
+reusable workflow intentionally keeps its uploaded bundle short-lived by default;
+author-controlled archival is separate from the deployment workflow.
+
+## Why the merge is safe
+
+The three inputs are:
+
+- the previously deployed Git source,
+- the current Liftosaur source containing accumulated progression,
+- the new reviewed Git source.
+
+Program logic inside Liftoscript `{ ... }` bodies belongs to Git. If the live
+Liftosaur source has changed inside one of those bodies since the previous Git
+version, liftosaur-ci stops and asks the author to either commit that edit in Git
+or discard it in Liftosaur. It does not try to merge program-code edits made in
+the app.
+
+Everything outside those bodies is eligible live progression. Independent live
+changes are carried forward while reviewed Git changes are applied; incompatible
+changes to the same mergeable region still fail closed instead of being guessed.
+Repeated same-exercise statements are distinguished by occurrence.
+
+Git revisions are resolved to immutable commits and blobs, so unrelated dirty
+worktree files cannot affect the source being deployed. Before deployment, the
+live program must still match the source hash seen during preparation. Deployment
+then writes once to the exact resolved Liftosaur ID and verifies the read-back.
+
+If read-back is neither the old prepared state nor the intended new state,
+`liftosaur-ci` stops and preserves private recovery files. It does not
+automatically overwrite an unknown concurrent state.
+
+See the full [deployment contract](docs/deployment.md).
+
+## Validation and regression checks
+
+Validate one program directly:
 
 ```sh
 node bin/liftosaur-ci.mjs validate \
@@ -54,79 +166,67 @@ node bin/liftosaur-ci.mjs validate \
 ```
 
 Validation uses the pinned Liftosaur runtime to evaluate the program, construct
-every workout day, compare stable prescriptions across serialization, complete
-nominal work sets, execute update and finish scripts, and reload each progressed
-program. Input files and existing reports are never modified. See the
-[native validation policy](docs/native-validation.md) for the exact inputs and
-scope.
+every workout day, verify serialization parity, complete nominal work sets,
+execute update and finish scripts, and reload progressed programs. See the
+[native validation policy](docs/native-validation.md).
 
-## Regression snapshots
-
-```sh
-node bin/liftosaur-ci.mjs snapshot \
-  --program program.liftoscript \
-  --scenario reviewed-scenario.json \
-  --output snapshot.json
-```
-
-Format 1 scenarios describe one exposure. Format 2 scenarios contain two or
-more named, ordered steps and feed each step the exact serialized result of the
-previous one. Inputs explicitly identify the day, every exercise, and every
-completed work set. The immutable output records persistent progression state
-plus the next exposure and next scheduled workout prescriptions after each step.
-Snapshot changes require review; they do not establish coaching correctness.
-
-## Repository check
+Repository-wide checks are configured in `liftosaur-ci.json`:
 
 ```sh
 node bin/liftosaur-ci.mjs check --config liftosaur-ci.json
 ```
 
-`check` discovers configured programs, runs native validation on each one, and
-compares reviewed scenario snapshots without rewriting them. See the
-[repository check contract](docs/check.md) for the versioned configuration.
+Optional reviewed scenarios can capture expected behavior over one or several
+exposures. Unknown scenario fields are rejected rather than silently ignored.
+See the [repository check contract](docs/check.md).
 
-## Prepared deployment and rollback
+## Lower-level tools
 
-`prepare-git` resolves reviewed Git refs to immutable commits and program blobs,
-fetches the exact Liftosaur program ID, merges its state with the Git candidate,
-runs native validation, and creates a checksum-bound deployment bundle. Git
-provenance is carried into the eventual deployment receipt. It reads Liftosaur
-but never writes to it.
+`update` is the intended manual workflow. The CLI also exposes the individual
+building blocks for custom tooling, debugging, and approval-gated automation:
 
-Versioned configuration can assign stable deployment IDs to program paths,
-resulting names, and environment-provided Liftosaur IDs. A verified deployment
-can then be recorded as non-sensitive Git state, allowing the next preparation
-to select and verify its base automatically.
+- `rollback` — explicitly restore the pre-update source after an ambiguous write.
+- `restore` — advanced exact historical-snapshot restore; progression is rewound.
+- `prepare-git` — prepare an immutable Git-backed deployment bundle.
+- `deploy` — verify and write a prepared bundle.
+- `record-deployment` — record the verified deployed Git identity.
+- `merge` — offline Liftosaur-aware three-way merge.
+- `validate` — native Liftosaur validation.
+- `snapshot` — produce reviewed scenario snapshots.
+- `prepare` — prepare from caller-supplied base and candidate files.
+- `prepare-deployment` — assemble a bundle from already prepared sources and
+  validation evidence.
 
-`prepare` provides the same merge and validation path for caller-supplied files.
-`prepare-deployment` remains available for callers that already produced the
-active source, merged program, and evidence.
-
-`deploy` requires the caller to restate the exact target ID and resulting name,
-or resolves both from a named configured deployment. It then
-verifies that the live target is unchanged, writes once, and verifies the
-read-back.
-
-If a known successful write does not verify, the command restores and verifies
-the prepared rollback source. It never guesses through an ambiguous write.
-The API key is read only from `LIFTOSAUR_API_KEY`. See the
-[deployment contract](docs/deployment.md) before using the command against a
-live program.
-
-See [GitHub Actions integration](docs/github-actions.md) for reusable check and
-approval-gated deployment workflows. Runner labels and tool revisions are
-explicit inputs; no hosted runner image is assumed.
+Normal users should not need these pieces separately just to keep a Git-managed
+program synchronized with Liftosaur.
 
 ## Tests
+
+For normal development:
+
+```sh
+npm run test:fast
+```
+
+This runs the unit/integration suite plus a deterministic sample of three pinned
+Liftosaur built-in programs. Branch pushes rotate that sample by commit SHA, so
+coverage changes between commits while any failure remains reproducible.
+
+The full deterministic suite is:
 
 ```sh
 npm test
 ```
 
-The test corpus covers every program in the pinned Liftosaur built-in catalog
-plus a digest-pinned public RP Hypertrophy v4.1 program. Deployment tests use a
-local fake API and never change Liftosaur.
+It checks every program in the pinned Liftosaur built-in catalog and runs on pull
+requests, `main`, and manual CI runs. The digest-pinned public RP Hypertrophy v4.1
+network corpus is available separately:
+
+```sh
+npm run test:external
+```
+
+Deployment tests use a local fake API and never change Liftosaur.
 
 ## Licensing
 
