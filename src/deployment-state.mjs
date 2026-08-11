@@ -4,11 +4,6 @@ import path from "node:path";
 
 import { configuredDeployment } from "./config.mjs";
 
-export const LIFTOSAUR_DEPLOYMENT_STATE = Object.freeze({
-  formatVersion: 2,
-  implementation: "liftosaur-deployment-state-v2",
-});
-
 function statePath(config, deploymentId) {
   return path.join(config.root, ".liftosaur-ci", "deployments", `${deploymentId}.json`);
 }
@@ -31,8 +26,7 @@ function parseJson(text, label) {
 function validateState(state, deploymentId) {
   requireObject(state, "Deployment state");
   if (
-    state.formatVersion !== LIFTOSAUR_DEPLOYMENT_STATE.formatVersion
-    || state.implementation !== LIFTOSAUR_DEPLOYMENT_STATE.implementation
+    Object.keys(state).some((key) => !["commitSha", "blobSha"].includes(key))
     || !/^[a-f0-9]{40,64}$/.test(state.commitSha ?? "")
     || !/^[a-f0-9]{40,64}$/.test(state.blobSha ?? "")
   ) {
@@ -92,7 +86,7 @@ export async function recordDeploymentState({
   }
   const source = report.source;
   if (
-    source?.implementation !== "liftosaur-git-source-v1"
+    !source
     || source.programPath !== deployment.program
   ) {
     throw new Error("Deployment report lacks matching Git provenance");
@@ -105,7 +99,6 @@ export async function recordDeploymentState({
     throw new Error("Deployment report base does not match tracked deployment state");
   }
   const state = validateState({
-    ...LIFTOSAUR_DEPLOYMENT_STATE,
     commitSha: source.candidate?.commitSha,
     blobSha: source.candidate?.blobSha,
   }, deployment.id);
