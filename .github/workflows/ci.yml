@@ -16,8 +16,7 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-      - run: npm ci --ignore-scripts --no-audit --no-fund
-      - run: npm run setup:runtime
+      - run: node scripts/setup-runtime.mjs
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
       - run: npm test
