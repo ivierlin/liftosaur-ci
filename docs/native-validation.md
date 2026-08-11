@@ -1,36 +1,14 @@
-# Native validation
+# Native Liftosaur validation
 
-The generic validator checks runtime executability, not whether a program's
-coaching decisions are correct. Each workout day is tested independently from
-the reviewed input source with default Liftosaur settings and empty statistics.
+The validator runs generated Liftosaur programs against a pinned Liftosaur checkout instead of maintaining a second parser or evaluator. The runtime revision is part of the report so a behavior change can be tied to a concrete upstream implementation.
 
-## Nominal completion policy
+The validator evaluates the source, constructs every day, serializes the evaluated planner back to Liftoscript, reloads it, compares the resulting prescriptions, and then exercises the real workout lifecycle. Validation therefore covers both source compatibility and behavior that only appears after an update or finish script runs.
 
-For every non-suppressed work set, the validator records:
+## Built-in corpus
 
-- prescribed repetitions, or the minimum when repetitions are open-ended, or
-  one repetition when neither exists;
-- the same repetitions on both sides for unilateral sets;
-- prescribed weight when present;
-- prescribed RPE, or RPE 8 only when the set requires an RPE log;
-- prescribed set duration when present.
+The built-in corpus is intentionally broader than the small smoke corpus. It extracts every Liftoscript block from Liftosaur's built-in program Markdown and validates each source with the same runtime used for external programs.
 
-Warm-up sets are not progression evidence and are not completed. After each
-work set, the validator runs Liftosaur's update script and follows any resulting
-set additions or removals. A day fails closed after 1,000 dynamically generated
-sets.
-
-For each completed exercise, the validator directly checks finish-script
-success before applying all finish-day changes. It then serializes the progressed
-program, reloads it, checks evaluation again, and constructs the next workout.
-Thrown errors and errors swallowed through Liftosaur's error logger both fail
-validation.
-
-## Boundary
-
-Nominal inputs are deliberately generic. They do not model underperformance,
-overperformance, user-prompted state, history-dependent statistics, or coaching
-intent. Those require reviewed scenarios or program-specific assertions.
+This is not a claim that every built-in program's coaching behavior is correct. The corpus establishes that the source remains executable through the current Liftosaur lifecycle and provides a stable base for reviewed behavioral scenarios.
 
 The pinned built-in `gzcl-ggbb.md` currently has one tracked upstream lifecycle
 failure: an exercise overriding inherited `lp(...)` with `progress: none` still
@@ -44,14 +22,23 @@ The `snapshot` command accepts complete exposures and partial observations.
 A complete single exposure has `name`, `day`, and `entries`. A complete sequence
 has `name` and between 2 and 100 named, ordered `steps`; every step has its own
 `day` and `entries`. Each sequence step receives the exact serialized program
-produced by the prior step while sharing the same default settings and statistics
-context.
+produced by the prior step while sharing the same settings and statistics context.
+
+A scenario may set top-level `units` to `kg` or `lb` when the observed behavior
+depends on Liftosaur's active weight-unit setting. If omitted, Liftosaur's normal
+default settings are used. This is execution context rather than a conversion
+performed by `liftosaur-ci`; equipment fitting and mixed-unit arithmetic remain
+entirely Liftosaur behavior. Sequence scenarios use the same unit context for all
+steps.
 
 Each entry identifies the evaluated exercise `fullName` and supplies one object
-per work set. `reps` is required. Repeated same-name exercises use `occurrence`
-(default 1). Optional `weight`, `rpe`, `repsLeft`, and `setTime` values override
-the prescription; omitted values retain the prescribed input. Sets requiring an
-RPE or weight must receive one when the prescription has none.
+per work set. `reps` is required for completed sets. Repeated same-name exercises
+use `occurrence` (default 1). Optional `weight`, `rpe`, `repsLeft`, and `setTime`
+values override the prescription; omitted values retain the prescribed input.
+Sets requiring an RPE or weight must receive one when the prescription has none.
+A prescribed set that exists but is not performed may instead be declared as
+`{ "skip": true }`; skipped sets stay uncompleted and do not receive a
+post-completion update.
 
 Complete exposures fail if an exercise or set is missing or extra. Their
 immutable JSON output binds the source and scenario checksums and records
@@ -68,7 +55,8 @@ only the exercises being performed; unrelated entries remain untouched. After
 each supplied set, Liftosaur's real update script runs, so `currentWorkout`
 captures dynamic set additions or removals, timer changes, drop-set loads,
 completed-set fields, prompts, state, descriptions, and other observable workout
-behavior.
+behavior. Top-level `units` applies to partial observations in the same way as to
+complete exposures.
 
 A partial observation does not run exercise finish scripts or finish-day logic,
 does not serialize or reload the program, and does not produce `nextExposure`,
@@ -81,6 +69,6 @@ nominal, underperformance, and overperformance repetitions. Their snapshots are
 behavior regressions only: the labels describe the supplied observations, not an
 independent claim that the resulting progression is correct.
 
-Sequence scenarios do not supply account history, custom settings, or body
-statistics. Programs requiring those inputs need a future explicit scenario
+Sequence scenarios do not supply account history, arbitrary custom settings, or
+body statistics. Programs requiring those inputs need a future explicit scenario
 contract rather than inferred test data.
