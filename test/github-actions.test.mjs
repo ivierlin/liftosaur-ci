@@ -16,6 +16,7 @@ test("reusable GitHub workflows retain the generic safety contract", async () =>
     assert.match(workflow, /tool_ref:[\s\S]*?required: true/);
     assert.match(workflow, /fromJSON\(inputs\.runs_on\)/);
     assert.doesNotMatch(workflow, /ubuntu-latest|ROAR|WSL/);
+    assert.doesNotMatch(workflow, /npm ci|cache: npm/);
   }
 
   assert.match(check, /permissions:\s+contents: read/);
@@ -28,4 +29,6 @@ test("reusable GitHub workflows retain the generic safety contract", async () =>
   assert.match(deploy, /liftosaur-ci\.mjs" record-deployment/);
   assert.match(deploy, /retention-days: 1/g);
   assert.match(deploy, /github\.rest\.pulls\.create/);
+  assert.doesNotMatch(deploy, /liftosaur_program_id|LIFTOSAUR_PROGRAM_ID/);
+  assert.match(deploy, /git switch --detach "origin\/\$STATE_BRANCH"/);
 });
