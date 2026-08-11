@@ -35,9 +35,8 @@ async function makeRepository() {
   ]);
   const configFile = path.join(root, "liftosaur-ci.json");
   await writeFile(configFile, `${JSON.stringify({
-    formatVersion: 1,
-    implementation: "liftosaur-check-config-v1",
-    programs: ["programs/*.liftoscript"],
+    formatVersion: 3,
+    implementation: "liftosaur-check-config-v3",
     scenarios: [{
       program: "programs/example.liftoscript",
       scenario: "scenarios/nominal.json",
@@ -47,7 +46,7 @@ async function makeRepository() {
   return { root, configFile };
 }
 
-test("repository check discovers programs and verifies reviewed snapshots", async () => {
+test("repository check validates programs referenced directly by scenarios", async () => {
   const { root, configFile } = await makeRepository();
   try {
     const report = await checkRepository(configFile);
@@ -74,12 +73,25 @@ test("repository check reports changed snapshots without rewriting them", async 
   }
 });
 
+test("repository check rejects unknown scenario fields", async () => {
+  const { root, configFile } = await makeRepository();
+  try {
+    const scenarioFile = path.join(root, "scenarios", "nominal.json");
+    await writeFile(scenarioFile, `${JSON.stringify({ ...scenario, typo: true }, null, 2)}\n`, "utf8");
+    const report = await checkRepository(configFile);
+    assert.equal(report.status, "failed");
+    assert.match(report.programs[0].scenarios[0].failure.message, /unsupported keys: typo/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("repository check rejects paths outside the config directory", async () => {
   const { root, configFile } = await makeRepository();
   try {
     await writeFile(configFile, `${JSON.stringify({
-      formatVersion: 1,
-      implementation: "liftosaur-check-config-v1",
+      formatVersion: 3,
+      implementation: "liftosaur-check-config-v3",
       programs: ["../*.liftoscript"],
     })}\n`, "utf8");
     await assert.rejects(checkRepository(configFile), /must stay inside the repository/);
