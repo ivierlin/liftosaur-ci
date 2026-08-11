@@ -57,8 +57,11 @@ export async function updateConfiguredGitDeployment({
       stateFile: state.file,
     };
   } catch (error) {
-    if (!deploymentStarted) await rm(temporary, { recursive: true, force: true });
-    else error.recoveryDirectory = temporary;
+    if (!deploymentStarted) {
+      await rm(temporary, { recursive: true, force: true });
+    } else if (error && typeof error === "object") {
+      error.recoveryDirectory = temporary;
+    }
     throw error;
   }
 }
