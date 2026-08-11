@@ -1,13 +1,14 @@
-# Prepared deployment and rollback
+# Prepared deployment and recovery
 
-Deployment is intentionally split into offline preparation and an explicit live
-write. The caller owns credential storage, approval, private artifact retention,
-and selection of the active source supplied during preparation.
+Deployment is split into preparation and an explicit live write. The caller owns
+credential storage, approval, and private artifact retention. Target identity is
+kept deliberately small: the Liftosaur program ID identifies the program and the
+prepared source hash identifies the state that is safe to replace.
 
 ## Git-native preparation
 
-When the program is stored in Git, use an exact Liftosaur program ID plus the
-reviewed base and candidate refs:
+When the program is stored in Git, provide the reviewed base and candidate refs
+plus either an exact Liftosaur program ID or the API alias `current`:
 
 ```sh
 LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
@@ -15,30 +16,44 @@ LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
   --base-ref last-deployed-tag \
   --candidate-ref reviewed-release-tag \
   --program programs/example.liftoscript \
-  --program-id exact-program-id \
-  --deployed-program-name "New name" \
+  --program-id current \
   --output deployment-bundle
 ```
 
-The command requires a clean worktree and a credential-free, non-local `origin`
-URL. Both refs are resolved to immutable commits and program blobs. The bundle
-records the remote identity, Git object format, repository-relative path,
-requested refs, commit IDs, and blob IDs. Deployment copies that provenance into
-its private receipt.
+Both Git refs are resolved to immutable commits and program blobs. The source is
+read from those Git objects, so unrelated staged, modified, or untracked files
+in the worktree cannot affect preparation. A credential-free, non-local `origin`
+URL is still required as provenance.
 
-An expected current name is deliberately unnecessary: the exact program ID
-selects the target, and preparation records the name returned by Liftosaur.
-`current` is therefore not accepted by `prepare-git`.
+If `--program-id current` is used, preparation calls `programs/current` once and
+stores the exact ID returned by Liftosaur in the bundle. All later verification
+and deployment calls use that resolved exact ID; a later change in which program
+is current cannot retarget an already prepared operation.
+
+`--deployed-program-name` is optional. When omitted, deployment preserves the
+name observed immediately before the write. When provided, it is an intentional
+rename, not part of target identity.
 
 ### Configured deployments and tracked bases
 
-After adding a named deployment to `liftosaur-ci.json`, the first preparation
-supplies its base explicitly:
+A deployment can be declared directly in `liftosaur-ci.json`:
+
+```json
+{
+  "deployments": {
+    "example": {
+      "program": "programs/example.liftoscript",
+      "programId": "current",
+      "deployedProgramName": "Example"
+    }
+  }
+}
+```
+
+The first preparation supplies its Git base explicitly:
 
 ```sh
-LIFTOSAUR_EXAMPLE_PROGRAM_ID=... \
-LIFTOSAUR_API_KEY=... \
-node bin/liftosaur-ci.mjs prepare-git \
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
   --config liftosaur-ci.json \
   --deployment example \
   --base-ref first-deployed-ref \
@@ -47,52 +62,47 @@ node bin/liftosaur-ci.mjs prepare-git \
 ```
 
 After a verified deployment, record its public Git identity from the private
-deployment report:
+report:
 
 ```sh
-LIFTOSAUR_EXAMPLE_PROGRAM_ID=... \
 node bin/liftosaur-ci.mjs record-deployment \
   --config liftosaur-ci.json \
   --deployment example \
   --report private-deployment-record/deployment-report.json
 ```
 
-This atomically writes `.liftosaur-ci/deployments/example.json`. The tracked
-state contains only the logical deployment ID, Git remote/path, object format,
-deployed commit and blob, timestamp, and receipt checksum. It excludes the
-Liftosaur program ID, program name, active source, and API credential.
+This atomically writes `.liftosaur-ci/deployments/example.json`. The state file
+contains only its version plus the deployed Git commit and program blob hashes.
+The deployment ID already comes from the file path and the program path comes
+from configuration, so neither is duplicated in state.
 
-Commit that state after deployment. Future preparation omits `--base-ref`; the
-command resolves it from the recorded candidate and verifies the remote, path,
-commit, and blob before contacting Liftosaur. Recording a later deployment also
-requires its prepared base to match the current tracked state.
+Commit that state after deployment. Future preparation can omit `--base-ref`;
+the recorded commit becomes the base and its program blob must match before
+Liftosaur is contacted.
 
 ## File-based end-to-end preparation
 
-For sources prepared outside a Git worktree, supply the exact previously
-deployed source and new candidate as files. This path retains the optional
-expected-name guard and `current` alias because it lacks Git target provenance:
+For sources prepared outside a Git worktree, supply the previously deployed
+source and new candidate as files:
 
 ```sh
 LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare \
   --base previously-deployed.liftoscript \
   --candidate new-git-source.liftoscript \
   --program-id current \
-  --expected-program-name "Current name" \
-  --deployed-program-name "New name" \
   --output deployment-bundle
 ```
 
-`--program-id` may be an exact program ID or `current`; the bundle always records
-the resolved ID. Preparation uses the API key only for a read and never changes
-Liftosaur. Both end-to-end paths produce no deployable bundle when merging or
-native validation fails.
+This command has the same API identity semantics as `prepare-git`: `current` is
+resolved during preparation and the bundle records the exact returned ID.
+Preparation uses the API key only for reads and creates no deployable bundle if
+merge or native validation fails.
 
 ## Assemble an externally prepared deployment
 
-For external orchestration, first produce a successful validation report for
-the exact source to deploy. When the source came from `merge`, retain its
-successful merge report too.
+For external orchestration, first produce successful validation evidence for the
+exact source to deploy. If the source came from `merge`, retain its merge report
+too.
 
 ```sh
 node bin/liftosaur-ci.mjs prepare-deployment \
@@ -100,39 +110,41 @@ node bin/liftosaur-ci.mjs prepare-deployment \
   --program merged.liftoscript \
   --validation-report validation-report.json \
   --merge-report merge-report.json \
-  --program-id program-id \
-  --expected-program-name "Current name" \
-  --expected-current true \
-  --deployed-program-name "New name" \
+  --program-id resolved-program-id \
   --output deployment-bundle
 ```
 
-`prepare-deployment` is offline. It verifies canonical source formatting and
-binds the deployment source to passed validation and merge evidence. Bundles
-from either preparation path contain private program state and should never be
-committed or published.
+`prepare-deployment` is offline, so it cannot resolve `current`; callers must
+supply an exact ID. It verifies canonical source formatting and binds the active
+source, deployment source, validation evidence, and optional merge evidence by
+hash. The manifest contains those hashes directly; there is no duplicate
+`SHA256SUMS` file.
+
+Bundles contain private program state and should never be committed or
+published.
 
 ## Deploy
 
-Review the bundle, exact operation, and rollback source before authorizing a
-live write. Then provide the API key through the environment and restate the
-approved target and resulting name:
+For an unconfigured bundle, restate only the exact resolved target ID:
 
 ```sh
 LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs deploy \
   --bundle deployment-bundle \
-  --confirm-program-id program-id \
-  --confirm-program-name "New name" \
+  --confirm-program-id resolved-program-id \
   --output private-deployment-record
 ```
 
-The bundle must be no more than 24 hours old. `--max-age-hours` may choose a
-shorter lifetime. Before writing, the command verifies the live program ID,
-name, current-program status, and source checksum against the prepared target.
-After writing, it verifies the exact resulting name and source.
+Configured deployment uses the target declared in the config, so no separate
+confirmation argument is needed.
 
-If the API accepted the write but read-back verification differs, the prepared
-name and source are restored and verified automatically. If the write outcome
-is ambiguous and the live target matches neither prepared source, no automatic
-rollback is attempted. The command fails and preserves a private report for
-manual inspection.
+The bundle must be no more than 24 hours old. `--max-age-hours` may choose a
+shorter lifetime. Before writing, deployment fetches the exact resolved program
+ID and requires its source hash to match the prepared active source. It then
+writes once to that exact ID and reads the same ID back.
+
+A read-back matching the deployment source is success. A read-back still
+matching the prepared active source means the write did not take effect. Any
+other state is treated as an ambiguous or concurrent change: deployment stops,
+records the failure, and **does not automatically roll back**. The private
+`rollback-active.liftoscript` remains available for deliberate recovery, but an
+unknown third state is never overwritten without a new explicit operation.
