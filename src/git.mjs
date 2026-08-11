@@ -78,7 +78,7 @@ function revision(repository, requestedRef, programPath, label) {
   return { requestedRef: ref, commitSha, blobSha, source };
 }
 
-export function readGitProgramPair({ repository, baseRef, candidateRef, programPath }) {
+export function readGitProgramPair({ repository, baseRef, candidateRef = "HEAD", programPath }) {
   const requestedRepository = path.resolve(repository);
   const root = git(requestedRepository, ["rev-parse", "--show-toplevel"], "Not a Git repository").trim();
   const cleanPath = requireProgramPath(programPath);
@@ -114,11 +114,10 @@ export function readGitProgramPair({ repository, baseRef, candidateRef, programP
 export async function prepareGitDeployment({
   repository,
   baseRef,
-  candidateRef,
+  candidateRef = "HEAD",
   programPath,
   outputDirectory,
   programId,
-  deployedProgramName = null,
   expectedBase = null,
   apiKey,
   apiBase,
@@ -136,7 +135,6 @@ export async function prepareGitDeployment({
     candidate: programs.candidate,
     outputDirectory,
     programId,
-    deployedProgramName,
     apiKey,
     apiBase,
     source: programs.source,
