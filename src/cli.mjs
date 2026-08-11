@@ -106,7 +106,7 @@ Advanced/offline building blocks:
     [--config <liftosaur-ci.json>] \\
     [--report <check-report.json>]
 
-After bootstrap, configured single-program repositories can run `liftosaur-ci update`
+After bootstrap, configured single-program repositories can run liftosaur-ci update
 with no arguments. HEAD is the candidate, tracked deployment state supplies the
 base, and Liftosaur supplies the live progression state. "current" is resolved to
 an exact ID before deployment and the live program name is preserved.`;
