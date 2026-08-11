@@ -4,6 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
+import { createScenarioSnapshot } from "../src/report.mjs";
 import { snapshotLiftosaurScenario } from "../src/validate.mjs";
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -24,16 +25,18 @@ const source = extractLiftoscript(await readFile(
   "utf8"
 ));
 
+const partialScenario = {
+  name: "after first bench set",
+  day: 1,
+  finish: false,
+  entries: [{
+    exercise: "Bench Press",
+    sets: [{ reps: 5 }],
+  }],
+};
+
 test("partial scenarios observe the current workout after exactly the supplied sets", () => {
-  const result = snapshotLiftosaurScenario(source, {
-    name: "after first bench set",
-    day: 1,
-    finish: false,
-    entries: [{
-      exercise: "Bench Press",
-      sets: [{ reps: 5 }],
-    }],
-  });
+  const result = snapshotLiftosaurScenario(source, partialScenario);
 
   assert.equal(result.serializedSource, null);
   assert.deepEqual(result.snapshot.scenario, {
@@ -56,6 +59,17 @@ test("partial scenarios observe the current workout after exactly the supplied s
   assert.ok(row.sets.every((set) => !set.isCompleted));
   assert.equal(result.snapshot.nextExposure, undefined);
   assert.equal(result.snapshot.nextWorkout, undefined);
+});
+
+test("partial snapshot reports do not claim a progressed serialized source", () => {
+  const scenarioText = `${JSON.stringify(partialScenario)}\n`;
+  const report = createScenarioSnapshot(
+    source,
+    scenarioText,
+    snapshotLiftosaurScenario(source, partialScenario)
+  );
+  assert.equal(report.progressedSource, undefined);
+  assert.ok(report.currentWorkout);
 });
 
 test("partial scenarios may observe one entry without completing the rest of the workout", () => {
