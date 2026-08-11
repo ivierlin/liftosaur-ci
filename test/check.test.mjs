@@ -10,7 +10,6 @@ import { snapshotLiftosaurScenario } from "../src/validate.mjs";
 
 const source = "# Week 1\n## Day A\nSquat / 3x5 100kg\n";
 const scenario = {
-  formatVersion: 1,
   name: "nominal",
   day: 1,
   entries: [{ exercise: "Squat", sets: [{ reps: 5 }, { reps: 5 }, { reps: 5 }] }],
@@ -35,8 +34,6 @@ async function makeRepository() {
   ]);
   const configFile = path.join(root, "liftosaur-ci.json");
   await writeFile(configFile, `${JSON.stringify({
-    formatVersion: 3,
-    implementation: "liftosaur-check-config-v3",
     scenarios: [{
       program: "programs/example.liftoscript",
       scenario: "scenarios/nominal.json",
@@ -90,8 +87,6 @@ test("repository check rejects paths outside the config directory", async () => 
   const { root, configFile } = await makeRepository();
   try {
     await writeFile(configFile, `${JSON.stringify({
-      formatVersion: 3,
-      implementation: "liftosaur-check-config-v3",
       programs: ["../*.liftoscript"],
     })}\n`, "utf8");
     await assert.rejects(checkRepository(configFile), /must stay inside the repository/);
