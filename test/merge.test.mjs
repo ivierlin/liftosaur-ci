@@ -125,6 +125,28 @@ test("fails closed when active and candidate change the same state variable diff
   assert.match(result.conflictSource, /__LIFTOSAUR_CI_STATE_VALUE__ 5/);
 });
 
+test("rejects live edits inside Liftoscript program bodies", async () => {
+  await assert.rejects(
+    mergeLiftosaurSources({
+      base: source(),
+      active: source().replace("state.volume = state.volume", "state.volume = 4"),
+      candidate: source({ timer: 180 }),
+    }),
+    /Commit those changes in Git or discard them in Liftosaur/
+  );
+});
+
+test("rejects live edits to reused program bodies", async () => {
+  await assert.rejects(
+    mergeLiftosaurSources({
+      base: blockSource(),
+      active: blockSource().replace("{ ...shared }", "{ ...other }"),
+      candidate: blockSource(),
+    }),
+    /Commit those changes in Git or discard them in Liftosaur/
+  );
+});
+
 test("merges a historical active prescription with a candidate warmup on the same statement", async () => {
   const base = `# Week 1
 ## Row Day
@@ -280,14 +302,13 @@ test("fails closed when only active moves a block", async () => {
   assert.equal(result.report.blockFallback.stage, "candidate-layout");
 });
 
-test("fails closed on conflicting multiline definition edits", async () => {
-  const result = await mergeLiftosaurSources({
-    base: blockSource(),
-    active: blockSource({ definitionValue: 3 }),
-    candidate: blockSource({ definitionValue: 4 }),
-  });
-
-  assert.equal(result.source, null);
-  assert.equal(result.report.status, "conflict");
-  assert.equal(result.report.blockFallback.stage, "block-content");
+test("rejects active edits to shared definition logic before merge", async () => {
+  await assert.rejects(
+    mergeLiftosaurSources({
+      base: blockSource(),
+      active: blockSource({ definitionValue: 3 }),
+      candidate: blockSource({ definitionValue: 4 }),
+    }),
+    /Commit those changes in Git or discard them in Liftosaur/
+  );
 });
