@@ -32,7 +32,7 @@ if (process.exitCode) {
 
   command.then(() => {
     if (coreHelp) {
-      console.log(`\nAdvanced recovery:\n  liftosaur-ci restore \\\n    --artifact <historical-deployment-bundle> \\\n    [--api-base <url>]`);
+      console.log(`\nPrivate merge-conflict inspection:\n  prepare and prepare-git accept --conflict-output <directory>.\n  The directory may contain athlete-specific live state; never commit it.\n\nAdvanced recovery:\n  liftosaur-ci restore \\\n    --artifact <historical-deployment-bundle> \\\n    [--api-base <url>]`);
     }
   }).catch((error) => {
     console.error(error instanceof Error ? error.message : String(error));
