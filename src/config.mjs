@@ -7,8 +7,8 @@ export const LIFTOSAUR_CHECK_CONFIG_V1 = Object.freeze({
 });
 
 export const LIFTOSAUR_CHECK_CONFIG = Object.freeze({
-  formatVersion: 2,
-  implementation: "liftosaur-check-config-v2",
+  formatVersion: 3,
+  implementation: "liftosaur-check-config-v3",
 });
 
 function requireObject(value, label) {
@@ -88,12 +88,12 @@ export async function loadLiftosaurConfig(configFile) {
   requireObject(config, "Check config");
   const isV1 = config.formatVersion === LIFTOSAUR_CHECK_CONFIG_V1.formatVersion
     && config.implementation === LIFTOSAUR_CHECK_CONFIG_V1.implementation;
-  const isV2 = config.formatVersion === LIFTOSAUR_CHECK_CONFIG.formatVersion
+  const isCurrent = config.formatVersion === LIFTOSAUR_CHECK_CONFIG.formatVersion
     && config.implementation === LIFTOSAUR_CHECK_CONFIG.implementation;
-  if (!isV1 && !isV2) throw new Error("Unsupported check config format");
+  if (!isV1 && !isCurrent) throw new Error("Unsupported check config format");
   requireAllowedKeys(
     config,
-    new Set(["formatVersion", "implementation", "programs", "scenarios", ...(isV2 ? ["deployments"] : [])]),
+    new Set(["formatVersion", "implementation", "programs", "scenarios", ...(isCurrent ? ["deployments"] : [])]),
     "Check config"
   );
   if (config.programs != null && !Array.isArray(config.programs)) {
@@ -109,7 +109,7 @@ export async function loadLiftosaurConfig(configFile) {
     root: path.dirname(path.resolve(configFile)),
     programs,
     scenarios: validateScenarios(config.scenarios),
-    deployments: isV2 ? validateDeployments(config.deployments) : {},
+    deployments: isCurrent ? validateDeployments(config.deployments) : {},
   };
 }
 
