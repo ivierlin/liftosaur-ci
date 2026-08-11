@@ -1,0 +1,913 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "test: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "175lb",
+                "weight": "175lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "test: Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "125lb",
+                "weight": "125lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "test: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "215lb",
+                "weight": "215lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "235lb",
+                "weight": "235lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "test: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "175lb",
+                "weight": "175lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 1 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 1 - Day 5",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "singles: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "105lb",
+                "weight": "105lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "125lb",
+                "weight": "125lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "singles: Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "75lb",
+                "weight": "75lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80lb",
+                "weight": "80lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "singles: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "165lb",
+                "weight": "165lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "175lb",
+                "weight": "175lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "singles: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "105lb",
+                "weight": "105lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "125lb",
+                "weight": "125lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "light: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "timer": 60
+              }
+            ]
+          },
+          {
+            "fullName": "light: Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "timer": 60
+              }
+            ]
+          },
+          {
+            "fullName": "light: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "timer": 60
+              }
+            ]
+          },
+          {
+            "fullName": "light: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "timer": 60
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 2 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 2 - Day 5",
+        "entries": [
+          {
+            "fullName": "test: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "175lb",
+                "weight": "175lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "test: Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "125lb",
+                "weight": "125lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "test: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "215lb",
+                "weight": "215lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "235lb",
+                "weight": "235lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "test: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "175lb",
+                "weight": "175lb",
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "40ff48874d225796804bf38926df92aa13e2a1a9fb72be016b1f4bee298f085b"
+  }
+}

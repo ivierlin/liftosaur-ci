@@ -1,0 +1,475 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Volume Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "102.5lb",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "102.5lb",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "147.45lb",
+                "weight": "145lb",
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Recovery Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "62%",
+                "weight": "82.5lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Intensity Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 300
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 300
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "71.5lb",
+                "weight": "70lb",
+                "timer": 120,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 2 - Volume Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "102.5lb",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "57.5lb",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "147.45lb",
+                "weight": "145lb",
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Recovery Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "62%",
+                "weight": "82.5lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Intensity Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 300
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "62.5lb",
+                "timer": 300
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "71.5lb",
+                "weight": "70lb",
+                "timer": 120,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "01f0a5867af281c1734045d462a08a8cd8017dfaceaf89aa9c080a834214004f"
+  }
+}

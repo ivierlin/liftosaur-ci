@@ -1,0 +1,6413 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - 10s Accumulation - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - 10s Accumulation - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - 10s Accumulation - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 1 - 10s Accumulation - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - 10s Intensification - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50%",
+                "weight": "67.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "56%",
+                "weight": "75lb",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "80lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "80lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - 10s Intensification - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50%",
+                "weight": "67.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "56%",
+                "weight": "75lb",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "80lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "80lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 2 - 10s Intensification - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "56%",
+                "weight": "45lb",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "45lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "45lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 2 - 10s Intensification - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50%",
+                "weight": "92.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "56%",
+                "weight": "102.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "112.5lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 10,
+                "originalWeight": "61%",
+                "weight": "112.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - 10s Realization - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 10,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 3 - 10s Realization - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 10,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "nextExposure": {
+        "day": 11,
+        "dayName": "Week 3 - 10s Realization - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 10,
+                "originalWeight": "68%",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "nextExposure": {
+        "day": 12,
+        "dayName": "Week 3 - 10s Realization - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "timer": 180
+              },
+              {
+                "reps": 10,
+                "originalWeight": "68%",
+                "weight": "125lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "nextExposure": {
+        "day": 13,
+        "dayName": "Week 4 - 10s Deload - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "nextExposure": {
+        "day": 14,
+        "dayName": "Week 4 - 10s Deload - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "nextExposure": {
+        "day": 15,
+        "dayName": "Week 4 - 10s Deload - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "nextExposure": {
+        "day": 16,
+        "dayName": "Week 4 - 10s Deload - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "65lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "nextExposure": {
+        "day": 17,
+        "dayName": "Week 5 - 8s Accumulation - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "77.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "77.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "nextExposure": {
+        "day": 18,
+        "dayName": "Week 5 - 8s Accumulation - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "77.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "77.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "nextExposure": {
+        "day": 19,
+        "dayName": "Week 5 - 8s Accumulation - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "45lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "45lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "nextExposure": {
+        "day": 20,
+        "dayName": "Week 5 - 8s Accumulation - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "107.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 8,
+                "originalWeight": "59%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "nextExposure": {
+        "day": 21,
+        "dayName": "Week 6 - 8s Intensification - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "61%",
+                "weight": "80lb",
+                "timer": 120
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "nextExposure": {
+        "day": 22,
+        "dayName": "Week 6 - 8s Intensification - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "61%",
+                "weight": "80lb",
+                "timer": 120
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "nextExposure": {
+        "day": 23,
+        "dayName": "Week 6 - 8s Intensification - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "61%",
+                "weight": "45lb",
+                "timer": 120
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "nextExposure": {
+        "day": 24,
+        "dayName": "Week 6 - 8s Intensification - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "61%",
+                "weight": "112.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "120lb",
+                "timer": 120,
+                "count": 2
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "120lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "nextExposure": {
+        "day": 25,
+        "dayName": "Week 7 - 8s Realization - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 26,
+      "nextExposure": {
+        "day": 26,
+        "dayName": "Week 7 - 8s Realization - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 27,
+      "nextExposure": {
+        "day": 27,
+        "dayName": "Week 7 - 8s Realization - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "50lb",
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "52.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 28,
+      "nextExposure": {
+        "day": 28,
+        "dayName": "Week 7 - 8s Realization - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "125lb",
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "132.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 29,
+      "nextExposure": {
+        "day": 29,
+        "dayName": "Week 8 - 8s Deload - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 30,
+      "nextExposure": {
+        "day": 30,
+        "dayName": "Week 8 - 8s Deload - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 31,
+      "nextExposure": {
+        "day": 31,
+        "dayName": "Week 8 - 8s Deload - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 32,
+      "nextExposure": {
+        "day": 32,
+        "dayName": "Week 8 - 8s Deload - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "65lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 33,
+      "nextExposure": {
+        "day": 33,
+        "dayName": "Week 9 - 5s Accumulation - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 5
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 34,
+      "nextExposure": {
+        "day": 34,
+        "dayName": "Week 9 - 5s Accumulation - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 5
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 35,
+      "nextExposure": {
+        "day": 35,
+        "dayName": "Week 9 - 5s Accumulation - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "timer": 120,
+                "count": 5
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 36,
+      "nextExposure": {
+        "day": 36,
+        "dayName": "Week 9 - 5s Accumulation - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "timer": 120,
+                "count": 5
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 37,
+      "nextExposure": {
+        "day": 37,
+        "dayName": "Week 10 - 5s Intensification - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "59%",
+                "weight": "77.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 120,
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 38,
+      "nextExposure": {
+        "day": 38,
+        "dayName": "Week 10 - 5s Intensification - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "59%",
+                "weight": "77.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 120,
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 39,
+      "nextExposure": {
+        "day": 39,
+        "dayName": "Week 10 - 5s Intensification - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "59%",
+                "weight": "45lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "timer": 120,
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 40,
+      "nextExposure": {
+        "day": 40,
+        "dayName": "Week 10 - 5s Intensification - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "59%",
+                "weight": "107.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "65%",
+                "weight": "120lb",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "127.5lb",
+                "timer": 120,
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "127.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 41,
+      "nextExposure": {
+        "day": 41,
+        "dayName": "Week 11 - 5s Realization - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 180
+              },
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "102.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 42,
+      "nextExposure": {
+        "day": 42,
+        "dayName": "Week 11 - 5s Realization - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 180
+              },
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "102.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 43,
+      "nextExposure": {
+        "day": 43,
+        "dayName": "Week 11 - 5s Realization - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "50lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "52.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "57.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 44,
+      "nextExposure": {
+        "day": 44,
+        "dayName": "Week 11 - 5s Realization - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "125lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "132.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 5,
+                "originalWeight": "77%",
+                "weight": "140lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 45,
+      "nextExposure": {
+        "day": 45,
+        "dayName": "Week 12 - 5s Deload - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 46,
+      "nextExposure": {
+        "day": 46,
+        "dayName": "Week 12 - 5s Deload - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 47,
+      "nextExposure": {
+        "day": 47,
+        "dayName": "Week 12 - 5s Deload - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 48,
+      "nextExposure": {
+        "day": 48,
+        "dayName": "Week 12 - 5s Deload - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "65lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 49,
+      "nextExposure": {
+        "day": 49,
+        "dayName": "Week 13 - 3s Accumulation - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 6
+              },
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 50,
+      "nextExposure": {
+        "day": 50,
+        "dayName": "Week 13 - 3s Accumulation - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 6
+              },
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 51,
+      "nextExposure": {
+        "day": 51,
+        "dayName": "Week 13 - 3s Accumulation - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "50lb",
+                "timer": 120,
+                "count": 6
+              },
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 52,
+      "nextExposure": {
+        "day": 52,
+        "dayName": "Week 13 - 3s Accumulation - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "125lb",
+                "timer": 120,
+                "count": 6
+              },
+              {
+                "reps": 3,
+                "originalWeight": "68%",
+                "weight": "125lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 53,
+      "nextExposure": {
+        "day": 53,
+        "dayName": "Week 14 - 3s Intensification - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "97.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "97.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 54,
+      "nextExposure": {
+        "day": 54,
+        "dayName": "Week 14 - 3s Intensification - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "97.5lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "97.5lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 55,
+      "nextExposure": {
+        "day": 55,
+        "dayName": "Week 14 - 3s Intensification - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "55lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "55lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 56,
+      "nextExposure": {
+        "day": 56,
+        "dayName": "Week 14 - 3s Intensification - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "timer": 120
+              },
+              {
+                "reps": 1,
+                "originalWeight": "70%",
+                "weight": "127.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "74%",
+                "weight": "135lb",
+                "amrap": true,
+                "timer": 120
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 57,
+      "nextExposure": {
+        "day": 57,
+        "dayName": "Week 15 - 3s Realization - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "77%",
+                "weight": "102.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 58,
+      "nextExposure": {
+        "day": 58,
+        "dayName": "Week 15 - 3s Realization - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "90lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "77%",
+                "weight": "102.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 59,
+      "nextExposure": {
+        "day": 59,
+        "dayName": "Week 15 - 3s Realization - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "50lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "52.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "77%",
+                "weight": "57.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 60,
+      "nextExposure": {
+        "day": 60,
+        "dayName": "Week 15 - 3s Realization - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "68%",
+                "weight": "125lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "72%",
+                "weight": "132.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "77%",
+                "weight": "140lb",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "147.5lb",
+                "amrap": true,
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 61,
+      "nextExposure": {
+        "day": 61,
+        "dayName": "Week 16 - 3s Deload - Squat Day",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Ab Wheel",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 62,
+      "nextExposure": {
+        "day": 62,
+        "dayName": "Week 16 - 3s Deload - Bench Day",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "47.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "60lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 63,
+      "nextExposure": {
+        "day": 63,
+        "dayName": "Week 16 - 3s Deload - OHP Day",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "45lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 64,
+      "nextExposure": {
+        "day": 64,
+        "dayName": "Week 16 - 3s Deload - Deadlift Day",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "36%",
+                "weight": "65lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "45%",
+                "weight": "82.5lb",
+                "timer": 90
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "e1c6be040e584be353e7e33da423de1e24c7ea5f08df0d0fac9e15129fa1b75f"
+  }
+}

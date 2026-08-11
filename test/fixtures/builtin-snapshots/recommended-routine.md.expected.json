@@ -1,0 +1,221 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Day 1",
+        "entries": [
+          {
+            "fullName": "Scapular Pull Up | Arch Hang | Negative Pull Up | Pull Up",
+            "progressState": {
+              "topVar": 4,
+              "holdRung": 2,
+              "holdTarget": 30,
+              "minReps": 5,
+              "maxReps": 8,
+              "addWeight": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Assisted Squat | Squat, Bodyweight | Split Squat, Bodyweight | Bulgarian Split Squat, Bodyweight | Shrimp Squat | Pistol Squat",
+            "progressState": {
+              "topVar": 6,
+              "addWeight": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 5,
+              "maxReps": 8
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Support Hold | Negative Dip | Chest Dip",
+            "progressState": {
+              "topVar": 3,
+              "holdRung": 1,
+              "holdTarget": 30,
+              "minReps": 5,
+              "maxReps": 8,
+              "addWeight": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "setTimer": 25,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Romanian Deadlift, Bodyweight | Single Leg Deadlift, Bodyweight | Nordic Curl",
+            "progressState": {
+              "topVar": 3,
+              "addWeight": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 5,
+              "maxReps": 8
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Vertical Row | Inverted Row | Wide Row",
+            "progressState": {
+              "topVar": 3,
+              "addWeight": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 5,
+              "maxReps": 8
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Wall Push Up | Incline Push Up | Push Up | Diamond Push Up | Pseudo Planche Push Up",
+            "progressState": {
+              "topVar": 5,
+              "addWeight": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 5,
+              "maxReps": 8
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Plank | Ab Wheel | Dragon Flag",
+            "progressState": {
+              "topVar": 3,
+              "holdRung": 1,
+              "holdTarget": 30,
+              "minReps": 8,
+              "maxReps": 12,
+              "addWeight": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "setTimer": 25,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pallof Press | Copenhagen Plank | Renegade Row",
+            "progressState": {
+              "topVar": 3,
+              "holdRung": 2,
+              "holdTarget": 30,
+              "minReps": 8,
+              "maxReps": 12,
+              "addWeight": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Superman | Reverse Hyperextension | Back Extension, Bodyweight",
+            "progressState": {
+              "topVar": 3,
+              "addWeight": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "04b33c37870024284635994b2cb20756ada5a799f4e80871ba67c0b1e1d9f971"
+  }
+}

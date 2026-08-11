@@ -1,0 +1,541 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increase": {
+                "value": 15,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "52.5lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 2,
+              "successCounter": 1,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 1,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increase": {
+                "value": 15,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "67.5lb",
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "118lb",
+                "weight": "117.5lb",
+                "count": 3
+              },
+              {
+                "reps": 4,
+                "originalWeight": "118lb",
+                "weight": "117.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increase": {
+                "value": 15,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "123lb",
+                "weight": "122.5lb",
+                "count": 3
+              },
+              {
+                "reps": 4,
+                "originalWeight": "123lb",
+                "weight": "122.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "52.5lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 2,
+              "successCounter": 1,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 1,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increase": {
+                "value": 15,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "132.5lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "75lb",
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increase": {
+                "value": 15,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "52.5lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 2,
+              "successCounter": 1,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 1,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "triggerWeek": 1
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increase": {
+                "value": 15,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "163lb",
+                "weight": "162.5lb",
+                "count": 3
+              },
+              {
+                "reps": 4,
+                "originalWeight": "163lb",
+                "weight": "162.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "triggerWeek": 2
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "count": 3
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increase": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "78.4lb",
+                "weight": "77.5lb",
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "67b72565c07938d85244812ffe4b9c92f9681e248d5046971b02b191f4430ad9"
+  }
+}

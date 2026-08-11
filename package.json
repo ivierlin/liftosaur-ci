@@ -28,6 +28,7 @@
     "test:corpus:smoke": "node --test --test-isolation=none --test-concurrency=1 test/builtin-smoke.test.mjs",
     "test:corpus": "node --test --test-isolation=none --test-concurrency=1 test/builtin-corpus.test.mjs",
     "test:external": "node --test --test-isolation=none --test-concurrency=1 test/external-corpus.test.mjs",
+    "update:builtin-snapshots": "node scripts/update-builtin-snapshots.mjs",
     "test:fast": "npm run test:unit && npm run test:corpus:smoke",
     "test": "npm run test:unit && npm run test:corpus"
   }

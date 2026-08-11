@@ -87,6 +87,58 @@ function stableBehaviorRecord(record, evaluated, api) {
   };
 }
 
+function nominalSnapshotRecord(record, evaluated, api) {
+  const weight = (value) => value == null ? undefined : `${value.value}${value.unit}`;
+  const compactSets = (sets) => {
+    const compact = sets.map((set) => ({
+      reps: set.reps,
+      originalWeight: weight(set.originalWeight),
+      weight: weight(set.weight),
+      minReps: set.minReps,
+      rpe: set.rpe,
+      ...(set.logRpe ? { logRpe: true } : {}),
+      ...(set.isAmrap ? { amrap: true } : {}),
+      label: set.label,
+      timer: set.timer,
+      setTimer: set.setTimer,
+      ...(set.auto ? { auto: true } : {}),
+      ...(set.askWeight ? { askWeight: true } : {}),
+      ...(set.isUnilateral ? { unilateral: true } : {}),
+    }));
+    return compact.reduce((groups, set) => {
+      const previous = groups.at(-1);
+      const comparable = previous == null ? undefined : { ...previous };
+      if (comparable?.count != null) delete comparable.count;
+      if (comparable != null && isDeepStrictEqual(comparable, set)) {
+        previous.count = (previous.count ?? 1) + 1;
+      } else {
+        groups.push(set);
+      }
+      return groups;
+    }, []);
+  };
+  return {
+    day: record.day,
+    dayName: record.dayName,
+    entries: record.entries.map((entry) => {
+      const exercise = entry.programExerciseId
+        ? api.Program_getProgramExerciseForKeyAndDay(
+          evaluated,
+          record.day,
+          entry.programExerciseId
+        )
+        : undefined;
+      return {
+        fullName: exercise?.fullName,
+        progressState: exercise
+          ? api.PlannerProgramExercise_getState(exercise)
+          : undefined,
+        sets: compactSets(entry.sets),
+      };
+    }),
+  };
+}
+
 function evaluationErrors(evaluated) {
   return evaluated.errors.map(({ error, dayData }) => ({
     day: dayData.day,
@@ -617,9 +669,23 @@ export function validateLiftosaurSource(source) {
   }
 
   let completedSets = 0;
+  const days = [];
   for (let day = 1; day <= original.days; day += 1) {
     try {
-      completedSets += completeDay(source, day, api, completeNominalSet).completedSets;
+      const result = completeDay(source, day, api, completeNominalSet);
+      completedSets += result.completedSets;
+      const nextExposure = withoutLoggedErrors("lifecycle-next-exposure", () => (
+        api.Program_nextHistoryRecord(
+          result.reloaded,
+          result.settings,
+          result.stats,
+          day
+        )
+      ));
+      days.push({
+        day,
+        nextExposure: nominalSnapshotRecord(nextExposure, result.reloadedEvaluation, api),
+      });
     } catch (error) {
       if (error instanceof LiftosaurValidationError) throw error;
       throw new LiftosaurValidationError(
@@ -641,6 +707,10 @@ export function validateLiftosaurSource(source) {
   return {
     validator: LIFTOSAUR_VALIDATOR,
     serializedSource,
+    snapshot: {
+      runtimeRevision: pinnedRuntimeRevision,
+      days,
+    },
     summary: {
       days: original.days,
       exercises,

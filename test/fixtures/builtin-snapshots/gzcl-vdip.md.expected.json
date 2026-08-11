@@ -1,0 +1,400 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Stiff Leg Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "60%",
+                "weight": "67.5lb",
+                "amrap": true,
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lunge",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "amrap": true,
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Pull Up",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Bent Over Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "60%",
+                "weight": "55lb",
+                "amrap": true,
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bench Press Close Grip",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "57.5lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Shoulder Press",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "amrap": true,
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "60%",
+                "weight": "55lb",
+                "amrap": true,
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bent Over One Arm Row",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "15lb",
+                "amrap": true,
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "35lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Push Press, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "60%",
+                "weight": "45lb",
+                "amrap": true,
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Incline Bench Press",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "57.5lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Chest Dip",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Day 5",
+        "entries": [
+          {
+            "fullName": "t1: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "75lb",
+                "amrap": true,
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "60%",
+                "weight": "80lb",
+                "amrap": true,
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "35lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl, EZ Bar",
+            "progressState": {
+              "reps": 50,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "9fb54651ae3a8dfe9746214db5b850b7ba2ec7c3d3beee44e03e6699aea52da5"
+  }
+}

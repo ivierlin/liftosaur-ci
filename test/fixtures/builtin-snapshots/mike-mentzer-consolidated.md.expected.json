@@ -1,0 +1,103 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Workout A (Quads & Back)",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "70lb",
+                "weight": "70lb"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Workout B (Posterior Chain & Chest/Triceps)",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 5,
+              "maxReps": 8
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "185lb",
+                "weight": "185lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Dip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "0lb",
+                "weight": "0lb"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "964eb2675f711572a961a79c15ae3e0284bb27ac09c20b7826e3a1282921d9d2"
+  }
+}

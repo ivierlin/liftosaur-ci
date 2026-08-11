@@ -1,0 +1,102 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "count": 3
+              },
+              {
+                "reps": 10,
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Wide Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "count": 2
+              },
+              {
+                "reps": 10,
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "weight": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "reps": 1
+            },
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Crunch",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "amrap": true,
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "ec9696d9b0f4757dfe80d2bd6b6de2bf24598f3fe605a8c90e7be90fe54b36ef"
+  }
+}

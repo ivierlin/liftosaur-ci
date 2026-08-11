@@ -1,0 +1,5167 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "label": "TM 70%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "amrap": true,
+                "label": "TM 70%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "82.5lb",
+                "label": "TM 50%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "60%",
+                "weight": "17.5lb",
+                "label": "15RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "60%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "12.5lb",
+                "label": "20RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "label": "TM 70%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "amrap": true,
+                "label": "TM 70%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "57.5lb",
+                "label": "TM 50%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "60%",
+                "weight": "15lb",
+                "label": "15RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "60%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "25lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "120lb",
+                "label": "TM 70%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "120lb",
+                "amrap": true,
+                "label": "TM 70%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "47.5lb",
+                "label": "TM 50%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "60%",
+                "weight": "40lb",
+                "label": "15RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "60%",
+                "weight": "40lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "30lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "30lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "15lb",
+                "label": "20RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 1 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "label": "TM 70%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "amrap": true,
+                "label": "TM 70%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "57.5lb",
+                "label": "TM 50%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "60%",
+                "weight": "20lb",
+                "label": "15RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "60%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "label": "20RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "50%",
+                "weight": "10lb",
+                "label": "20RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "10lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "label": "TM 75%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "amrap": true,
+                "label": "TM 75%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "60%",
+                "weight": "97.5lb",
+                "label": "TM 60%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "12.5lb",
+                "label": "18RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "label": "TM 75%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "amrap": true,
+                "label": "TM 75%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "60%",
+                "weight": "67.5lb",
+                "label": "TM 60%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "15lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "25lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "127.5lb",
+                "label": "TM 75%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "127.5lb",
+                "amrap": true,
+                "label": "TM 75%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "60%",
+                "weight": "55lb",
+                "label": "TM 60%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "45lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "45lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "30lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "30lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "15lb",
+                "label": "18RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 2 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "label": "TM 75%",
+                "count": 2
+              },
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "amrap": true,
+                "label": "TM 75%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "60%",
+                "weight": "67.5lb",
+                "label": "TM 60%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "10lb",
+                "label": "18RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "10lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "115lb",
+                "label": "TM 70%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "20lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "50lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "50lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "12.5lb",
+                "label": "16RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 3 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "80lb",
+                "label": "TM 70%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "17.5lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "27.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "27.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "0lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "nextExposure": {
+        "day": 11,
+        "dayName": "Week 3 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "155lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "65lb",
+                "label": "TM 70%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "50lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "50lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "32.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "32.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "15lb",
+                "label": "16RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "nextExposure": {
+        "day": 12,
+        "dayName": "Week 3 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "62.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "70%",
+                "weight": "80lb",
+                "label": "TM 70%",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "25lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "10lb",
+                "label": "16RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "10lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "nextExposure": {
+        "day": 13,
+        "dayName": "Week 4 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "70%",
+                "weight": "115lb",
+                "label": "TM 70%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "73%",
+                "weight": "20lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "73%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "60lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "60lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "15lb",
+                "label": "14RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "nextExposure": {
+        "day": 14,
+        "dayName": "Week 4 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "70%",
+                "weight": "80lb",
+                "label": "TM 70%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "73%",
+                "weight": "17.5lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "73%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "32.5lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "32.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "0lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "nextExposure": {
+        "day": 15,
+        "dayName": "Week 4 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "165lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "70%",
+                "weight": "65lb",
+                "label": "TM 70%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "73%",
+                "weight": "50lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "73%",
+                "weight": "50lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "38.75lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "38.75lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "17.5lb",
+                "label": "14RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "20lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "nextExposure": {
+        "day": 16,
+        "dayName": "Week 4 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "67.5lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "label": "TM 80%",
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "amrap": true,
+                "label": "TM 80%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "70%",
+                "weight": "80lb",
+                "label": "TM 70%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "73%",
+                "weight": "25lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "73%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "12.5lb",
+                "label": "14RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "nextExposure": {
+        "day": 17,
+        "dayName": "Week 5 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "TM 85%",
+                "count": 3
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "label": "TM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "130lb",
+                "label": "TM 80%",
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "22.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "25lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "65lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "65lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "17.5lb",
+                "label": "12RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "nextExposure": {
+        "day": 18,
+        "dayName": "Week 5 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "TM 85%",
+                "count": 3
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "label": "TM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "90lb",
+                "label": "TM 80%",
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "20lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "30lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "30lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "35lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "35lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "0lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "nextExposure": {
+        "day": 19,
+        "dayName": "Week 5 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "175lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "label": "TM 85%",
+                "count": 3
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "amrap": true,
+                "label": "TM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "75lb",
+                "label": "TM 80%",
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "55lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "55lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "41.25lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "41.25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "20lb",
+                "label": "12RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "20lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "nextExposure": {
+        "day": 20,
+        "dayName": "Week 5 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "70lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "label": "TM 85%",
+                "count": 3
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "amrap": true,
+                "label": "TM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "90lb",
+                "label": "TM 80%",
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "25lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "25lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "30lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "30lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "70%",
+                "weight": "12.5lb",
+                "label": "12RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 7,
+                "originalWeight": "70%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "nextExposure": {
+        "day": 21,
+        "dayName": "Week 6 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "135lb",
+                "label": "1RM"
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "30lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "30lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "70lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "70lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "17.5lb",
+                "label": "10RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "nextExposure": {
+        "day": 22,
+        "dayName": "Week 6 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "135lb",
+                "label": "1RM"
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "32.5lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "32.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "37.5lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "37.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "0lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "nextExposure": {
+        "day": 23,
+        "dayName": "Week 6 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "185lb",
+                "label": "1RM"
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "45lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "45lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "22.5lb",
+                "label": "10RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "20lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "nextExposure": {
+        "day": 24,
+        "dayName": "Week 6 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "75lb",
+                "label": "1RM"
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "30lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "30lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "32.5lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "32.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "75%",
+                "weight": "15lb",
+                "label": "10RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "nextExposure": {
+        "day": 25,
+        "dayName": "Week 7 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "97.5lb",
+                "label": "6RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "97.5lb",
+                "amrap": true,
+                "label": "6RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "115lb",
+                "label": "TM 70%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 26,
+      "nextExposure": {
+        "day": 26,
+        "dayName": "Week 7 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "97.5lb",
+                "label": "6RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "97.5lb",
+                "amrap": true,
+                "label": "6RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "80lb",
+                "label": "TM 70%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "15lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 27,
+      "nextExposure": {
+        "day": 27,
+        "dayName": "Week 7 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "155lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "132.5lb",
+                "label": "6RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "132.5lb",
+                "amrap": true,
+                "label": "6RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "65lb",
+                "label": "TM 70%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "45lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "45lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 28,
+      "nextExposure": {
+        "day": 28,
+        "dayName": "Week 7 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "85%",
+                "weight": "62.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "52.5lb",
+                "label": "6RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72.5%",
+                "weight": "52.5lb",
+                "amrap": true,
+                "label": "6RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "80lb",
+                "label": "TM 70%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "label": "12RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "68%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 29,
+      "nextExposure": {
+        "day": 29,
+        "dayName": "Week 8 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "4RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "4RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "122.5lb",
+                "label": "TM 75%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "20lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "45lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "12.5lb",
+                "label": "18RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 30,
+      "nextExposure": {
+        "day": 30,
+        "dayName": "Week 8 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "4RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "4RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "85lb",
+                "label": "TM 75%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "17.5lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "25lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 31,
+      "nextExposure": {
+        "day": 31,
+        "dayName": "Week 8 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "165lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "label": "4RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "amrap": true,
+                "label": "4RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "70lb",
+                "label": "TM 75%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "50lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "50lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "30lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "30lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "15lb",
+                "label": "18RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 32,
+      "nextExposure": {
+        "day": 32,
+        "dayName": "Week 8 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "67.5lb",
+                "label": "4RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "label": "4RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "amrap": true,
+                "label": "4RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "85lb",
+                "label": "TM 75%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "73%",
+                "weight": "25lb",
+                "label": "10RM",
+                "askWeight": true
+              },
+              {
+                "reps": 6,
+                "originalWeight": "73%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "label": "18RM",
+                "askWeight": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 18,
+                "originalWeight": "50%",
+                "weight": "10lb",
+                "label": "18RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 10,
+                "originalWeight": "50%",
+                "weight": "10lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 33,
+      "nextExposure": {
+        "day": 33,
+        "dayName": "Week 9 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "2RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "label": "2RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "130lb",
+                "label": "TM 80%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "78%",
+                "weight": "22.5lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "78%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "50lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "50lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "12.5lb",
+                "label": "16RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 34,
+      "nextExposure": {
+        "day": 34,
+        "dayName": "Week 9 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "2RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "amrap": true,
+                "label": "2RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "90lb",
+                "label": "TM 80%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "78%",
+                "weight": "17.5lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "78%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "27.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "27.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "0lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 35,
+      "nextExposure": {
+        "day": 35,
+        "dayName": "Week 9 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "175lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "label": "2RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "amrap": true,
+                "label": "2RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "75lb",
+                "label": "TM 80%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "78%",
+                "weight": "50lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "78%",
+                "weight": "50lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "32.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "32.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "15lb",
+                "label": "16RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 36,
+      "nextExposure": {
+        "day": 36,
+        "dayName": "Week 9 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "95%",
+                "weight": "70lb",
+                "label": "2RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "label": "2RM 85%",
+                "count": 4
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "amrap": true,
+                "label": "2RM 85%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "90lb",
+                "label": "TM 80%",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "78%",
+                "weight": "25lb",
+                "label": "8RM",
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "78%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "label": "16RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "55%",
+                "weight": "10lb",
+                "label": "16RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "55%",
+                "weight": "10lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 37,
+      "nextExposure": {
+        "day": 37,
+        "dayName": "Week 10 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "5RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "5RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "5RM 90%"
+              }
+            ]
+          },
+          {
+            "fullName": "Deficit Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "82.5%",
+                "weight": "135lb",
+                "label": "TM 82.5%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "22.5lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "22.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "60lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "60lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "15lb",
+                "label": "14RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "15lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 38,
+      "nextExposure": {
+        "day": 38,
+        "dayName": "Week 10 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "5RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "label": "5RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "amrap": true,
+                "label": "5RM 90%"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "82.5%",
+                "weight": "92.5lb",
+                "label": "TM 82.5%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "20lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pec Deck",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "32.5lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "32.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Face Pull, Cable",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "0lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "0lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 39,
+      "nextExposure": {
+        "day": 39,
+        "dayName": "Week 10 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "155lb",
+                "label": "5RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "label": "5RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "137.5lb",
+                "amrap": true,
+                "label": "5RM 90%"
+              }
+            ]
+          },
+          {
+            "fullName": "Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "82.5%",
+                "weight": "77.5lb",
+                "label": "TM 82.5%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "55lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "55lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "38.75lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "38.75lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over One Arm Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "17.5lb",
+                "label": "14RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "17.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, EZ Bar",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "20lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "20lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 40,
+      "nextExposure": {
+        "day": 40,
+        "dayName": "Week 10 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "62.5lb",
+                "label": "5RM",
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "label": "5RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "amrap": true,
+                "label": "5RM 90%"
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "82.5%",
+                "weight": "92.5lb",
+                "label": "TM 82.5%",
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "Push Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "83%",
+                "weight": "25lb",
+                "label": "6RM",
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "25lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "label": "14RM",
+                "askWeight": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "27.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 14,
+                "originalWeight": "65%",
+                "weight": "12.5lb",
+                "label": "14RM",
+                "askWeight": true,
+                "unilateral": true
+              },
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "12.5lb",
+                "amrap": true,
+                "label": "MRS",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 41,
+      "nextExposure": {
+        "day": 41,
+        "dayName": "Week 11 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "92%",
+                "weight": "122.5lb",
+                "label": "3RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "110lb",
+                "label": "3RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "110lb",
+                "amrap": true,
+                "label": "3RM 90%"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 42,
+      "nextExposure": {
+        "day": 42,
+        "dayName": "Week 11 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "92%",
+                "weight": "122.5lb",
+                "label": "3RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "110lb",
+                "label": "3RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "110lb",
+                "amrap": true,
+                "label": "3RM 90%"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 43,
+      "nextExposure": {
+        "day": 43,
+        "dayName": "Week 11 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "92%",
+                "weight": "170lb",
+                "label": "3RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "150lb",
+                "label": "3RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "150lb",
+                "amrap": true,
+                "label": "3RM 90%"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 44,
+      "nextExposure": {
+        "day": 44,
+        "dayName": "Week 11 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "92%",
+                "weight": "67.5lb",
+                "label": "3RM",
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "60lb",
+                "label": "3RM 90%",
+                "count": 2
+              },
+              {
+                "reps": 1,
+                "originalWeight": "82%",
+                "weight": "60lb",
+                "amrap": true,
+                "label": "3RM 90%"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 45,
+      "nextExposure": {
+        "day": 45,
+        "dayName": "Week 12 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "135lb",
+                "label": "1RM"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 46,
+      "nextExposure": {
+        "day": 46,
+        "dayName": "Week 12 - Day 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "135lb",
+                "label": "1RM"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 47,
+      "nextExposure": {
+        "day": 47,
+        "dayName": "Week 12 - Day 3",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "185lb",
+                "label": "1RM"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 48,
+      "nextExposure": {
+        "day": 48,
+        "dayName": "Week 12 - Day 4",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "100%",
+                "weight": "75lb",
+                "label": "1RM"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "d51818a86948b006e5686cc9b8986af2232af3d19a99e2b5336d9c4e3a259b1f"
+  }
+}

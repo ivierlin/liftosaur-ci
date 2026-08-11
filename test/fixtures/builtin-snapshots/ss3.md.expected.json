@@ -1,0 +1,348 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Day A 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "100lb",
+                "weight": "100lb"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Day B 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "2.5lb",
+                "weight": "5lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Day A 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Power Clean",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "97.5lb",
+                "weight": "97.5lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Day B 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 10,
+                "unit": "%"
+              },
+              "failures": 2,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "2.5lb",
+                "weight": "5lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "176b6f112d9baa74d4c39b5d4e02f6490c654027bc99071d13421c206d651e85"
+  }
+}

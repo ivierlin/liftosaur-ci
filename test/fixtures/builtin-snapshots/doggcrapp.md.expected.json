@@ -1,0 +1,1040 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - A1: Chest, Shoulders, Triceps, Back",
+        "entries": [
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "inc1": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "inc2": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper1": 9,
+              "upper2": 12,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "amrap": true,
+                "label": "Heavy",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "amrap": true,
+                "label": "Back-off"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - B1: Biceps, Forearms, Calves, Hamstrings, Quads",
+        "entries": [
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Reverse Curl, Barbell",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 0,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Standing Calf Raise",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 12,
+              "lower": 0,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "inc1": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "inc2": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper1": 8,
+              "upper2": 20,
+              "stalls": 0,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "amrap": true,
+                "label": "Heavy",
+                "timer": 180
+              },
+              {
+                "reps": 20,
+                "originalWeight": "140lb",
+                "weight": "140lb",
+                "label": "Widowmkr"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - A2: Chest, Shoulders, Triceps, Back",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press, Leverage Machine",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Skullcrusher",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "T Bar Row",
+            "progressState": {
+              "inc1": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "inc2": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper1": 9,
+              "upper2": 12,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "amrap": true,
+                "label": "Heavy",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "amrap": true,
+                "label": "Back-off"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 2 - B2: Biceps, Forearms, Calves, Hamstrings, Quads",
+        "entries": [
+          {
+            "fullName": "Preacher Curl, EZ Bar",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Wrist Curl",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 0,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "30lb",
+                "weight": "45lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Seated Calf Raise",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 12,
+              "lower": 0,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Seated Leg Curl",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Hack Squat",
+            "progressState": {
+              "inc1": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "inc2": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper1": 8,
+              "upper2": 20,
+              "stalls": 0,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "180lb",
+                "weight": "180lb",
+                "amrap": true,
+                "label": "Heavy",
+                "timer": 180
+              },
+              {
+                "reps": 20,
+                "originalWeight": "140lb",
+                "weight": "140lb",
+                "label": "Widowmkr"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - A3: Chest, Shoulders, Triceps, Back",
+        "entries": [
+          {
+            "fullName": "Chest Press, Leverage Machine",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Seated Overhead Press",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 15,
+              "lower": 11,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "inc1": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "inc2": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "upper1": 9,
+              "upper2": 12,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "225lb",
+                "weight": "225lb",
+                "amrap": true,
+                "label": "Heavy",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "amrap": true,
+                "label": "Back-off"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - B3: Biceps, Forearms, Calves, Hamstrings, Quads",
+        "entries": [
+          {
+            "fullName": "Bicep Curl, Cable",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 15,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 5,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "amrap": true,
+                "timer": 30
+              },
+              {
+                "reps": 3,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "amrap": true,
+                "timer": 30
+              }
+            ]
+          },
+          {
+            "fullName": "Reverse Wrist Curl",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 20,
+              "lower": 0,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "15lb",
+                "weight": "45lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Calf Press on Leg Press",
+            "progressState": {
+              "inc": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper": 12,
+              "lower": 0,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "180lb",
+                "weight": "180lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Stiff Leg Deadlift",
+            "progressState": {
+              "inc1": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "inc2": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper1": 9,
+              "upper2": 12,
+              "stalls": 1,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "155lb",
+                "weight": "155lb",
+                "amrap": true,
+                "label": "Heavy",
+                "timer": 120
+              },
+              {
+                "reps": 10,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "amrap": true,
+                "label": "Back-off"
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "inc1": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "inc2": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "upper1": 8,
+              "upper2": 20,
+              "stalls": 0,
+              "changeExercise": 0
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "270lb",
+                "weight": "270lb",
+                "amrap": true,
+                "label": "Heavy",
+                "timer": 180
+              },
+              {
+                "reps": 20,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "label": "Widowmkr"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "9a008d3b792bf24e5eed85238346a965f8926f9745c6e15a97feb9df03daeb30"
+  }
+}
