@@ -40,11 +40,12 @@ all other built-ins must pass the full nominal lifecycle.
 
 ## Reviewed regression scenarios
 
-The `snapshot` command accepts two scenario formats. Format 1 has `name`, `day`,
-and `entries` for one exposure. Format 2 has `name` and between 2 and 100 named,
-ordered `steps`; every step has its own `day` and `entries`. Each sequence step
-receives the exact serialized program produced by the prior step while sharing
-the same default settings and statistics context.
+The `snapshot` command accepts complete exposures and partial observations.
+A complete single exposure has `name`, `day`, and `entries`. A complete sequence
+has `name` and between 2 and 100 named, ordered `steps`; every step has its own
+`day` and `entries`. Each sequence step receives the exact serialized program
+produced by the prior step while sharing the same default settings and statistics
+context.
 
 Each entry identifies the evaluated exercise `fullName` and supplies one object
 per work set. `reps` is required. Repeated same-name exercises use `occurrence`
@@ -52,12 +53,28 @@ per work set. `reps` is required. Repeated same-name exercises use `occurrence`
 the prescription; omitted values retain the prescribed input. Sets requiring an
 RPE or weight must receive one when the prescription has none.
 
-The command fails if an exercise or set is missing or extra. Its immutable JSON
-output binds the source and scenario checksums and records persistent progression
-state, the next exposure, and the next scheduled workout. A sequence records
-those semantic results after every step and binds the final serialized source.
-Both raw `originalWeight` and rounded displayed `weight` remain in the semantic
-snapshot.
+Complete exposures fail if an exercise or set is missing or extra. Their
+immutable JSON output binds the source and scenario checksums and records
+persistent progression state, the next exposure, and the next scheduled workout.
+A sequence records those semantic results after every step and binds the final
+serialized source. Both raw `originalWeight` and rounded displayed `weight`
+remain in the semantic snapshot.
+
+### Partial observation
+
+Set `"finish": false` on a standalone scenario to stop after exactly the supplied
+work sets and observe the workout at that point. Partial observations may name
+only the exercises being performed; unrelated entries remain untouched. After
+each supplied set, Liftosaur's real update script runs, so `currentWorkout`
+captures dynamic set additions or removals, timer changes, drop-set loads,
+completed-set fields, prompts, state, descriptions, and other observable workout
+behavior.
+
+A partial observation does not run exercise finish scripts or finish-day logic,
+does not serialize or reload the program, and does not produce `nextExposure`,
+`nextWorkout`, or `progressedSource`. Unfinished observations cannot appear in a
+scenario sequence and cannot be resumed. Those constraints are intentional: the
+feature is an observation point, not a workout scripting language.
 
 The first reviewed fixtures use Liftosaur's Basic Beginner program with explicit
 nominal, underperformance, and overperformance repetitions. Their snapshots are
