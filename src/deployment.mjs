@@ -4,11 +4,6 @@ import path from "node:path";
 import { sha256 } from "./report.mjs";
 import { assertCanonicalLiftosaurSource } from "./source-format.mjs";
 
-export const LIFTOSAUR_DEPLOYMENT_BUNDLE = Object.freeze({
-  formatVersion: 2,
-  implementation: "liftosaur-deployment-bundle-v2",
-});
-
 const API_KEY_NAME = "LIFTOSAUR_API_KEY";
 const DEFAULT_API_BASE = "https://www.liftosaur.com/api/v1";
 
@@ -44,7 +39,7 @@ function parseJson(text, label) {
 
 function assertValidationReport(report, sourceHash) {
   requireObject(report, "Validation report");
-  if (report.formatVersion !== 1 || report.command !== "validate" || report.status !== "passed") {
+  if (report.command !== "validate" || report.status !== "passed") {
     throw new Error("Validation report must record a passed liftosaur-ci validation");
   }
   if (report.input?.sha256 !== sourceHash) {
@@ -54,7 +49,7 @@ function assertValidationReport(report, sourceHash) {
 
 function assertMergeReport(report, sourceHash) {
   requireObject(report, "Merge report");
-  if (report.formatVersion !== 1 || report.command !== "merge" || report.status !== "merged") {
+  if (report.command !== "merge" || report.status !== "merged") {
     throw new Error("Merge report must record a successful liftosaur-ci merge");
   }
   if (report.output?.sha256 !== sourceHash) {
@@ -66,8 +61,7 @@ function assertSourceProvenance(source) {
   if (source === null || source === undefined) return;
   requireObject(source, "Deployment source provenance");
   if (
-    source.implementation !== "liftosaur-git-source-v1"
-    || typeof source.remote !== "string"
+    typeof source.remote !== "string"
     || !source.remote
     || !["sha1", "sha256"].includes(source.objectFormat)
     || typeof source.programPath !== "string"
@@ -149,7 +143,6 @@ export async function prepareDeploymentBundleFromContents({
     ...(mergeText ? { "merge-report.json": mergeText } : {}),
   };
   const manifest = {
-    ...LIFTOSAUR_DEPLOYMENT_BUNDLE,
     preparedAt: new Date(prepared).toISOString(),
     target: {
       id: target.id,
@@ -183,12 +176,6 @@ async function verifyDeploymentBundle(bundleDirectory, maxAgeHours) {
   const manifestText = await readFile(path.join(bundleDirectory, "deployment-manifest.json"), "utf8");
   const manifest = parseJson(manifestText, "Deployment manifest");
   requireObject(manifest, "Deployment manifest");
-  if (
-    manifest.formatVersion !== LIFTOSAUR_DEPLOYMENT_BUNDLE.formatVersion
-    || manifest.implementation !== LIFTOSAUR_DEPLOYMENT_BUNDLE.implementation
-  ) {
-    throw new Error("Unsupported deployment manifest");
-  }
   const preparedAt = Date.parse(manifest.preparedAt);
   if (!Number.isFinite(preparedAt)) throw new Error("Preparation timestamp is invalid");
   const ageMs = Date.now() - preparedAt;
@@ -370,7 +357,6 @@ export async function deployPreparedBundle({
   await writePrivate(path.join(outputDirectory, "rollback-active.liftoscript"), bundle.active);
   const targetId = bundle.manifest.target.id;
   let report = {
-    formatVersion: 1,
     command: "deploy",
     deployedAt: null,
     deploymentPerformed: false,
