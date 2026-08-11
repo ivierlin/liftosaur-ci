@@ -1,7 +1,7 @@
 # Repository check
 
-`liftosaur-ci check` is the minimal generic CI entry point. It reads a versioned
-JSON config, validates every referenced program, and compares configured reviewed
+`liftosaur-ci check` is the minimal generic CI entry point. It reads a JSON
+config, validates every referenced program, and compares configured reviewed
 snapshots. It never updates a program, scenario, or snapshot.
 
 ## Configuration
@@ -11,8 +11,6 @@ target:
 
 ```json
 {
-  "formatVersion": 3,
-  "implementation": "liftosaur-check-config-v3",
   "deployments": {
     "example": {
       "program": "programs/example.liftoscript",
@@ -49,11 +47,8 @@ Reviewed scenarios are optional:
 
 `.git`, `.private`, and `node_modules` are excluded from glob discovery. Scenario
 files are strict: unknown scenario, step, entry, and set fields are rejected
-instead of being silently ignored.
-
-Version 1 check-only configs remain supported. Version 2 deployment configs used
-environment-variable program IDs and are intentionally not accepted by the
-simplified schema.
+instead of being silently ignored. A scenario with `day` and `entries` describes
+one exposure; a scenario with `steps` describes an ordered sequence of exposures.
 
 ## CI usage
 
