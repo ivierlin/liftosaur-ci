@@ -18,6 +18,27 @@ export {
   restoreProjectedSource,
 } from "./frontend.mjs";
 
+function gitManagedBodies(source) {
+  const normalized = canonicalizeLiftosaurSource(source);
+  return [
+    ...(normalized.match(/\{~[^~]*~\}/g) ?? []),
+    ...(normalized.match(/\{\s*\.\.\.[^{}]*\}/g) ?? []),
+  ].sort();
+}
+
+function assertLiveProgramLogicUnchanged(base, active) {
+  const baseBodies = gitManagedBodies(base);
+  const activeBodies = gitManagedBodies(active);
+  if (baseBodies.length === activeBodies.length
+    && baseBodies.every((body, index) => body === activeBodies[index])) {
+    return;
+  }
+  throw new Error(
+    "Live Liftosaur program contains changes inside Git-managed { ... } bodies. "
+    + "Commit those changes in Git or discard them in Liftosaur before updating."
+  );
+}
+
 function gitMergeFiles(activePath, basePath, candidatePath) {
   const result = spawnSync(
     "git",
@@ -196,6 +217,7 @@ export async function mergeLiftosaurSources({ base, active, candidate }) {
     active: parseLiftosaurMergeDocument(active),
     candidate: parseLiftosaurMergeDocument(candidate),
   };
+  assertLiveProgramLogicUnchanged(base, active);
   const blockOrderChanged = initialBlocks.active.order !== initialBlocks.base.order
     || initialBlocks.candidate.order !== initialBlocks.base.order;
   const projected = {
