@@ -9,7 +9,7 @@
     }
   ],
   "deployments": {
-    "example": {
+    "program": {
       "program": "test/fixtures/check/example.liftoscript",
       "programId": "replace-with-liftosaur-program-id"
     }
