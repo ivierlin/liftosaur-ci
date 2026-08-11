@@ -80,8 +80,6 @@ test("update bootstraps once and then needs no deployment inputs", async () => {
     await Promise.all([
       writeFile(programFile, source(), "utf8"),
       writeFile(configFile, `${JSON.stringify({
-        formatVersion: 3,
-        implementation: "liftosaur-check-config-v3",
         deployments: {
           program: {
             program: "programs/example.liftoscript",
