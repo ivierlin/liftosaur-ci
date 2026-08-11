@@ -241,7 +241,6 @@ async function runValidate(argv) {
   } catch (error) {
     if (!(error instanceof LiftosaurValidationError)) throw error;
     const report = {
-      formatVersion: 1,
       command: "validate",
       cli: LIFTOSAUR_CI_CLI,
       status: "failed",
