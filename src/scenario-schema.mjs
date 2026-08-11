@@ -35,10 +35,17 @@ function validateEntries(entries, label) {
   }
 }
 
+function validateUnits(scenario) {
+  if (Object.hasOwn(scenario, "units") && scenario.units !== "kg" && scenario.units !== "lb") {
+    throw new Error("Scenario.units must be kg or lb");
+  }
+}
+
 export function assertScenarioSchema(scenario) {
   requireObject(scenario, "Scenario");
+  validateUnits(scenario);
   if (Object.hasOwn(scenario, "steps")) {
-    requireAllowedKeys(scenario, new Set(["name", "steps"]), "Scenario");
+    requireAllowedKeys(scenario, new Set(["name", "steps", "units"]), "Scenario");
     if (Array.isArray(scenario.steps)) {
       for (const [index, step] of scenario.steps.entries()) {
         const label = `Scenario.steps[${index}]`;
@@ -48,7 +55,7 @@ export function assertScenarioSchema(scenario) {
     }
     return scenario;
   }
-  requireAllowedKeys(scenario, new Set(["name", "day", "entries", "finish"]), "Scenario");
+  requireAllowedKeys(scenario, new Set(["name", "day", "entries", "finish", "units"]), "Scenario");
   validateEntries(scenario.entries, "Scenario");
   return scenario;
 }
