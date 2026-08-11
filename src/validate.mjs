@@ -1,16 +1,6 @@
-import assert from "node:assert/strict";
 import { isDeepStrictEqual } from "node:util";
 
 import { loadLiftosaurRuntime, pinnedRuntimeRevision } from "./runtime.mjs";
-import { assertScenarioSchema } from "./scenario-schema.mjs";
-
-export class LiftosaurValidationError extends Error {
-  constructor(message, stage, details = []) {
-    super(message);
-    this.stage = stage;
-    this.details = details;
-  }
-}
 
 export const LIFTOSAUR_VALIDATOR = Object.freeze({
   formatVersion: 1,
@@ -20,7 +10,7 @@ export const LIFTOSAUR_VALIDATOR = Object.freeze({
 
 export const LIFTOSAUR_SCENARIO_SNAPSHOT = Object.freeze({
   formatVersion: 1,
-  implementation: "liftosaur-scenario-snapshot-v1",
+  implementation: "liftosaur-scenario-v1",
   runtimeRevision: pinnedRuntimeRevision,
 });
 
@@ -30,122 +20,184 @@ export const LIFTOSAUR_SCENARIO_SEQUENCE_SNAPSHOT = Object.freeze({
   runtimeRevision: pinnedRuntimeRevision,
 });
 
-let api;
-
-function loadApi() {
-  if (api) return api;
-  const runtime = loadLiftosaurRuntime();
-  api = {
-    ...runtime.require("src/models/program.ts"),
-    ...runtime.require("src/models/history.ts"),
-    ...runtime.require("src/models/progress.ts"),
-    ...runtime.require("src/models/settings.ts"),
-    ...runtime.require("src/models/stats.ts"),
-    ...runtime.require("src/models/unit.ts"),
-    ...runtime.require("src/models/exercise.ts"),
-  };
-  return api;
-}
-
-function withoutLoggedErrors(stage, callback) {
-  const original = console.error;
-  const messages = [];
-  console.error = (...args) => messages.push(args.map(String).join(" "));
-  try {
-    const result = callback();
-    if (messages.length > 0) {
-      throw new LiftosaurValidationError(
-        `Liftosaur emitted console errors during ${stage}`,
-        stage,
-        messages.map((message) => ({ message }))
-      );
-    }
-    return result;
-  } finally {
-    console.error = original;
+export class LiftosaurValidationError extends Error {
+  constructor(message, stage, details = []) {
+    super(message);
+    this.stage = stage;
+    this.details = details;
   }
-}
-
-function evaluationErrors(evaluated) {
-  return (evaluated?.errors ?? []).map((error) => ({
-    message: error.message ?? String(error),
-    ...(error.line != null ? { line: error.line } : {}),
-    ...(error.column != null ? { column: error.column } : {}),
-  }));
-}
-
-function programFromSource(source, runtimeApi) {
-  const result = withoutLoggedErrors("parse", () => runtimeApi.Program_deserialize(source));
-  if (!result?.success) {
-    throw new LiftosaurValidationError(
-      result?.error ?? "Liftosaur parser rejected source",
-      "parse"
-    );
-  }
-  return result.program;
-}
-
-function stableValue(value) {
-  if (value == null) return value;
-  if (typeof value === "number" || typeof value === "string" || typeof value === "boolean") return value;
-  if (Array.isArray(value)) return value.map(stableValue);
-  if (typeof value === "object") {
-    return Object.fromEntries(
-      Object.entries(value)
-        .filter(([, item]) => typeof item !== "function" && item !== undefined)
-        .map(([key, item]) => [key, stableValue(item)])
-    );
-  }
-  return undefined;
 }
 
 function stableSet(set) {
-  return stableValue({
+  return {
+    index: set.index,
     reps: set.reps,
-    minReps: set.minReps,
-    maxReps: set.maxReps,
+    originalWeight: set.originalWeight,
     weight: set.weight,
+    minReps: set.minReps,
     rpe: set.rpe,
     logRpe: set.logRpe,
     isAmrap: set.isAmrap,
+    label: set.label,
+    timer: set.timer,
+    setTimer: set.setTimer,
+    isOverflowSetTimer: set.isOverflowSetTimer,
+    auto: set.auto,
     askWeight: set.askWeight,
     isUnilateral: set.isUnilateral,
-    setTimer: set.setTimer,
-  });
+    programSetIndex: set.programSetIndex,
+  };
 }
 
 function stableEntry(entry) {
   return {
-    exercise: entry.exercise?.name ?? entry.exerciseName ?? entry.name ?? entry.programExerciseId,
-    programExerciseId: entry.programExerciseId,
-    isSuppressed: Boolean(entry.isSuppressed),
+    exercise: {
+      id: entry.exercise.id,
+      equipment: entry.exercise.equipment,
+    },
+    index: entry.index,
     sets: entry.sets.map(stableSet),
+    warmupSets: entry.warmupSets.map(stableSet),
+    state: entry.state,
+    vars: entry.vars,
+    notes: entry.notes,
+    isSuppressed: entry.isSuppressed,
+    superset: entry.superset,
+    updatePrints: entry.updatePrints,
+    descriptionSnapshot: entry.descriptionSnapshot,
+    progressSnapshot: entry.progressSnapshot,
   };
 }
 
 function stableRecord(record) {
-  return { entries: record.entries.map(stableEntry) };
+  return {
+    day: record.day,
+    week: record.week,
+    dayInWeek: record.dayInWeek,
+    dayName: record.dayName,
+    entries: record.entries.map(stableEntry),
+  };
 }
 
-function stableBehaviorRecord(record, evaluated, runtimeApi) {
+function stableBehaviorRecord(record, evaluated, api) {
   return {
+    ...stableRecord(record),
     entries: record.entries.map((entry) => {
       const exercise = entry.programExerciseId
-        ? runtimeApi.Program_getProgramExerciseForKeyAndDay(evaluated, record.day, entry.programExerciseId)
+        ? api.Program_getProgramExerciseForKeyAndDay(
+          evaluated,
+          record.day,
+          entry.programExerciseId
+        )
         : undefined;
       return {
-        exercise: exercise?.fullName ?? entry.exercise?.name ?? entry.programExerciseId,
-        isSuppressed: Boolean(entry.isSuppressed),
-        sets: entry.sets.map(stableSet),
+        fullName: exercise?.fullName,
+        progressState: exercise
+          ? api.PlannerProgramExercise_getState(exercise)
+          : undefined,
+        ...stableEntry(entry),
       };
     }),
   };
 }
 
-function evaluateSource(source, runtimeApi) {
-  const program = programFromSource(source, runtimeApi);
-  const settings = runtimeApi.Settings_build();
-  const evaluated = withoutLoggedErrors("evaluate", () => runtimeApi.Program_evaluate(program, settings));
+function evaluationErrors(evaluated) {
+  return evaluated.errors.map(({ error, dayData }) => ({
+    day: dayData.day,
+    week: dayData.week,
+    dayInWeek: dayData.dayInWeek,
+    message: error instanceof Error ? error.message : String(error),
+  }));
+}
+
+function formatLoggedValue(value) {
+  if (value instanceof Error) return value.message;
+  if (typeof value === "string") return value;
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
+
+function withoutLoggedErrors(stage, operation) {
+  const logged = [];
+  const previous = console.error;
+  console.error = (...values) => logged.push(values.map(formatLoggedValue).join(" "));
+  try {
+    const result = operation();
+    if (logged.length > 0) {
+      throw new LiftosaurValidationError(
+        `Liftosaur logged ${logged.length} swallowed error${logged.length === 1 ? "" : "s"}`,
+        stage,
+        logged.map((message) => ({ message }))
+      );
+    }
+    return result;
+  } finally {
+    console.error = previous;
+  }
+}
+
+function loadApi() {
+  const runtime = loadLiftosaurRuntime();
+  const {
+    Program_create,
+    Program_evaluate,
+    Program_getProgramExerciseForKeyAndDay,
+    Program_nextHistoryRecord,
+    Program_numberOfDays,
+    Program_runAllFinishDayScripts,
+    Program_runFinishDayScript,
+  } = runtime.require("src/models/program.ts");
+  const {
+    Progress_getDayData,
+    Progress_runUpdateScript,
+  } = runtime.require("src/models/progress.ts");
+  const { Settings_build } = runtime.require("src/models/settings.ts");
+  const { Stats_getEmpty } = runtime.require("src/models/stats.ts");
+  const { PlannerProgramExercise_getState } = runtime.require(
+    "src/pages/planner/models/plannerProgramExercise.ts"
+  );
+  const {
+    PlannerProgram_evaluateText,
+    PlannerProgram_generateFullText,
+  } = runtime.require(
+    "src/pages/planner/models/plannerProgram.ts"
+  );
+  return {
+    Program_create,
+    Program_evaluate,
+    Program_getProgramExerciseForKeyAndDay,
+    Program_nextHistoryRecord,
+    Program_numberOfDays,
+    Program_runAllFinishDayScripts,
+    Program_runFinishDayScript,
+    Progress_getDayData,
+    Progress_runUpdateScript,
+    Settings_build,
+    Stats_getEmpty,
+    PlannerProgramExercise_getState,
+    PlannerProgram_evaluateText,
+    PlannerProgram_generateFullText,
+  };
+}
+
+function programFromSource(source, api) {
+  return {
+    ...api.Program_create("Validation Program"),
+    planner: {
+      vtype: "planner",
+      name: "Validation Program",
+      weeks: api.PlannerProgram_evaluateText(source),
+    },
+  };
+}
+
+function evaluateSource(source, api) {
+  const program = programFromSource(source, api);
+  const settings = api.Settings_build();
+  const evaluated = withoutLoggedErrors("evaluate", () => api.Program_evaluate(program, settings));
   const errors = evaluationErrors(evaluated);
   if (errors.length > 0) {
     throw new LiftosaurValidationError(
@@ -155,12 +207,12 @@ function evaluateSource(source, runtimeApi) {
     );
   }
 
-  const days = runtimeApi.Program_numberOfDays(evaluated);
+  const days = api.Program_numberOfDays(evaluated);
   const records = Array.from({ length: days }, (_, index) => stableRecord(
-    withoutLoggedErrors("construct", () => runtimeApi.Program_nextHistoryRecord(
+    withoutLoggedErrors("construct", () => api.Program_nextHistoryRecord(
       program,
       settings,
-      runtimeApi.Stats_getEmpty(),
+      api.Stats_getEmpty(),
       index + 1
     ))
   ));
@@ -211,12 +263,12 @@ function completeReviewedSet(set, input, exerciseName, setIndex, label) {
   set.isCompleted = true;
 }
 
-function completeDay(source, day, runtimeApi, completeSet, context = {}) {
-  const program = programFromSource(source, runtimeApi);
-  const settings = context.settings ?? runtimeApi.Settings_build();
-  const stats = context.stats ?? runtimeApi.Stats_getEmpty();
+function completeDay(source, day, api, completeSet, context = {}) {
+  const program = programFromSource(source, api);
+  const settings = context.settings ?? api.Settings_build();
+  const stats = context.stats ?? api.Stats_getEmpty();
   const evaluated = withoutLoggedErrors("lifecycle-evaluate", () => (
-    runtimeApi.Program_evaluate(program, settings)
+    api.Program_evaluate(program, settings)
   ));
   const errors = evaluationErrors(evaluated);
   if (errors.length > 0) {
@@ -228,7 +280,7 @@ function completeDay(source, day, runtimeApi, completeSet, context = {}) {
   }
 
   let record = withoutLoggedErrors("lifecycle-construct", () => (
-    runtimeApi.Program_nextHistoryRecord(program, settings, stats, day)
+    api.Program_nextHistoryRecord(program, settings, stats, day)
   ));
   let completedSets = 0;
   for (let entryIndex = 0; entryIndex < record.entries.length; entryIndex += 1) {
@@ -247,7 +299,7 @@ function completeDay(source, day, runtimeApi, completeSet, context = {}) {
       const entry = record.entries[entryIndex];
       const set = entry.sets[setIndex];
       const exercise = entry.programExerciseId
-        ? runtimeApi.Program_getProgramExerciseForKeyAndDay(evaluated, day, entry.programExerciseId)
+        ? api.Program_getProgramExerciseForKeyAndDay(evaluated, day, entry.programExerciseId)
         : undefined;
       if (!exercise) {
         throw new LiftosaurValidationError(
@@ -260,7 +312,7 @@ function completeDay(source, day, runtimeApi, completeSet, context = {}) {
         completeSet({ set, entry, exercise, entryIndex, setIndex });
         completedSets += 1;
       }
-      record = withoutLoggedErrors("lifecycle-update", () => runtimeApi.Progress_runUpdateScript(
+      record = withoutLoggedErrors("lifecycle-update", () => api.Progress_runUpdateScript(
         record,
         exercise,
         evaluated.states,
@@ -274,11 +326,11 @@ function completeDay(source, day, runtimeApi, completeSet, context = {}) {
     }
   }
 
-  const dayData = runtimeApi.Progress_getDayData(record);
+  const dayData = api.Progress_getDayData(record);
   for (const [entryIndex, entry] of record.entries.entries()) {
     if (entry.isSuppressed || !entry.sets.some((set) => set.isCompleted)) continue;
     const exercise = entry.programExerciseId
-      ? runtimeApi.Program_getProgramExerciseForKeyAndDay(evaluated, day, entry.programExerciseId)
+      ? api.Program_getProgramExerciseForKeyAndDay(evaluated, day, entry.programExerciseId)
       : undefined;
     if (!exercise) {
       throw new LiftosaurValidationError(
@@ -287,7 +339,7 @@ function completeDay(source, day, runtimeApi, completeSet, context = {}) {
         [{ day, entry: entryIndex + 1 }]
       );
     }
-    const result = withoutLoggedErrors("lifecycle-finish", () => runtimeApi.Program_runFinishDayScript(
+    const result = withoutLoggedErrors("lifecycle-finish", () => api.Program_runFinishDayScript(
       exercise,
       evaluated,
       dayData,
@@ -311,12 +363,12 @@ function completeDay(source, day, runtimeApi, completeSet, context = {}) {
   }
 
   const finished = withoutLoggedErrors("lifecycle-finish", () => (
-    runtimeApi.Program_runAllFinishDayScripts(program, record, stats, settings)
+    api.Program_runAllFinishDayScripts(program, record, stats, settings)
   ));
-  const serializedSource = runtimeApi.PlannerProgram_generateFullText(finished.program.planner?.weeks ?? []);
-  const reloaded = programFromSource(serializedSource, runtimeApi);
+  const serializedSource = api.PlannerProgram_generateFullText(finished.program.planner?.weeks ?? []);
+  const reloaded = programFromSource(serializedSource, api);
   const reloadedEvaluation = withoutLoggedErrors("lifecycle-reload", () => (
-    runtimeApi.Program_evaluate(reloaded, settings)
+    api.Program_evaluate(reloaded, settings)
   ));
   const reloadErrors = evaluationErrors(reloadedEvaluation);
   if (reloadErrors.length > 0) {
@@ -326,9 +378,9 @@ function completeDay(source, day, runtimeApi, completeSet, context = {}) {
       reloadErrors
     );
   }
-  const nextDay = day % runtimeApi.Program_numberOfDays(reloadedEvaluation) + 1;
+  const nextDay = day % api.Program_numberOfDays(reloadedEvaluation) + 1;
   withoutLoggedErrors("lifecycle-next-workout", () => (
-    runtimeApi.Program_nextHistoryRecord(reloaded, settings, stats, nextDay)
+    api.Program_nextHistoryRecord(reloaded, settings, stats, nextDay)
   ));
   return {
     completedSets,
@@ -378,9 +430,9 @@ function scenarioEntries(step, label) {
   return entries;
 }
 
-function completeScenarioStep(source, step, runtimeApi, context, label) {
+function completeScenarioStep(source, step, api, context, label) {
   const entries = scenarioEntries(step, label);
-  const original = evaluateSource(source, runtimeApi);
+  const original = evaluateSource(source, api);
   if (step.day > original.days) {
     throw new LiftosaurValidationError(
       `${label} day ${step.day} exceeds the program's ${original.days} days`,
@@ -393,7 +445,7 @@ function completeScenarioStep(source, step, runtimeApi, context, label) {
   const result = completeDay(
     source,
     step.day,
-    runtimeApi,
+    api,
     ({ set, exercise, entryIndex, setIndex }) => {
       if (!entryKeys.has(entryIndex)) {
         const occurrence = (seenOccurrences.get(exercise.fullName) ?? 0) + 1;
@@ -426,7 +478,7 @@ function completeScenarioStep(source, step, runtimeApi, context, label) {
   }
 
   const nextExposure = withoutLoggedErrors("scenario-next-exposure", () => (
-    runtimeApi.Program_nextHistoryRecord(
+    api.Program_nextHistoryRecord(
       result.reloaded,
       result.settings,
       result.stats,
@@ -434,7 +486,7 @@ function completeScenarioStep(source, step, runtimeApi, context, label) {
     )
   ));
   const nextWorkout = withoutLoggedErrors("scenario-next-workout", () => (
-    runtimeApi.Program_nextHistoryRecord(
+    api.Program_nextHistoryRecord(
       result.reloaded,
       result.settings,
       result.stats,
@@ -443,24 +495,19 @@ function completeScenarioStep(source, step, runtimeApi, context, label) {
   ));
   return {
     result,
-    nextExposure: stableBehaviorRecord(nextExposure, result.reloadedEvaluation, runtimeApi),
-    nextWorkout: stableBehaviorRecord(nextWorkout, result.reloadedEvaluation, runtimeApi),
+    nextExposure: stableBehaviorRecord(nextExposure, result.reloadedEvaluation, api),
+    nextWorkout: stableBehaviorRecord(nextWorkout, result.reloadedEvaluation, api),
   };
 }
 
 export function snapshotLiftosaurScenario(source, scenario) {
-  const runtimeApi = loadApi();
-  try {
-    assertScenarioSchema(scenario);
-  } catch (error) {
-    throw new LiftosaurValidationError(error.message, "scenario");
-  }
+  const api = loadApi();
   if (!scenario || typeof scenario.name !== "string" || scenario.name.trim().length === 0) {
     throw new LiftosaurValidationError("Scenario must have a name", "scenario");
   }
 
   if (scenario.formatVersion === 1) {
-    const completed = completeScenarioStep(source, scenario, runtimeApi, undefined, "Scenario");
+    const completed = completeScenarioStep(source, scenario, api, undefined, "Scenario");
     return {
       snapshot: {
         ...LIFTOSAUR_SCENARIO_SNAPSHOT,
@@ -498,7 +545,7 @@ export function snapshotLiftosaurScenario(source, scenario) {
   let context;
   const steps = scenario.steps.map((step, index) => {
     const label = `Scenario step ${index + 1}`;
-    const completed = completeScenarioStep(serializedSource, step, runtimeApi, context, label);
+    const completed = completeScenarioStep(serializedSource, step, api, context, label);
     serializedSource = completed.result.serializedSource;
     context = {
       settings: completed.result.settings,
@@ -524,10 +571,10 @@ export function snapshotLiftosaurScenario(source, scenario) {
 }
 
 export function validateLiftosaurSource(source) {
-  const runtimeApi = loadApi();
+  const api = loadApi();
   let original;
   try {
-    original = evaluateSource(source, runtimeApi);
+    original = evaluateSource(source, api);
   } catch (error) {
     if (error instanceof LiftosaurValidationError) throw error;
     throw new LiftosaurValidationError(
@@ -536,12 +583,12 @@ export function validateLiftosaurSource(source) {
     );
   }
 
-  const serializedSource = runtimeApi.PlannerProgram_generateFullText(
+  const serializedSource = api.PlannerProgram_generateFullText(
     original.program.planner?.weeks ?? []
   );
   let reloaded;
   try {
-    reloaded = evaluateSource(serializedSource, runtimeApi);
+    reloaded = evaluateSource(serializedSource, api);
   } catch (error) {
     if (error instanceof LiftosaurValidationError) {
       throw new LiftosaurValidationError(error.message, "reload", error.details);
@@ -563,7 +610,7 @@ export function validateLiftosaurSource(source) {
   let completedSets = 0;
   for (let day = 1; day <= original.days; day += 1) {
     try {
-      completedSets += completeDay(source, day, runtimeApi, completeNominalSet).completedSets;
+      completedSets += completeDay(source, day, api, completeNominalSet).completedSets;
     } catch (error) {
       if (error instanceof LiftosaurValidationError) throw error;
       throw new LiftosaurValidationError(
