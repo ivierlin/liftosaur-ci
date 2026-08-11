@@ -34,13 +34,11 @@ async function fixture(root, name) {
     writeFile(activeFile, active, "utf8"),
     writeFile(deployFile, deploy, "utf8"),
     writeFile(validationFile, `${JSON.stringify({
-      formatVersion: 1,
       command: "validate",
       status: "passed",
       input: { sha256: sha256(deploy) },
     })}\n`, "utf8"),
     writeFile(mergeFile, `${JSON.stringify({
-      formatVersion: 1,
       command: "merge",
       status: "merged",
       output: { sha256: sha256(deploy) },
