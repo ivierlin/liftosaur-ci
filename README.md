@@ -93,11 +93,12 @@ the corresponding explicit recovery command:
 liftosaur-ci rollback --recovery "/path/reported/by/update"
 ```
 
-`rollback` is deliberately limited to that ambiguous-write case. It restores the
-source that was live immediately before the attempted update, preserves the
-current program name, and verifies the read-back. Before writing, it also saves
-the currently observed unknown source in the same private recovery directory, so
-an explicit rollback does not destroy the state it replaces.
+`rollback` is deliberately limited to that ambiguous-write case rather than being
+a general version-revert command. It restores the source that was live immediately
+before the attempted update, preserves the current program name, and verifies the
+read-back. Before writing, it also saves the currently observed unknown source in
+the same private recovery directory, so an explicit rollback does not destroy the
+state it replaces.
 
 ## Why the merge is safe
 
