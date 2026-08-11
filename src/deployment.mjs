@@ -97,7 +97,6 @@ export async function prepareDeploymentBundle({
   mergeReportFile = null,
   outputDirectory,
   target,
-  deployedName = null,
   source = null,
   preparedAt = new Date().toISOString(),
 }) {
@@ -114,7 +113,6 @@ export async function prepareDeploymentBundle({
     mergeText,
     outputDirectory,
     target,
-    deployedName,
     source,
     preparedAt,
   });
@@ -127,7 +125,6 @@ export async function prepareDeploymentBundleFromContents({
   mergeText = null,
   outputDirectory,
   target,
-  deployedName = null,
   source = null,
   preparedAt = new Date().toISOString(),
 }) {
@@ -142,9 +139,6 @@ export async function prepareDeploymentBundleFromContents({
   if (!Number.isFinite(prepared)) throw new Error("Preparation timestamp is invalid");
   if (typeof target?.id !== "string" || !target.id || target.id === "current") {
     throw new Error("Deployment bundle requires a resolved Liftosaur program ID");
-  }
-  if (deployedName != null && (typeof deployedName !== "string" || !deployedName.trim())) {
-    throw new Error("Deployed program name must be a non-empty string when provided");
   }
   assertSourceProvenance(source);
 
@@ -162,7 +156,6 @@ export async function prepareDeploymentBundleFromContents({
       sourceSha256: sha256(active),
     },
     deployment: {
-      name: deployedName?.trim() ?? null,
       sourceSha256: deployHash,
     },
     source,
@@ -208,9 +201,6 @@ async function verifyDeploymentBundle(bundleDirectory, maxAgeHours) {
     || !manifest.target.id
     || manifest.target.id === "current"
     || !/^[a-f0-9]{64}$/.test(manifest.target?.sourceSha256 ?? "")
-    || (manifest.deployment?.name != null && (
-      typeof manifest.deployment.name !== "string" || !manifest.deployment.name
-    ))
     || !/^[a-f0-9]{64}$/.test(manifest.deployment?.sourceSha256 ?? "")
     || manifest.evidence?.validation?.file !== "validation-report.json"
     || !/^[a-f0-9]{64}$/.test(manifest.evidence?.validation?.sha256 ?? "")
@@ -394,11 +384,10 @@ export async function deployPreparedBundle({
     if (sha256(before.text) !== bundle.manifest.target.sourceSha256) {
       throw new Error("Liftosaur target changed after deployment preparation; prepare a fresh bundle");
     }
-    const deployedName = bundle.manifest.deployment.name ?? before.name;
 
     let writeError = null;
     try {
-      await putProgram(apiBase, apiKey, targetId, deployedName, bundle.deploy);
+      await putProgram(apiBase, apiKey, targetId, before.name, bundle.deploy);
     } catch (error) {
       writeError = error;
     }
@@ -415,7 +404,6 @@ export async function deployPreparedBundle({
         deployedAt: new Date().toISOString(),
         deploymentPerformed: true,
         target: { id: after.id, name: after.name, isCurrent: after.isCurrent },
-        previousTargetName: before.name,
         beforeSha256: bundle.manifest.target.sourceSha256,
         deployedSha256: bundle.manifest.deployment.sourceSha256,
         deploymentManifestSha256: sha256(bundle.manifestText),
