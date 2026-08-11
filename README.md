@@ -5,13 +5,13 @@ Unofficial Git-based migration, validation, and deployment tooling for
 
 ## What it does
 
-The default workflow is intentionally small:
+The normal workflow is intentionally small:
 
 1. Keep your Liftosaur program in Git.
 2. Change and commit the program as usual.
-3. Let `liftosaur-ci` merge in the progression data accumulated in the app since
-   the previous deployment.
-4. Validate the merged program and write it back to the same Liftosaur program.
+3. Run `liftosaur-ci update`.
+4. The tool merges in the progression data accumulated in the app, validates the
+   result, and writes it back to the same Liftosaur program.
 
 The goal is **updated program logic without losing real-world exercise state**.
 The normal user should not need to describe that state, rename the program, or
@@ -34,8 +34,8 @@ target:
 ```
 
 `programId` may be an exact Liftosaur ID or `current`. `current` is resolved once
-during preparation to the exact returned ID, and that exact ID is used for every
-later read and write. The live program name is preserved automatically.
+during each preparation to the exact returned ID, and that exact ID is used for
+every later read and write. The live program name is preserved automatically.
 
 ## Setup
 
@@ -51,53 +51,41 @@ Liftosaur revision recorded in `runtime/liftosaur.version` into
 `LIFTOSAUR_RUNTIME` to use another dedicated checkout. CI may keep this checkout
 in a persistent cache while the pinned revision and Node ABI remain unchanged.
 
-## Default Git deployment
+## Update a program
 
-The first deployment needs one extra fact: which Git revision corresponds to the
-program currently in Liftosaur.
-
-```sh
-LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
-  --config liftosaur-ci.json \
-  --base-ref first-deployed-ref \
-  --output deployment-bundle
-```
-
-`prepare-git` defaults the candidate to `HEAD`. With one configured deployment it
-also infers the deployment ID. It reads the previous Git version, the live
-Liftosaur version, and the new Git version, then performs a Liftosaur-aware
-three-way merge and native validation.
-
-Deploy the prepared result with:
+The first update needs one extra fact: which Git revision corresponds to the
+program version currently in Liftosaur.
 
 ```sh
-LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs deploy \
-  --bundle deployment-bundle \
-  --config liftosaur-ci.json \
-  --output private-deployment-record
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update \
+  --base-ref first-deployed-ref
 ```
 
-After a verified deployment, record the deployed Git identity:
+That is the bootstrap. After a successful update, liftosaur-ci records the
+deployed Git commit and program blob in `.liftosaur-ci/deployments/program.json`.
+Commit that small state file with your repository.
+
+From then on, the normal command is simply:
 
 ```sh
-node bin/liftosaur-ci.mjs record-deployment \
-  --config liftosaur-ci.json \
-  --report private-deployment-record/deployment-report.json
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update
 ```
 
-This writes a tiny state file containing only the deployed Git commit and program
-blob hashes. Once that state is committed, future preparations need no explicit
-base ref:
+With one configured deployment, everything else is inferred:
 
-```sh
-LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
-  --config liftosaur-ci.json \
-  --output deployment-bundle
-```
+- `HEAD` is the new reviewed Git version,
+- the tracked deployment state identifies the previous deployed Git version,
+- the configured program ID or `current` identifies the Liftosaur program,
+- Liftosaur provides the live progression state accumulated since the previous
+  update.
 
-Repositories with multiple deployments add `--deployment <id>` where needed.
-The reusable GitHub Actions workflow automates the same prepare → approval →
-deploy → state-PR sequence; see [GitHub Actions integration](docs/github-actions.md).
+The command performs the three-way merge, native validation, exact-ID deployment,
+read-back verification, and deployment-state update as one operation.
+
+Repositories with multiple deployments add `--deployment <id>`. The reusable
+GitHub Actions workflow keeps the same logic but separates preparation and the
+live write with a protected approval gate; see
+[GitHub Actions integration](docs/github-actions.md).
 
 ## Why the merge is safe
 
@@ -111,14 +99,14 @@ Independent live progression is carried forward while reviewed program changes
 are applied. Conflicting changes fail closed instead of being guessed. Repeated
 same-exercise statements are distinguished by occurrence.
 
-Preparation resolves Git refs to immutable commits and blobs, so unrelated dirty
-worktree files cannot affect the prepared source. Before deployment, the live
-program must still match the source hash seen during preparation. Deployment then
-writes once to the exact resolved Liftosaur ID and verifies the read-back.
+Git revisions are resolved to immutable commits and blobs, so unrelated dirty
+worktree files cannot affect the source being deployed. Before deployment, the
+live program must still match the source hash seen during preparation. Deployment
+then writes once to the exact resolved Liftosaur ID and verifies the read-back.
 
 If read-back is neither the old prepared state nor the intended new state,
-`liftosaur-ci` stops and preserves the rollback source for explicit recovery. It
-does not automatically overwrite an unknown concurrent state.
+`liftosaur-ci` stops and preserves private recovery files. It does not
+automatically overwrite an unknown concurrent state.
 
 See the full [deployment contract](docs/deployment.md).
 
@@ -149,17 +137,21 @@ See the [repository check contract](docs/check.md).
 
 ## Lower-level tools
 
-The normal Git workflow above is the intended path. The CLI also exposes smaller
-building blocks for custom tooling:
+`update` is the intended manual workflow. The CLI also exposes the individual
+building blocks for custom tooling, debugging, and approval-gated automation:
 
+- `prepare-git` — prepare an immutable Git-backed deployment bundle.
+- `deploy` — verify and write a prepared bundle.
+- `record-deployment` — record the verified deployed Git identity.
 - `merge` — offline Liftosaur-aware three-way merge.
+- `validate` — native Liftosaur validation.
 - `snapshot` — produce reviewed scenario snapshots.
 - `prepare` — prepare from caller-supplied base and candidate files.
 - `prepare-deployment` — assemble a bundle from already prepared sources and
   validation evidence.
 
-These commands are useful for integration and debugging, but normal users should
-not need them to keep a Git-managed program synchronized with Liftosaur.
+Normal users should not need these pieces separately just to keep a Git-managed
+program synchronized with Liftosaur.
 
 ## Tests
 
@@ -170,7 +162,8 @@ npm run test:fast
 ```
 
 This runs the unit/integration suite plus a deterministic sample of three pinned
-Liftosaur built-in programs. Branch pushes use this fast tier.
+Liftosaur built-in programs. Branch pushes rotate that sample by commit SHA, so
+coverage changes between commits while any failure remains reproducible.
 
 The full deterministic suite is:
 
