@@ -18,10 +18,8 @@ shared / 1x1 / update: custom() {~
 Squat / ...shared / 3x5 / 100kg / timer: 120 / progress: custom(volume: 3, phase: 1) { ...shared }
 `;
 
-test("declares a stable versioned frontend contract", () => {
+test("records the pinned Liftosaur frontend runtime", () => {
   assert.deepEqual(LIFTOSAUR_MERGE_FRONTEND, {
-    formatVersion: 1,
-    implementation: "liftosaur-parser-v1",
     runtimeRevision: "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
   });
   assert.equal(Object.isFrozen(LIFTOSAUR_MERGE_FRONTEND), true);
@@ -34,7 +32,7 @@ test("extracts stable definition and statement blocks", () => {
   assert.equal(document.frontend, LIFTOSAUR_MERGE_FRONTEND);
   assert.deepEqual(keys, [
     JSON.stringify(["definition", "Week 1", "shared"]),
-    JSON.stringify(["statement", "Week 1", "Day A", "Squat"]),
+    JSON.stringify(["statement", "Week 1", "Day A", "Squat", 1]),
   ]);
   assert.match(document.order, /__LIFTOSAUR_CI_BLOCK__/);
   assert.equal(document.blocks.get(keys[1]).prefix, "// Selected description");
@@ -50,7 +48,7 @@ Deadlift / 3x5 / 100kg \\
 `);
 
   assert.deepEqual([...document.blocks.keys()], [
-    JSON.stringify(["statement", "Week 1", "Day A", "Deadlift"]),
+    JSON.stringify(["statement", "Week 1", "Day A", "Deadlift", 1]),
   ]);
 });
 
