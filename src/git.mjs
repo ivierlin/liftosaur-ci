@@ -3,10 +3,6 @@ import path from "node:path";
 
 import { prepareLiftosaurDeploymentFromContents } from "./prepare.mjs";
 
-export const LIFTOSAUR_GIT_SOURCE = Object.freeze({
-  implementation: "liftosaur-git-source-v1",
-});
-
 function git(repository, args, label) {
   const result = spawnSync("git", ["-C", repository, ...args], {
     encoding: "utf8",
@@ -93,7 +89,6 @@ export function readGitProgramPair({ repository, baseRef, candidateRef = "HEAD",
     base: base.source,
     candidate: candidate.source,
     source: {
-      ...LIFTOSAUR_GIT_SOURCE,
       remote,
       objectFormat,
       programPath: cleanPath,
