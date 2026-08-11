@@ -4,6 +4,7 @@ import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
+import { assertScenarioSchema } from "../src/scenario-schema.mjs";
 import { snapshotLiftosaurScenario } from "../src/validate.mjs";
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -78,6 +79,37 @@ test("reviewed Basic Beginner scenarios snapshot distinct outcomes", () => {
   for (const snapshot of snapshots.slice(1)) {
     assert.deepEqual(projectRecord(snapshot.nextWorkout), expected.nextWorkout);
   }
+});
+
+test("reviewed scenarios can finish with a prescribed set skipped", () => {
+  const scenario = {
+    name: "skipped set",
+    day: 1,
+    entries: [
+      { exercise: "Bent Over Row", sets: [{ reps: 5 }, { reps: 5 }, { reps: 5 }] },
+      { exercise: "Bench Press", sets: [{ reps: 5 }, { reps: 5 }, { skip: true }] },
+      { exercise: "Squat", sets: [{ reps: 5 }, { reps: 5 }, { reps: 5 }] },
+    ],
+  };
+  assert.doesNotThrow(() => assertScenarioSchema(scenario));
+  const result = snapshotLiftosaurScenario(source, scenario);
+  assert.equal(result.snapshot.scenario.name, "skipped set");
+  assert.ok(result.snapshot.nextExposure);
+  assert.equal(typeof result.serializedSource, "string");
+});
+
+test("skipped sets cannot also provide completion data", () => {
+  assert.throws(
+    () => assertScenarioSchema({
+      name: "invalid skipped set",
+      day: 1,
+      entries: [{
+        exercise: "Bench Press",
+        sets: [{ skip: true, reps: 0 }],
+      }],
+    }),
+    /skip cannot be combined with: reps/
+  );
 });
 
 test("reviewed scenarios require explicit inputs for every workout entry", () => {
