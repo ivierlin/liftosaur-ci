@@ -13,8 +13,6 @@ const STATEMENT_END = "__LIFTOSAUR_CI_STATEMENT_END__";
 export const BLOCK_MARKER = "__LIFTOSAUR_CI_BLOCK__";
 
 export const LIFTOSAUR_MERGE_FRONTEND = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-parser-v1",
   runtimeRevision: pinnedRuntimeRevision,
 });
 
