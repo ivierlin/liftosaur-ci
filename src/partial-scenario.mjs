@@ -222,6 +222,7 @@ export function snapshotPartialLiftosaurScenario(source, scenario) {
   const requested = scenarioEntries(scenario);
   const program = programFromSource(source, api);
   const settings = api.Settings_build();
+  if (scenario.units != null) settings.units = scenario.units;
   const stats = api.Stats_getEmpty();
   const evaluated = withoutLoggedErrors("scenario-evaluate", () => (
     api.Program_evaluate(program, settings)
@@ -290,7 +291,12 @@ export function snapshotPartialLiftosaurScenario(source, scenario) {
   return {
     snapshot: {
       runtimeRevision: pinnedRuntimeRevision,
-      scenario: { name: scenario.name, day: scenario.day, finish: false },
+      scenario: {
+        name: scenario.name,
+        day: scenario.day,
+        finish: false,
+        ...(scenario.units == null ? {} : { units: scenario.units }),
+      },
       currentWorkout: stableBehaviorRecord(record, evaluated, api),
     },
     serializedSource: null,
