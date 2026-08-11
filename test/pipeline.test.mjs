@@ -77,7 +77,6 @@ test("prepare resolves current and deploys the exact prepared target", async () 
       "--base", baseFile,
       "--candidate", candidateFile,
       "--program-id", "current",
-      "--deployed-program-name", "Deployed",
       "--output", conflictBundle,
       "--api-base", apiBase,
     ], environment);
@@ -93,7 +92,6 @@ test("prepare resolves current and deploys the exact prepared target", async () 
       "--base", baseFile,
       "--candidate", candidateFile,
       "--program-id", "current",
-      "--deployed-program-name", "Deployed",
       "--output", bundle,
       "--api-base", apiBase,
     ], environment);
@@ -106,7 +104,7 @@ test("prepare resolves current and deploys the exact prepared target", async () 
     assert.match(merged, /volume: 3/);
     const manifest = JSON.parse(await readFile(path.join(bundle, "deployment-manifest.json"), "utf8"));
     assert.equal(manifest.target.id, "program-1");
-    assert.equal(manifest.deployment.name, "Deployed");
+    assert.deepEqual(Object.keys(manifest.deployment), ["sourceSha256"]);
     assert.equal(manifest.evidence.merge.file, "merge-report.json");
     assert.equal(manifest.evidence.validation.file, "validation-report.json");
 
@@ -118,7 +116,7 @@ test("prepare resolves current and deploys the exact prepared target", async () 
       "--api-base", apiBase,
     ], environment);
     assert.equal(deployed.code, 0, `${deployed.stdout}\n${deployed.stderr}`);
-    assert.equal(program.name, "Deployed");
+    assert.equal(program.name, "Active");
     assert.equal(program.text, merged);
     const report = JSON.parse(await readFile(path.join(record, "deployment-report.json"), "utf8"));
     assert.equal(report.deploymentPerformed, true);
