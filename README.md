@@ -3,13 +3,39 @@
 Unofficial Git-based migration, validation, and deployment tooling for
 [Liftosaur](https://www.liftosaur.com/).
 
-## Status
+## What it does
 
-This repository is an early extraction from a proven migration experiment. It
-contains offline three-way merge, native validation, reviewed regression,
-repository check, prepared deployment commands, and reusable GitHub workflows.
-Credential storage and deployment approval remain the responsibility of the
-calling repository.
+The default workflow is intentionally small:
+
+1. Keep your Liftosaur program in Git.
+2. Change and commit the program as usual.
+3. Let `liftosaur-ci` merge in the progression data accumulated in the app since
+   the previous deployment.
+4. Validate the merged program and write it back to the same Liftosaur program.
+
+The goal is **updated program logic without losing real-world exercise state**.
+The normal user should not need to describe that state, rename the program, or
+configure merge rules manually.
+
+A minimal deployment config contains only the Git program path and Liftosaur
+target:
+
+```json
+{
+  "formatVersion": 3,
+  "implementation": "liftosaur-check-config-v3",
+  "deployments": {
+    "program": {
+      "program": "programs/example.liftoscript",
+      "programId": "current"
+    }
+  }
+}
+```
+
+`programId` may be an exact Liftosaur ID or `current`. `current` is resolved once
+during preparation to the exact returned ID, and that exact ID is used for every
+later read and write. The live program name is preserved automatically.
 
 ## Setup
 
@@ -23,30 +49,82 @@ node scripts/setup-runtime.mjs
 Liftosaur revision recorded in `runtime/liftosaur.version` into
 `.private/liftosaur-runtime` and installs that runtime's dependencies. Set
 `LIFTOSAUR_RUNTIME` to use another dedicated checkout. CI may keep this checkout
-in a persistent cache and reuse it while the pinned revision and Node ABI remain
-unchanged.
+in a persistent cache while the pinned revision and Node ABI remain unchanged.
 
-## Offline merge
+## Default Git deployment
+
+The first deployment needs one extra fact: which Git revision corresponds to the
+program currently in Liftosaur.
 
 ```sh
-node bin/liftosaur-ci.mjs merge \
-  --base previously-deployed.liftoscript \
-  --active current-liftosaur.liftoscript \
-  --candidate new-git-source.liftoscript \
-  --output merged.liftoscript \
-  --report merge-report.json
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
+  --config liftosaur-ci.json \
+  --base-ref first-deployed-ref \
+  --output deployment-bundle
 ```
 
-The inputs are read without modification. Existing output files are never
-overwritten. A successful merge exits with status 0. An unresolved merge exits
-with status 2, writes no program, and may write the requested conflict report.
-Other failures exit with status 1.
+`prepare-git` defaults the candidate to `HEAD`. With one configured deployment it
+also infers the deployment ID. It reads the previous Git version, the live
+Liftosaur version, and the new Git version, then performs a Liftosaur-aware
+three-way merge and native validation.
 
-The merge frontend preserves repeated exercise statements by occurrence, so the
-same exercise can appear more than once on a day without creating an artificial
-identity collision.
+Deploy the prepared result with:
 
-## Validation
+```sh
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs deploy \
+  --bundle deployment-bundle \
+  --config liftosaur-ci.json \
+  --output private-deployment-record
+```
+
+After a verified deployment, record the deployed Git identity:
+
+```sh
+node bin/liftosaur-ci.mjs record-deployment \
+  --config liftosaur-ci.json \
+  --report private-deployment-record/deployment-report.json
+```
+
+This writes a tiny state file containing only the deployed Git commit and program
+blob hashes. Once that state is committed, future preparations need no explicit
+base ref:
+
+```sh
+LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs prepare-git \
+  --config liftosaur-ci.json \
+  --output deployment-bundle
+```
+
+Repositories with multiple deployments add `--deployment <id>` where needed.
+The reusable GitHub Actions workflow automates the same prepare → approval →
+deploy → state-PR sequence; see [GitHub Actions integration](docs/github-actions.md).
+
+## Why the merge is safe
+
+The three inputs are:
+
+- the previously deployed Git source,
+- the current Liftosaur source containing accumulated progression,
+- the new reviewed Git source.
+
+Independent live progression is carried forward while reviewed program changes
+are applied. Conflicting changes fail closed instead of being guessed. Repeated
+same-exercise statements are distinguished by occurrence.
+
+Preparation resolves Git refs to immutable commits and blobs, so unrelated dirty
+worktree files cannot affect the prepared source. Before deployment, the live
+program must still match the source hash seen during preparation. Deployment then
+writes once to the exact resolved Liftosaur ID and verifies the read-back.
+
+If read-back is neither the old prepared state nor the intended new state,
+`liftosaur-ci` stops and preserves the rollback source for explicit recovery. It
+does not automatically overwrite an unknown concurrent state.
+
+See the full [deployment contract](docs/deployment.md).
+
+## Validation and regression checks
+
+Validate one program directly:
 
 ```sh
 node bin/liftosaur-ci.mjs validate \
@@ -55,74 +133,33 @@ node bin/liftosaur-ci.mjs validate \
 ```
 
 Validation uses the pinned Liftosaur runtime to evaluate the program, construct
-every workout day, compare stable prescriptions across serialization, complete
-nominal work sets, execute update and finish scripts, and reload each progressed
-program. Input files and existing reports are never modified. See the
-[native validation policy](docs/native-validation.md) for the exact inputs and
-scope.
+every workout day, verify serialization parity, complete nominal work sets,
+execute update and finish scripts, and reload progressed programs. See the
+[native validation policy](docs/native-validation.md).
 
-## Regression snapshots
-
-```sh
-node bin/liftosaur-ci.mjs snapshot \
-  --program program.liftoscript \
-  --scenario reviewed-scenario.json \
-  --output snapshot.json
-```
-
-Format 1 scenarios describe one exposure. Format 2 scenarios contain two or
-more named, ordered steps and feed each step the exact serialized result of the
-previous one. Repository checks reject unknown scenario fields rather than
-silently ignoring likely typos. Snapshot changes require review; they do not
-establish coaching correctness.
-
-## Repository check
+Repository-wide checks are configured in `liftosaur-ci.json`:
 
 ```sh
 node bin/liftosaur-ci.mjs check --config liftosaur-ci.json
 ```
 
-`check` validates the union of programs discovered by optional globs and programs
-referenced directly by scenarios or deployments. Explicit references therefore
-do not need to be duplicated in `programs`. See the
-[repository check contract](docs/check.md) for the versioned configuration.
+Optional reviewed scenarios can capture expected behavior over one or several
+exposures. Unknown scenario fields are rejected rather than silently ignored.
+See the [repository check contract](docs/check.md).
 
-## Prepared deployment and recovery
+## Lower-level tools
 
-Configured deployments map a stable deployment ID to a program path and a
-Liftosaur `programId` directly. `programId` may be an exact ID or `current`.
-When `current` is used, preparation resolves it once and stores the exact
-returned ID in the deployment bundle; every later verification and write uses
-that exact ID.
+The normal Git workflow above is the intended path. The CLI also exposes smaller
+building blocks for custom tooling:
 
-`prepare-git` resolves reviewed Git refs to immutable commits and blobs, fetches
-the target from Liftosaur, merges live state with the Git candidate, validates
-the result, and creates a hash-bound private bundle. Because source is read from
-Git objects, unrelated dirty worktree files cannot affect preparation.
+- `merge` — offline Liftosaur-aware three-way merge.
+- `snapshot` — produce reviewed scenario snapshots.
+- `prepare` — prepare from caller-supplied base and candidate files.
+- `prepare-deployment` — assemble a bundle from already prepared sources and
+  validation evidence.
 
-A verified deployment can be recorded as a tiny non-sensitive state file
-containing only the deployed Git commit and program blob hashes, allowing the
-next preparation to select and verify its base automatically.
-
-`prepare` provides the same merge and validation path for caller-supplied files.
-`prepare-deployment` remains available for callers that already produced the
-active source, merged program, and evidence; because it is offline, it requires
-an already resolved exact program ID.
-
-`deploy` verifies the exact target ID and prepared source hash, writes once, and
-verifies the read-back. Program names are metadata rather than identity: an
-optional configured deployment name intentionally renames the program; otherwise
-the live name is preserved.
-
-If read-back is neither the old prepared source nor the intended new source, the
-command stops and preserves the rollback source for explicit recovery. It never
-automatically overwrites an unknown third state. See the
-[deployment contract](docs/deployment.md) before using the command against a live
-program.
-
-See [GitHub Actions integration](docs/github-actions.md) for reusable check and
-approval-gated deployment workflows. Runner labels and tool revisions are
-explicit inputs; no hosted runner image is assumed.
+These commands are useful for integration and debugging, but normal users should
+not need them to keep a Git-managed program synchronized with Liftosaur.
 
 ## Tests
 
@@ -141,17 +178,15 @@ The full deterministic suite is:
 npm test
 ```
 
-It checks every program in the pinned Liftosaur built-in catalog and is used on
-pull requests, `main`, and manual CI runs. The digest-pinned public RP
-Hypertrophy v4.1 network corpus is available separately with:
+It checks every program in the pinned Liftosaur built-in catalog and runs on pull
+requests, `main`, and manual CI runs. The digest-pinned public RP Hypertrophy v4.1
+network corpus is available separately:
 
 ```sh
 npm run test:external
 ```
 
-Keeping the live external fetch outside `npm test` prevents network availability
-from deciding the normal CI gate. Deployment tests use a local fake API and
-never change Liftosaur.
+Deployment tests use a local fake API and never change Liftosaur.
 
 ## Licensing
 
