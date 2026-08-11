@@ -1,6 +1,4 @@
 {
-  "formatVersion": 3,
-  "implementation": "liftosaur-check-config-v3",
   "scenarios": [
     {
       "program": "test/fixtures/check/example.liftoscript",
