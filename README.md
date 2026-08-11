@@ -85,6 +85,20 @@ GitHub Actions workflow keeps the same logic but separates preparation and the
 live write with a protected approval gate; see
 [GitHub Actions integration](docs/github-actions.md).
 
+If a write was attempted but its result cannot be determined safely, `update`
+stops without guessing and retains a private recovery directory. The error prints
+the corresponding explicit recovery command:
+
+```sh
+liftosaur-ci rollback --recovery "/path/reported/by/update"
+```
+
+`rollback` is deliberately limited to that ambiguous-write case. It restores the
+source that was live immediately before the attempted update, preserves the
+current program name, and verifies the read-back. Before writing, it also saves
+the currently observed unknown source in the same private recovery directory, so
+an explicit rollback does not destroy the state it replaces.
+
 ## Why the merge is safe
 
 The three inputs are:
@@ -145,6 +159,7 @@ See the [repository check contract](docs/check.md).
 `update` is the intended manual workflow. The CLI also exposes the individual
 building blocks for custom tooling, debugging, and approval-gated automation:
 
+- `rollback` — explicitly restore the pre-update source after an ambiguous write.
 - `prepare-git` — prepare an immutable Git-backed deployment bundle.
 - `deploy` — verify and write a prepared bundle.
 - `record-deployment` — record the verified deployed Git identity.
