@@ -60,23 +60,13 @@ function validateDeployments(deployments = {}) {
   for (const [id, value] of Object.entries(deployments)) {
     if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) throw new Error(`Invalid deployment ID: ${id}`);
     requireObject(value, `Check config deployment ${id}`);
-    requireAllowedKeys(
-      value,
-      new Set(["program", "programId", "deployedProgramName"]),
-      `Check config deployment ${id}`
-    );
+    requireAllowedKeys(value, new Set(["program", "programId"]), `Check config deployment ${id}`);
     if (typeof value.programId !== "string" || !value.programId.trim()) {
       throw new Error(`Check config deployment ${id} programId is required`);
-    }
-    if (value.deployedProgramName != null && (
-      typeof value.deployedProgramName !== "string" || !value.deployedProgramName.trim()
-    )) {
-      throw new Error(`Check config deployment ${id} deployedProgramName must be a non-empty string`);
     }
     result[id] = {
       program: requireRelativePath(value.program, `Check config deployment ${id}.program`),
       programId: value.programId.trim(),
-      deployedProgramName: value.deployedProgramName?.trim() ?? null,
     };
   }
   return result;
@@ -130,9 +120,17 @@ export async function discoverConfiguredPrograms(config) {
   return [...matches].sort();
 }
 
-export async function configuredDeployment(configFile, deploymentId) {
+export async function configuredDeployment(configFile, deploymentId = null) {
   const config = await loadLiftosaurConfig(configFile);
-  const deployment = config.deployments[deploymentId];
-  if (!deployment) throw new Error(`Unknown configured deployment: ${deploymentId}`);
-  return { config, deployment: { id: deploymentId, ...deployment } };
+  let id = deploymentId;
+  if (!id) {
+    const ids = Object.keys(config.deployments);
+    if (ids.length !== 1) {
+      throw new Error("Deployment ID is required unless exactly one deployment is configured");
+    }
+    [id] = ids;
+  }
+  const deployment = config.deployments[id];
+  if (!deployment) throw new Error(`Unknown configured deployment: ${id}`);
+  return { config, deployment: { id, ...deployment } };
 }
