@@ -1,16 +1,6 @@
 import { glob, readFile } from "node:fs/promises";
 import path from "node:path";
 
-export const LIFTOSAUR_CHECK_CONFIG_V1 = Object.freeze({
-  formatVersion: 1,
-  implementation: "liftosaur-check-config-v1",
-});
-
-export const LIFTOSAUR_CHECK_CONFIG = Object.freeze({
-  formatVersion: 3,
-  implementation: "liftosaur-check-config-v3",
-});
-
 function requireObject(value, label) {
   if (!value || Array.isArray(value) || typeof value !== "object") {
     throw new Error(`${label} must be a JSON object`);
@@ -76,14 +66,9 @@ export async function loadLiftosaurConfig(configFile) {
   const text = await readFile(configFile, "utf8");
   const config = parseJson(text, "Check config");
   requireObject(config, "Check config");
-  const isV1 = config.formatVersion === LIFTOSAUR_CHECK_CONFIG_V1.formatVersion
-    && config.implementation === LIFTOSAUR_CHECK_CONFIG_V1.implementation;
-  const isCurrent = config.formatVersion === LIFTOSAUR_CHECK_CONFIG.formatVersion
-    && config.implementation === LIFTOSAUR_CHECK_CONFIG.implementation;
-  if (!isV1 && !isCurrent) throw new Error("Unsupported check config format");
   requireAllowedKeys(
     config,
-    new Set(["formatVersion", "implementation", "programs", "scenarios", ...(isCurrent ? ["deployments"] : [])]),
+    new Set(["programs", "scenarios", "deployments"]),
     "Check config"
   );
   if (config.programs != null && !Array.isArray(config.programs)) {
@@ -93,13 +78,11 @@ export async function loadLiftosaurConfig(configFile) {
     requireRelativePath(value, `Check config programs[${index}]`)
   ));
   return {
-    formatVersion: config.formatVersion,
-    implementation: config.implementation,
     file: path.resolve(configFile),
     root: path.dirname(path.resolve(configFile)),
     programs,
     scenarios: validateScenarios(config.scenarios),
-    deployments: isCurrent ? validateDeployments(config.deployments) : {},
+    deployments: validateDeployments(config.deployments),
   };
 }
 
