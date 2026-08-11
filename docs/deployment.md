@@ -101,6 +101,32 @@ one-command `update` path reaches deployment and then fails, it reports the
 private temporary recovery directory instead of deleting it. Preparation failures
 that never reached deployment clean up their temporary files automatically.
 
+## Explicit rollback after an ambiguous write
+
+When the deployment write was attempted but read-back cannot establish whether it
+succeeded safely, `update` prints an explicit recovery command using the retained
+directory:
+
+```sh
+liftosaur-ci rollback --recovery "/path/reported/by/update"
+```
+
+This command is intentionally not a general deployment-revert mechanism. It only
+accepts a recovery directory whose deployment report records an ambiguous write.
+Failures before the write, a target that changed before deployment, and verified
+successful deployments are outside this command's scope.
+
+Rollback reads the exact prepared target ID and pre-write source from the retained
+recovery data. Before replacing the current unknown source, it saves that source
+as `record/rollback-observed.liftoscript`. It then writes the pre-update source
+while preserving the current program name and verifies the exact target by
+read-back. A repeated rollback is idempotent: if the target already matches the
+pre-update source, no write is performed.
+
+If rollback itself cannot be verified, the originally observed unknown state
+remains in the recovery directory and any readable post-attempt state is retained
+as additional private recovery material.
+
 ## Approval-gated automation
 
 The reusable GitHub Actions workflow deliberately keeps preparation and deploy as
@@ -111,10 +137,12 @@ verified deployment. See [GitHub Actions integration](github-actions.md).
 ## Lower-level building blocks
 
 `prepare-git`, `deploy`, and `record-deployment` expose the three stages used by
-`update` and the GitHub workflow. `prepare` provides the same merge and validation
-path for caller-supplied base and candidate files. `prepare-deployment` assembles
-a bundle from already prepared active/deploy sources and validation evidence;
-because it is offline, it requires an already resolved exact program ID.
+`update` and the GitHub workflow. `rollback` provides the explicit recovery path
+for an ambiguous one-command update. `prepare` provides the same merge and
+validation path for caller-supplied base and candidate files. `prepare-deployment`
+assembles a bundle from already prepared active/deploy sources and validation
+evidence; because it is offline, it requires an already resolved exact program
+ID.
 
 Bundles and deployment receipts contain private program state and should not be
 committed or published.
