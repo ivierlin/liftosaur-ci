@@ -49,12 +49,6 @@ export async function checkRepository(configFile) {
   const definition = await loadLiftosaurConfig(configFile);
   const root = definition.root;
   const programs = await discoverConfiguredPrograms(definition);
-  const programSet = new Set(programs);
-  for (const scenario of definition.scenarios) {
-    if (!programSet.has(scenario.program)) {
-      throw new Error(`Scenario program is not discovered by programs globs: ${scenario.program}`);
-    }
-  }
 
   const results = [];
   for (const program of programs) {
