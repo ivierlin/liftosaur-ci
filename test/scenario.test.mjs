@@ -112,6 +112,18 @@ test("skipped sets cannot also provide completion data", () => {
   );
 });
 
+test("scenario unit context is explicit and validated", () => {
+  const kgScenario = { ...scenarios[0], units: "kg" };
+  assert.doesNotThrow(() => assertScenarioSchema(kgScenario));
+  const result = snapshotLiftosaurScenario(source, kgScenario);
+  assert.equal(result.snapshot.scenario.units, "kg");
+
+  assert.throws(
+    () => assertScenarioSchema({ ...scenarios[0], units: "stone" }),
+    /Scenario\.units must be kg or lb/
+  );
+});
+
 test("reviewed scenarios require explicit inputs for every workout entry", () => {
   assert.throws(
     () => snapshotLiftosaurScenario(source, {
