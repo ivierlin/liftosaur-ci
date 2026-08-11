@@ -47,9 +47,10 @@ test("configured and explicit deploy modes cannot be mixed", async () => {
   assert.match(result.stderr, /cannot be combined with --config or --deployment/);
 });
 
-test("update presents missing Liftosaur access as an everyday error", async () => {
+test("update presents first-run bootstrap as an everyday action", async () => {
   const result = await runCli(["update"], {});
   assert.equal(result.status, 1);
-  assert.match(result.stderr, /Liftosaur access is not configured/);
+  assert.match(result.stderr, /first tracked update/i);
+  assert.match(result.stderr, /--base-ref <deployed-ref>/);
   assert.doesNotMatch(result.stderr, /deployment report|program blob|resolved program ID/i);
 });
