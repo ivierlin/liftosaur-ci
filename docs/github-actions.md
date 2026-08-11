@@ -90,6 +90,50 @@ Runner labels may be overridden with `runs_on`; the default is a self-hosted
 Linux X64 runner. If the tool repository is private, pass a read-only
 `tool_token`.
 
+## Private merge-conflict artifacts
+
+A real three-way merge conflict can contain athlete-specific live state. By
+default `prepare` and `prepare-git` do not persist that state. Their conflict
+message prominently shows how to opt in with `--conflict-output <directory>`.
+
+For a custom GitHub Actions deployment workflow, write that workspace under
+`$RUNNER_TEMP`, never inside the checked-out repository, and upload it only when
+preparation fails. Keep retention short:
+
+```yaml
+- name: Prepare deployment
+  env:
+    LIFTOSAUR_API_KEY: ${{ secrets.LIFTOSAUR_API_KEY }}
+  run: |
+    liftosaur-ci prepare-git \
+      --deployment program \
+      --output "$RUNNER_TEMP/liftosaur-deployment" \
+      --conflict-output "$RUNNER_TEMP/liftosaur-conflict"
+
+- name: Retain private conflict workspace
+  if: failure()
+  uses: actions/upload-artifact@v7
+  with:
+    name: liftosaur-conflict-${{ github.run_id }}-${{ github.run_attempt }}
+    path: ${{ runner.temp }}/liftosaur-conflict
+    if-no-files-found: ignore
+    retention-days: 1
+
+- name: Remove private conflict workspace
+  if: always()
+  run: rm -rf "$RUNNER_TEMP/liftosaur-conflict"
+```
+
+The conflict artifact may contain `active.liftoscript` and therefore must be
+treated as private operational data. Do not commit it, place it on a pull-request
+branch, print its contents to the workflow log, or store it with long-lived
+public build artifacts. The ordinary deployment-state pull request remains safe
+because it contains only Git identity metadata.
+
+If a repository needs stronger privacy than its normal Actions artifact access
+model provides, omit `--conflict-output` entirely and reproduce the conflict in a
+trusted local environment instead.
+
 ## Multiple programs and advanced overrides
 
 Repositories with multiple configured deployments pass `deployment`. A specific

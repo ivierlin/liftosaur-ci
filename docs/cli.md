@@ -14,8 +14,10 @@ Errors from `update` should therefore translate common failures into actions: co
 
 These commands keep technical errors and exact identities visible because callers may need them for logs, policy checks, or orchestration. Explicit raw inputs remain available when configuration is intentionally bypassed, but configured and raw modes are mutually exclusive rather than partially mixed.
 
+A merge conflict does not persist live Liftosaur state by default. `prepare-git` reports that explicitly and shows the opt-in `--conflict-output <directory>` flag at the point of failure. When supplied, the private workspace contains the deployed base, current live source, candidate, conflict representation, and merge report. It may contain athlete-specific state and must not be committed. Prefer a temporary directory for CI and other automated environments.
+
 ## Advanced and recovery tools
 
-`merge`, `validate`, `snapshot`, `prepare`, and `prepare-deployment` expose lower-level or offline building blocks. `rollback` and `restore` are explicit recovery operations. These commands favor precise contracts and technical diagnostics over convenience wording.
+`merge`, `validate`, `snapshot`, `prepare`, and `prepare-deployment` expose lower-level or offline building blocks. `prepare` supports the same opt-in `--conflict-output <directory>` behavior as `prepare-git`. `rollback` and `restore` are explicit recovery operations. These commands favor precise contracts and technical diagnostics over convenience wording.
 
 The distinction is intentional: consistency means predictable flags, defaults, identities, and failure semantics across the CLI, while presentation follows the audience of each command.
