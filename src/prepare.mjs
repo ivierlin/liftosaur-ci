@@ -77,21 +77,36 @@ export async function prepareLiftosaurDeploymentFromContents({
   }
   const mergeReport = createMergeReport({ base, active, candidate }, merged);
   if (!merged.source) {
+    const conflictOutput = process.env.LIFTOSAUR_CI_CONFLICT_OUTPUT?.trim();
+    if (!conflictOutput) {
+      throw new LiftosaurPreparationError(
+        [
+          "Liftosaur deployment preparation has unresolved three-way merge conflicts. No deployment was performed.",
+          "Live Liftosaur state was NOT written to disk.",
+          "To preserve a private conflict workspace for inspection, rerun with:",
+          "  --conflict-output <directory>",
+          "The workspace will contain athlete-specific live state. Do not commit it.",
+        ].join("\n"),
+        "merge",
+        2
+      );
+    }
     await writeConflictWorkspace({
-      outputDirectory,
+      outputDirectory: conflictOutput,
       base,
       active,
       candidate,
       conflictSource: merged.conflictSource,
       mergeReport,
     });
-    const baseFile = path.join(outputDirectory, "base.liftoscript");
-    const activeFile = path.join(outputDirectory, "active.liftoscript");
-    const candidateFile = path.join(outputDirectory, "candidate.liftoscript");
+    const baseFile = path.join(conflictOutput, "base.liftoscript");
+    const activeFile = path.join(conflictOutput, "active.liftoscript");
+    const candidateFile = path.join(conflictOutput, "candidate.liftoscript");
     throw new LiftosaurPreparationError(
       [
-        "Liftosaur deployment preparation has unresolved three-way merge conflicts.",
-        `Conflict workspace written to: ${outputDirectory}`,
+        "Liftosaur deployment preparation has unresolved three-way merge conflicts. No deployment was performed.",
+        `Private conflict workspace: ${conflictOutput}`,
+        "Contains athlete-specific live state. Do not commit it.",
         `Live changes: git diff --no-index \"${baseFile}\" \"${activeFile}\"`,
         `Candidate changes: git diff --no-index \"${baseFile}\" \"${candidateFile}\"`,
       ].join("\n"),
