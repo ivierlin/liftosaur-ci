@@ -36,7 +36,7 @@ async function requestBody(request) {
   return Buffer.concat(chunks).toString("utf8");
 }
 
-test("prepare-git resolves current once and binds immutable Git inputs through deployment", async () => {
+test("configured Git deployment needs only path, target, and a bootstrap base", async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "liftosaur-git-pipeline-"));
   const repository = path.join(root, "repository");
   const programPath = "programs/example.liftoscript";
@@ -86,7 +86,6 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
           example: {
             program: programPath,
             programId: "current",
-            deployedProgramName: "Deployed",
           },
         },
       }, null, 2)}\n`, "utf8"),
@@ -103,9 +102,7 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
       "prepare-git",
       "--repository", repository,
       "--config", configFile,
-      "--deployment", "example",
       "--base-ref", baseSha,
-      "--candidate-ref", candidateSha,
       "--output", bundle,
       "--api-base", apiBase,
     ], environment);
@@ -117,7 +114,7 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
     assert.match(merged, /volume: 3/);
     const manifest = JSON.parse(await readFile(path.join(bundle, "deployment-manifest.json"), "utf8"));
     assert.equal(manifest.target.id, "program-1");
-    assert.equal(manifest.deployment.name, "Deployed");
+    assert.deepEqual(Object.keys(manifest.deployment), ["sourceSha256"]);
     assert.deepEqual(manifest.source, {
       implementation: "liftosaur-git-source-v1",
       remote: "https://github.com/example/training.git",
@@ -129,7 +126,7 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
         blobSha: git(repository, ["rev-parse", `${baseSha}:${programPath}`]),
       },
       candidate: {
-        requestedRef: candidateSha,
+        requestedRef: "HEAD",
         commitSha: candidateSha,
         blobSha: git(repository, ["rev-parse", `${candidateSha}:${programPath}`]),
       },
@@ -140,7 +137,6 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
       "deploy",
       "--bundle", bundle,
       "--config", configFile,
-      "--deployment", "example",
       "--output", record,
       "--api-base", apiBase,
     ], environment);
@@ -150,7 +146,7 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
       ["PUT", "/api/v1/programs/program-1"],
       ["GET", "/api/v1/programs/program-1"],
     ]);
-    assert.equal(program.name, "Deployed");
+    assert.equal(program.name, "Actual current name");
     assert.equal(program.text, merged);
     const report = JSON.parse(await readFile(path.join(record, "deployment-report.json"), "utf8"));
     assert.deepEqual(report.source, manifest.source);
@@ -158,7 +154,6 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
     const recorded = await run([
       "record-deployment",
       "--config", configFile,
-      "--deployment", "example",
       "--report", path.join(record, "deployment-report.json"),
     ], environment);
     assert.equal(recorded.code, 0, `${recorded.stdout}\n${recorded.stderr}`);
@@ -181,8 +176,6 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
       "prepare-git",
       "--repository", repository,
       "--config", configFile,
-      "--deployment", "example",
-      "--candidate-ref", nextCandidateSha,
       "--output", nextBundle,
       "--api-base", apiBase,
     ], environment);
@@ -190,6 +183,7 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
     const nextManifest = JSON.parse(await readFile(path.join(nextBundle, "deployment-manifest.json"), "utf8"));
     assert.equal(nextManifest.source.base.commitSha, candidateSha);
     assert.equal(nextManifest.source.base.blobSha, state.blobSha);
+    assert.equal(nextManifest.source.candidate.commitSha, nextCandidateSha);
     const nextMerged = await readFile(path.join(nextBundle, "deploy.liftoscript"), "utf8");
     assert.match(nextMerged, /240s/);
     assert.match(nextMerged, /volume: 3/);
@@ -199,8 +193,6 @@ test("prepare-git resolves current once and binds immutable Git inputs through d
       "prepare-git",
       "--repository", repository,
       "--config", configFile,
-      "--deployment", "example",
-      "--candidate-ref", nextCandidateSha,
       "--output", path.join(root, "dirty-bundle"),
       "--api-base", apiBase,
     ], environment);
