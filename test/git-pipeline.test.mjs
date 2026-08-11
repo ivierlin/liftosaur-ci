@@ -80,8 +80,6 @@ test("configured Git deployment needs only path, target, and a bootstrap base", 
     await Promise.all([
       writeFile(programFile, source(), "utf8"),
       writeFile(configFile, `${JSON.stringify({
-        formatVersion: 3,
-        implementation: "liftosaur-check-config-v3",
         deployments: {
           example: {
             program: programPath,
@@ -116,7 +114,6 @@ test("configured Git deployment needs only path, target, and a bootstrap base", 
     assert.equal(manifest.target.id, "program-1");
     assert.deepEqual(Object.keys(manifest.deployment), ["sourceSha256"]);
     assert.deepEqual(manifest.source, {
-      implementation: "liftosaur-git-source-v1",
       remote: "https://github.com/example/training.git",
       objectFormat: "sha1",
       programPath,
@@ -160,10 +157,9 @@ test("configured Git deployment needs only path, target, and a bootstrap base", 
     const stateFile = path.join(repository, ".liftosaur-ci", "deployments", "example.json");
     const stateText = await readFile(stateFile, "utf8");
     const state = JSON.parse(stateText);
-    assert.equal(state.formatVersion, 2);
     assert.equal(state.commitSha, candidateSha);
     assert.equal(state.blobSha, manifest.source.candidate.blobSha);
-    assert.deepEqual(Object.keys(state), ["formatVersion", "implementation", "commitSha", "blobSha"]);
+    assert.deepEqual(Object.keys(state), ["commitSha", "blobSha"]);
 
     git(repository, ["add", ".liftosaur-ci/deployments/example.json"]);
     git(repository, ["-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "record deployment"]);
