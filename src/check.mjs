@@ -4,6 +4,7 @@ import { isDeepStrictEqual } from "node:util";
 
 import { discoverConfiguredPrograms, loadLiftosaurConfig } from "./config.mjs";
 import { createScenarioSnapshot } from "./report.mjs";
+import { assertScenarioSchema } from "./scenario-schema.mjs";
 import {
   snapshotLiftosaurScenario,
   validateLiftosaurSource,
@@ -70,6 +71,7 @@ export async function checkRepository(configFile) {
           readFile(path.join(root, scenario.snapshot), "utf8"),
         ]);
         const scenarioDefinition = parseJson(scenarioText, `Scenario ${scenario.scenario}`);
+        assertScenarioSchema(scenarioDefinition);
         const expected = parseJson(expectedText, `Snapshot ${scenario.snapshot}`);
         const actual = JSON.parse(JSON.stringify(createScenarioSnapshot(
           source,
