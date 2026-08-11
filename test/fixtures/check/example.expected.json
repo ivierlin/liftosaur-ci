@@ -1,6 +1,4 @@
 {
-  "formatVersion": 1,
-  "implementation": "liftosaur-scenario-v1",
   "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
   "scenario": {
     "name": "nominal example",
@@ -238,7 +236,7 @@
       "sha256": "3dff9be01a23ee4484386cf62bcde48eeaa1334a5073e1d8673dc70abca25e20"
     },
     "scenario": {
-      "sha256": "795c7f2c9fa6ef9399b283b0cc14282c33e735edcd30b106de94f64632392d23"
+      "sha256": "8fa4a2bb6e6aebc301fc80824ffd9af0263561a8d496bc80367077397bc37045"
     }
   },
   "progressedSource": {
