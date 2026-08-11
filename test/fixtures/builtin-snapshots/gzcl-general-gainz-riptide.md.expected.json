@@ -1,0 +1,3797 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "107.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "125lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "17.5lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "107.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "50lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "35lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "35lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "10lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "20lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "150lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "62.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "55lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "125lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "17.5lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 1 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "60lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "35lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "10lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "0lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "22.5lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "115lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "125lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "17.5lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "115lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "52.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "35lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "35lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "10lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "20lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "160lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "67.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "55lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "125lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "17.5lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 2 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "62.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 5,
+                "originalWeight": "60%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "35lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "10lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "0lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "22.5lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "120lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "162.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "22.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 3 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "120lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "60lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "45lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "45lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "10lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "25lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "nextExposure": {
+        "day": 11,
+        "dayName": "Week 3 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "162.5lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "155lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "75lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "65lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "162.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "22.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "nextExposure": {
+        "day": 12,
+        "dayName": "Week 3 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "65lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "62.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "45lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "12.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "0lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "27.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "nextExposure": {
+        "day": 13,
+        "dayName": "Week 4 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "122.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "182.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "25lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "nextExposure": {
+        "day": 14,
+        "dayName": "Week 4 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "122.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "62.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "52.5lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "50lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "50lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "10lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "25lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "nextExposure": {
+        "day": 15,
+        "dayName": "Week 4 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "170lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "155lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "77.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "65lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "182.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "25lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "nextExposure": {
+        "day": 16,
+        "dayName": "Week 4 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "0lb",
+                "weight": "67.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "62.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "50lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "12.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "0lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "32.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "nextExposure": {
+        "day": 17,
+        "dayName": "Week 5 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "112.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "125lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "17.5lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "nextExposure": {
+        "day": 18,
+        "dayName": "Week 5 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "112.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "52.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "35lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "35lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "10lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "20lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "nextExposure": {
+        "day": 19,
+        "dayName": "Week 5 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "155lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "67.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "60lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "125lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "30lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "17.5lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "nextExposure": {
+        "day": 20,
+        "dayName": "Week 5 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "62.5lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 8,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "35lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "10lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "0lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "weight": "22.5lb",
+                "minReps": 15,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "nextExposure": {
+        "day": 21,
+        "dayName": "Week 6 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "120lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "125lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "17.5lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "nextExposure": {
+        "day": 22,
+        "dayName": "Week 6 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "120lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "57.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "35lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "35lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "10lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "20lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "nextExposure": {
+        "day": 23,
+        "dayName": "Week 6 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "162.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "72.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "60lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "125lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "30lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "17.5lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "nextExposure": {
+        "day": 24,
+        "dayName": "Week 6 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "0lb",
+                "weight": "65lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "35lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "10lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "0lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "weight": "22.5lb",
+                "minReps": 12,
+                "rpe": 8,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "nextExposure": {
+        "day": 25,
+        "dayName": "Week 7 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "122.5lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "162.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "22.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 26,
+      "nextExposure": {
+        "day": 26,
+        "dayName": "Week 7 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "122.5lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "62.5lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "45lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "45lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "10lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "25lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 27,
+      "nextExposure": {
+        "day": 27,
+        "dayName": "Week 7 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "170lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "90%",
+                "weight": "165lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "77.5lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "70lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "162.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "38.75lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "22.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 28,
+      "nextExposure": {
+        "day": 28,
+        "dayName": "Week 7 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "67.5lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 180,
+                "askWeight": true
+              },
+              {
+                "reps": 1,
+                "originalWeight": "90%",
+                "weight": "67.5lb",
+                "label": "VDS",
+                "timer": 180,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 9,
+                "label": "RM",
+                "timer": 120,
+                "askWeight": true
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "45lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "12.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "0lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 12,
+                "weight": "27.5lb",
+                "minReps": 10,
+                "rpe": 9,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 29,
+      "nextExposure": {
+        "day": 29,
+        "dayName": "Week 8 - Day 1",
+        "entries": [
+          {
+            "fullName": "t1: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "127.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Romanian Deadlift, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "45lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "45lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "182.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "25lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 30,
+      "nextExposure": {
+        "day": 30,
+        "dayName": "Week 8 - Day 2",
+        "entries": [
+          {
+            "fullName": "t1: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "127.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "62.5lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "55lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lat Pulldown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "50lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "50lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Lateral Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "10lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Triceps Pushdown",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "25lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 31,
+      "nextExposure": {
+        "day": 31,
+        "dayName": "Week 8 - Day 3",
+        "entries": [
+          {
+            "fullName": "t1: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "175lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Front Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "80lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "70lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "182.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Leg Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Leg Extension",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "43.75lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Standing Calf Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "25lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 32,
+      "nextExposure": {
+        "day": 32,
+        "dayName": "Week 8 - Day 4",
+        "entries": [
+          {
+            "fullName": "t1: Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "0lb",
+                "weight": "70lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 180
+              }
+            ]
+          },
+          {
+            "fullName": "t2: Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "rpe": 10,
+                "amrap": true,
+                "label": "RM",
+                "timer": 120
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "0lb",
+                "label": "VDS",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Seated Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "50lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Bicep Curl",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "12.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Face Pull",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "0lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "t3: Skullcrusher",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "weight": "32.5lb",
+                "minReps": 8,
+                "rpe": 10,
+                "amrap": true,
+                "label": "MRS",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "53e3504656af9466a24cfe3eabfee5f7bf7e6198f336ac3362fbd04928e70905"
+  }
+}

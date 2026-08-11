@@ -1,0 +1,2335 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "light: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "40%",
+                "weight": "72.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 240,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "Push Press, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 240,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 1 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chest Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "light: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "40%",
+                "weight": "52.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 240,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 240,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 2 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chest Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - Day 1",
+        "entries": [
+          {
+            "fullName": "light: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "40%",
+                "weight": "72.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 180,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 3 - Day 2",
+        "entries": [
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "nextExposure": {
+        "day": 11,
+        "dayName": "Week 3 - Day 3",
+        "entries": [
+          {
+            "fullName": "Push Press, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 180,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "nextExposure": {
+        "day": 12,
+        "dayName": "Week 3 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chest Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "nextExposure": {
+        "day": 13,
+        "dayName": "Week 4 - Day 1",
+        "entries": [
+          {
+            "fullName": "light: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "40%",
+                "weight": "52.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 180,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "nextExposure": {
+        "day": 14,
+        "dayName": "Week 4 - Day 2",
+        "entries": [
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "nextExposure": {
+        "day": 15,
+        "dayName": "Week 4 - Day 3",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 180,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "nextExposure": {
+        "day": 16,
+        "dayName": "Week 4 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chest Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "nextExposure": {
+        "day": 17,
+        "dayName": "Week 5 - Day 1",
+        "entries": [
+          {
+            "fullName": "light: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "40%",
+                "weight": "72.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "72.5lb",
+                "timer": 120,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "nextExposure": {
+        "day": 18,
+        "dayName": "Week 5 - Day 2",
+        "entries": [
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "nextExposure": {
+        "day": 19,
+        "dayName": "Week 5 - Day 3",
+        "entries": [
+          {
+            "fullName": "Push Press, Barbell",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 120,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "nextExposure": {
+        "day": 20,
+        "dayName": "Week 5 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chest Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "nextExposure": {
+        "day": 21,
+        "dayName": "Week 6 - Day 1",
+        "entries": [
+          {
+            "fullName": "light: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "40%",
+                "weight": "52.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "97.5lb",
+                "timer": 120,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "nextExposure": {
+        "day": 22,
+        "dayName": "Week 6 - Day 2",
+        "entries": [
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Clean",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "nextExposure": {
+        "day": 23,
+        "dayName": "Week 6 - Day 3",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "54%",
+                "weight": "45lb",
+                "timer": 120,
+                "count": 10
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "nextExposure": {
+        "day": 24,
+        "dayName": "Week 6 - Day 4",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chest Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Sit Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Back Extension, Bodyweight",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 20,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "127e3fb5b6644959dd898c3ffc0c27cc8da56e7d33900b5562ab0703cdfa64af"
+  }
+}

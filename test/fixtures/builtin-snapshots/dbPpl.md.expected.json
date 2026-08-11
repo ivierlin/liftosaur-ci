@@ -1,0 +1,328 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Push Day",
+        "entries": [
+          {
+            "fullName": "Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Chest Fly",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "22.5lb",
+                "weight": "22.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Arnold Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Extension",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "22.5lb",
+                "weight": "22.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "2.5lb",
+                "weight": "5lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Pull Day",
+        "entries": [
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "5lb",
+                "weight": "5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Reverse Fly",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "12.5lb",
+                "weight": "12.5lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shrug",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "22.5lb",
+                "weight": "22.5lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Legs Day",
+        "entries": [
+          {
+            "fullName": "Goblet Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Single Leg Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Standing Calf Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "lastReps": 0,
+              "failures": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "2.5lb",
+                "weight": "5lb",
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "05c947679a46600e8afaf5aa9cd9f72f99c102bd1b4ada02a215ebc844fa3fd4"
+  }
+}

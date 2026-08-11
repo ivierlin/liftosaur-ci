@@ -1,0 +1,1147 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "72%",
+                "weight": "132.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 3 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 3 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "147.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 4 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "nextExposure": {
+        "day": 11,
+        "dayName": "Week 4 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "nextExposure": {
+        "day": 12,
+        "dayName": "Week 4 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "122.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "nextExposure": {
+        "day": 13,
+        "dayName": "Week 5 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "nextExposure": {
+        "day": 14,
+        "dayName": "Week 5 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "nextExposure": {
+        "day": 15,
+        "dayName": "Week 5 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "140lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "nextExposure": {
+        "day": 16,
+        "dayName": "Week 6 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "nextExposure": {
+        "day": 17,
+        "dayName": "Week 6 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "nextExposure": {
+        "day": 18,
+        "dayName": "Week 6 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "155lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "6cabd392355a5cb8a9e978673059d7f1866c92893f5edac259175e712471099e"
+  }
+}

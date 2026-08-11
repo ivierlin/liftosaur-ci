@@ -1,0 +1,169 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Workout A",
+        "entries": [
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increase": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "97.5lb",
+                "weight": "97.5lb",
+                "count": 2
+              },
+              {
+                "reps": 5,
+                "originalWeight": "97.5lb",
+                "weight": "97.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "count": 2
+              },
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "count": 2
+              },
+              {
+                "reps": 5,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "amrap": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Workout B",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increase": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "2.5lb",
+                "weight": "5lb",
+                "count": 2
+              },
+              {
+                "reps": 5,
+                "originalWeight": "2.5lb",
+                "weight": "5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "count": 2
+              },
+              {
+                "reps": 5,
+                "originalWeight": "47.5lb",
+                "weight": "47.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "count": 2
+              },
+              {
+                "reps": 5,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "amrap": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "4e8fc74cfee7269fe293b0f9d3324e6170771a533653a58031fab5804c11898d"
+  }
+}

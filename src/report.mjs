@@ -36,6 +36,15 @@ export function createValidationReport(source, result) {
   };
 }
 
+export function createBuiltinSnapshot(source, result) {
+  return {
+    ...result.snapshot,
+    command: "builtin-snapshot",
+    cli: LIFTOSAUR_CI_CLI,
+    input: { sha256: sha256(source) },
+  };
+}
+
 export function createScenarioSnapshot(source, scenarioText, result) {
   return {
     ...result.snapshot,

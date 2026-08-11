@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 
 import { parseLiftosaurMergeDocument } from "../src/frontend.mjs";
 import { mergeLiftosaurSources } from "../src/merge.mjs";
+import { createBuiltinSnapshot } from "../src/report.mjs";
 import { validateLiftosaurSource } from "../src/validate.mjs";
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -16,6 +17,7 @@ const runtime = path.resolve(
     ?? path.join(repositoryRoot, ".private", "liftosaur-runtime")
 );
 const builtinDirectory = path.join(runtime, "programs", "builtin");
+const snapshotDirectory = path.join(testDirectory, "fixtures", "builtin-snapshots");
 const knownLifecycleFailures = new Map([
   ["gzcl-ggbb.md", {
     stage: "lifecycle-finish",
@@ -109,6 +111,15 @@ for (const { filename, source } of programs) {
     } else {
       const validation = validateLiftosaurSource(source);
       assert.ok(validation.summary.days > 0);
+      const expected = await readFile(
+        path.join(snapshotDirectory, `${filename}.expected.json`),
+        "utf8"
+      );
+      assert.equal(
+        `${JSON.stringify(createBuiltinSnapshot(source, validation), null, 2)}\n`,
+        expected,
+        `Reviewed built-in snapshot changed: ${filename}`
+      );
     }
     const result = await mergeLiftosaurSources({ base: source, active: source, candidate: source });
     assert.equal(result.report.status, "merged");

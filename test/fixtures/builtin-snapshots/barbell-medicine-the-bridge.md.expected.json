@@ -1,0 +1,2231 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 300
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "92.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "95lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "97.5lb",
+                "rpe": 9,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "rack: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 7,
+                "weight": "130lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "135lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "140lb",
+                "rpe": 8,
+                "timer": 240
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "paused: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "107.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "115lb",
+                "rpe": 9,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "55lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "57.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "60lb",
+                "rpe": 8,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "62.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "65lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 1 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "140lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "145lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "150lb",
+                "rpe": 8,
+                "timer": 300
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "tempo: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "90lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "95lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "97.5lb",
+                "rpe": 8,
+                "timer": 240
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "92.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "95lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "97.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "rack: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 7,
+                "weight": "130lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "135lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "140lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "paused: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "107.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "115lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "55lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "57.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "60lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "62.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "65lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 2 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 2 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "140lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "145lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "150lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "tempo: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "90lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "95lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "97.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "92.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "95lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "97.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "rack: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 7,
+                "weight": "135lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "140lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "145lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 3 - Day 2",
+        "entries": [
+          {
+            "fullName": "paused: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "107.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "115lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "55lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "57.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "60lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "62.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "65lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "nextExposure": {
+        "day": 11,
+        "dayName": "Week 3 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "nextExposure": {
+        "day": 12,
+        "dayName": "Week 3 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "140lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "145lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "150lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "tempo: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "95lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "97.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "102.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "nextExposure": {
+        "day": 13,
+        "dayName": "Week 4 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "92.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "95lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "97.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "rack: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 7,
+                "weight": "135lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "140lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 7,
+                "weight": "145lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "nextExposure": {
+        "day": 14,
+        "dayName": "Week 4 - Day 2",
+        "entries": [
+          {
+            "fullName": "paused: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "107.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "115lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "55lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "57.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "60lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "62.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "65lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "nextExposure": {
+        "day": 15,
+        "dayName": "Week 4 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "nextExposure": {
+        "day": 16,
+        "dayName": "Week 4 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "140lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "145lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "weight": "150lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "weight": "102.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "105lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "weight": "107.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "tempo: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "90lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "95lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 8,
+                "weight": "97.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "nextExposure": {
+        "day": 17,
+        "dayName": "Week 5 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "105lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "weight": "107.5lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "supp: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "107.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "115lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "150lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "155lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "160lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "nextExposure": {
+        "day": 18,
+        "dayName": "Week 5 - Day 2",
+        "entries": [
+          {
+            "fullName": "Box Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "125lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "130lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "132.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "57.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "60lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "62.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "weight": "62.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "65lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 8,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "nextExposure": {
+        "day": 19,
+        "dayName": "Week 5 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "nextExposure": {
+        "day": 20,
+        "dayName": "Week 5 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "145lb",
+                "rpe": 6,
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "weight": "150lb",
+                "rpe": 7,
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "weight": "155lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "105lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "107.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "beltless: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "weight": "102.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "105lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "107.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "nextExposure": {
+        "day": 21,
+        "dayName": "Week 6 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "122.5lb",
+                "rpe": 8,
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "supp: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "weight": "112.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "115lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "120lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "150lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "155lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "160lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "nextExposure": {
+        "day": 22,
+        "dayName": "Week 6 - Day 2",
+        "entries": [
+          {
+            "fullName": "Box Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "weight": "130lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "132.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "137.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "62.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "weight": "67.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 6,
+                "weight": "70lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 6,
+                "weight": "72.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "nextExposure": {
+        "day": 23,
+        "dayName": "Week 6 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "nextExposure": {
+        "day": 24,
+        "dayName": "Week 6 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "170lb",
+                "rpe": 8,
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "weight": "155lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "122.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "112.5lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "beltless: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "weight": "97.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "102.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "105lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "nextExposure": {
+        "day": 25,
+        "dayName": "Week 7 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "122.5lb",
+                "rpe": 8,
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "weight": "115lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "supp: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "weight": "112.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "115lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "120lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "weight": "155lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "160lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "162.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 26,
+      "nextExposure": {
+        "day": 26,
+        "dayName": "Week 7 - Day 2",
+        "entries": [
+          {
+            "fullName": "Box Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "weight": "130lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "132.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "137.5lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "65lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "weight": "67.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 6,
+                "weight": "70lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 6,
+                "weight": "72.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 27,
+      "nextExposure": {
+        "day": 27,
+        "dayName": "Week 7 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 28,
+      "nextExposure": {
+        "day": 28,
+        "dayName": "Week 7 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "170lb",
+                "rpe": 8,
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "weight": "160lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "122.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "120lb",
+                "rpe": 9,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "beltless: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "weight": "97.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "102.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "105lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 29,
+      "nextExposure": {
+        "day": 29,
+        "dayName": "Week 8 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "122.5lb",
+                "rpe": 8,
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "weight": "115lb",
+                "rpe": 8,
+                "timer": 300,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "supp: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "weight": "112.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "115lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "120lb",
+                "rpe": 9,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "weight": "155lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "160lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "162.5lb",
+                "rpe": 9,
+                "timer": 240
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 30,
+      "nextExposure": {
+        "day": 30,
+        "dayName": "Week 8 - Day 2",
+        "entries": [
+          {
+            "fullName": "Box Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "weight": "125lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "130lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "weight": "132.5lb",
+                "rpe": 9,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "67.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "65lb",
+                "rpe": 9,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "Pendlay Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "weight": "67.5lb",
+                "rpe": 6,
+                "timer": 180
+              },
+              {
+                "reps": 6,
+                "weight": "70lb",
+                "rpe": 7,
+                "timer": 180
+              },
+              {
+                "reps": 6,
+                "weight": "72.5lb",
+                "rpe": 8,
+                "timer": 180,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 31,
+      "nextExposure": {
+        "day": 31,
+        "dayName": "Week 8 - GPP",
+        "entries": [
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "amrap": true,
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Plank",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 30,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 32,
+      "nextExposure": {
+        "day": 32,
+        "dayName": "Week 8 - Day 4",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "170lb",
+                "rpe": 8,
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "weight": "162.5lb",
+                "rpe": 9,
+                "timer": 300
+              }
+            ]
+          },
+          {
+            "fullName": "paused: Bench Press",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "weight": "122.5lb",
+                "rpe": 8,
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "weight": "120lb",
+                "rpe": 9,
+                "timer": 240
+              }
+            ]
+          },
+          {
+            "fullName": "beltless: Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 6,
+                "weight": "97.5lb",
+                "rpe": 6,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "102.5lb",
+                "rpe": 7,
+                "timer": 240
+              },
+              {
+                "reps": 6,
+                "weight": "105lb",
+                "rpe": 8,
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "3470d0efd527819d750d7fdfd3533ac794368dbbebb3044cee7807c1dd15a3c3"
+  }
+}

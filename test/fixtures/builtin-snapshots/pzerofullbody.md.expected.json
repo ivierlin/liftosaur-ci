@@ -1,0 +1,647 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Workout A1",
+        "entries": [
+          {
+            "fullName": "T1: Deadlift",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 132.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "138.2lb",
+                "weight": "137.5lb",
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "138.2lb",
+                "weight": "137.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "T2: Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 70,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "75.2lb",
+                "weight": "75lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "T3: T Bar Row",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 45,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Leg Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 125,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "130lb",
+                "weight": "130lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Chest Dip",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 0,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "5lb",
+                "weight": "5lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Cable Crunch",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 25,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Workout B1",
+        "entries": [
+          {
+            "fullName": "T1: Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 52.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "59lb",
+                "weight": "57.5lb",
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "59lb",
+                "weight": "57.5lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "T2: Squat",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 70,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "75.2lb",
+                "weight": "75lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Pull Up",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 0,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "5lb",
+                "weight": "5lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 57.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "62.5lb",
+                "weight": "62.5lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Seated Leg Curl",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 30,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Bicep Curl",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90,
+                "unilateral": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Workout A2",
+        "entries": [
+          {
+            "fullName": "T1: Bench Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 95,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "102.2lb",
+                "weight": "100lb",
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "102.2lb",
+                "weight": "100lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "T2: Deadlift",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 95,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "101.2lb",
+                "weight": "100lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Seated Row",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 35,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Shoulder Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 12.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "17.5lb",
+                "weight": "17.5lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Leg Extension",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 30,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Side Crunch, Cable",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 0,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "5lb",
+                "weight": "5lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90,
+                "unilateral": true
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Workout B2",
+        "entries": [
+          {
+            "fullName": "T1: Squat",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 95,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "102.2lb",
+                "weight": "100lb",
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "102.2lb",
+                "weight": "100lb",
+                "amrap": true
+              }
+            ]
+          },
+          {
+            "fullName": "T2: Overhead Press",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "stage1weight": {
+                "value": 45,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "44lb",
+                "weight": "45lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Romanian Deadlift, Barbell",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 45,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "25lb",
+                "weight": "45lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Bench Press, Dumbbell",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 67.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "72.5lb",
+                "weight": "72.5lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Lateral Raise, Cable",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "12.5lb",
+                "weight": "10lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          },
+          {
+            "fullName": "T3: Flat Leg Raise",
+            "progressState": {
+              "increase": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "initialReps": 60,
+              "diff": 15,
+              "stage1weight": {
+                "value": 0,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 60,
+                "originalWeight": "5lb",
+                "weight": "5lb",
+                "minReps": 1,
+                "amrap": true,
+                "timer": 90
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "ec039ed52721c50863f20f4149c41fdc900c43d336f9059b44d15e4e21bd11de"
+  }
+}

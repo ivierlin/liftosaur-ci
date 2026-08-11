@@ -1,0 +1,1152 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 180,
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 180,
+                "count": 2
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 180
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 8,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 180,
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 180,
+                "count": 2
+              },
+              {
+                "reps": 1,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 180
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 240,
+                "count": 4
+              },
+              {
+                "reps": 3,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 240
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240,
+                "count": 2
+              },
+              {
+                "reps": 1,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 240
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 180
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "82.5%",
+                "weight": "110lb",
+                "timer": 180
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 180
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 3 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 180,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 3 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240,
+                "count": 7
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "nextExposure": {
+        "day": 10,
+        "dayName": "Week 3 - Day 4",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "134.75lb",
+                "weight": "132.5lb",
+                "timer": 300,
+                "count": 10
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "nextExposure": {
+        "day": 11,
+        "dayName": "Week 4 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 180,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "nextExposure": {
+        "day": 12,
+        "dayName": "Week 4 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "nextExposure": {
+        "day": 13,
+        "dayName": "Week 4 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240,
+                "count": 7
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "nextExposure": {
+        "day": 14,
+        "dayName": "Week 4 - Day 4",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "124.75lb",
+                "weight": "122.5lb",
+                "timer": 300,
+                "count": 10
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 15,
+      "nextExposure": {
+        "day": 15,
+        "dayName": "Week 5 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 180,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 16,
+      "nextExposure": {
+        "day": 16,
+        "dayName": "Week 5 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 180,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 17,
+      "nextExposure": {
+        "day": 17,
+        "dayName": "Week 5 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240,
+                "count": 7
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 18,
+      "nextExposure": {
+        "day": 18,
+        "dayName": "Week 5 - Day 4",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 300,
+                "count": 10
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 19,
+      "nextExposure": {
+        "day": 19,
+        "dayName": "Week 6 - 1RM Test",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "timer": 300
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 20,
+      "nextExposure": {
+        "day": 20,
+        "dayName": "Week 7 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "50%",
+                "weight": "67.5lb",
+                "timer": 60,
+                "count": 6
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 21,
+      "nextExposure": {
+        "day": 21,
+        "dayName": "Week 7 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "55%",
+                "weight": "72.5lb",
+                "timer": 60,
+                "count": 6
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 22,
+      "nextExposure": {
+        "day": 22,
+        "dayName": "Week 7 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "55%",
+                "weight": "72.5lb",
+                "timer": 90,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 23,
+      "nextExposure": {
+        "day": 23,
+        "dayName": "Week 8 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "55%",
+                "weight": "72.5lb",
+                "timer": 60,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 24,
+      "nextExposure": {
+        "day": 24,
+        "dayName": "Week 8 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "60%",
+                "weight": "80lb",
+                "timer": 90,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 25,
+      "nextExposure": {
+        "day": 25,
+        "dayName": "Week 8 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 2,
+                "originalWeight": "60%",
+                "weight": "80lb",
+                "timer": 90,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 26,
+      "nextExposure": {
+        "day": 26,
+        "dayName": "Week 9 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 240,
+                "count": 3
+              },
+              {
+                "reps": 5,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 240
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 27,
+      "nextExposure": {
+        "day": 27,
+        "dayName": "Week 9 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "60%",
+                "weight": "80lb",
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 240
+              },
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 28,
+      "nextExposure": {
+        "day": 28,
+        "dayName": "Week 9 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 29,
+      "nextExposure": {
+        "day": 29,
+        "dayName": "Week 10 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "60%",
+                "weight": "80lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240
+              },
+              {
+                "reps": 3,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 240,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 30,
+      "nextExposure": {
+        "day": 30,
+        "dayName": "Week 10 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 300,
+                "count": 3
+              },
+              {
+                "reps": 3,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "timer": 300
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 31,
+      "nextExposure": {
+        "day": 31,
+        "dayName": "Week 10 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 300,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 32,
+      "nextExposure": {
+        "day": 32,
+        "dayName": "Week 11 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "60%",
+                "weight": "80lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 300,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 33,
+      "nextExposure": {
+        "day": 33,
+        "dayName": "Week 11 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "60%",
+                "weight": "80lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "timer": 300,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 34,
+      "nextExposure": {
+        "day": 34,
+        "dayName": "Week 11 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "timer": 300,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 35,
+      "nextExposure": {
+        "day": 35,
+        "dayName": "Week 12 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 300,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 36,
+      "nextExposure": {
+        "day": 36,
+        "dayName": "Week 12 - Day 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "timer": 300,
+                "count": 4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 37,
+      "nextExposure": {
+        "day": 37,
+        "dayName": "Week 12 - Day 3",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "75%",
+                "weight": "100lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 240
+              },
+              {
+                "reps": 4,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 240,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 38,
+      "nextExposure": {
+        "day": 38,
+        "dayName": "Week 13 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "70%",
+                "weight": "92.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 300
+              },
+              {
+                "reps": 5,
+                "originalWeight": "90%",
+                "weight": "120lb",
+                "timer": 300,
+                "count": 2
+              },
+              {
+                "reps": 4,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "timer": 300,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 39,
+      "nextExposure": {
+        "day": 39,
+        "dayName": "Week 13 - 1RM Test",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 1,
+                "originalWeight": "95%",
+                "weight": "127.5lb",
+                "timer": 300
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "e774b8123d429888142c311459259300cbf26b81653a297d2eb760e6b9f71ae8"
+  }
+}

@@ -1,0 +1,869 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Chest & Back 1",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pullover",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "225lb",
+                "weight": "225lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Crunch",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Shoulders & Arms 1",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Upright Row, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Skullcrusher",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Reverse Crunch",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Legs 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Good Morning",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Stiff Leg Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Standing Calf Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Chest & Back 2",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Pullover",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 90,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "225lb",
+                "weight": "225lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Crunch",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Shoulders & Arms 2",
+        "entries": [
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "85lb",
+                "weight": "85lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Upright Row, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "55lb",
+                "weight": "55lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press Close Grip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Skullcrusher",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Reverse Crunch",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Legs 2",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 120,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Lunge",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "timer": 90,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Good Morning",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "65lb",
+                "weight": "65lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Stiff Leg Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Standing Calf Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "1cd1df632b6ecde5e82088914f8b8e5a9c1e9f4ce8c91c20c5b68c4c45e28374"
+  }
+}

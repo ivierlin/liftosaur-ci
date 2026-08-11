@@ -218,8 +218,10 @@ The full deterministic suite is:
 npm test
 ```
 
-It checks every program in the pinned Liftosaur built-in catalog and runs on pull
-requests, `main`, and manual CI runs. The digest-pinned public RP Hypertrophy v4.1
+It checks every program in the pinned Liftosaur built-in catalog, including its
+reviewed nominal next-exposure snapshot, and runs on pull requests, `main`, and
+manual CI runs. After reviewing an intentional built-in behavior change, update
+those snapshots with `npm run update:builtin-snapshots`. The digest-pinned public RP Hypertrophy v4.1
 network corpus is available separately:
 
 ```sh

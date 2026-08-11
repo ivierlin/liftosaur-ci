@@ -1,0 +1,448 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Workout A",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "40%",
+                "weight": "52.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "55%",
+                "weight": "72.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "65%",
+                "weight": "87.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "100lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "40%",
+                "weight": "52.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "55%",
+                "weight": "72.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "65%",
+                "weight": "87.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "100lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "112.5lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "40%",
+                "weight": "45lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "55%",
+                "weight": "50lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "65%",
+                "weight": "60lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "75%",
+                "weight": "70lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "85%",
+                "weight": "80lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "5lb",
+                "weight": "10lb",
+                "minReps": 8,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Workout B",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "40%",
+                "weight": "52.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "55%",
+                "weight": "72.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "48.5lb",
+                "weight": "47.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "65.75lb",
+                "weight": "65lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "77.25lb",
+                "weight": "75lb",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "79lb",
+                "weight": "77.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "106.75lb",
+                "weight": "105lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "125.25lb",
+                "weight": "125lb",
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Skullcrusher",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "5lb",
+                "weight": "20lb",
+                "minReps": 8,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Workout C",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "59lb",
+                "weight": "57.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "79.25lb",
+                "weight": "77.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "92.75lb",
+                "weight": "92.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "106.25lb",
+                "weight": "105lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "119.75lb",
+                "weight": "117.5lb"
+              },
+              {
+                "reps": 8,
+                "originalWeight": "92.75lb",
+                "weight": "92.5lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "56.5lb",
+                "weight": "55lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "76.75lb",
+                "weight": "75lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "90.25lb",
+                "weight": "90lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "103.75lb",
+                "weight": "102.5lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "117.25lb",
+                "weight": "115lb"
+              },
+              {
+                "reps": 8,
+                "originalWeight": "90.25lb",
+                "weight": "90lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 2.5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "40.5lb",
+                "weight": "45lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "54.75lb",
+                "weight": "52.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "64.25lb",
+                "weight": "62.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "73.75lb",
+                "weight": "72.5lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "83.25lb",
+                "weight": "82.5lb"
+              },
+              {
+                "reps": 8,
+                "originalWeight": "64.25lb",
+                "weight": "62.5lb"
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "successes": 1,
+              "successCounter": 0,
+              "decrement": {
+                "value": 0,
+                "unit": "lb"
+              },
+              "failures": 0,
+              "failureCounter": 0
+            },
+            "sets": [
+              {
+                "reps": 12,
+                "originalWeight": "5lb",
+                "weight": "10lb",
+                "minReps": 8,
+                "unilateral": true,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "922a643e14bb9983955df9870937ac3181a581e7a607a174d0534d9a293d9680"
+  }
+}

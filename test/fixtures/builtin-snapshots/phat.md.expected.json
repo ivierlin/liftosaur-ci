@@ -1,0 +1,914 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Upper Power",
+        "entries": [
+          {
+            "fullName": "main: Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 3,
+              "maxReps": 5,
+              "powerDay": 1,
+              "speedDay": 3
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "115lb",
+                "weight": "115lb",
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "power: Pull Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "power: Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "main: Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 3,
+              "maxReps": 5,
+              "powerDay": 1,
+              "speedDay": 5
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "power: Chest Dip",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "power: Overhead Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "power: Bicep Curl, EZ Bar",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "power: Skullcrusher",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Lower Power",
+        "entries": [
+          {
+            "fullName": "main: Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 3,
+              "maxReps": 5,
+              "powerDay": 2,
+              "speedDay": 4
+            },
+            "sets": [
+              {
+                "reps": 4,
+                "originalWeight": "185lb",
+                "weight": "185lb",
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "power: Hack Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "power: Leg Extension",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "80lb",
+                "weight": "80lb",
+                "timer": 90,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "power: Stiff Leg Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 5,
+              "maxReps": 8
+            },
+            "sets": [
+              {
+                "reps": 6,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 180,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "power: Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 90,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "power: Standing Calf Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "power: Seated Calf Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 6,
+              "maxReps": 10
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "timer": 90,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Back and Shoulders Hypertrophy",
+        "entries": [
+          {
+            "fullName": "main: Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 3,
+              "maxReps": 5,
+              "powerDay": 1,
+              "speedDay": 3
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "74.75lb",
+                "weight": "72.5lb",
+                "timer": 90,
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Lat Pulldown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Seated Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "100lb",
+                "weight": "100lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Bent Over One Arm Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Kneeling Pulldown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Overhead Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Upright Row, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "45lb",
+                "weight": "45lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Lateral Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Lower Hypertrophy",
+        "entries": [
+          {
+            "fullName": "main: Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 3,
+              "maxReps": 5,
+              "powerDay": 2,
+              "speedDay": 4
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "120.25lb",
+                "weight": "120lb",
+                "timer": 90,
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Hack Squat",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "135lb",
+                "weight": "135lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "200lb",
+                "weight": "200lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Leg Extension",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "80lb",
+                "weight": "80lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Romanian Deadlift, Barbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Seated Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Calf Press on Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "150lb",
+                "weight": "150lb",
+                "timer": 60,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Seated Calf Raise",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Chest and Arms Hypertrophy",
+        "entries": [
+          {
+            "fullName": "main: Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 3,
+              "maxReps": 5,
+              "powerDay": 1,
+              "speedDay": 5
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "26lb",
+                "weight": "25lb",
+                "timer": 90,
+                "count": 6
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Chest Press, Leverage Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Incline Chest Fly, Cable",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Preacher Curl, EZ Bar",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Concentration Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Incline Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Triceps Extension",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "hyp: Cable Kickback",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 15,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 16,
+                "originalWeight": "10lb",
+                "weight": "10lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "272eef110375e3af5eb2372be9e1eb72edc90969e5574fb496d916d5fcb1693b"
+  }
+}

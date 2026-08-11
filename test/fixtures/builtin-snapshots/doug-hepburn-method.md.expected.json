@@ -1,0 +1,279 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Day 1",
+        "entries": [
+          {
+            "fullName": "power: Squat",
+            "progressState": {
+              "min": 2,
+              "max": 3,
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 180,
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "pump: Squat",
+            "progressState": {
+              "min": 6,
+              "max": 8,
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "power: Bench Press",
+            "progressState": {
+              "min": 2,
+              "max": 3,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "107.5lb",
+                "timer": 180,
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "pump: Bench Press",
+            "progressState": {
+              "min": 6,
+              "max": 8,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "87.5lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Day 2",
+        "entries": [
+          {
+            "fullName": "power: Deadlift",
+            "progressState": {
+              "min": 2,
+              "max": 3,
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "147.5lb",
+                "timer": 180,
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "pump: Deadlift",
+            "progressState": {
+              "min": 6,
+              "max": 8,
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "65%",
+                "weight": "120lb",
+                "timer": 120
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "120lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "power: Overhead Press",
+            "progressState": {
+              "min": 2,
+              "max": 3,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "timer": 180
+              },
+              {
+                "reps": 2,
+                "originalWeight": "80%",
+                "weight": "60lb",
+                "timer": 180,
+                "count": 7
+              }
+            ]
+          },
+          {
+            "fullName": "pump: Overhead Press",
+            "progressState": {
+              "min": 6,
+              "max": 8,
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 7,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "timer": 120
+              },
+              {
+                "reps": 6,
+                "originalWeight": "65%",
+                "weight": "47.5lb",
+                "timer": 120,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bent Over Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 120,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "16dacf8b7530b0311be6946f0bb21329ef9d6a11c811f35b70ee917da02c1f9c"
+  }
+}

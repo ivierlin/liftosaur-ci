@@ -1,0 +1,1015 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Week 1 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Week 1 - Day 2",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "105lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "122.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "76%",
+                "weight": "140lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "105lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "45lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "50lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "76%",
+                "weight": "55lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Inverted Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Bulgarian Split Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "10lb",
+                "unilateral": true,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Week 1 - Day 3",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 5,
+                "originalWeight": "76%",
+                "weight": "102.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "58%",
+                "weight": "77.5lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Week 2 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "63%",
+                "weight": "85lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72%",
+                "weight": "95lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "63%",
+                "weight": "85lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72%",
+                "weight": "95lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "nextExposure": {
+        "day": 5,
+        "dayName": "Week 2 - Day 2",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "63%",
+                "weight": "115lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72%",
+                "weight": "132.5lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "147.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "115lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "63%",
+                "weight": "45lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72%",
+                "weight": "52.5lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "60lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "45lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Inverted Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Bulgarian Split Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "10lb",
+                "unilateral": true,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "nextExposure": {
+        "day": 6,
+        "dayName": "Week 2 - Day 3",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "63%",
+                "weight": "85lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72%",
+                "weight": "95lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 3,
+                "originalWeight": "63%",
+                "weight": "85lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "72%",
+                "weight": "95lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "81%",
+                "weight": "107.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "63%",
+                "weight": "85lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "nextExposure": {
+        "day": 7,
+        "dayName": "Week 3 - Day 1",
+        "entries": [
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb"
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb"
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Chin Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "nextExposure": {
+        "day": 8,
+        "dayName": "Week 3 - Day 2",
+        "entries": [
+          {
+            "fullName": "Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "122.5lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "140lb"
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "155lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "122.5lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Overhead Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "50lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "55lb"
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "62.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "50lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Dip",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Inverted Row",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Bulgarian Split Squat",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "10lb",
+                "unilateral": true,
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "nextExposure": {
+        "day": 9,
+        "dayName": "Week 3 - Day 3",
+        "entries": [
+          {
+            "fullName": "Bench Press",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb"
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              }
+            },
+            "sets": [
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb"
+              },
+              {
+                "reps": 3,
+                "originalWeight": "76%",
+                "weight": "102.5lb"
+              },
+              {
+                "reps": 1,
+                "originalWeight": "85%",
+                "weight": "112.5lb",
+                "amrap": true
+              },
+              {
+                "reps": 5,
+                "originalWeight": "67%",
+                "weight": "90lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Hanging Leg Raise",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Pull Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 10,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          },
+          {
+            "fullName": "Push Up",
+            "progressState": {},
+            "sets": [
+              {
+                "reps": 15,
+                "originalWeight": "0lb",
+                "weight": "0lb",
+                "count": 5
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "a148bf2a453a27a18b710edd7d848e6bff8e8e195903697b71ad754196f2e35d"
+  }
+}

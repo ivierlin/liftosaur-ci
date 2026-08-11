@@ -1,0 +1,530 @@
+{
+  "runtimeRevision": "f9c1b1453aaa22ab177d8e7473da08d707c28b60",
+  "days": [
+    {
+      "day": 1,
+      "nextExposure": {
+        "day": 1,
+        "dayName": "Upper A",
+        "entries": [
+          {
+            "fullName": "Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lat Pulldown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Shoulder Press, Leverage Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Seated Row",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Pushdown",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "40lb",
+                "weight": "40lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Bicep Curl, Cable",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "nextExposure": {
+        "day": 2,
+        "dayName": "Lower A",
+        "entries": [
+          {
+            "fullName": "Leg Press",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 8,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 9,
+                "originalWeight": "200lb",
+                "weight": "200lb",
+                "timer": 90,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Romanian Deadlift",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "35lb",
+                "weight": "35lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hack Squat",
+            "progressState": {
+              "increment": {
+                "value": 10,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lying Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Standing Calf Raise, Leverage Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Cable Crunch",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "50lb",
+                "weight": "50lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "nextExposure": {
+        "day": 3,
+        "dayName": "Upper B",
+        "entries": [
+          {
+            "fullName": "Chest Press, Leverage Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Seated Row, Leverage Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "timer": 90,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Incline Bench Press, Dumbbell",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "30lb",
+                "weight": "30lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Lateral Raise, Leverage Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "15lb",
+                "weight": "15lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hammer Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "25lb",
+                "weight": "25lb",
+                "timer": 60,
+                "unilateral": true,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "fullName": "Triceps Extension, Cable",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "20lb",
+                "weight": "20lb",
+                "timer": 60,
+                "count": 2
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "nextExposure": {
+        "day": 4,
+        "dayName": "Lower B",
+        "entries": [
+          {
+            "fullName": "Squat, Smith Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "95lb",
+                "weight": "95lb",
+                "timer": 90,
+                "count": 4
+              }
+            ]
+          },
+          {
+            "fullName": "Cable Pull Through",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 10,
+              "maxReps": 12
+            },
+            "sets": [
+              {
+                "reps": 11,
+                "originalWeight": "70lb",
+                "weight": "70lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Leg Extension",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Seated Leg Curl",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Hip Abductor",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 15
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "60lb",
+                "weight": "60lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          },
+          {
+            "fullName": "Seated Calf Raise, Leverage Machine",
+            "progressState": {
+              "increment": {
+                "value": 5,
+                "unit": "lb"
+              },
+              "minReps": 12,
+              "maxReps": 20
+            },
+            "sets": [
+              {
+                "reps": 13,
+                "originalWeight": "90lb",
+                "weight": "90lb",
+                "timer": 60,
+                "count": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "command": "builtin-snapshot",
+  "cli": {
+    "name": "liftosaur-ci",
+    "version": "0.1.0"
+  },
+  "input": {
+    "sha256": "1fb6cc0dde15103a6d99d556e7c8c5b6596649b86666d323b3ff784fb5e062a7"
+  }
+}

@@ -28,6 +28,14 @@ test("native validation constructs every day and preserves prescriptions", () =>
     "f9c1b1453aaa22ab177d8e7473da08d707c28b60"
   );
   assert.match(result.serializedSource, /# Week 1/);
+  assert.deepEqual(result.snapshot.days.map(({ day, nextExposure }) => ({
+    day,
+    dayName: nextExposure.dayName,
+    exercises: nextExposure.entries.map(({ fullName }) => fullName),
+  })), [
+    { day: 1, dayName: "Day A", exercises: ["Squat"] },
+    { day: 2, dayName: "Day B", exercises: ["Bench Press"] },
+  ]);
 });
 
 test("native validation reports Liftosaur evaluation errors", () => {
