@@ -67,10 +67,17 @@ Preparation reads three versions of the program:
 - the current Liftosaur source containing real-world progression state,
 - the new reviewed Git source.
 
-The Liftosaur-aware three-way merge carries independent live progression into the
-new program while applying reviewed code/configuration changes. Conflicting edits
-fail closed instead of guessing. Native validation must pass before a deployment
-can proceed.
+The ownership rule is intentionally simple. Code inside Liftoscript `{ ... }`
+bodies is Git-managed program logic. If the live Liftosaur source differs from the
+previously deployed Git source inside any such body, preparation stops: the author
+must either commit that edit in Git or discard it in Liftosaur before updating.
+The CI does not attempt to merge program-code edits made in the app.
+
+Everything outside those bodies is treated as eligible live progression for the
+three-way merge. That deliberately avoids trying to classify every prescription,
+state argument, timer, or other serialized field. Independent live changes are
+carried forward; when both the live source and new Git source change the same
+mergeable region incompatibly, the merge still fails closed instead of guessing.
 
 Git revisions are resolved to immutable commits and program blobs. Source is read
 from those Git objects, so unrelated staged, modified, or untracked files in the
