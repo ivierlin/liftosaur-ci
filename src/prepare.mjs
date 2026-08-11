@@ -1,4 +1,5 @@
-import { readFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
 
 import {
   fetchDeploymentTarget,
@@ -14,6 +15,21 @@ export class LiftosaurPreparationError extends Error {
     this.stage = stage;
     this.exitCode = exitCode;
   }
+}
+
+async function writeConflictWorkspace({ outputDirectory, base, active, candidate, conflictSource, mergeReport }) {
+  await mkdir(outputDirectory, { recursive: false });
+  await Promise.all([
+    writeFile(path.join(outputDirectory, "base.liftoscript"), base, { encoding: "utf8", flag: "wx" }),
+    writeFile(path.join(outputDirectory, "active.liftoscript"), active, { encoding: "utf8", flag: "wx" }),
+    writeFile(path.join(outputDirectory, "candidate.liftoscript"), candidate, { encoding: "utf8", flag: "wx" }),
+    writeFile(path.join(outputDirectory, "conflict.txt"), conflictSource, { encoding: "utf8", flag: "wx" }),
+    writeFile(
+      path.join(outputDirectory, "merge-report.json"),
+      `${JSON.stringify(mergeReport, null, 2)}\n`,
+      { encoding: "utf8", flag: "wx" }
+    ),
+  ]);
 }
 
 export async function prepareLiftosaurDeployment({
@@ -61,8 +77,24 @@ export async function prepareLiftosaurDeploymentFromContents({
   }
   const mergeReport = createMergeReport({ base, active, candidate }, merged);
   if (!merged.source) {
+    await writeConflictWorkspace({
+      outputDirectory,
+      base,
+      active,
+      candidate,
+      conflictSource: merged.conflictSource,
+      mergeReport,
+    });
+    const baseFile = path.join(outputDirectory, "base.liftoscript");
+    const activeFile = path.join(outputDirectory, "active.liftoscript");
+    const candidateFile = path.join(outputDirectory, "candidate.liftoscript");
     throw new LiftosaurPreparationError(
-      "Liftosaur deployment preparation has unresolved three-way merge conflicts",
+      [
+        "Liftosaur deployment preparation has unresolved three-way merge conflicts.",
+        `Conflict workspace written to: ${outputDirectory}`,
+        `Live changes: git diff --no-index \"${baseFile}\" \"${activeFile}\"`,
+        `Candidate changes: git diff --no-index \"${baseFile}\" \"${candidateFile}\"`,
+      ].join("\n"),
       "merge",
       2
     );
