@@ -8,8 +8,9 @@ on:
         required: true
         type: string
       candidate_ref:
-        description: Reviewed commit or tag to deploy
-        required: true
+        description: Reviewed commit or tag to deploy; defaults to the caller commit
+        required: false
+        default: ''
         type: string
       base_ref:
         description: Required only before the first tracked deployment
@@ -69,7 +70,7 @@ jobs:
         with:
           fetch-depth: 0
           path: repository
-          ref: ${{ inputs.candidate_ref }}
+          ref: ${{ inputs.candidate_ref || github.sha }}
       - name: Check out liftosaur-ci
         uses: actions/checkout@v7
         with:
@@ -102,7 +103,7 @@ jobs:
           node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" "$@"
         env:
           BASE_REF: ${{ inputs.base_ref }}
-          CANDIDATE_REF: ${{ inputs.candidate_ref }}
+          CANDIDATE_REF: ${{ inputs.candidate_ref || github.sha }}
           CONFIG: ${{ inputs.config }}
           DEPLOYMENT: ${{ inputs.deployment }}
           LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
@@ -129,7 +130,7 @@ jobs:
         with:
           fetch-depth: 0
           path: repository
-          ref: ${{ inputs.candidate_ref }}
+          ref: ${{ inputs.candidate_ref || github.sha }}
       - name: Check out liftosaur-ci
         uses: actions/checkout@v7
         with:
