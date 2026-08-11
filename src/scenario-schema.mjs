@@ -17,11 +17,20 @@ function validateEntries(entries, label) {
     requireAllowedKeys(entry, new Set(["exercise", "occurrence", "sets"]), entryLabel);
     if (!Array.isArray(entry.sets)) continue;
     for (const [setIndex, set] of entry.sets.entries()) {
+      const setLabel = `${entryLabel}.sets[${setIndex}]`;
       requireAllowedKeys(
         set,
-        new Set(["reps", "repsLeft", "weight", "rpe", "setTime"]),
-        `${entryLabel}.sets[${setIndex}]`
+        new Set(["reps", "repsLeft", "weight", "rpe", "setTime", "skip"]),
+        setLabel
       );
+      if (Object.hasOwn(set, "skip")) {
+        if (set.skip !== true) throw new Error(`${setLabel}.skip must be true when provided`);
+        const completionKeys = ["reps", "repsLeft", "weight", "rpe", "setTime"]
+          .filter((key) => Object.hasOwn(set, key));
+        if (completionKeys.length) {
+          throw new Error(`${setLabel}.skip cannot be combined with: ${completionKeys.join(", ")}`);
+        }
+      }
     }
   }
 }
@@ -39,7 +48,7 @@ export function assertScenarioSchema(scenario) {
     }
     return scenario;
   }
-  requireAllowedKeys(scenario, new Set(["name", "day", "entries"]), "Scenario");
+  requireAllowedKeys(scenario, new Set(["name", "day", "entries", "finish"]), "Scenario");
   validateEntries(scenario.entries, "Scenario");
   return scenario;
 }
