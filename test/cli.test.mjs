@@ -66,7 +66,6 @@ test("offline CLI writes a checksum-bound reviewed scenario snapshot", async () 
   const { directory, paths } = await fixture();
   try {
     await writeFile(paths.scenario, `${JSON.stringify({
-      formatVersion: 1,
       name: "reviewed nominal",
       day: 1,
       entries: [{
@@ -99,7 +98,6 @@ test("offline CLI writes an ordered multi-exposure snapshot", async () => {
       sets: [{ reps: 5 }, { reps: 5 }, { reps: 5 }],
     }];
     await writeFile(paths.scenario, `${JSON.stringify({
-      formatVersion: 2,
       name: "reviewed sequence",
       steps: [
         { name: "first", day: 1, entries },
@@ -112,8 +110,10 @@ test("offline CLI writes an ordered multi-exposure snapshot", async () => {
     ]);
     assert.equal(result.status, 0, result.stderr);
     const snapshot = JSON.parse(await readFile(paths.output, "utf8"));
-    assert.equal(snapshot.formatVersion, 2);
-    assert.equal(snapshot.implementation, "liftosaur-scenario-sequence-v1");
+    assert.equal(
+      snapshot.runtimeRevision,
+      "f9c1b1453aaa22ab177d8e7473da08d707c28b60"
+    );
     assert.deepEqual(snapshot.steps.map(({ index, name, day }) => ({ index, name, day })), [
       { index: 1, name: "first", day: 1 },
       { index: 2, name: "second", day: 1 },
