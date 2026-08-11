@@ -17,6 +17,7 @@ export async function updateConfiguredGitDeployment({
   const temporary = await mkdtemp(path.join(os.tmpdir(), "liftosaur-ci-update-"));
   const bundleDirectory = path.join(temporary, "bundle");
   const recordDirectory = path.join(temporary, "record");
+  let deploymentStarted = false;
   try {
     const preparation = await configuredGitPreparation({
       configFile,
@@ -36,6 +37,7 @@ export async function updateConfiguredGitDeployment({
       apiKey,
       apiBase,
     });
+    deploymentStarted = true;
     const report = await deployPreparedBundle({
       bundleDirectory,
       outputDirectory: recordDirectory,
@@ -55,7 +57,8 @@ export async function updateConfiguredGitDeployment({
       stateFile: state.file,
     };
   } catch (error) {
-    error.recoveryDirectory = temporary;
+    if (!deploymentStarted) await rm(temporary, { recursive: true, force: true });
+    else error.recoveryDirectory = temporary;
     throw error;
   }
 }
