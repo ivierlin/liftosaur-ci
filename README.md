@@ -221,8 +221,15 @@ npm test
 It checks every program in the pinned Liftosaur built-in catalog, including its
 reviewed nominal next-exposure snapshot, and runs on pull requests, `main`, and
 manual CI runs. After reviewing an intentional built-in behavior change, update
-those snapshots with `npm run update:builtin-snapshots`. The digest-pinned public RP Hypertrophy v4.1
-network corpus is available separately:
+those snapshots with `npm run update:builtin-snapshots`.
+
+The full suite also replays the public RP Hypertrophy 4-Day Upper/Lower history
+from digest-pinned local fixtures. It verifies successful state-preserving v2 to
+v3 and v4 to v4.1 updates and the documented fail-closed v3 to v4 structural
+break. Refreshing those historical fixtures from their provenance URLs is an
+explicit review action: `node scripts/update-rp-hypertrophy-history.mjs`.
+
+The live, digest-pinned public RP Hypertrophy v4.1 network corpus is available separately:
 
 ```sh
 npm run test:external

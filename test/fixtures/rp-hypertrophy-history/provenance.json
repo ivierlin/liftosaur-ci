@@ -1,0 +1,36 @@
+{
+  "programs": [
+    {
+      "version": "v2",
+      "name": "RP Hypertrophy 4-Day Upper-Lower",
+      "publicUrl": "https://www.liftosaur.com/p/a82e42ae",
+      "releasePost": "https://www.reddit.com/r/liftosaur/comments/1gb8kom/",
+      "sourceSha256": "fba956c6989f57ea3beae3f1fe2b421314c97279a4345044e8e7f95117dc8871",
+      "fixture": "v2.liftoscript"
+    },
+    {
+      "version": "v3",
+      "name": "RP Hypertrophy v3: 4-Day Upper/Lower",
+      "publicUrl": "https://www.liftosaur.com/p/d97fc46",
+      "releasePost": "https://www.reddit.com/r/liftosaur/comments/1gt5ncf/",
+      "sourceSha256": "eefc44fadbf75d42e18080ef1b8ab39f4f6d255e911e476f30d83fd028acd213",
+      "fixture": "v3.liftoscript"
+    },
+    {
+      "version": "v4",
+      "name": "RP Hypertrophy v4 Template: 4-Day Upper/Lower",
+      "publicUrl": "https://www.liftosaur.com/p/8e83d63d",
+      "releasePost": "https://www.reddit.com/r/liftosaur/comments/1kiurgi/",
+      "sourceSha256": "59923b6c9b68eab77589d77ec76a909a22602f184c5e33d9d6544f5adbf415ab",
+      "fixture": "v4.liftoscript"
+    },
+    {
+      "version": "v4.1",
+      "name": "RP Hypertrophy v4.1: 4-Day Upper/Lower",
+      "publicUrl": "https://www.liftosaur.com/p/a0ef76b",
+      "releasePost": "https://www.reddit.com/r/liftosaur/comments/1s6cs9p/",
+      "sourceSha256": "b2a1b066e61f1c1b7433431cef585c62b20f528e78832dcbf5fe67f3a7753cea",
+      "fixture": "v4.1.liftoscript"
+    }
+  ]
+}

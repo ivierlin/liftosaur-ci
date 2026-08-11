@@ -1,1 +1,2 @@
 * text=auto eol=lf
+test/fixtures/rp-hypertrophy-history/*.liftoscript whitespace=-blank-at-eof,-trailing-space
