@@ -82,7 +82,18 @@ test("prepare resolves current and deploys the exact prepared target", async () 
     ], environment);
     assert.equal(conflicted.code, 2, `${conflicted.stdout}\n${conflicted.stderr}`);
     assert.match(conflicted.stderr, /unresolved three-way merge conflicts/);
+    assert.match(conflicted.stderr, /Conflict workspace written to:/);
+    assert.match(conflicted.stderr, /git diff --no-index/);
     assert.doesNotMatch(conflicted.stderr, new RegExp(apiKey));
+    assert.equal(await readFile(path.join(conflictBundle, "base.liftoscript"), "utf8"), base);
+    assert.equal(await readFile(path.join(conflictBundle, "active.liftoscript"), "utf8"), active);
+    assert.equal(
+      await readFile(path.join(conflictBundle, "candidate.liftoscript"), "utf8"),
+      source({ volume: 4 })
+    );
+    assert.match(await readFile(path.join(conflictBundle, "conflict.txt"), "utf8"), /<<<<<<< active/);
+    const conflictReport = JSON.parse(await readFile(path.join(conflictBundle, "merge-report.json"), "utf8"));
+    assert.equal(conflictReport.status, "conflict");
     await assert.rejects(readFile(path.join(conflictBundle, "deployment-manifest.json")), { code: "ENOENT" });
     requests.length = 0;
     await writeFile(candidateFile, candidate, "utf8");
