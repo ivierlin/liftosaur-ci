@@ -1,19 +1,41 @@
 # Repository check
 
 `liftosaur-ci check` is the minimal generic CI entry point. It reads a versioned
-JSON config, validates every referenced program, and compares every configured
-reviewed snapshot. It never updates a program, scenario, or snapshot.
+JSON config, validates every referenced program, and compares configured reviewed
+snapshots. It never updates a program, scenario, or snapshot.
 
 ## Configuration
 
-Paths and patterns are relative to the config file and may not escape its
-directory. `.git`, `.private`, and `node_modules` are excluded from glob
-discovery.
+A deployable repository can start with only the program path and Liftosaur
+target:
 
 ```json
 {
   "formatVersion": 3,
   "implementation": "liftosaur-check-config-v3",
+  "deployments": {
+    "example": {
+      "program": "programs/example.liftoscript",
+      "programId": "current"
+    }
+  }
+}
+```
+
+`programId` may be an exact Liftosaur ID or `current`. `current` is resolved to
+the exact returned ID during preparation and that exact ID is used for the rest
+of the deployment transaction. Program names are preserved automatically.
+
+Paths and patterns are relative to the config file and may not escape its
+directory. Optional `programs` globs, scenario program references, and deployment
+program references are combined into one validation set, so a program does not
+need to be declared twice. The configuration must reference at least one program
+in total.
+
+Reviewed scenarios are optional:
+
+```json
+{
   "programs": ["programs/*.liftoscript"],
   "scenarios": [
     {
@@ -21,34 +43,17 @@ discovery.
       "scenario": "test/example.json",
       "snapshot": "test/example.expected.json"
     }
-  ],
-  "deployments": {
-    "example": {
-      "program": "programs/example.liftoscript",
-      "programId": "exact-liftosaur-program-id",
-      "deployedProgramName": "Example"
-    }
-  }
+  ]
 }
 ```
 
-`programs` is optional. Glob matches, scenario program references, and deployment
-program references are combined into one validation set, so an explicitly
-referenced program does not need to be declared twice. The configuration must
-reference at least one program in total.
-
-Version 3 adds named deployments with the Liftosaur target directly in
-`programId`. The value may be an exact ID or `current`; `current` is resolved to
-the exact returned ID during preparation and that resolved ID is used for the
-rest of the deployment transaction. `deployedProgramName` is optional. When it
-is omitted, deployment preserves the live program name.
+`.git`, `.private`, and `node_modules` are excluded from glob discovery. Scenario
+files are strict: unknown scenario, step, entry, and set fields are rejected
+instead of being silently ignored.
 
 Version 1 check-only configs remain supported. Version 2 deployment configs used
 environment-variable program IDs and are intentionally not accepted by the
 simplified schema.
-
-Scenario files are strict: unknown scenario, step, entry, and set fields are
-rejected instead of being silently ignored.
 
 ## CI usage
 
