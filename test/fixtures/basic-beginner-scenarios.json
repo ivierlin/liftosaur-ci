@@ -1,6 +1,5 @@
 [
   {
-    "formatVersion": 1,
     "name": "nominal",
     "day": 1,
     "entries": [
@@ -10,7 +9,6 @@
     ]
   },
   {
-    "formatVersion": 1,
     "name": "underperformance",
     "day": 1,
     "entries": [
@@ -20,7 +18,6 @@
     ]
   },
   {
-    "formatVersion": 1,
     "name": "overperformance",
     "day": 1,
     "entries": [
