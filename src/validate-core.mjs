@@ -216,6 +216,7 @@ function completeNominalSet({ set }) {
 }
 
 function completeReviewedSet(set, input, exerciseName, setIndex, label) {
+  if (input?.skip === true) return false;
   if (!input || !Number.isInteger(input.reps) || input.reps < 0) {
     throw new LiftosaurValidationError(
       `${label} requires non-negative integer reps for ${exerciseName} set ${setIndex + 1}`,
@@ -247,6 +248,7 @@ function completeReviewedSet(set, input, exerciseName, setIndex, label) {
   set.completedRpe = input.rpe ?? set.rpe;
   set.completedSetTimer = input.setTime ?? set.setTimer;
   set.isCompleted = true;
+  return true;
 }
 
 function completeDay(source, day, api, completeSet, context = {}) {
@@ -294,20 +296,23 @@ function completeDay(source, day, api, completeSet, context = {}) {
           [{ day, entry: entryIndex + 1 }]
         );
       }
+      let runCompletionUpdate = true;
       if (!set.isCompleted) {
-        completeSet({ set, entry, exercise, entryIndex, setIndex });
-        completedSets += 1;
+        runCompletionUpdate = completeSet({ set, entry, exercise, entryIndex, setIndex }) !== false;
+        if (runCompletionUpdate) completedSets += 1;
       }
-      record = withoutLoggedErrors("lifecycle-update", () => api.Progress_runUpdateScript(
-        record,
-        exercise,
-        evaluated.states,
-        entryIndex,
-        setIndex,
-        "workout",
-        settings,
-        stats
-      ));
+      if (runCompletionUpdate) {
+        record = withoutLoggedErrors("lifecycle-update", () => api.Progress_runUpdateScript(
+          record,
+          exercise,
+          evaluated.states,
+          entryIndex,
+          setIndex,
+          "workout",
+          settings,
+          stats
+        ));
+      }
       setIndex += 1;
     }
   }
@@ -447,8 +452,15 @@ function completeScenarioStep(source, step, api, context, label) {
           "scenario"
         );
       }
-      completeReviewedSet(set, definition.sets[setIndex], exercise.fullName, setIndex, label);
+      const completed = completeReviewedSet(
+        set,
+        definition.sets[setIndex],
+        exercise.fullName,
+        setIndex,
+        label
+      );
       usedSets.set(key, setIndex + 1);
+      return completed;
     },
     context
   );
