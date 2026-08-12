@@ -54,6 +54,7 @@ Composable deployment:
     [--base-ref <last-deployed-ref>] \\
     [--candidate-ref <reviewed-ref>] \\
     [--program <repository-relative-path> --program-id <liftosaur-program-id|current>] \\
+    [--program-name <reviewed-liftosaur-program-name>] \\
     --output <deployment-bundle-directory> \\
     [--api-base <url>]
 
@@ -97,6 +98,7 @@ Advanced/offline building blocks:
     --base <previously-deployed.liftoscript> \\
     --candidate <new-source.liftoscript> \\
     --program-id <liftosaur-program-id|current> \\
+    [--program-name <reviewed-liftosaur-program-name>] \\
     --output <deployment-bundle-directory> \\
     [--api-base <url>]
 
@@ -360,7 +362,7 @@ async function runPrepareDeployment(argv) {
 }
 
 async function runPrepare(argv) {
-  const options = parseOptions(argv, ["base", "candidate", "program-id", "output", "api-base"]);
+  const options = parseOptions(argv, ["base", "candidate", "program-id", "program-name", "output", "api-base"]);
   const outputDirectory = requireOption(options, "output");
   try {
     const result = await prepareLiftosaurDeployment({
@@ -370,6 +372,7 @@ async function runPrepare(argv) {
       programId: requireTextOption(options, "program-id"),
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
+      programName: options["program-name"] ?? null,
     });
     console.log(
       `Liftosaur deployment prepared for ${result.manifest.target.id}; `
@@ -392,6 +395,7 @@ async function runPrepareGit(argv) {
     "candidate-ref",
     "program",
     "program-id",
+    "program-name",
     "output",
     "api-base",
   ]);
@@ -427,6 +431,7 @@ async function runPrepareGit(argv) {
       expectedBase: preparation.expectedBase,
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
+      programName: options["program-name"] ?? null,
     });
     console.log(
       `Git deployment prepared: ${result.manifest.source.candidate.commitSha} → `
