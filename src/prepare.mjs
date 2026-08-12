@@ -39,6 +39,7 @@ export async function prepareLiftosaurDeployment({
   programId,
   apiKey,
   apiBase,
+  programName = null,
 }) {
   const [base, candidate] = await Promise.all([
     readFile(baseFile, "utf8"),
@@ -51,6 +52,7 @@ export async function prepareLiftosaurDeployment({
     programId,
     apiKey,
     apiBase,
+    programName,
   });
 }
 
@@ -62,6 +64,7 @@ export async function prepareLiftosaurDeploymentFromContents({
   apiKey,
   apiBase,
   source = null,
+  programName = null,
 }) {
   const activeProgram = await fetchDeploymentTarget({ programId, apiKey, apiBase });
   const active = activeProgram.text;
@@ -131,7 +134,8 @@ export async function prepareLiftosaurDeploymentFromContents({
     validationText: `${JSON.stringify(validationReport, null, 2)}\n`,
     mergeText: `${JSON.stringify(mergeReport, null, 2)}\n`,
     outputDirectory,
-    target: { id: activeProgram.id },
+    target: { id: activeProgram.id, name: activeProgram.name },
+    programName,
     source,
   });
   return {

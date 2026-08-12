@@ -6,7 +6,8 @@ validate the result, and write it back to the same Liftosaur program.
 
 The safety identity is deliberately small: the Liftosaur program ID identifies
 the target, and the prepared source hash identifies the live state that is safe
-to replace. Program names are preserved automatically.
+to replace. Program names are preserved automatically unless preparation seals a
+reviewed replacement with `--program-name`.
 
 ## Default `update` workflow
 
@@ -87,14 +88,14 @@ worktree cannot affect the program being prepared. A credential-free, non-local
 ## Deployment transaction
 
 Before writing, deployment fetches the exact resolved program ID and requires its
-source hash to match the source observed during preparation. It writes the merged
-source once while preserving the live program name, then reads the same exact ID
-back.
+source hash and name to match the target observed during preparation. It writes
+the merged source once, preserving the name by default or applying the reviewed
+name sealed by `--program-name`, then reads the same exact ID back.
 
-A read-back matching the deployment source is success. A read-back still matching
-the prepared active source means the write did not take effect. Any other state
-is treated as an ambiguous or concurrent change: deployment stops and **does not
-automatically roll back**.
+A read-back matching both the deployment source and prepared name is success. A
+read-back still matching the prepared active source means the write did not take
+effect. Any other state is treated as an ambiguous or concurrent change:
+deployment stops and **does not automatically roll back**.
 
 The private rollback source is retained for deliberate recovery. When the
 one-command `update` path reaches deployment and then fails, it reports the

@@ -115,6 +115,7 @@ test("prepare keeps conflicts private by default and can preserve an explicit wo
       "--base", baseFile,
       "--candidate", candidateFile,
       "--program-id", "current",
+      "--program-name", "Released candidate",
       "--output", bundle,
       "--api-base", apiBase,
     ], environment);
@@ -127,7 +128,8 @@ test("prepare keeps conflicts private by default and can preserve an explicit wo
     assert.match(merged, /volume: 3/);
     const manifest = JSON.parse(await readFile(path.join(bundle, "deployment-manifest.json"), "utf8"));
     assert.equal(manifest.target.id, "program-1");
-    assert.deepEqual(Object.keys(manifest.deployment), ["sourceSha256"]);
+    assert.equal(manifest.target.name, "Active");
+    assert.equal(manifest.deployment.name, "Released candidate");
     assert.equal(manifest.evidence.merge.file, "merge-report.json");
     assert.equal(manifest.evidence.validation.file, "validation-report.json");
 
@@ -139,7 +141,7 @@ test("prepare keeps conflicts private by default and can preserve an explicit wo
       "--api-base", apiBase,
     ], environment);
     assert.equal(deployed.code, 0, `${deployed.stdout}\n${deployed.stderr}`);
-    assert.equal(program.name, "Active");
+    assert.equal(program.name, "Released candidate");
     assert.equal(program.text, merged);
     const report = JSON.parse(await readFile(path.join(record, "deployment-report.json"), "utf8"));
     assert.equal(report.deploymentPerformed, true);
