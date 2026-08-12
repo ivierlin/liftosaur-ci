@@ -61,3 +61,8 @@ node bin/liftosaur-ci.mjs check \
 The command exits nonzero when validation fails or a snapshot differs. A report
 path is optional and must not already exist. Snapshot mismatches include the
 first differing JSON path in the report.
+
+Generated snapshots retain the producing `liftosaur-ci` name and version for
+provenance. Comparison ignores only that producer version, so upgrading the tool
+does not invalidate every reviewed behavior snapshot. The producer name and all
+program, input, progression, and output fields remain exact comparisons.

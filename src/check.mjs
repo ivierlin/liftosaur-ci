@@ -3,7 +3,7 @@ import path from "node:path";
 import { isDeepStrictEqual } from "node:util";
 
 import { discoverConfiguredPrograms, loadLiftosaurConfig } from "./config.mjs";
-import { createScenarioSnapshot } from "./report.mjs";
+import { createScenarioSnapshot, snapshotForComparison } from "./report.mjs";
 import { assertScenarioSchema } from "./scenario-schema.mjs";
 import {
   snapshotLiftosaurScenario,
@@ -70,12 +70,12 @@ export async function checkRepository(configFile) {
         ]);
         const scenarioDefinition = parseJson(scenarioText, `Scenario ${scenario.scenario}`);
         assertScenarioSchema(scenarioDefinition);
-        const expected = parseJson(expectedText, `Snapshot ${scenario.snapshot}`);
-        const actual = JSON.parse(JSON.stringify(createScenarioSnapshot(
+        const expected = snapshotForComparison(parseJson(expectedText, `Snapshot ${scenario.snapshot}`));
+        const actual = snapshotForComparison(JSON.parse(JSON.stringify(createScenarioSnapshot(
           source,
           scenarioText,
           snapshotLiftosaurScenario(source, scenarioDefinition)
-        )));
+        ))));
         if (!isDeepStrictEqual(actual, expected)) {
           const error = new Error(`Reviewed snapshot changed: ${scenario.snapshot}`);
           error.difference = firstDifference(actual, expected);

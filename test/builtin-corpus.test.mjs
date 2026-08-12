@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 
 import { parseLiftosaurMergeDocument } from "../src/frontend.mjs";
 import { mergeLiftosaurSources } from "../src/merge.mjs";
-import { createBuiltinSnapshot } from "../src/report.mjs";
+import { createBuiltinSnapshot, snapshotForComparison } from "../src/report.mjs";
 import { validateLiftosaurSource } from "../src/validate.mjs";
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -111,13 +111,15 @@ for (const { filename, source } of programs) {
     } else {
       const validation = validateLiftosaurSource(source);
       assert.ok(validation.summary.days > 0);
-      const expected = await readFile(
+      const expectedText = await readFile(
         path.join(snapshotDirectory, `${filename}.expected.json`),
         "utf8"
       );
+      const actual = snapshotForComparison(createBuiltinSnapshot(source, validation));
+      const expected = snapshotForComparison(JSON.parse(expectedText));
       assert.equal(
-        `${JSON.stringify(createBuiltinSnapshot(source, validation), null, 2)}\n`,
-        expected,
+        `${JSON.stringify(actual, null, 2)}\n`,
+        `${JSON.stringify(expected, null, 2)}\n`,
         `Reviewed built-in snapshot changed: ${filename}`
       );
     }

@@ -1,0 +1,170 @@
+name: Liftosaur update from published ZIP
+
+on:
+  workflow_call:
+    inputs:
+      archive_url:
+        description: Public HTTPS URL of the author's liftosaur-ci update ZIP
+        required: true
+        type: string
+      deployment:
+        description: Stable ID for this program in the user's updater repository
+        required: false
+        default: program
+        type: string
+      program_id:
+        description: current on first use; the exact resolved ID is retained afterward
+        required: false
+        default: current
+        type: string
+      environment:
+        description: Protected GitHub environment requiring deployment approval
+        required: false
+        default: liftosaur
+        type: string
+      state_branch:
+        description: Base branch for the update-state pull request
+        required: false
+        default: main
+        type: string
+      runs_on:
+        description: JSON array of runner labels
+        required: false
+        default: '["self-hosted"]'
+        type: string
+    secrets:
+      liftosaur_api_key:
+        description: Liftosaur API key
+        required: true
+
+concurrency:
+  group: liftosaur-archive-update-${{ inputs.deployment }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ${{ fromJSON(inputs.runs_on) }}
+    timeout-minutes: 30
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Check out user update state
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          path: repository
+          ref: ${{ inputs.state_branch }}
+      - name: Check out liftosaur-ci
+        uses: actions/checkout@v7
+        with:
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
+          path: tool
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Install liftosaur-ci package dependencies
+        working-directory: tool
+        run: npm ci --omit=dev --ignore-scripts
+      - name: Restore pinned Liftosaur runtime cache
+        if: runner.environment == 'github-hosted'
+        uses: actions/cache@v5
+        with:
+          path: ${{ runner.tool_cache }}/liftosaur-ci
+          key: liftosaur-ci-runtime-${{ runner.os }}-${{ runner.arch }}-node-24-${{ hashFiles('tool/runtime/liftosaur.version') }}
+      - name: Set up cached Liftosaur runtime
+        working-directory: tool
+        run: node scripts/setup-runtime.mjs
+        env:
+          LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+      - name: Download the published update
+        shell: bash
+        run: |
+          set -eu
+          case "$ARCHIVE_URL" in
+            https://*) ;;
+            *) printf 'archive_url must use HTTPS\n' >&2; exit 1 ;;
+          esac
+          curl --proto '=https' --proto-redir '=https' --tlsv1.2 --fail --location --max-time 120 \
+            --output "$RUNNER_TEMP/liftosaur-update.zip" "$ARCHIVE_URL"
+        env:
+          ARCHIVE_URL: ${{ inputs.archive_url }}
+      - name: Update and verify the Liftosaur program
+        id: update
+        shell: bash
+        run: |
+          set -eu
+          case "$DEPLOYMENT" in
+            ''|*[!a-z0-9_-]*) printf 'deployment must use lowercase letters, numbers, _ or -\n' >&2; exit 1 ;;
+          esac
+          state_file="$GITHUB_WORKSPACE/repository/.liftosaur-ci/archive-deployments/${DEPLOYMENT}.json"
+          node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" update-archive \
+            "$RUNNER_TEMP/liftosaur-update.zip" \
+            --program-id "$PROGRAM_ID" \
+            --state "$state_file" \
+            --receipt "$RUNNER_TEMP/liftosaur-archive-record"
+          printf 'state_file=%s\n' ".liftosaur-ci/archive-deployments/${DEPLOYMENT}.json" >> "$GITHUB_OUTPUT"
+        env:
+          DEPLOYMENT: ${{ inputs.deployment }}
+          LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
+          LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+          PROGRAM_ID: ${{ inputs.program_id }}
+      - name: Commit verified update state
+        id: state
+        working-directory: repository
+        shell: bash
+        run: |
+          set -eu
+          branch="liftosaur-ci/archive-state-${DEPLOYMENT}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          state_file="${STATE_FILE}"
+          state_copy="$RUNNER_TEMP/archive-update-state.json"
+          cp "$state_file" "$state_copy"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git fetch origin -- "$STATE_BRANCH"
+          git switch --detach "origin/$STATE_BRANCH"
+          git switch -c "$branch"
+          mkdir -p "$(dirname "$state_file")"
+          cp "$state_copy" "$state_file"
+          git add -- "$state_file"
+          if git diff --cached --quiet -- "$state_file"; then
+            printf 'changed=false\n' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git commit -m "Record ${DEPLOYMENT} archive update state"
+          git push origin "HEAD:refs/heads/$branch"
+          printf 'changed=true\n' >> "$GITHUB_OUTPUT"
+          printf 'branch=%s\n' "$branch" >> "$GITHUB_OUTPUT"
+        env:
+          DEPLOYMENT: ${{ inputs.deployment }}
+          STATE_BRANCH: ${{ inputs.state_branch }}
+          STATE_FILE: ${{ steps.update.outputs.state_file }}
+      - name: Open update-state pull request
+        if: steps.state.outputs.changed == 'true'
+        uses: actions/github-script@v9
+        env:
+          DEPLOYMENT: ${{ inputs.deployment }}
+          HEAD_BRANCH: ${{ steps.state.outputs.branch }}
+          STATE_BRANCH: ${{ inputs.state_branch }}
+        with:
+          script: |
+            const response = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: process.env.HEAD_BRANCH,
+              base: process.env.STATE_BRANCH,
+              title: `Record ${process.env.DEPLOYMENT} archive update state`,
+              body: "Records the applied published-source hash and exact Liftosaur target used by the verified update. No workout data is committed.",
+            });
+            core.summary.addLink("Update-state pull request", response.data.html_url).write();
+      - name: Retain private deployment receipt
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: liftosaur-archive-record-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/liftosaur-archive-record
+          if-no-files-found: warn
+          retention-days: 1

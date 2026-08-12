@@ -112,6 +112,7 @@ test("update bootstraps once and then needs no deployment inputs", async () => {
     const stateFile = path.join(repository, ".liftosaur-ci", "deployments", "program.json");
     let state = JSON.parse(await readFile(stateFile, "utf8"));
     assert.equal(state.commitSha, firstCandidate);
+    assert.equal(state.programId, "program-1");
 
     await writeFile(programFile, source({ timer: 240 }), "utf8");
     git(repository, ["add", "programs/example.liftoscript"]);
@@ -124,7 +125,7 @@ test("update bootstraps once and then needs no deployment inputs", async () => {
     assert.equal(updated.stdout, "Liftosaur updated: Keep this name\n");
     assert.deepEqual(requests.map(([method]) => method), ["GET", "GET", "PUT", "GET"]);
     assert.deepEqual(requests.map(([, url]) => url), [
-      "/api/v1/programs/current",
+      "/api/v1/programs/program-1",
       "/api/v1/programs/program-1",
       "/api/v1/programs/program-1",
       "/api/v1/programs/program-1",

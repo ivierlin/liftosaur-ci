@@ -60,6 +60,24 @@ function assertMergeReport(report, sourceHash) {
 function assertSourceProvenance(source) {
   if (source === null || source === undefined) return;
   requireObject(source, "Deployment source provenance");
+  if (source.type === "archive") {
+    if (
+      Object.keys(source).some((key) => !["type", "base", "candidate"].includes(key))
+    ) {
+      throw new Error("Deployment archive source provenance is invalid");
+    }
+    for (const label of ["base", "candidate"]) {
+      const revision = source[label];
+      if (
+        !revision
+        || Object.keys(revision).some((key) => key !== "sourceSha256")
+        || !/^[a-f0-9]{64}$/.test(revision.sourceSha256 ?? "")
+      ) {
+        throw new Error(`Deployment archive ${label} provenance is invalid`);
+      }
+    }
+    return;
+  }
   if (
     typeof source.remote !== "string"
     || !source.remote
@@ -332,7 +350,16 @@ export async function fetchDeploymentTarget({
   }
 }
 
-async function putProgram(apiBase, apiKey, programId, name, source) {
+export async function updateDeploymentTarget({
+  programId,
+  name,
+  source,
+  apiKey,
+  apiBase = DEFAULT_API_BASE,
+}) {
+  if (!apiKey?.startsWith("lftsk_")) {
+    throw new Error(`${API_KEY_NAME} must contain a Liftosaur API key starting with lftsk_`);
+  }
   return apiJson(apiBase, apiKey, `programs/${encodeURIComponent(programId)}`, {
     method: "PUT",
     body: JSON.stringify({ name, text: source }),
@@ -386,7 +413,13 @@ export async function deployPreparedBundle({
 
     let writeError = null;
     try {
-      await putProgram(apiBase, apiKey, targetId, bundle.manifest.deployment.name ?? before.name, bundle.deploy);
+      await updateDeploymentTarget({
+        programId: targetId,
+        name: bundle.manifest.deployment.name ?? before.name,
+        source: bundle.deploy,
+        apiKey,
+        apiBase,
+      });
     } catch (error) {
       writeError = error;
     }

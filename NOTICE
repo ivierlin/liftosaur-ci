@@ -14,6 +14,16 @@ of Liftosaur:
 The exact tested revision is recorded in runtime/liftosaur.version. Liftosaur
 source is fetched during runtime setup and is not vendored in this repository.
 
+ZIP creation and reading uses the fflate npm package:
+
+  fflate
+  Copyright (c) 2026 Arjun Barrett
+  Upstream: https://github.com/101arrowz/fflate
+  License: MIT
+
+fflate is installed as a separate package dependency and retains its MIT
+license notice in its distributed package.
+
 The external corpus reads the public RP Hypertrophy v4.1 program from its
 Liftosaur page and verifies a reviewed SHA-256. Its source is not distributed
 with this repository.

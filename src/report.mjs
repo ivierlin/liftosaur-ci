@@ -1,9 +1,16 @@
 import { createHash } from "node:crypto";
-
 export const LIFTOSAUR_CI_CLI = Object.freeze({
   name: "liftosaur-ci",
   version: "0.1.0",
 });
+
+export function snapshotForComparison(snapshot) {
+  if (!snapshot?.cli || typeof snapshot.cli !== "object" || Array.isArray(snapshot.cli)) {
+    return snapshot;
+  }
+  const { version: _version, ...cli } = snapshot.cli;
+  return { ...snapshot, cli };
+}
 
 export function sha256(value) {
   return createHash("sha256").update(value).digest("hex");

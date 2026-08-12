@@ -17,6 +17,7 @@ import {
   sha256,
 } from "./report.mjs";
 import { rollbackRecoveryDirectory } from "./rollback.mjs";
+import { createUpdateArchive, updateFromArchive } from "./release-archive.mjs";
 import { updateConfiguredGitDeployment } from "./update.mjs";
 import {
   LIFTOSAUR_VALIDATOR,
@@ -46,6 +47,19 @@ Everyday update:
     [--deployment <stable-id>] \\
     [--api-base <url>]
 
+Repository-free update:
+  liftosaur-ci update-archive \\
+    <author-update.zip> \\
+    [--program-id <liftosaur-program-id|current>] \\
+    [--state <durable-state.json>] \\
+    [--receipt <private-receipt-directory>] \\
+    [--api-base <url>]
+
+  liftosaur-ci create-update-archive \\
+    <previous.liftoscript> \\
+    <new.liftoscript> \\
+    [--output <published-update.zip>]
+
 Composable deployment:
   liftosaur-ci prepare-git \\
     [--repository <git-worktree>] \\
@@ -56,6 +70,7 @@ Composable deployment:
     [--program <repository-relative-path> --program-id <liftosaur-program-id|current>] \\
     [--program-name <reviewed-liftosaur-program-name>] \\
     --output <deployment-bundle-directory> \\
+    [--conflict-output <private-conflict-directory>] \\
     [--api-base <url>]
 
   liftosaur-ci deploy \\
@@ -100,6 +115,7 @@ Advanced/offline building blocks:
     --program-id <liftosaur-program-id|current> \\
     [--program-name <reviewed-liftosaur-program-name>] \\
     --output <deployment-bundle-directory> \\
+    [--conflict-output <private-conflict-directory>] \\
     [--api-base <url>]
 
   liftosaur-ci prepare-deployment \\
@@ -134,6 +150,30 @@ function parseOptions(argv, allowedNames) {
     index += 1;
   }
   return options;
+}
+
+function parsePositionalsAndOptions(argv, positionalCount, allowedNames) {
+  const options = {};
+  const positionals = [];
+  const allowed = new Set(allowedNames);
+  for (let index = 0; index < argv.length; index += 1) {
+    const argument = argv[index];
+    if (!argument.startsWith("--")) {
+      positionals.push(argument);
+      continue;
+    }
+    const name = argument.slice(2);
+    if (!allowed.has(name)) throw new CliError(`Unknown option: ${argument}`);
+    if (Object.hasOwn(options, name)) throw new CliError(`Duplicate option: ${argument}`);
+    const value = argv[index + 1];
+    if (!value || value.startsWith("--")) throw new CliError(`Missing value for ${argument}`);
+    options[name] = value;
+    index += 1;
+  }
+  if (positionals.length !== positionalCount) {
+    throw new CliError(`Expected ${positionalCount} file argument(s), received ${positionals.length}`);
+  }
+  return { options, positionals };
 }
 
 function requireOption(options, name) {
@@ -224,6 +264,54 @@ async function runUpdate(argv) {
     }
     throw new CliError(`${message}${recovery}${rollback}`);
   }
+}
+
+async function runUpdateArchive(argv) {
+  const { options, positionals } = parsePositionalsAndOptions(argv, 1, [
+    "program-id",
+    "state",
+    "receipt",
+    "api-base",
+  ]);
+  try {
+    const result = await updateFromArchive({
+      archiveFile: path.resolve(positionals[0]),
+      stateFile: options.state ? path.resolve(options.state) : null,
+      receiptDirectory: options.receipt ? path.resolve(options.receipt) : null,
+      programId: options["program-id"] ?? null,
+      apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+      apiBase: options["api-base"],
+    });
+    console.log(`Liftosaur updated from archive: ${result.target.name}`);
+    console.log(`Update state recorded: ${result.stateFile}`);
+  } catch (error) {
+    const message = friendlyUpdateError(error);
+    const recovery = error?.recoveryDirectory
+      ? `\nRecovery files retained at: ${error.recoveryDirectory}`
+      : "";
+    const rollback = error?.recoveryDirectory && /ambiguous/i.test(error?.message ?? "")
+      ? `\nTo restore the previous source:\n  liftosaur-ci rollback --recovery "${error.recoveryDirectory}"`
+      : "";
+    if (error instanceof LiftosaurPreparationError) {
+      throw new CliError(`${message}${recovery}${rollback}`, error.exitCode);
+    }
+    throw new CliError(`${message}${recovery}${rollback}`);
+  }
+}
+
+async function runCreateUpdateArchive(argv) {
+  const { options, positionals } = parsePositionalsAndOptions(argv, 2, ["output"]);
+  const previousFile = path.resolve(positionals[0]);
+  const newFile = path.resolve(positionals[1]);
+  const defaultName = `${path.basename(newFile, path.extname(newFile))}-update.zip`;
+  const outputFile = path.resolve(options.output ?? defaultName);
+  await requireNewFile(outputFile, "Update archive");
+  const result = await createUpdateArchive({
+    outputFile,
+    previousFile,
+    newFile,
+  });
+  console.log(`Update archive written: ${result.outputFile}`);
 }
 
 async function runRollback(argv) {
@@ -362,7 +450,15 @@ async function runPrepareDeployment(argv) {
 }
 
 async function runPrepare(argv) {
-  const options = parseOptions(argv, ["base", "candidate", "program-id", "program-name", "output", "api-base"]);
+  const options = parseOptions(argv, [
+    "base",
+    "candidate",
+    "program-id",
+    "program-name",
+    "output",
+    "conflict-output",
+    "api-base",
+  ]);
   const outputDirectory = requireOption(options, "output");
   try {
     const result = await prepareLiftosaurDeployment({
@@ -373,6 +469,9 @@ async function runPrepare(argv) {
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
       programName: options["program-name"] ?? null,
+      conflictOutput: options["conflict-output"]
+        ? path.resolve(options["conflict-output"])
+        : process.env.LIFTOSAUR_CI_CONFLICT_OUTPUT?.trim() || null,
     });
     console.log(
       `Liftosaur deployment prepared for ${result.manifest.target.id}; `
@@ -397,6 +496,7 @@ async function runPrepareGit(argv) {
     "program-id",
     "program-name",
     "output",
+    "conflict-output",
     "api-base",
   ]);
   const outputDirectory = requireOption(options, "output");
@@ -432,6 +532,9 @@ async function runPrepareGit(argv) {
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
       programName: options["program-name"] ?? null,
+      conflictOutput: options["conflict-output"]
+        ? path.resolve(options["conflict-output"])
+        : process.env.LIFTOSAUR_CI_CONFLICT_OUTPUT?.trim() || null,
     });
     console.log(
       `Git deployment prepared: ${result.manifest.source.candidate.commitSha} → `
@@ -522,6 +625,8 @@ export async function runLiftosaurCi(argv) {
   const [command, ...commandArgs] = argv;
   const commands = new Set([
     "update",
+    "update-archive",
+    "create-update-archive",
     "rollback",
     "merge",
     "validate",
@@ -539,6 +644,8 @@ export async function runLiftosaurCi(argv) {
     return;
   }
   if (command === "update") await runUpdate(commandArgs);
+  else if (command === "update-archive") await runUpdateArchive(commandArgs);
+  else if (command === "create-update-archive") await runCreateUpdateArchive(commandArgs);
   else if (command === "rollback") await runRollback(commandArgs);
   else if (command === "merge") await runMerge(commandArgs);
   else if (command === "validate") await runValidate(commandArgs);

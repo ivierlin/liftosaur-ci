@@ -159,7 +159,8 @@ test("configured Git deployment needs only path, target, and a bootstrap base", 
     const state = JSON.parse(stateText);
     assert.equal(state.commitSha, candidateSha);
     assert.equal(state.blobSha, manifest.source.candidate.blobSha);
-    assert.deepEqual(Object.keys(state), ["commitSha", "blobSha"]);
+    assert.equal(state.programId, "program-1");
+    assert.deepEqual(Object.keys(state), ["commitSha", "blobSha", "programId"]);
 
     git(repository, ["add", ".liftosaur-ci/deployments/example.json"]);
     git(repository, ["-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "record deployment"]);
