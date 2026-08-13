@@ -1,30 +1,17 @@
 # liftosaur-ci
 
-Unofficial Git-based migration, validation, and deployment tooling for
+Unofficial Git-based validation and safe deployment tooling for
 [Liftosaur](https://www.liftosaur.com/).
 
-`liftosaur-ci` keeps program logic in Git while preserving the exercise state
-accumulated in Liftosaur. The normal workflow is deliberately small:
+`liftosaur-ci` keeps program logic in Git while preserving the progression
+accumulated in Liftosaur when that logic changes. The recommended workflow is
+simple: pull requests check the program, and a valid change to the deployable
+`.liftoscript` on `main` is safely deployed automatically. Unrelated changes are
+a no-op.
 
-1. Change and commit a Liftosaur program in Git.
-2. Run `liftosaur-ci update`.
-3. The tool merges live progression into the reviewed program, validates it,
-   and writes it back to the same Liftosaur program.
+## Get started
 
-## Setup
-
-Requirements: Node.js 24, npm, and Git.
-
-```sh
-node scripts/setup-runtime.mjs
-```
-
-`liftosaur-ci` itself has no npm dependencies. Runtime setup fetches the exact
-Liftosaur revision recorded in `runtime/liftosaur.version` into
-`.private/liftosaur-runtime` and installs that runtime's dependencies. Set
-`LIFTOSAUR_RUNTIME` to use another dedicated checkout.
-
-Create `liftosaur-ci.json` with the Git program path and Liftosaur target:
+A minimal repository needs a deployable program and `liftosaur-ci.json`:
 
 ```json
 {
@@ -36,34 +23,32 @@ Create `liftosaur-ci.json` with the Git program path and Liftosaur target:
 }
 ```
 
-Omitting `programId` bootstraps once from Liftosaur's current program; the first
-verified deployment opens a PR pinning the exact ID. Durable config never uses
-`current`.
+Then use the recommended [GitHub Actions workflow](docs/github-actions.md). The
+first deployment needs the Git revision corresponding to the program already in
+Liftosaur. If `programId` is omitted, that first deployment uses Liftosaur's
+current program and opens a one-time PR pinning its exact ID. Later valid program
+changes deploy without manual steps.
 
-## Update a program
+Repositories with several maintained programs can configure an exact `programId`
+for each deployment from the start. Projects with generators, custom tests, or a
+more specialized release process can use the same CLI primitives directly.
 
-The first update identifies the Git revision corresponding to the program
-version already in Liftosaur:
+## Use the CLI directly
 
-```sh
-LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update \
-  --base-ref first-deployed-ref
-```
-
-After a successful update, `refs/liftosaur-ci/deployments/program` records the
-verified deployed commit. Later updates need no base:
+Requirements: Node.js 24, npm, and Git. Set up the pinned Liftosaur validation
+runtime with:
 
 ```sh
-LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update
+node scripts/setup-runtime.mjs
 ```
 
-With one configured deployment, the command infers the deployment and uses
-`HEAD` as the reviewed candidate. Repositories with multiple deployments add
-`--deployment <id>`.
+The first state-preserving update identifies the Git revision corresponding to
+the program version already live in Liftosaur. After that, the deployment
+position is recorded in Git and later updates need no base. See the
+[CLI guide](docs/cli.md) for the commands and options.
 
 The [deployment contract](docs/deployment.md) explains state preservation,
-target locking, merge ownership, failure behavior, and recovery. For protected
-automatic or protected automation, see [GitHub Actions integration](docs/github-actions.md).
+target locking, failure behavior, and recovery.
 
 ## Validate a repository
 
@@ -79,8 +64,7 @@ See the [repository check contract](docs/check.md) and
 ## Documentation
 
 Use the [documentation index](docs/README.md) to find the authoritative guide
-for each task. The [CLI guide](docs/cli.md) describes everyday, composable, and
-advanced command layers.
+for each task.
 
 ## Licensing
 
