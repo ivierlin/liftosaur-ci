@@ -11,32 +11,40 @@ a no-op.
 
 ## Get started
 
-A minimal repository needs a deployable program and `liftosaur-ci.json`:
+If you keep the program on GitHub and use the provided Actions workflows, you do
+not need to install `liftosaur-ci`, Node.js, or any other local tooling. GitHub
+runs it for you.
 
-```json
-{
-  "deployments": {
-    "program": {
-      "program": "programs/example.liftoscript"
-    }
-  }
-}
+For the simplest repository, put exactly one `.liftoscript` file in the repository
+root. No config file is needed initially:
+
+```text
+my-program/
+├── program.liftoscript
+└── .github/
+    └── workflows/
+        └── liftosaur.yml
 ```
 
-Then use the recommended [GitHub Actions workflow](docs/github-actions.md). The
-first deployment needs the Git revision corresponding to the program already in
-Liftosaur. If `programId` is omitted, that first deployment uses Liftosaur's
-current program and opens a one-time PR pinning its exact ID. Later valid program
-changes deploy without manual steps.
+Use the recommended [GitHub Actions workflow](docs/github-actions.md) and store
+your Liftosaur API key as the documented GitHub secret. The first deployment
+needs the Git revision corresponding to the program already in Liftosaur. It uses
+Liftosaur's current program as the initial target and opens a one-time PR creating
+`liftosaur-ci.json` with the discovered program path and exact target ID. Merge
+that PR once; later valid program changes deploy without manual steps.
 
-Repositories with several maintained programs can configure an exact `programId`
-for each deployment from the start. Projects with generators, custom tests, or a
-more specialized release process can use the same CLI primitives directly.
+Discovery is intentionally strict: it considers only regular root-level files
+ending in `.liftoscript`. If there are none, more than one, or your repository has
+a custom layout, add `liftosaur-ci.json` explicitly. The canonical config also
+supports several named deployments with exact target IDs.
+
+Projects with generators, custom tests, or a more specialized release process can
+use the same CLI primitives directly.
 
 ## Use the CLI directly
 
-Requirements: Node.js 24, npm, and Git. Set up the pinned Liftosaur validation
-runtime with:
+For local or custom CLI use, requirements are Node.js 24, npm, and Git. Set up the
+pinned Liftosaur validation runtime with:
 
 ```sh
 node scripts/setup-runtime.mjs
@@ -52,10 +60,11 @@ target locking, failure behavior, and recovery.
 
 ## Validate a repository
 
-Validate every configured program and compare reviewed scenario snapshots:
+Validate every discovered or configured program and compare reviewed scenario
+snapshots:
 
 ```sh
-node bin/liftosaur-ci.mjs check --config liftosaur-ci.json
+node bin/liftosaur-ci.mjs check
 ```
 
 See the [repository check contract](docs/check.md) and
