@@ -36,8 +36,13 @@ A mismatch stops with instructions to export or copy the program currently used
 in Liftosaur into the root file, commit it, and try again. No config, deployment
 ref, or live write is made. A concurrent branch push or repository policy that
 rejects the direct config commit also stops before ref creation or live mutation.
-For a protected branch, pin canonical config manually and use the explicit
-`base_ref` route, or deliberately adjust repository policy; no alternate token or
+
+If that config push is rejected after the target and provenance are known, the
+error prints the complete canonical config and the exact `base_ref` needed for the
+manual route. Commit that config through the repository's normal policy and rerun
+the manual workflow with the reported value. The user does not need to recover a
+target ID or Git SHA from separate logs. Alternatively, deliberately adjust the
+repository policy if automatic initialization is intended; no alternate token or
 automatic pull request bypass is attempted.
 
 Every other first deployment requires an explicit `base_ref` identifying the Git
