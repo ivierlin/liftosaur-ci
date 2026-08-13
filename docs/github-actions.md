@@ -2,7 +2,13 @@
 
 The recommended public flow is PR checks only, then **Ready to deploy** and
 **Deploy verified program** after a push to `main`. Deployment exits successfully
-when the configured program blob is unchanged.
+when the deployable program blob is unchanged.
+
+For the minimal case, no local installation or config file is required: if the
+repository root contains exactly one regular `*.liftoscript` file and no
+`liftosaur-ci.json`, the reusable workflows discover that program. The first
+verified deployment opens the one-time PR that creates canonical config with the
+exact Liftosaur target ID.
 
 ```yaml
 name: Liftosaur program
@@ -59,8 +65,8 @@ documented minimal deployment job uniform avoids a separate bootstrap variant.
 The repository owns the `project-requirements` job; `liftosaur-ci` is not a
 general CI policy engine. Replace the trivial step with generators, tests, docs,
 fuzzing, or other project-specific release evidence. Do not duplicate program
-paths in `paths:` filters: config plus the deployment ref are the relevance source
-of truth for the default deployable-script path.
+paths in `paths:` filters: discovery/config plus the deployment ref are the
+relevance source of truth for the default deployable-script path.
 
 `workflow_dispatch` supplies the first `base_ref` and remains available for
 bootstrap, recovery, and deliberate manual runs. After initialization,
@@ -72,10 +78,11 @@ Environment and pass `environment: liftosaur`; leaving it empty adds no approval
 gate. The reusable workflows use GitHub-hosted `ubuntu-latest` runners by default;
 advanced repositories can override `runs_on` for self-hosted runners.
 
-Repositories with multiple configured deployments pass the deployment ID to the
-reusable workflow. Advanced repositories that generate deployable scripts or need
-different release topology can compose the lower-level CLI commands instead of
-using this convenience workflow.
+Repositories with multiple programs, nested program layouts, or other ambiguity
+use `liftosaur-ci.json` and pass the deployment ID where needed. Advanced
+repositories that generate deployable scripts or need different release topology
+can compose the lower-level CLI commands instead of using this convenience
+workflow.
 
 Private prepared bundles and deployment receipts are retained for one day. A
 verified live deployment followed by ref recording or binding-PR failure is
