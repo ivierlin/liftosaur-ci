@@ -31,7 +31,7 @@ jobs:
     needs: program-checks
     permissions:
       contents: read
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - run: "true" # replace with generators, tests, docs, fuzzing, etc.
 
@@ -69,7 +69,8 @@ transactions.
 
 Automatic deployment is the default. To require approval, create a GitHub
 Environment and pass `environment: liftosaur`; leaving it empty adds no approval
-gate.
+gate. The reusable workflows use GitHub-hosted `ubuntu-latest` runners by default;
+advanced repositories can override `runs_on` for self-hosted runners.
 
 Repositories with multiple configured deployments pass the deployment ID to the
 reusable workflow. Advanced repositories that generate deployable scripts or need
