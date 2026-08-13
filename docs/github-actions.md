@@ -207,6 +207,9 @@ opt in when it runs `prepare-git`: add
 `--conflict-output "$RUNNER_TEMP/liftosaur-conflict"`, then upload that directory
 only when the preparation step fails.
 
+`program` is the deployment ID created by zero-config single-program setup; with
+an explicit `liftosaur-ci.json`, use the key defined under `deployments`.
+
 ```yaml
 - name: Prepare relevant program change
   id: prepare
