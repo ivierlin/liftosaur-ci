@@ -8,7 +8,8 @@ test("reusable workflows expose Ready to Deploy with optional approval and ref s
   for (const workflow of [check, deploy]) {
     assert.match(workflow, /workflow_call:/);
     assert.match(workflow, /tool_ref:[\s\S]*?required: true/);
-    assert.doesNotMatch(workflow, /ubuntu-latest|ROAR|fflate|update-archive/);
+    assert.match(workflow, /ubuntu-latest/);
+    assert.doesNotMatch(workflow, /ROAR|fflate|update-archive/);
   }
   assert.match(deploy, /name: Ready to deploy/);
   assert.match(deploy, /needs: ready/);
