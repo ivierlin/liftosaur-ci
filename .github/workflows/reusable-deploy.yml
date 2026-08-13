@@ -157,8 +157,8 @@ jobs:
         shell: bash
         run: |
           set -eu
-          node -e 'const fs=require("fs"); const p=process.env.CONFIG_FILE; const c=JSON.parse(fs.readFileSync(p)); if(c.deployments[process.env.DEPLOYMENT].programId) process.exit(0); const r=JSON.parse(fs.readFileSync(process.env.REPORT)); c.deployments[process.env.DEPLOYMENT].programId=r.target.id; fs.writeFileSync(p, JSON.stringify(c,null,2)+"\n")'
-          git -C repository diff --quiet && exit 0
+          node -e 'const fs=require("fs"); const p=process.env.CONFIG_FILE; const r=JSON.parse(fs.readFileSync(process.env.REPORT)); const c=fs.existsSync(p) ? JSON.parse(fs.readFileSync(p)) : {deployments:{[process.env.DEPLOYMENT]:{program:r.source.programPath}}}; if(c.deployments[process.env.DEPLOYMENT].programId) process.exit(0); c.deployments[process.env.DEPLOYMENT].programId=r.target.id; fs.writeFileSync(p, JSON.stringify(c,null,2)+"\n")'
+          git -C repository diff --quiet && git -C repository ls-files --error-unmatch "$CONFIG" >/dev/null 2>&1 && exit 0
           branch="liftosaur-ci/bind-$DEPLOYMENT-$GITHUB_RUN_ID"
           git -C repository config user.name github-actions[bot]
           git -C repository config user.email 41898282+github-actions[bot]@users.noreply.github.com
