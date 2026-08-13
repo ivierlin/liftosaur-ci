@@ -23,5 +23,7 @@ test("reusable workflows expose Ready to Deploy with optional approval and ref s
   assert.match(deploy, /if: needs\.ready\.outputs\.required == 'true'/);
   assert.doesNotMatch(deploy, /\.liftosaur-ci\/deployments|state_branch|deployment-state pull request/);
   assert.match(guide, /workflow_dispatch:[\s\S]*?base_ref:[\s\S]*?Base Git revision \(advanced first migration only\)[\s\S]*?required: false/);
-  assert.match(guide, /leave the manual `base_ref` field blank/);
+  assert.match(guide, /github\.event\.inputs\.base_ref \|\| ''/);
+  assert.doesNotMatch(guide, /project-requirements:[\s\S]*?run: "true"/);
+  assert.match(guide, /Leave \*\*Base Git revision\*\* blank/);
 });

@@ -1,69 +1,76 @@
-# CLI command layers
+# Choose a CLI command
 
-The command surface has three layers. They share configuration, identities, and
-failure semantics while exposing the amount of detail appropriate to each task.
+Most people using the provided GitHub workflow do not need these commands. Use
+the CLI when you update locally, build custom automation, or perform an explicit
+recovery.
 
-## Everyday updates
+## Update locally
 
-`update` is the human-facing local command. In a configured single-program
-repository, it needs `--base-ref` for the first deployment and no arguments
-thereafter.
-Its errors identify the corresponding action: configure Liftosaur access, supply
-the bootstrap base, resolve a live/Git conflict, move a direct Liftosaur logic
-edit into Git, or use explicit recovery after an ambiguous write.
+Use `update` for a normal state-preserving update from a configured repository.
+In a single-program repository, the first update needs `--base-ref` with the Git
+revision that produced the program currently in Liftosaur. Later updates need no
+base because the successful deployed position is recorded.
 
-See the [deployment contract](deployment.md) for the complete update, merge, and
-recovery behavior.
+`update` performs the complete operation: prepare, validate, write, verify, and
+record. Its errors tell you whether to configure API access, supply the first
+base, resolve a live/Git conflict, move a direct Liftosaur logic edit into Git,
+or use explicit recovery after an ambiguous write.
 
-## Composable deployment
+Read the [deployment contract](deployment.md) before a first migration or
+recovery.
 
-`initialize-git`, `prepare-git`, `deploy`, and `record-deployment` expose target
-pinning/verified initialization, preparation, live write, and ref-recording.
-They are the integration
-surface for automatic or approval-gated CI and program-specific release pipelines.
+## Build custom automation
 
-`initialize-git` is the Actions-oriented Git-native primitive. In the strict
-discovered case it proves an exact live/Git match, commits canonical config with
-a release-branch lease, and then creates the initial deployment ref without a
-live write. With an explicit first-migration base and omitted `programId`, it pins
-the resolved exact target in config before `prepare-git` can create a live-update
-bundle. It requires an explicit release branch because it can commit and push.
+Use these commands when a release pipeline needs separate checking, approval,
+deployment, and recording stages:
 
-`prepare-git` exits as a successful no-op when the configured program blob is
-unchanged. `record-deployment` validates the verified receipt and pushes the
-candidate commit to the deployment ref with an exact old-SHA lease. If recording
-fails after the live write, retain the receipt and retry it.
+- `initialize-git` verifies simple first-time setup or pins the exact Liftosaur
+  target for a based migration. It can commit canonical config and push, so it
+  requires an explicit release branch.
+- `prepare-git` reads immutable Git objects, performs the three-way merge, and
+  creates a private deployment bundle. An unchanged program is a successful
+  no-op.
+- `deploy` verifies the prepared target, writes once, reads the exact target
+  back, and produces a receipt.
+- `record-deployment` verifies that receipt and moves the deployment ref using
+  the exact position previously observed. If recording fails after a verified
+  write, retain the receipt and retry this command.
 
 These commands use `liftosaur-ci.json` by default and infer a single configured
-deployment. Explicit raw inputs are available when configuration is deliberately
-bypassed; configured and raw modes cannot be combined.
+deployment. Configured and raw input modes cannot be mixed.
 
-`prepare-git --program-name <name>` seals a reviewed name into the private
-deployment bundle. `deploy` then verifies the observed name, writes the prepared
-name and source, and verifies both on read-back. Without this option, deployment
-preserves the live name.
+Use `prepare-git --program-name <name>` to include a reviewed program-name
+change. Without it, deployment preserves the live name. Use
+`--conflict-output <directory>` only when you need private merge evidence; that
+directory can contain athlete-specific state and must not be published.
 
-`prepare-git` does not persist private live state when a merge conflicts. Add
-`--conflict-output <directory>` to retain the deployed base, live source,
-candidate, conflict representation, and merge report. This directory may contain
-athlete-specific state; keep it private and use temporary storage in automation.
+The [GitHub Actions guide](github-actions.md) shows the supported reusable
+workflow that composes these stages.
 
-See [GitHub Actions integration](github-actions.md) for the reusable workflows
-that compose these commands.
+## Validate or inspect behavior
 
-## Advanced and recovery tools
-
+- `check` validates a repository and its reviewed snapshots.
+- `validate` runs native Liftosaur validation for a source.
+- `snapshot` runs a reviewed behavior scenario.
 - `merge` performs the Liftosaur-aware three-way merge offline.
-- `validate` runs native Liftosaur validation.
-- `snapshot` produces output for a reviewed behavior scenario.
-- `prepare` prepares caller-supplied base, live, and candidate sources. It also
-  supports opt-in `--conflict-output`.
+- `prepare` prepares caller-supplied base, live, and candidate sources.
 - `prepare-deployment` assembles a bundle from prepared sources and validation
   evidence.
-- `rollback` explicitly restores the pre-update source after an ambiguous write.
-- `restore` writes an exact historical deployment snapshot and rewinds its
-  serialized progression state.
 
-The [native validation contract](native-validation.md) owns validation and
-scenario behavior. The [deployment contract](deployment.md) owns preparation,
-rollback, restore, and private-artifact safety.
+See [Check a repository](check.md) and the
+[native validation contract](native-validation.md) for their authoritative
+inputs and guarantees.
+
+## Recovery commands
+
+`rollback` is only for an ambiguous write. It consumes the private recovery
+directory reported by `update`, restores the exact pre-write source to the exact
+prepared target, and verifies the result.
+
+`restore` is the destructive historical-disaster-recovery path. It writes the
+complete historical source, including historical progression state, from an
+extracted deployment bundle. It does not advance the deployment ref.
+
+Do not use either command as an ordinary program-logic revert. The
+[failure, rollback, and restore sections](deployment.md#failure-and-recovery)
+explain the difference and the required private data.

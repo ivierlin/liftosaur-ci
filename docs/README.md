@@ -1,40 +1,32 @@
-# Documentation
+# Find the right guide
 
-The documentation is organized by the question you are trying to answer. Each
-current interface fact has one authoritative home; other pages link to it.
+Start with the repository [README](../README.md) for the shortest setup path.
+Then choose the question that matches what you are doing.
 
-## How do I get started and update one program?
+## How do I set up automatic checks and deployment on GitHub?
 
-Start with the repository [README](../README.md). It covers the zero-install
-GitHub path, strict single-program discovery, automatic initialization, and where
-to go for advanced configuration or local CLI use.
+Read [Use liftosaur-ci on GitHub](github-actions.md). It walks through the
+copy-paste workflow, first run, normal use, optional approval, protected-branch
+recovery, and advanced repository layouts.
 
-## What commands are available, and which layer should I use?
+## How do I configure and validate my repository?
 
-Read [CLI command layers](cli.md) for the everyday `update` command, composable
-deployment commands, and advanced or recovery tools.
+Read [Check a repository](check.md). It explains zero-config discovery,
+`liftosaur-ci.json`, multiple programs, reviewed scenarios, and check results.
 
-## How are live progression and deployment safety preserved?
+## How does deployment preserve my live progression?
 
-Read [Prepared deployment and recovery](deployment.md). It owns the deployment
-configuration and state contract, three-way merge ownership, immutable Git and
-Liftosaur target identities, the write transaction, rollback, restore, and
-private deployment artifacts.
+Read [Preserve state while deploying program logic](deployment.md). This is the
+authoritative safety and recovery contract for initialization, three-way state
+preservation, exact targets, Git deployment refs, writes, rollback, restore, and
+private artifacts.
 
-## How do I validate a repository?
+## Which local or automation command should I use?
 
-Read [Repository check](check.md). It owns `liftosaur-ci.json` validation inputs,
-program discovery, reviewed scenario configuration, reports, and check failures.
+Read [Choose a CLI command](cli.md). It separates the everyday `update` command,
+custom automation stages, validation tools, and recovery commands.
 
 ## What does native validation guarantee?
 
-Read [Native Liftosaur validation](native-validation.md). It owns runtime-backed
-validation guarantees and the public complete, sequential, and partial scenario
-interfaces.
-
-## How do I use the current reusable GitHub workflows?
-
-Read [GitHub Actions integration](github-actions.md). It owns the supported
-check and automatic deployment workflows, their inputs and permissions, optional
-approval, runner/tool selection, and Actions-specific handling of private
-artifacts.
+Read [Native Liftosaur validation](native-validation.md). It defines the pinned
+runtime checks and the complete, sequential, and partial scenario interfaces.
