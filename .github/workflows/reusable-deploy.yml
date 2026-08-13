@@ -38,7 +38,7 @@ on:
         type: string
       runs_on:
         required: false
-        default: '["self-hosted"]'
+        default: '["ubuntu-latest"]'
         type: string
     secrets:
       liftosaur_api_key:
