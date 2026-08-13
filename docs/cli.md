@@ -5,8 +5,9 @@ failure semantics while exposing the amount of detail appropriate to each task.
 
 ## Everyday updates
 
-`update` is the human-facing command. In a configured single-program repository,
-it needs only `--base-ref` for the first deployment and no arguments thereafter.
+`update` is the human-facing local command. In a configured single-program
+repository, it needs `--base-ref` for the first deployment and no arguments
+thereafter.
 Its errors identify the corresponding action: configure Liftosaur access, supply
 the bootstrap base, resolve a live/Git conflict, move a direct Liftosaur logic
 edit into Git, or use explicit recovery after an ambiguous write.
@@ -16,9 +17,17 @@ recovery behavior.
 
 ## Composable deployment
 
-`prepare-git`, `deploy`, and `record-deployment` expose the preparation, live
-write, and ref-recording stages used by `update`. They are the integration
+`initialize-git`, `prepare-git`, `deploy`, and `record-deployment` expose target
+pinning/verified initialization, preparation, live write, and ref-recording.
+They are the integration
 surface for automatic or approval-gated CI and program-specific release pipelines.
+
+`initialize-git` is the Actions-oriented Git-native primitive. In the strict
+discovered case it proves an exact live/Git match, commits canonical config with
+a release-branch lease, and then creates the initial deployment ref without a
+live write. With an explicit first-migration base and omitted `programId`, it pins
+the resolved exact target in config before `prepare-git` can create a live-update
+bundle. It requires an explicit release branch because it can commit and push.
 
 `prepare-git` exits as a successful no-op when the configured program blob is
 unchanged. `record-deployment` validates the verified receipt and pushes the

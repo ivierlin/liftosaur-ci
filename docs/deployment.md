@@ -15,21 +15,40 @@ Operational position lives only in
 deployed commit. The program blob is derived from that commit and configured
 path, so no blob hash or program ID is duplicated in hidden state.
 
-## Bootstrap and target binding
+## Verified initialization and advanced first migration
 
-With no deployment ref, preparation requires `--base-ref` for the Git revision
-corresponding to the program already live in Liftosaur. It is never guessed.
+Automatic initialization is deliberately narrow. It applies only when the
+default config is absent, discovery finds exactly one regular root-level
+`.liftoscript`, deployment `program` has no ref, and no `base_ref` was supplied.
+It resolves Liftosaur `current` once to an exact ID, fetches that target's source,
+and compares its UTF-8 bytes exactly with the discovered program blob at the
+candidate commit. Native validation is also required, but validation is not used
+as identity evidence.
 
-If config contains an exact `programId`, that target is used from the start. If
-it omits `programId`, preparation resolves Liftosaur's `current` alias once and
-seals the exact returned ID into the private deployment bundle. After verified
-deployment, automation creates the deployment ref and opens one config PR pinning
-that exact ID.
+An exact match needs no Liftosaur write. Automation creates canonical
+`liftosaur-ci.json`, commits it directly to the selected release branch with a
+lease against the exact observed branch SHA, and only after that succeeds creates
+`refs/liftosaur-ci/deployments/program` at the new config-only commit with an
+empty-ref lease. The program blob is identical in the original candidate and the
+config-only descendant, so the descendant is the canonical initialized position.
 
-Once a deployment ref exists, a missing exact ID fails closed before resolving
-`current`. The deployment remains blocked until the binding PR is merged or the
-exact ID is otherwise committed. Repositories with multiple deployments can set
-exact IDs up front and avoid this bootstrap PR entirely.
+A mismatch stops with instructions to export or copy the program currently used
+in Liftosaur into the root file, commit it, and try again. No config, deployment
+ref, or live write is made. A concurrent branch push or repository policy that
+rejects the direct config commit also stops before ref creation or live mutation.
+For a protected branch, pin canonical config manually and use the explicit
+`base_ref` route, or deliberately adjust repository policy; no alternate token or
+automatic pull request bypass is attempted.
+
+Every other first deployment requires an explicit `base_ref` identifying the Git
+revision already live in Liftosaur. This includes explicit config, custom or
+nested layouts, multiple programs, generators, and historical migrations. If
+`programId` is omitted, automation resolves `current` and commits the exact ID to
+canonical config with the same branch lease **before** preparing or writing the
+live update. Preparation then uses that config-only descendant as its candidate;
+its deployable program blob is provably unchanged. Exact IDs configured up front
+skip this commit. Once a deployment ref exists, it is always the durable base and
+`base_ref` is unnecessary.
 
 ## Relevance and deployed position
 
@@ -47,9 +66,9 @@ ancestry is not the safety invariant. The exact previously observed ref value is
 
 If the live deployment succeeds but ref recording fails, the verified live write
 is not automatically rolled back. Retain the private deployment receipt and retry
-`record-deployment`. If the one-time target-binding PR fails after bootstrap, the
-verified deployment and ref remain intact, while later deployments stay blocked
-until config contains the exact target ID.
+`record-deployment`. If initialization records config but deployment-ref creation
+fails, no live write occurred; rerun the manual path with the reported config
+commit as `base_ref`.
 
 ## What preparation preserves
 

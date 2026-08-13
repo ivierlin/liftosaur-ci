@@ -26,20 +26,24 @@ my-program/
         └── liftosaur.yml
 ```
 
-Use the recommended [GitHub Actions workflow](docs/github-actions.md) and store
-your Liftosaur API key as the documented GitHub secret. The first deployment
-needs the Git revision corresponding to the program already in Liftosaur. It uses
-Liftosaur's current program as the initial target and opens a one-time PR creating
-`liftosaur-ci.json` with the discovered program path and exact target ID. Merge
-that PR once; later valid program changes deploy without manual steps.
+Start with the program you **currently use in Liftosaur**: export or copy it into
+that single root file and commit it. Add the recommended
+[GitHub Actions workflow](docs/github-actions.md), store the API-key secret, and
+run the workflow once. `liftosaur-ci` verifies byte-for-byte that Git contains
+the current Liftosaur source, records its exact target and deployed position,
+and makes no live program write. From then on, valid program changes pushed to
+`main` deploy automatically while preserving progression.
 
 Discovery is intentionally strict: it considers only regular root-level files
 ending in `.liftoscript`. If there are none, more than one, or your repository has
 a custom layout, add `liftosaur-ci.json` explicitly. The canonical config also
 supports several named deployments with exact target IDs.
 
-Projects with generators, custom tests, or a more specialized release process can
-use the same CLI primitives directly.
+Repositories that cannot use this strictly verified starting point can supply a
+known historical Git revision through the Actions manual-run screen. See the
+[deployment guide](docs/deployment.md) for that advanced first-migration path.
+Projects with generators, custom tests, or a specialized release process can use
+the same CLI primitives directly.
 
 ## Use the CLI directly
 

@@ -32,7 +32,7 @@ export async function configuredGitPreparation({
   const root = path.resolve(repository ?? config.root);
   const trackedCommit = readDeploymentRef(root, deployment.id);
   if (trackedCommit && !deployment.programId) {
-    throw new Error(`Deployment ${deployment.id} is initialized but has no exact programId; merge or recreate its target-binding PR before deploying again`);
+    throw new Error(`Deployment ${deployment.id} is initialized but has no exact programId; pin the exact target in canonical config before deploying again`);
   }
   if (!trackedCommit && !baseRef) {
     throw new Error(`Deployment ${deployment.id} has no deployment ref; provide --base-ref for the first preparation`);

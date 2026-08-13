@@ -14,7 +14,7 @@ on:
         default: ''
         type: string
       base_ref:
-        description: Required for the first deployment only
+        description: Base Git revision (advanced first migration only)
         required: false
         default: ''
         type: string
@@ -54,10 +54,11 @@ jobs:
   ready:
     name: Ready to deploy
     permissions:
-      contents: read
+      contents: write
     runs-on: ${{ fromJSON(inputs.runs_on) }}
     outputs:
       required: ${{ steps.prepare.outputs.required }}
+      candidate: ${{ steps.initialize.outputs.candidate }}
     steps:
       - name: Check out reviewed program repository
         uses: actions/checkout@v7
@@ -84,8 +85,26 @@ jobs:
         run: node scripts/setup-runtime.mjs
         env:
           LIFTOSAUR_RUNTIME: ${{ runner.tool_cache }}/liftosaur-ci/runtime
+      - name: Initialize or pin canonical deployment config
+        id: initialize
+        shell: bash
+        run: |
+          set -eu
+          args=(initialize-git --repository "$GITHUB_WORKSPACE/repository" --config "$GITHUB_WORKSPACE/repository/$CONFIG" --deployment "$DEPLOYMENT" --candidate-ref "$CANDIDATE_REF" --release-branch "$RELEASE_BRANCH")
+          if [ -n "$BASE_REF" ]; then args+=(--base-ref "$BASE_REF"); fi
+          result="$(node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" "${args[@]}" | tail -n 1)"
+          echo "action=$(node -e 'process.stdout.write(JSON.parse(process.argv[1]).action)' "$result")" >> "$GITHUB_OUTPUT"
+          echo "candidate=$(node -e 'process.stdout.write(JSON.parse(process.argv[1]).candidateCommit)' "$result")" >> "$GITHUB_OUTPUT"
+        env:
+          BASE_REF: ${{ inputs.base_ref }}
+          CANDIDATE_REF: ${{ inputs.candidate_ref || github.sha }}
+          CONFIG: ${{ inputs.config }}
+          DEPLOYMENT: ${{ inputs.deployment }}
+          LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
+          RELEASE_BRANCH: ${{ github.ref_name }}
       - name: Prepare relevant program change
         id: prepare
+        if: steps.initialize.outputs.action != 'initialized'
         shell: bash
         run: |
           set -eu
@@ -95,7 +114,7 @@ jobs:
           if [ -d "$RUNNER_TEMP/liftosaur-deployment" ]; then echo 'required=true' >> "$GITHUB_OUTPUT"; else echo 'required=false' >> "$GITHUB_OUTPUT"; fi
         env:
           BASE_REF: ${{ inputs.base_ref }}
-          CANDIDATE_REF: ${{ inputs.candidate_ref || github.sha }}
+          CANDIDATE_REF: ${{ steps.initialize.outputs.candidate }}
           CONFIG: ${{ inputs.config }}
           DEPLOYMENT: ${{ inputs.deployment }}
           LIFTOSAUR_API_KEY: ${{ secrets.liftosaur_api_key }}
@@ -114,7 +133,6 @@ jobs:
     if: needs.ready.outputs.required == 'true'
     permissions:
       contents: write
-      pull-requests: write
     runs-on: ${{ fromJSON(inputs.runs_on) }}
     environment: ${{ inputs.environment || null }}
     steps:
@@ -122,7 +140,7 @@ jobs:
         with:
           fetch-depth: 0
           path: repository
-          ref: ${{ inputs.candidate_ref || github.sha }}
+          ref: ${{ needs.ready.outputs.candidate }}
       - name: Fetch deployment position
         working-directory: repository
         shell: bash
@@ -153,26 +171,6 @@ jobs:
         env:
           CONFIG: ${{ inputs.config }}
           DEPLOYMENT: ${{ inputs.deployment }}
-      - name: Open one-time target-binding pull request
-        shell: bash
-        run: |
-          set -eu
-          node -e 'const fs=require("fs"); const p=process.env.CONFIG_FILE; const r=JSON.parse(fs.readFileSync(process.env.REPORT)); const c=fs.existsSync(p) ? JSON.parse(fs.readFileSync(p)) : {deployments:{[process.env.DEPLOYMENT]:{program:r.source.programPath}}}; if(c.deployments[process.env.DEPLOYMENT].programId) process.exit(0); c.deployments[process.env.DEPLOYMENT].programId=r.target.id; fs.writeFileSync(p, JSON.stringify(c,null,2)+"\n")'
-          git -C repository diff --quiet && git -C repository ls-files --error-unmatch "$CONFIG" >/dev/null 2>&1 && exit 0
-          branch="liftosaur-ci/bind-$DEPLOYMENT-$GITHUB_RUN_ID"
-          git -C repository config user.name github-actions[bot]
-          git -C repository config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git -C repository switch -c "$branch"
-          git -C repository add -- "$CONFIG"
-          git -C repository commit -m "Pin $DEPLOYMENT Liftosaur target"
-          git -C repository push origin "HEAD:refs/heads/$branch"
-          gh pr create --repo "$GITHUB_REPOSITORY" --base "$GITHUB_REF_NAME" --head "$branch" --title "Pin $DEPLOYMENT Liftosaur target" --body "Pins the exact target resolved during the verified bootstrap deployment. Merge this before the next deployment."
-        env:
-          CONFIG: ${{ inputs.config }}
-          CONFIG_FILE: ${{ github.workspace }}/repository/${{ inputs.config }}
-          DEPLOYMENT: ${{ inputs.deployment }}
-          GH_TOKEN: ${{ github.token }}
-          REPORT: ${{ runner.temp }}/liftosaur-deployment-record/deployment-report.json
       - name: Retain private deployment receipt
         if: always()
         uses: actions/upload-artifact@v7

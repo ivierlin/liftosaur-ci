@@ -18,7 +18,7 @@ The canonical configuration remains the multi-deployment form:
 }
 ```
 
-Configuration paths and patterns are relative to the config file and may not escape its directory. `programId` is optional. When present, it must be an exact non-empty Liftosaur program ID; durable config rejects the literal `current`. Omitting it enables the one-time bootstrap path described in the [deployment contract](deployment.md): the first verified deployment resolves Liftosaur's current program and opens a PR pinning the resulting exact ID.
+Configuration paths and patterns are relative to the config file and may not escape its directory. `programId` is optional. When present, it must be an exact non-empty Liftosaur program ID; durable config rejects the literal `current`. Omitting it allows Actions automation to resolve and pin the exact target before an explicitly based first migration, as described in the [deployment contract](deployment.md).
 
 Multi-program repositories can set exact IDs up front:
 

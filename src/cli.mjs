@@ -5,6 +5,7 @@ import process from "node:process";
 import { checkRepository } from "./check.mjs";
 import { configuredDeployment } from "./config.mjs";
 import { configuredGitPreparation, recordDeploymentState } from "./deployment-state.mjs";
+import { initializeGitDeployment } from "./initialize.mjs";
 import { deployPreparedBundle, prepareDeploymentBundle } from "./deployment.mjs";
 import { prepareGitDeployment } from "./git.mjs";
 import { mergeLiftosaurSources } from "./merge.mjs";
@@ -47,6 +48,15 @@ Everyday update:
     [--api-base <url>]
 
 Composable deployment:
+  liftosaur-ci initialize-git \\
+    [--repository <git-worktree>] \\
+    [--config <liftosaur-ci.json>] \\
+    [--deployment <stable-id>] \\
+    [--base-ref <advanced-first-migration-ref>] \\
+    [--candidate-ref <reviewed-ref>] \\
+    --release-branch <branch> \\
+    [--api-base <url>]
+
   liftosaur-ci prepare-git \\
     [--repository <git-worktree>] \\
     [--config <liftosaur-ci.json>] \\
@@ -467,6 +477,21 @@ async function runRecordDeployment(argv) {
   console.log(`Deployment ref recorded: ${result.ref} → ${result.commitSha}`);
 }
 
+async function runInitializeGit(argv) {
+  const options = parseOptions(argv, ["repository", "config", "deployment", "base-ref", "candidate-ref", "release-branch", "api-base"]);
+  const result = await initializeGitDeployment({
+    configFile: defaultConfig(options),
+    deploymentId: options.deployment ?? null,
+    candidateRef: options["candidate-ref"] ?? "HEAD",
+    baseRef: options["base-ref"] ?? null,
+    repository: options.repository ? path.resolve(options.repository) : null,
+    releaseBranch: requireTextOption(options, "release-branch"),
+    apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
+    apiBase: options["api-base"],
+  });
+  console.log(JSON.stringify(result));
+}
+
 async function runDeploy(argv) {
   const options = parseOptions(argv, [
     "bundle",
@@ -545,6 +570,7 @@ export async function runLiftosaurCi(argv) {
     "prepare-deployment",
     "prepare",
     "prepare-git",
+    "initialize-git",
     "deploy",
     "record-deployment",
     "check",
@@ -562,6 +588,7 @@ export async function runLiftosaurCi(argv) {
   else if (command === "prepare-deployment") await runPrepareDeployment(commandArgs);
   else if (command === "prepare") await runPrepare(commandArgs);
   else if (command === "prepare-git") await runPrepareGit(commandArgs);
+  else if (command === "initialize-git") await runInitializeGit(commandArgs);
   else if (command === "deploy") await runDeploy(commandArgs);
   else if (command === "record-deployment") await runRecordDeployment(commandArgs);
   else await runCheck(commandArgs);
