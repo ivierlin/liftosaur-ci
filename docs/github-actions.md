@@ -17,6 +17,10 @@ on:
         required: false
         type: string
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   program-checks:
     name: Program checks
@@ -42,18 +46,33 @@ jobs:
       liftosaur_api_key: ${{ secrets.LIFTOSAUR_API_KEY }}
 ```
 
-The repository owns the project-requirements job; liftosaur-ci is not a general
-CI policy engine. Do not duplicate program paths in `paths:` filters. Config and
-the deployment ref are the relevance source of truth.
+Reusable workflows cannot elevate the caller's `GITHUB_TOKEN` permissions, so
+the caller grants `contents: write` for deployment refs and `pull-requests: write`
+for the optional one-time target-binding PR. Repositories that always configure
+exact target IDs never need the latter at runtime, but keeping the documented
+minimal workflow uniform avoids a separate bootstrap variant.
+
+The repository owns the `project-requirements` job; `liftosaur-ci` is not a
+general CI policy engine. Replace the trivial step with generators, tests, docs,
+fuzzing, or other project-specific release evidence. Do not duplicate program
+paths in `paths:` filters: config plus the deployment ref are the relevance source
+of truth for the default deployable-script path.
 
 `workflow_dispatch` supplies the first `base_ref` and remains available for
-recovery. After initialization, release-branch pushes are zero-touch.
-Per-deployment concurrency serializes transactions.
+bootstrap, recovery, and deliberate manual runs. After initialization,
+release-branch pushes are zero-touch. Per-deployment concurrency serializes live
+transactions.
 
 Automatic deployment is the default. To require approval, create a GitHub
-Environment and pass `environment: liftosaur`; leaving it empty adds no gate.
-The workflow needs contents write access for custom refs and pull-request access
-only for an omitted target's one-time binding PR. Exact IDs avoid that PR.
+Environment and pass `environment: liftosaur`; leaving it empty adds no approval
+gate.
 
-Private bundles and receipts are retained for one day. A verified live deployment
-followed by a ref or PR failure is recoverable and is not automatically reversed.
+Repositories with multiple configured deployments pass the deployment ID to the
+reusable workflow. Advanced repositories that generate deployable scripts or need
+different release topology can compose the lower-level CLI commands instead of
+using this convenience workflow.
+
+Private prepared bundles and deployment receipts are retained for one day. A
+verified live deployment followed by ref recording or binding-PR failure is
+recoverable and is not automatically reversed; the [deployment contract](deployment.md)
+owns those failure and recovery semantics.
