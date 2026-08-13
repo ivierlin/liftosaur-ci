@@ -1,14 +1,36 @@
 # Native Liftosaur validation
 
-The validator runs generated Liftosaur programs against a pinned Liftosaur checkout instead of maintaining a second parser or evaluator. The runtime revision is part of the report so a behavior change can be tied to a concrete upstream implementation.
+Use native validation to answer a narrow question: does this source execute and
+behave as reviewed in the pinned Liftosaur runtime? It validates compatibility
+and scenarios; it does not prove that a training design is correct.
 
-The validator evaluates the source, constructs every day, serializes the evaluated planner back to Liftoscript, reloads it, compares the resulting prescriptions, and then exercises the real workout lifecycle. Validation therefore covers both source compatibility and behavior that only appears after an update or finish script runs.
+## What the validator does
 
-## Built-in corpus
+The validator runs generated programs against a pinned Liftosaur checkout
+instead of maintaining a second parser or evaluator. The report records the
+runtime revision, so a behavior change can be tied to a concrete upstream
+implementation.
 
-The built-in corpus is intentionally broader than the small smoke corpus. It extracts every Liftoscript block from Liftosaur's built-in program Markdown and validates each source with the same runtime used for external programs. During that same nominal lifecycle pass, it compares one reviewed snapshot per built-in. The snapshot records each day's next exposure using exercise names, progression state, and compact work-set prescriptions; it does not repeat lifecycle execution or include warm-ups and internal workout metadata.
+It evaluates the source, constructs every day, serializes the evaluated planner
+back to Liftoscript, reloads it, compares the resulting prescriptions, and then
+exercises the real workout lifecycle. Validation therefore covers source
+compatibility and behavior that appears only after an update or finish script.
 
-This is not a claim that every built-in program's coaching behavior is correct. The corpus establishes that the source remains executable through the current Liftosaur lifecycle and provides a stable base for reviewed behavioral scenarios.
+## What the built-in corpus covers
+
+The built-in corpus is broader than the small smoke corpus. It extracts every
+Liftoscript block from Liftosaur's built-in program Markdown and validates each
+source with the same runtime used for external programs.
+
+During the same nominal lifecycle pass, it compares one reviewed snapshot per
+built-in. The snapshot records each day's next exposure using exercise names,
+progression state, and compact work-set prescriptions. It does not repeat
+lifecycle execution or include warm-ups and internal workout metadata.
+
+This does not claim that every built-in program's coaching behavior is correct.
+The corpus establishes that the source remains executable through the current
+Liftosaur lifecycle and provides a stable base for reviewed behavioral
+scenarios.
 
 ## Reviewed regression scenarios
 

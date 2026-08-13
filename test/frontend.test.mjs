@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   LIFTOSAUR_MERGE_FRONTEND,
   parseLiftosaurMergeDocument,
+  projectLiftosaurSourceForInitialization,
   projectLiftosaurSource,
   restoreProjectedSource,
 } from "../src/frontend.mjs";
@@ -84,4 +85,50 @@ test("round-trips prompted custom state keys", () => {
 
   assert.match(projected.source, /__LIFTOSAUR_CI_STATE__ volume\+/);
   assert.match(restoreProjectedSource(projected.source, projected.stateOrders), /volume\+: 3/);
+});
+
+test("initialization projection masks live-owned prescription, state, and selections", () => {
+  const clean = `# Week 1
+## Day A
+// First description
+
+// Second description
+Squat | Pistol Squat / 3x5 / 4x3 / timer: 120 / progress: custom(volume: 3) {~
+  if (completedReps >= reps) { weights += 5lb }
+~}
+`;
+  const live = clean
+    .replace("// Second", "// ! Second")
+    .replace("Squat | Pistol", "Squat | ! Pistol")
+    .replace("3x5 / 4x3", "! 5x4 @8 100kg 90s / 2x8")
+    .replace("timer: 120", "timer: 180")
+    .replace("volume: 3", "volume: 9");
+
+  assert.equal(
+    projectLiftosaurSourceForInitialization(live),
+    projectLiftosaurSourceForInitialization(clean)
+  );
+});
+
+test("initialization projection preserves author-owned structure and logic", () => {
+  const clean = `# Week 1
+## Day A
+Squat / 3x5 / progress: custom(volume: 3) {~ weights += 5lb ~}
+`;
+  assert.notEqual(
+    projectLiftosaurSourceForInitialization(clean.replace("Squat", "Bench Press")),
+    projectLiftosaurSourceForInitialization(clean)
+  );
+  assert.notEqual(
+    projectLiftosaurSourceForInitialization(clean.replace("weights += 5lb", "weights += 10lb")),
+    projectLiftosaurSourceForInitialization(clean)
+  );
+  assert.notEqual(
+    projectLiftosaurSourceForInitialization(clean.replace("progress:", "used:")),
+    projectLiftosaurSourceForInitialization(clean)
+  );
+  assert.notEqual(
+    projectLiftosaurSourceForInitialization(clean.replace("3x5", "3x5 (heavy)")),
+    projectLiftosaurSourceForInitialization(clean.replace("3x5", "3x5 (light)"))
+  );
 });

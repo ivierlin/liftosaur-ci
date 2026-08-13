@@ -1,12 +1,25 @@
-# Repository check
+# Check a repository
 
-`liftosaur-ci check` is the minimal generic CI entry point. It validates every discovered or configured program and compares configured reviewed snapshots. It never updates a program, scenario, or snapshot.
+`liftosaur-ci check` validates the programs a repository owns and compares any
+reviewed scenario snapshots. It never updates Liftosaur, a program file, a
+scenario, or a snapshot.
 
-## Configuration
+## The zero-config case
 
-If `liftosaur-ci.json` is absent and the repository root contains exactly one regular file ending in `.liftoscript`, that file is discovered as deployment `program`. Discovery is intentionally root-only and based on the filename; validation handles the file contents separately. Zero or multiple root-level matches require explicit configuration.
+You do not need a config file when the repository root contains exactly one
+regular file whose name ends in `.liftoscript`. The command discovers that file
+as deployment `program`.
 
-The canonical configuration remains the multi-deployment form:
+Discovery is deliberately strict and root-only. No match, more than one match,
+or a program in a subdirectory requires explicit configuration.
+
+## When configuration is needed
+
+Add `liftosaur-ci.json` when you have a custom layout, multiple programs,
+reviewed scenarios, or an exact Liftosaur target to record. Paths and patterns
+are relative to the config file and cannot escape its directory.
+
+A single configured deployment looks like this:
 
 ```json
 {
@@ -18,9 +31,12 @@ The canonical configuration remains the multi-deployment form:
 }
 ```
 
-Configuration paths and patterns are relative to the config file and may not escape its directory. `programId` is optional. When present, it must be an exact non-empty Liftosaur program ID; durable config rejects the literal `current`. Omitting it allows Actions automation to resolve and pin the exact target before an explicitly based first migration, as described in the [deployment contract](deployment.md).
+`programId` is optional. When present, it must be an exact, non-empty Liftosaur
+program ID; durable config does not accept the shortcut `current`. GitHub
+automation can resolve and save an omitted ID during first migration. The
+[deployment contract](deployment.md#first-time-initialization) owns those rules.
 
-Multi-program repositories can set exact IDs up front:
+A repository with several deployments can pin each target explicitly:
 
 ```json
 {
@@ -37,9 +53,15 @@ Multi-program repositories can set exact IDs up front:
 }
 ```
 
-The [deployment contract](deployment.md) owns target resolution, bootstrap, deployed-position tracking, merge behavior, and recovery. Optional `programs` globs, scenario program references, and deployment program references are combined into one validation set, so a program does not need to be declared twice. An explicit configuration must reference at least one program in total.
+An explicit config must reference at least one program. Optional `programs`
+patterns, scenario program references, and deployment program references are
+combined into one validation set, so the same file need not be declared twice.
+Configured glob discovery excludes `.git`, `.private`, and `node_modules`.
 
-Reviewed scenarios are optional:
+## Add reviewed scenarios
+
+Scenarios describe expected program behavior and compare it with an immutable
+JSON snapshot:
 
 ```json
 {
@@ -54,12 +76,30 @@ Reviewed scenarios are optional:
 }
 ```
 
-`.git`, `.private`, and `node_modules` are excluded from configured glob discovery. Scenario files are strict: unknown scenario, step, entry, and set fields are rejected instead of being silently ignored. A scenario with `day` and `entries` describes one exposure; a scenario with `steps` describes an ordered sequence of exposures.
+Scenario input is strict: unknown scenario, step, entry, and set fields fail
+instead of being ignored. A scenario with `day` and `entries` describes one
+exposure; one with `steps` describes an ordered sequence. See the
+[native validation contract](native-validation.md#reviewed-regression-scenarios)
+for the complete scenario format.
 
-## CI usage
+## What gets validated
+
+The command validates every discovered or configured source with the pinned
+Liftosaur runtime. It also runs each configured scenario and compares the result
+with its reviewed snapshot. A missing program, invalid config or source,
+scenario error, or snapshot difference makes the command fail.
+
+Target resolution, first-time setup, deployed-position tracking, merging, and
+recovery belong to the [deployment contract](deployment.md); `check` does not
+perform those operations.
+
+## Run the command
 
 ```sh
 node bin/liftosaur-ci.mjs check
 ```
 
-Pass `--config <path>` for a non-default config location. The command exits nonzero when validation fails or a snapshot differs. A report path is optional and must not already exist. Snapshot mismatches include the first differing JSON path in the report.
+Use `--config <path>` when the config is not `liftosaur-ci.json`. The command
+exits with a nonzero status on failure. An optional report path must not already
+exist; when a snapshot differs, the report includes the first differing JSON
+path.

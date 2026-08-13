@@ -8,25 +8,11 @@ on:
         required: false
         default: liftosaur-ci.json
         type: string
-      tool_repository:
-        description: Repository containing liftosaur-ci
-        required: false
-        default: ivierlin/liftosaur-ci
-        type: string
-      tool_ref:
-        description: Reviewed liftosaur-ci commit or tag
-        required: true
-        type: string
       runs_on:
         description: JSON array of runner labels
         required: false
         default: '["ubuntu-latest"]'
         type: string
-    secrets:
-      tool_token:
-        description: Token able to read liftosaur-ci when it is private
-        required: false
-
 permissions:
   contents: read
 
@@ -42,10 +28,9 @@ jobs:
       - name: Check out liftosaur-ci
         uses: actions/checkout@v7
         with:
-          repository: ${{ inputs.tool_repository }}
-          ref: ${{ inputs.tool_ref }}
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
           path: tool
-          token: ${{ secrets.tool_token || github.token }}
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
