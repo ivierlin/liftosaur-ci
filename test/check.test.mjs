@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -51,6 +51,29 @@ test("repository check validates programs referenced directly by scenarios", asy
     assert.deepEqual(report.summary, { programs: 1, passed: 1, failed: 0, scenarios: 1 });
     assert.equal(report.programs[0].program, "programs/example.liftoscript");
     assert.equal(report.programs[0].scenarios[0].status, "passed");
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("repository check ignores only the snapshot producer version", async () => {
+  const { root, configFile } = await makeRepository();
+  try {
+    const snapshotFile = path.join(root, "scenarios", "nominal.expected.json");
+    const snapshot = JSON.parse(await readFile(snapshotFile, "utf8"));
+    snapshot.cli.version = "0.0.0";
+    await writeFile(snapshotFile, `${JSON.stringify(snapshot, null, 2)}\n`, "utf8");
+    const report = await checkRepository(configFile);
+    assert.equal(report.status, "passed", JSON.stringify(report, null, 2));
+
+    snapshot.cli.name = "different-tool";
+    await writeFile(snapshotFile, `${JSON.stringify(snapshot, null, 2)}\n`, "utf8");
+    const changedIdentity = await checkRepository(configFile);
+    assert.equal(changedIdentity.status, "failed");
+    assert.equal(
+      changedIdentity.programs[0].scenarios[0].failure.difference.path,
+      "$.cli.name"
+    );
   } finally {
     await rm(root, { recursive: true, force: true });
   }

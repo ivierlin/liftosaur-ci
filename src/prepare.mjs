@@ -40,6 +40,7 @@ export async function prepareLiftosaurDeployment({
   apiKey,
   apiBase,
   programName = null,
+  conflictOutput = process.env.LIFTOSAUR_CI_CONFLICT_OUTPUT?.trim() || null,
 }) {
   const [base, candidate] = await Promise.all([
     readFile(baseFile, "utf8"),
@@ -53,6 +54,7 @@ export async function prepareLiftosaurDeployment({
     apiKey,
     apiBase,
     programName,
+    conflictOutput,
   });
 }
 
@@ -65,6 +67,7 @@ export async function prepareLiftosaurDeploymentFromContents({
   apiBase,
   source = null,
   programName = null,
+  conflictOutput = null,
 }) {
   const activeProgram = await fetchDeploymentTarget({ programId, apiKey, apiBase });
   const active = activeProgram.text;
@@ -80,7 +83,6 @@ export async function prepareLiftosaurDeploymentFromContents({
   }
   const mergeReport = createMergeReport({ base, active, candidate }, merged);
   if (!merged.source) {
-    const conflictOutput = process.env.LIFTOSAUR_CI_CONFLICT_OUTPUT?.trim();
     if (!conflictOutput) {
       throw new LiftosaurPreparationError(
         [

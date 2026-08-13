@@ -7,6 +7,9 @@ test("help separates everyday, composable, recovery, and offline surfaces", asyn
   const result = await runCli(["--help"], {});
   assert.equal(result.status, 0, result.stderr);
   assert.match(result.stdout, /Everyday update:/);
+  assert.match(result.stdout, /Repository-free update:/);
+  assert.match(result.stdout, /liftosaur-ci update-archive/);
+  assert.match(result.stdout, /liftosaur-ci create-update-archive/);
   assert.match(result.stdout, /Composable deployment:/);
   assert.match(result.stdout, /Recovery:/);
   assert.match(result.stdout, /Advanced\/offline building blocks:/);

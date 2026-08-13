@@ -26,9 +26,14 @@ function parseJson(text, label) {
 function validateState(state, deploymentId) {
   requireObject(state, "Deployment state");
   if (
-    Object.keys(state).some((key) => !["commitSha", "blobSha"].includes(key))
+    Object.keys(state).some((key) => !["commitSha", "blobSha", "programId"].includes(key))
     || !/^[a-f0-9]{40,64}$/.test(state.commitSha ?? "")
     || !/^[a-f0-9]{40,64}$/.test(state.blobSha ?? "")
+    || (state.programId != null && (
+      typeof state.programId !== "string"
+      || !state.programId
+      || state.programId === "current"
+    ))
   ) {
     throw new Error(`Deployment state is invalid for ${deploymentId}`);
   }
@@ -63,7 +68,7 @@ export async function configuredGitPreparation({
     baseRef: baseRef ?? tracked.state.commitSha,
     candidateRef,
     programPath: deployment.program,
-    programId: deployment.programId,
+    programId: tracked.state?.programId ?? deployment.programId,
     expectedBase: tracked.state,
     stateFile: tracked.file,
     deploymentId: deployment.id,
@@ -84,6 +89,13 @@ export async function recordDeploymentState({
   if (deployment.programId !== "current" && report.target?.id !== deployment.programId) {
     throw new Error("Deployment report target does not match configured deployment");
   }
+  if (
+    typeof report.target?.id !== "string"
+    || !report.target.id
+    || report.target.id === "current"
+  ) {
+    throw new Error("Deployment report lacks an exact Liftosaur target");
+  }
   const source = report.source;
   if (
     !source
@@ -92,6 +104,9 @@ export async function recordDeploymentState({
     throw new Error("Deployment report lacks matching Git provenance");
   }
   const tracked = await readState(config, deployment.id);
+  if (tracked.state?.programId && tracked.state.programId !== report.target?.id) {
+    throw new Error("Deployment report target does not match tracked deployment target");
+  }
   if (tracked.state && (
     tracked.state.commitSha !== source.base?.commitSha
     || tracked.state.blobSha !== source.base?.blobSha
@@ -101,6 +116,7 @@ export async function recordDeploymentState({
   const state = validateState({
     commitSha: source.candidate?.commitSha,
     blobSha: source.candidate?.blobSha,
+    programId: report.target?.id,
   }, deployment.id);
   await mkdir(path.dirname(tracked.file), { recursive: true });
   const temporary = `${tracked.file}.${randomUUID()}.tmp`;

@@ -44,6 +44,8 @@ async function fixture() {
 test("CLI exposes every command without loading the Liftosaur runtime", () => {
   const result = spawnSync(process.execPath, [cli, "--help"], { encoding: "utf8", env: {} });
   assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /liftosaur-ci update-archive/);
+  assert.match(result.stdout, /liftosaur-ci create-update-archive/);
   assert.match(result.stdout, /liftosaur-ci merge/);
   assert.match(result.stdout, /liftosaur-ci validate/);
   assert.match(result.stdout, /liftosaur-ci snapshot/);
@@ -60,6 +62,26 @@ test("CLI exposes every command without loading the Liftosaur runtime", () => {
   });
   assert.equal(commandHelp.status, 0, commandHelp.stderr);
   assert.equal(commandHelp.stdout, result.stdout);
+});
+
+test("archive producer needs only the previous and new source paths", async () => {
+  const { directory, paths } = await fixture();
+  const originalDirectory = process.cwd();
+  try {
+    process.chdir(directory);
+    const result = await run([
+      "create-update-archive",
+      paths.base,
+      paths.candidate,
+    ]);
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /candidate-update\.zip/);
+    const archive = await readFile(path.join(directory, "candidate-update.zip"));
+    assert.ok(archive.byteLength > 0);
+  } finally {
+    process.chdir(originalDirectory);
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 test("offline CLI writes a checksum-bound reviewed scenario snapshot", async () => {

@@ -117,6 +117,7 @@ export async function prepareGitDeployment({
   apiKey,
   apiBase,
   programName = null,
+  conflictOutput = null,
 }) {
   if (!programId) throw new Error("Git deployment preparation requires a Liftosaur program ID or current");
   const programs = readGitProgramPair({ repository, baseRef, candidateRef, programPath });
@@ -135,5 +136,6 @@ export async function prepareGitDeployment({
     apiBase,
     source: programs.source,
     programName,
+    conflictOutput,
   });
 }
