@@ -30,3 +30,8 @@ custom automation stages, validation tools, and recovery commands.
 
 Read [Native Liftosaur validation](native-validation.md). It defines the pinned
 runtime checks and the complete, sequential, and partial scenario interfaces.
+
+## How is liftosaur-ci released?
+
+Read [Release liftosaur-ci](releasing.md) for version-tag mechanics and the
+compatibility policy for the moving `0` workflow tag.

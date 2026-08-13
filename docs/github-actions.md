@@ -40,27 +40,22 @@ jobs:
     name: Program checks
     permissions:
       contents: read
-    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-check.yml@TOOL_COMMIT
-    with:
-      tool_ref: TOOL_COMMIT
+    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-check.yml@0
 
   deploy:
     if: github.event_name != 'pull_request'
     needs: program-checks
     permissions:
       contents: write
-    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-deploy.yml@TOOL_COMMIT
+    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-deploy.yml@0
     with:
-      tool_ref: TOOL_COMMIT
       base_ref: ${{ github.event.inputs.base_ref || '' }}
     secrets:
       liftosaur_api_key: ${{ secrets.LIFTOSAUR_API_KEY }}
 ```
 
-Replace every `TOOL_COMMIT` with the full commit ID of the reviewed
-`liftosaur-ci` version you want to use. Pinning an exact commit prevents the tool
-from changing unexpectedly. You do not need to understand or edit the rest of
-the YAML for the simple setup.
+The `@0` reference receives compatible pre-1.0 workflow updates automatically.
+You do not need to understand or edit the rest of the YAML for the simple setup.
 
 ## Run it for the first time
 
@@ -135,27 +130,103 @@ the starting point matters.
 
 Use [`liftosaur-ci.json`](check.md#when-configuration-is-needed) for multiple
 programs, nested files, or explicit Liftosaur program IDs. The reusable
-workflows also accept `config`, `deployment`, `runs_on`, and tool-repository
-inputs for custom layouts, named deployments, and self-hosted runners.
+workflows also accept `config`, `deployment`, and `runs_on` for custom layouts,
+named deployments, and self-hosted runners.
 
-Projects with generators or additional release tests can put a job between the
-two reusable workflows. For example, add a `project-requirements` job that needs
-`program-checks`, then make `deploy` need `project-requirements`. That seam is
-optional; beginners do not need a placeholder job. Projects needing a different
-release topology can compose the [lower-level CLI commands](cli.md#build-custom-automation)
-instead.
+Project-specific release evidence belongs in the caller repository: your
+project knows which generator, tests, or documentation checks make its source
+ready, while `liftosaur-ci` owns Liftosaur-specific validation and deployment.
+Put those requirements between the two reusable workflows. This example checks
+the program first, runs the repository's own tests, and allows deployment only
+after both succeed:
+
+```yaml
+jobs:
+  program-checks:
+    permissions:
+      contents: read
+    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-check.yml@0
+
+  project-requirements:
+    needs: program-checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: [program-checks, project-requirements]
+    permissions:
+      contents: write
+    uses: ivierlin/liftosaur-ci/.github/workflows/reusable-deploy.yml@0
+    with:
+      base_ref: ${{ github.event.inputs.base_ref || '' }}
+    secrets:
+      liftosaur_api_key: ${{ secrets.LIFTOSAUR_API_KEY }}
+```
+
+For a self-hosted runner, pass a JSON array of its labels to each reusable
+workflow:
+
+```yaml
+    with:
+      runs_on: '["self-hosted", "linux", "x64"]'
+```
+
+For a named deployment in `liftosaur-ci.json`, select it explicitly; an optional
+protected Environment can require approval before the live write:
+
+```yaml
+    with:
+      deployment: strength-program
+      environment: liftosaur-production
+```
+
+Projects needing a different release topology or a custom generated-program
+pipeline can compose the [lower-level CLI commands](cli.md#build-custom-automation).
+
+### Immutable workflow pinning
+
+`@0` is the recommended compatibility channel. If your security policy requires
+an immutable dependency, replace `0` in both `uses:` lines with an exact release
+tag or full commit ID. The reusable workflow always loads its CLI implementation
+from the exact same commit as the workflow definition.
 
 ## How the workflow is structured
 
-`program-checks` has read-only repository access. `deploy` needs
-`contents: write` so it can add canonical config during initialization and
-record the verified deployed position in Git. A called reusable workflow cannot
-increase the permissions granted by this caller file.
+Maintainers may need this map when changing permissions, adding a release gate,
+or investigating why a run did or did not reach Liftosaur:
 
-Deployments for the same configured program are serialized so two live changes
-cannot race. The reusable workflows use GitHub-hosted Ubuntu runners by default.
-Prepared bundles and receipts can contain private progression state, so GitHub
-retains them as private workflow artifacts for one day only. If a live write is
-verified but recording its Git position fails, retain the receipt and follow the
-[failure and recovery contract](deployment.md#failure-and-recovery); the tool
-does not silently reverse a verified write.
+- **Program checks** validates the program and reviewed scenarios. It is
+  read-only.
+- **Project release requirements** is an optional caller-owned job for generators,
+  tests, or documentation checks. It is read-only by default and must succeed
+  before deployment when wired as shown above.
+- **Ready to deploy** resolves initialization and whether the deployable program
+  changed. It may write canonical config during first-time initialization, so
+  the caller grants `contents: write`.
+- **Deploy verified program** runs only when the program blob changed. It can
+  wait for optional GitHub Environment approval, performs the verified live
+  write, and records the deployed Git revision.
+
+### Operational details
+
+- A called reusable workflow cannot increase the permissions granted by the
+  caller workflow.
+- Deployments for the same configured program are serialized so two live changes
+  cannot race.
+- Reusable workflows use GitHub-hosted Ubuntu runners by default; `runs_on` can
+  select compatible self-hosted runners.
+- Prepared bundles and receipts can contain private progression state, so they
+  remain private workflow artifacts and are retained for one day only.
+- If a live write is verified but recording its Git position fails, retain the
+  receipt and follow the [failure and recovery contract](deployment.md#failure-and-recovery).
+  The tool does not silently reverse a verified write.
