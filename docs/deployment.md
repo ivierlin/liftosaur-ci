@@ -83,6 +83,43 @@ Independent live changes are carried into the candidate. If live state and the
 candidate change the same mergeable region incompatibly, preparation fails
 instead of guessing.
 
+### Recover an unresolved live-versus-candidate conflict
+
+The private conflict workspace separates the three versions involved:
+
+- `base.liftoscript` is the last Git version verified as deployed;
+- `active.liftoscript` is the current Liftosaur source, including live
+  progression; and
+- `candidate.liftoscript` is the new Git version being prepared.
+
+It also contains `conflict.txt`, which shows the unresolved merge, and
+`merge-report.json`, which records the structured merge result. **These files
+may contain athlete-specific live state. Keep the workspace private, do not
+print it, and never commit it.**
+
+For CLI or custom automation, rerun the failed `prepare` or `prepare-git`
+command with `--conflict-output <directory>`. Use a new private directory. The
+tool then prints commands equivalent to:
+
+```sh
+git diff --no-index <base> <active>
+git diff --no-index <base> <candidate>
+```
+
+The first comparison shows what changed in Liftosaur since the base. The second
+shows what the candidate changes in Git. Inspect both, decide the intended
+resulting program behavior, then adjust the Git candidate so that intent is
+explicit. Commit the adjustment and rerun preparation or deployment.
+
+Do **not** solve the conflict by copying the whole active Liftosaur source into
+Git. The active source may include athlete-specific progression or state that
+Git does not own. Use it only as evidence for the conflicting region and encode
+the intended program logic in the candidate.
+
+GitHub-only custom automation can retain the workspace as a short-lived private
+artifact on preparation failure; see
+[Preserve a conflict workspace](github-actions.md#preserve-a-conflict-workspace).
+
 The live program name is preserved unless preparation explicitly seals a
 reviewed replacement with `--program-name`.
 

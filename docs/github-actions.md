@@ -193,6 +193,51 @@ protected Environment can require approval before the live write:
 Projects needing a different release topology or a custom generated-program
 pipeline can compose the [lower-level CLI commands](cli.md#build-custom-automation).
 
+### Preserve a conflict workspace
+
+The reusable deployment workflow keeps the beginner path private by default and
+does not expose conflict files. A custom workflow that needs merge evidence can
+opt in when it runs `prepare-git`: add
+`--conflict-output "$RUNNER_TEMP/liftosaur-conflict"`, then upload that directory
+only when the preparation step fails.
+
+```yaml
+- name: Prepare relevant program change
+  id: prepare
+  shell: bash
+  run: |
+    node "$GITHUB_WORKSPACE/tool/bin/liftosaur-ci.mjs" prepare-git \
+      --repository "$GITHUB_WORKSPACE/repository" \
+      --config "$GITHUB_WORKSPACE/repository/liftosaur-ci.json" \
+      --deployment program \
+      --candidate-ref "$GITHUB_SHA" \
+      --output "$RUNNER_TEMP/liftosaur-deployment" \
+      --conflict-output "$RUNNER_TEMP/liftosaur-conflict"
+  env:
+    LIFTOSAUR_API_KEY: ${{ secrets.LIFTOSAUR_API_KEY }}
+
+- name: Retain private conflict workspace
+  if: failure() && steps.prepare.outcome == 'failure'
+  uses: actions/upload-artifact@v7
+  with:
+    name: liftosaur-conflict-${{ github.run_id }}-${{ github.run_attempt }}
+    path: ${{ runner.temp }}/liftosaur-conflict
+    if-no-files-found: ignore
+    retention-days: 1
+```
+
+Keep the repository and tool checkout, runtime setup, immutable candidate
+selection, config path, and deployment ID aligned with the rest of your custom
+pipeline. The artifact contains `base.liftoscript`, `active.liftoscript`,
+`candidate.liftoscript`, `conflict.txt`, and `merge-report.json` when the failure
+is an unresolved merge.
+
+**The workspace may contain athlete-specific live state. Keep the repository
+and artifact private, use short retention, and never commit the files or print
+their contents in workflow logs.** Follow the
+[human recovery procedure](deployment.md#recover-an-unresolved-live-versus-candidate-conflict)
+after downloading it.
+
 ### Immutable workflow pinning
 
 `@0` is the recommended compatibility channel. If your security policy requires
