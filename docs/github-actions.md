@@ -1,35 +1,22 @@
 # GitHub Actions integration
 
-Two reusable workflows provide the baseline integration:
+Two reusable workflows provide the current integration:
 
 - `reusable-check.yml` validates configured programs and reviewed snapshots.
-- `reusable-deploy.yml` prepares the updated program, pauses at a protected
-  environment, deploys with read-back verification, then opens a pull request
-  containing the non-sensitive deployment state.
+- `reusable-deploy.yml` prepares an update, pauses at a protected environment,
+  deploys with read-back verification, and opens a pull request containing only
+  non-sensitive deployment state.
 
-## Minimal setup
+Configure the repository before calling either workflow. The [README](../README.md)
+shows the minimal configuration; the [deployment contract](deployment.md) owns
+target resolution, bootstrap state, merge behavior, and recovery semantics.
 
-Use the conventional deployment ID `program` and configure only the program path
-and Liftosaur target:
+## Deployment workflow
 
-```json
-{
-  "deployments": {
-    "program": {
-      "program": "programs/example.liftoscript",
-      "programId": "current"
-    }
-  }
-}
-```
+Store `LIFTOSAUR_API_KEY` as a deployment secret. Create a protected environment,
+such as `liftosaur`, and require approval before the live write.
 
-Only `LIFTOSAUR_API_KEY` needs to be stored as a deployment secret. Create a
-protected environment such as `liftosaur` and require approval before the live
-write.
-
-The reusable deployment workflow defaults to deployment `program` and to the
-caller commit, so a normal caller does not need to pass a program ID, program
-path, program name, deployment ID, or candidate ref.
+The workflow defaults to deployment `program` and the caller commit:
 
 ```yaml
 name: Deploy Liftosaur program
@@ -56,16 +43,11 @@ jobs:
       liftosaur_api_key: ${{ secrets.LIFTOSAUR_API_KEY }}
 ```
 
-`base_ref` is required only for the first deployment, when liftosaur-ci needs to
-know which Git revision corresponds to the program already in the app. After the
-resulting deployment-state pull request is merged, later deployments infer that
-base automatically.
+Pass `base_ref` for the first deployment only. Merge the resulting
+deployment-state pull request before the next deployment so later runs can infer
+the deployed Git base.
 
-If `programId` is `current`, preparation resolves it to the exact ID returned by
-Liftosaur. The approved deployment later reads and writes only that exact ID.
-The live program name is preserved automatically.
-
-## Checks
+## Check workflow
 
 ```yaml
 name: Liftosaur check
@@ -85,20 +67,17 @@ jobs:
       tool_ref: TOOL_COMMIT
 ```
 
-Replace `TOOL_COMMIT` with one reviewed liftosaur-ci commit in both locations.
-Runner labels may be overridden with `runs_on`; the default is a self-hosted
-Linux X64 runner. If the tool repository is private, pass a read-only
+Replace `TOOL_COMMIT` with one reviewed liftosaur-ci commit in both workflows.
+Runner labels may be overridden with the JSON-array `runs_on` input; the default
+is `["self-hosted"]`. If the tool repository is private, pass a read-only
 `tool_token`.
 
 ## Private merge-conflict artifacts
 
-A real three-way merge conflict can contain athlete-specific live state. By
-default `prepare` and `prepare-git` do not persist that state. Their conflict
-message prominently shows how to opt in with `--conflict-output <directory>`.
-
-For a custom GitHub Actions deployment workflow, write that workspace under
-`$RUNNER_TEMP`, never inside the checked-out repository, and upload it only when
-preparation fails. Keep retention short:
+A three-way merge conflict can contain athlete-specific live state. By default,
+`prepare` and `prepare-git` do not persist it. A custom workflow may opt in with
+`--conflict-output <directory>` under `$RUNNER_TEMP`, upload the directory only
+on preparation failure, and keep retention short:
 
 ```yaml
 - name: Prepare deployment
@@ -124,29 +103,23 @@ preparation fails. Keep retention short:
   run: rm -rf "$RUNNER_TEMP/liftosaur-conflict"
 ```
 
-The conflict artifact may contain `active.liftoscript` and therefore must be
-treated as private operational data. Do not commit it, place it on a pull-request
-branch, print its contents to the workflow log, or store it with long-lived
-public build artifacts. The ordinary deployment-state pull request remains safe
-because it contains only Git identity metadata.
+The artifact may contain `active.liftoscript`. Do not commit it, place it on a
+pull-request branch, print it in logs, or retain it with public build artifacts.
+The deployment-state pull request remains non-sensitive because it contains only
+Git identity metadata. For a stricter privacy boundary, omit `--conflict-output`
+and reproduce the conflict in a trusted local environment.
 
-If a repository needs stronger privacy than its normal Actions artifact access
-model provides, omit `--conflict-output` entirely and reproduce the conflict in a
-trusted local environment instead.
+## Overrides and resulting state
 
-## Multiple programs and advanced overrides
+Repositories with multiple deployments pass `deployment`. `candidate_ref`
+selects a reviewed commit or tag. The workflow also accepts `environment`,
+`state_branch`, `config`, `runs_on`, and `tool_repository` overrides.
 
-Repositories with multiple configured deployments pass `deployment`. A specific
-reviewed commit or tag can be selected with `candidate_ref`. `environment`,
-`state_branch`, `config`, `runs_on`, and `tool_repository` are also overridable,
-but none are required for the common single-program layout.
+After a verified deployment, the workflow copies only
+`.liftosaur-ci/deployments/<id>.json` onto a branch based on `state_branch` and
+opens a pull request. Candidate code changes are not included in that state-only
+pull request. The private preparation bundle and deployment receipt are retained
+as workflow artifacts for one day.
 
-After a verified deployment, the workflow creates
-`.liftosaur-ci/deployments/<id>.json`, copies only that state onto a branch based
-on `state_branch`, and opens a pull request. This prevents candidate code changes
-from leaking into the state-only PR.
-
-The private bundle and deployment receipt are retained as workflow artifacts for
-one day. `liftosaur-ci` itself has no npm dependencies, so the workflows skip
-`npm ci` and npm caching; the pinned Liftosaur runtime has its own setup/cache
-path.
+`liftosaur-ci` has no npm dependencies, so these workflows skip `npm ci` and npm
+caching. The pinned Liftosaur runtime uses its own setup and cache path.

@@ -168,23 +168,12 @@ reusable workflow keeps uploaded bundles short-lived by default; long-term backu
 or archival is an explicit author responsibility rather than part of normal
 continuous deployment.
 
-## Approval-gated automation
+## Automation and command surface
 
-The reusable GitHub Actions workflow deliberately keeps preparation and deploy as
-separate steps so a protected environment can approve the live write. It uses the
-same core functions as `update`, then opens a state-only pull request after a
-verified deployment. See [GitHub Actions integration](github-actions.md).
-
-## Lower-level building blocks
-
-`prepare-git`, `deploy`, and `record-deployment` expose the three stages used by
-`update` and the GitHub workflow. `rollback` provides the explicit recovery path
-for an ambiguous one-command update. `restore` provides exact historical-snapshot
-recovery and intentionally rewinds progression. `prepare` provides the same merge
-and validation path for caller-supplied base and candidate files.
-`prepare-deployment` assembles a bundle from already prepared active/deploy sources
-and validation evidence; because it is offline, it requires an already resolved
-exact program ID.
+The reusable workflow separates preparation from the live write with a protected
+approval gate. See [GitHub Actions integration](github-actions.md) for its current
+interface and [CLI command layers](cli.md) for the composable and advanced
+commands that implement the same deployment contract.
 
 Bundles and deployment receipts contain private program state and should not be
 committed or published.
