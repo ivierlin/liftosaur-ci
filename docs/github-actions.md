@@ -82,9 +82,14 @@ The optional Environment gates the live-write job. Simple initialization has no
 live write, so it does not wait for approval. Target pinning for an advanced first
 migration also occurs before the approval gate: if the branch moved, branch
 protection, a ruleset, or token policy rejects the config-only commit, the run
-fails before Liftosaur changes. Pin the canonical config manually and rerun with
-`base_ref`, or adjust the policy if automatic initialization is intentional. The
-workflow does not bypass branch policy with a PAT or hidden token.
+fails before Liftosaur changes. After a verified simple initialization, that
+failure prints the complete canonical `liftosaur-ci.json` and the exact verified
+revision as `Base Git revision: <sha>`. Create and commit the shown config on the
+current branch, rerun the workflow, and enter the shown revision in the optional
+**Base Git revision** field. This remains the recovery path when the branch moved:
+add the config to the new branch tip, but use the reported revision because it is
+the Git version already verified byte-for-byte against Liftosaur. The workflow
+does not bypass branch policy with a PAT or hidden token.
 
 Repositories with multiple programs, nested program layouts, or other ambiguity
 use `liftosaur-ci.json` and pass the deployment ID where needed. Advanced

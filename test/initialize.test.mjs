@@ -133,7 +133,7 @@ test("zero-config with an explicit base follows the advanced migration path", as
   }
 });
 
-test("release branch lease failure creates neither config commit on the remote nor deployment ref", async () => {
+test("release branch lease failure reports complete manual recovery and creates no ref or live write", async () => {
   const f = await fixture();
   const live = await api();
   try {
@@ -145,9 +145,20 @@ test("release branch lease failure creates neither config commit on the remote n
     git(other, ["-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-m", "concurrent"]);
     git(other, ["push", "origin", "main"]);
     const moved = git(f.remote, ["rev-parse", "refs/heads/main"]);
+    const expectedConfig = JSON.stringify({ deployments: { program: {
+      program: "program.liftoscript", programId: "exact-1",
+    } } }, null, 2);
     await assert.rejects(initializeGitDeployment({
       configFile: f.configFile, repository: f.repository, releaseBranch: "main", apiKey, apiBase: live.apiBase,
-    }), /branch moved or rejected.*No Liftosaur write or deployment ref/s);
+    }), (error) => {
+      assert.match(error.message, /could not record liftosaur-ci\.json/);
+      assert.ok(error.message.includes(expectedConfig));
+      assert.ok(error.message.includes(`Base Git revision: ${f.candidate}`));
+      assert.match(error.message, /Create.*current release branch.*commit.*push/s);
+      assert.match(error.message, /optional Base Git revision field/);
+      assert.match(error.message, /No Liftosaur write or deployment ref was created/);
+      return true;
+    });
     assert.equal(git(f.remote, ["rev-parse", "refs/heads/main"]), moved);
     assert.notEqual(git(f.remote, ["rev-parse", deploymentRef("program")], { fail: true }).status, 0);
     assert.deepEqual(live.requests, [["GET", "/api/v1/programs/current"]]);

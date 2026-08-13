@@ -32,7 +32,28 @@ function programBlob(repository, commit, programPath) {
   return git(repository, ["cat-file", "blob", blob], "Cannot read candidate program", { buffer: true });
 }
 
-async function commitCanonicalConfig({ repository, configFile, config, deployment, targetId, candidateCommit, releaseBranch }) {
+function configWriteRecovery({ error, canonical, verifiedBaseRevision }) {
+  if (!verifiedBaseRevision) {
+    return new Error(`${error.message}\nThe release branch moved or rejected the config-only commit. No Liftosaur write or deployment ref was created. Rerun after the branch is current, or pin liftosaur-ci.json manually and use the advanced base_ref route.`);
+  }
+  return new Error([
+    error.message,
+    "Initialization verified successfully, but liftosaur-ci could not record liftosaur-ci.json on the release branch.",
+    "The branch may be protected, a ruleset or token policy may reject direct writes, or the branch may have moved concurrently.",
+    "No Liftosaur write or deployment ref was created.",
+    "",
+    "Create liftosaur-ci.json on the current release branch with this complete canonical content, commit it, and push it:",
+    "",
+    JSON.stringify(canonical, null, 2),
+    "",
+    `Base Git revision: ${verifiedBaseRevision}`,
+    "",
+    "Then rerun the workflow and enter that revision in the optional Base Git revision field.",
+    "If the branch moved, add the shown config to the current branch; the shown revision remains the exact Git version already verified against Liftosaur.",
+  ].join("\n"));
+}
+
+async function commitCanonicalConfig({ repository, configFile, config, deployment, targetId, candidateCommit, releaseBranch, verifiedBaseRevision = null }) {
   const configPath = path.resolve(configFile);
   const expectedPath = path.join(repository, path.relative(repository, configPath));
   if (expectedPath !== configPath || path.relative(repository, configPath).startsWith("..")) {
@@ -55,7 +76,7 @@ async function commitCanonicalConfig({ repository, configFile, config, deploymen
   try {
     git(repository, ["push", `--force-with-lease=${branchRef}:${candidateCommit}`, "origin", `${commitSha}:${branchRef}`], "Cannot record canonical config on the release branch");
   } catch (error) {
-    throw new Error(`${error.message}\nThe release branch moved or rejected the config-only commit. No Liftosaur write or deployment ref was created. Rerun after the branch is current, or pin liftosaur-ci.json manually and use the advanced base_ref route. Target ID: ${targetId}`);
+    throw configWriteRecovery({ error, canonical, verifiedBaseRevision });
   }
   return commitSha;
 }
@@ -91,6 +112,7 @@ export async function initializeGitDeployment({
 
   const canonicalCommit = await commitCanonicalConfig({
     repository: root, configFile, config, deployment, targetId: target.id, candidateCommit, releaseBranch,
+    verifiedBaseRevision: baseRef ? null : candidateCommit,
   });
   if (!baseRef) {
     const ref = deploymentRef(deployment.id);
