@@ -5,6 +5,9 @@ import path from "node:path";
 import { configuredDeployment } from "./config.mjs";
 import { deploymentRef, readDeploymentRef } from "./deployment-state.mjs";
 import { fetchDeploymentTarget } from "./deployment.mjs";
+import { projectLiftosaurSourceForInitialization } from "./frontend.mjs";
+import { mergeLiftosaurSources } from "./merge.mjs";
+import { canonicalizeLiftosaurSource } from "./source-format.mjs";
 import { validateLiftosaurSource } from "./validate.mjs";
 
 function git(repository, args, label, { buffer = false } = {}) {
@@ -30,6 +33,36 @@ function programBlob(repository, commit, programPath) {
     throw new Error(`Candidate program is not a regular Git blob: ${programPath}`);
   }
   return git(repository, ["cat-file", "blob", blob], "Cannot read candidate program", { buffer: true });
+}
+
+async function verifyCompatibleInitialization(cleanSource, liveSource) {
+  if (projectLiftosaurSourceForInitialization(cleanSource)
+    !== projectLiftosaurSourceForInitialization(liveSource)) {
+    throw new Error([
+      "The Git program is not a compatible clean base for the program currently used in Liftosaur, so initialization stopped without changing anything.",
+      "Git must contain the original clean program source, not a current progressed export.",
+      "If you started from a built-in Liftosaur program, use its original built-in source. If you authored it, use your original clean source.",
+      "If you know the historical Git revision that produced the live program, use explicit base_ref for the advanced migration path.",
+    ].join("\n"));
+  }
+  const roundTrip = await mergeLiftosaurSources({
+    base: cleanSource,
+    active: liveSource,
+    candidate: cleanSource,
+  });
+  if (!roundTrip.source
+    || canonicalizeLiftosaurSource(roundTrip.source) !== canonicalizeLiftosaurSource(liveSource)) {
+    throw new Error([
+      "The live Liftosaur state could not be preserved exactly during initialization, so initialization stopped without changing anything.",
+      "No live source, config commit, or deployment ref was written.",
+    ].join("\n"));
+  }
+}
+
+function createDeploymentRef(repository, deploymentId, commit) {
+  const ref = deploymentRef(deploymentId);
+  git(repository, ["push", `--force-with-lease=${ref}:`, "origin", `${commit}:${ref}`], "Cannot create initialized deployment ref");
+  return ref;
 }
 
 function configWriteRecovery({ error, canonicalText, relativeConfigPath, verifiedBaseRevision }) {
@@ -93,7 +126,7 @@ export async function initializeGitDeployment({
   const root = path.resolve(repository ?? config.root);
   const candidateCommit = exactCommit(root, candidateRef, "candidate ref");
   const trackedCommit = readDeploymentRef(root, deployment.id);
-  if (trackedCommit || deployment.programId) {
+  if (trackedCommit) {
     return { action: "none", candidateCommit, deploymentId: deployment.id };
   }
   if (!baseRef && !config.discovered) {
@@ -104,14 +137,19 @@ export async function initializeGitDeployment({
   }
   const candidateSource = programBlob(root, candidateCommit, deployment.program);
   validateLiftosaurSource(candidateSource.toString("utf8"));
-  const target = await fetchDeploymentTarget({ programId: "current", apiKey, apiBase });
+  const target = await fetchDeploymentTarget({ programId: deployment.programId ?? "current", apiKey, apiBase });
 
-  if (!baseRef && !candidateSource.equals(Buffer.from(target.text, "utf8"))) {
-    throw new Error([
-      "Git does not exactly match the program currently used in Liftosaur, so initialization stopped without changing anything.",
-      `Export or copy that current program into the root ${deployment.program} file, commit and push it, then run initialization again.`,
-      "If you know the historical Git revision that is already deployed, rerun the manual workflow with base_ref instead.",
-    ].join("\n"));
+  if (!baseRef) {
+    await verifyCompatibleInitialization(candidateSource.toString("utf8"), target.text);
+  } else if (deployment.programId) {
+    const baseCommit = exactCommit(root, baseRef, "base ref");
+    const baseSource = programBlob(root, baseCommit, deployment.program);
+    if (baseSource.equals(candidateSource)) {
+      await verifyCompatibleInitialization(baseSource.toString("utf8"), target.text);
+      const ref = createDeploymentRef(root, deployment.id, candidateCommit);
+      return { action: "initialized", candidateCommit, deploymentId: deployment.id, targetId: target.id, deploymentRef: ref };
+    }
+    return { action: "none", candidateCommit, deploymentId: deployment.id };
   }
 
   const canonicalCommit = await commitCanonicalConfig({
@@ -125,9 +163,9 @@ export async function initializeGitDeployment({
     verifiedBaseRevision: baseRef ? null : candidateCommit,
   });
   if (!baseRef) {
-    const ref = deploymentRef(deployment.id);
+    let ref;
     try {
-      git(root, ["push", `--force-with-lease=${ref}:`, "origin", `${canonicalCommit}:${ref}`], "Cannot create initialized deployment ref");
+      ref = createDeploymentRef(root, deployment.id, canonicalCommit);
     } catch (error) {
       throw new Error(`${error.message}\nThe canonical config commit succeeded, but the deployment ref was not created. Rerun manually with base_ref set to ${canonicalCommit}.`);
     }

@@ -10,6 +10,7 @@ const STATEMENT_MARKER = "__LIFTOSAUR_CI_STATEMENT__";
 const SECTION_MARKER = "__LIFTOSAUR_CI_SECTION__";
 const SECTION_VALUE = "__LIFTOSAUR_CI_SECTION_VALUE__";
 const STATEMENT_END = "__LIFTOSAUR_CI_STATEMENT_END__";
+const INITIALIZATION_STATE = "__LIFTOSAUR_CI_INITIALIZATION_STATE__";
 export const BLOCK_MARKER = "__LIFTOSAUR_CI_BLOCK__";
 
 export const LIFTOSAUR_MERGE_FRONTEND = Object.freeze({
@@ -42,6 +43,79 @@ function nodeText(source, node) {
   return source.slice(node.from, node.to);
 }
 
+const LIVE_OWNED_PROPERTIES = new Set([
+  "amrap",
+  "askweight",
+  "logrpe",
+  "timer",
+  "warmup",
+]);
+
+function initializationReplacements(source, root) {
+  const replacements = [];
+  const replace = (from, to, text = INITIALIZATION_STATE) => {
+    if (to > from) replacements.push({ from, to, text });
+  };
+
+  function visit(current) {
+    if (current.type.name === "CurrentVariation" || current.type.name === "Current") {
+      const trailing = /^\s*/.exec(source.slice(current.to))?.[0].length ?? 0;
+      replace(current.from, current.to + trailing, "");
+      return;
+    }
+    if (current.type.name === "ExerciseSets" || current.type.name === "WarmupExerciseSets") {
+      replace(current.from, current.to);
+      return;
+    }
+    if (current.type.name === "ExerciseProperty") {
+      const nameNode = current.getChild("ExercisePropertyName");
+      const name = nameNode ? nodeText(source, nameNode) : undefined;
+      if (name && LIVE_OWNED_PROPERTIES.has(name)) {
+        replace(nameNode.to, current.to, `: ${INITIALIZATION_STATE}`);
+        return;
+      }
+      if (name === "progress") {
+        const progressCursor = current.cursor();
+        do {
+          if (progressCursor.type.name === "FunctionArgument") {
+            replace(progressCursor.from, progressCursor.to);
+          }
+        } while (progressCursor.next());
+        return;
+      }
+    }
+    for (let child = current.firstChild; child; child = child.nextSibling) visit(child);
+  }
+
+  for (let node = root.firstChild; node; node = node.nextSibling) {
+    if (node.type.name === "ExerciseExpression") visit(node);
+    if (node.type.name === "LineComment" || node.type.name === "TripleLineComment") {
+      const text = nodeText(source, node);
+      const selected = /^(\/\/\/?\s*)!\s/.exec(text);
+      if (selected) replace(node.from + selected[1].length, node.from + selected[0].length, "");
+    }
+  }
+  return replacements;
+}
+
+export function projectLiftosaurSourceForInitialization(source) {
+  const normalized = canonicalizeLiftosaurSource(source);
+  if (normalized.includes(INITIALIZATION_STATE)) {
+    throw new Error("Liftosaur source contains a reserved initialization marker");
+  }
+  const root = parsePlannerSyntax(normalized);
+  const replacements = initializationReplacements(normalized, root)
+    .sort((left, right) => right.from - left.from || right.to - left.to);
+  let projected = normalized;
+  let previousFrom = normalized.length + 1;
+  for (const replacement of replacements) {
+    if (replacement.to > previousFrom) continue;
+    projected = `${projected.slice(0, replacement.from)}${replacement.text}${projected.slice(replacement.to)}`;
+    previousFrom = replacement.from;
+  }
+  return projected;
+}
+
 function exercisePropertyName(source, section) {
   const property = section.getChild("ExerciseProperty");
   const name = property?.getChild("ExercisePropertyName");
@@ -52,6 +126,15 @@ function exerciseFunctionName(source, section) {
   const fn = section.getChild("ExerciseProperty")?.getChild("FunctionExpression");
   const name = fn?.getChild("FunctionName");
   return name ? nodeText(source, name) : undefined;
+}
+
+function exerciseVariationsIdentity(source, variations) {
+  if (!variations) return "";
+  return variations.getChildren("ExerciseVariation")
+    .map((variation) => variation.getChild("ExerciseName"))
+    .filter(Boolean)
+    .map((name) => nodeText(source, name).trim())
+    .join(" | ");
 }
 
 function parseStateArguments(argumentsText) {
@@ -241,7 +324,7 @@ export function parseLiftosaurMergeDocument(source) {
     }
 
     const variations = node.getChild("ExerciseVariations");
-    const label = variations ? nodeText(normalized, variations).trim() : "";
+    const label = exerciseVariationsIdentity(normalized, variations);
     const sections = node.getChildren("ExerciseSection");
     const isProgressStatement = sections.some((section) => (
       exercisePropertyName(normalized, section) === "progress"
