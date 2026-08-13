@@ -5,8 +5,9 @@ current interface fact has one authoritative home; other pages link to it.
 
 ## How do I get started and update one program?
 
-Start with the repository [README](../README.md). It covers requirements, runtime
-setup, minimal configuration, the first update, and the normal update command.
+Start with the repository [README](../README.md). It covers the zero-install
+GitHub path, strict single-program discovery, automatic initialization, and where
+to go for advanced configuration or local CLI use.
 
 ## What commands are available, and which layer should I use?
 
@@ -34,5 +35,6 @@ interfaces.
 ## How do I use the current reusable GitHub workflows?
 
 Read [GitHub Actions integration](github-actions.md). It owns the supported
-check and approval-gated deployment workflows, their inputs and permissions,
-runner/tool selection, and Actions-specific handling of private artifacts.
+check and automatic deployment workflows, their inputs and permissions, optional
+approval, runner/tool selection, and Actions-specific handling of private
+artifacts.

@@ -20,7 +20,7 @@ on:
       runs_on:
         description: JSON array of runner labels
         required: false
-        default: '["self-hosted"]'
+        default: '["ubuntu-latest"]'
         type: string
     secrets:
       tool_token:

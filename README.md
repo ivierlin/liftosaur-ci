@@ -1,76 +1,74 @@
 # liftosaur-ci
 
-Unofficial Git-based migration, validation, and deployment tooling for
+Unofficial Git-based validation and safe deployment tooling for
 [Liftosaur](https://www.liftosaur.com/).
 
-`liftosaur-ci` keeps program logic in Git while preserving the exercise state
-accumulated in Liftosaur. The normal workflow is deliberately small:
+`liftosaur-ci` keeps program logic in Git while preserving the progression
+accumulated in Liftosaur when that logic changes. The recommended workflow is
+simple: pull requests check the program, and a valid change to the deployable
+`.liftoscript` on `main` is safely deployed automatically. Unrelated changes are
+a no-op.
 
-1. Change and commit a Liftosaur program in Git.
-2. Run `liftosaur-ci update`.
-3. The tool merges live progression into the reviewed program, validates it,
-   and writes it back to the same Liftosaur program.
+## Get started
 
-## Setup
+If you keep the program on GitHub and use the provided Actions workflows, you do
+not need to install `liftosaur-ci`, Node.js, or any other local tooling. GitHub
+runs it for you.
 
-Requirements: Node.js 24, npm, and Git.
+For the simplest repository, put exactly one `.liftoscript` file in the repository
+root. No config file is needed initially:
+
+```text
+my-program/
+├── program.liftoscript
+└── .github/
+    └── workflows/
+        └── liftosaur.yml
+```
+
+Start with the program you **currently** use in Liftosaur: export or copy it into
+that single root file and commit it. Add the recommended
+[GitHub Actions workflow](docs/github-actions.md), store the API-key secret, and
+let the workflow run once. `liftosaur-ci` verifies byte-for-byte that Git contains
+the current Liftosaur source, records its exact target and deployed position,
+and makes no live program write. **From then on, valid program changes pushed to
+`main` deploy automatically while preserving progression.**
+
+Discovery is intentionally strict: it considers only regular root-level files
+ending in `.liftoscript`. If there are none, more than one, or your repository has
+a custom layout, add `liftosaur-ci.json` explicitly. The canonical config also
+supports several named deployments with exact target IDs.
+
+Repositories that cannot use this strictly verified starting point can supply a
+known historical Git revision through the Actions manual-run screen. See the
+[deployment guide](docs/deployment.md) for that advanced first-migration path.
+Projects with generators, custom tests, or a specialized release process can use
+the same CLI primitives directly.
+
+## Use the CLI directly
+
+For local or custom CLI use, requirements are Node.js 24, npm, and Git. Set up the
+pinned Liftosaur validation runtime with:
 
 ```sh
 node scripts/setup-runtime.mjs
 ```
 
-`liftosaur-ci` itself has no npm dependencies. Runtime setup fetches the exact
-Liftosaur revision recorded in `runtime/liftosaur.version` into
-`.private/liftosaur-runtime` and installs that runtime's dependencies. Set
-`LIFTOSAUR_RUNTIME` to use another dedicated checkout.
-
-Create `liftosaur-ci.json` with the Git program path and Liftosaur target:
-
-```json
-{
-  "deployments": {
-    "program": {
-      "program": "programs/example.liftoscript",
-      "programId": "current"
-    }
-  }
-}
-```
-
-`programId` may be an exact Liftosaur ID or `current`. The live program name is
-preserved automatically.
-
-## Update a program
-
-The first update identifies the Git revision corresponding to the program
-version already in Liftosaur:
-
-```sh
-LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update \
-  --base-ref first-deployed-ref
-```
-
-After a successful update, commit the generated
-`.liftosaur-ci/deployments/program.json` state file. Later updates need no base:
-
-```sh
-LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update
-```
-
-With one configured deployment, the command infers the deployment and uses
-`HEAD` as the reviewed candidate. Repositories with multiple deployments add
-`--deployment <id>`.
+For the first configured state-preserving update, pass `--base-ref` with the Git
+revision that the live Liftosaur program was based on. After a successful update,
+the deployment ref records that position automatically and later updates need no
+base. See the [CLI guide](docs/cli.md) for the commands and options.
 
 The [deployment contract](docs/deployment.md) explains state preservation,
-target locking, merge ownership, failure behavior, and recovery. For protected
-automation, see [GitHub Actions integration](docs/github-actions.md).
+target locking, failure behavior, and recovery.
 
 ## Validate a repository
 
-Validate every configured program and compare reviewed scenario snapshots:
+Validate every discovered or configured program and compare reviewed scenario
+snapshots:
 
 ```sh
-node bin/liftosaur-ci.mjs check --config liftosaur-ci.json
+node bin/liftosaur-ci.mjs check
 ```
 
 See the [repository check contract](docs/check.md) and
@@ -79,8 +77,7 @@ See the [repository check contract](docs/check.md) and
 ## Documentation
 
 Use the [documentation index](docs/README.md) to find the authoritative guide
-for each task. The [CLI guide](docs/cli.md) describes everyday, composable, and
-advanced command layers.
+for each task.
 
 ## Licensing
 

@@ -1,4 +1,4 @@
-import { glob, readFile } from "node:fs/promises";
+import { glob, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
 function requireObject(value, label) {
@@ -51,19 +51,52 @@ function validateDeployments(deployments = {}) {
     if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) throw new Error(`Invalid deployment ID: ${id}`);
     requireObject(value, `Check config deployment ${id}`);
     requireAllowedKeys(value, new Set(["program", "programId"]), `Check config deployment ${id}`);
-    if (typeof value.programId !== "string" || !value.programId.trim()) {
-      throw new Error(`Check config deployment ${id} programId is required`);
+    if (value.programId != null && (typeof value.programId !== "string" || !value.programId.trim())) {
+      throw new Error(`Check config deployment ${id} programId must be a non-empty exact ID`);
+    }
+    if (value.programId?.trim() === "current") {
+      throw new Error(`Check config deployment ${id} programId must be an exact ID, not current`);
     }
     result[id] = {
       program: requireRelativePath(value.program, `Check config deployment ${id}.program`),
-      programId: value.programId.trim(),
+      ...(value.programId == null ? {} : { programId: value.programId.trim() }),
     };
   }
   return result;
 }
 
+async function discoverDefaultConfig(configFile) {
+  const root = path.dirname(path.resolve(configFile));
+  const files = (await readdir(root, { withFileTypes: true }))
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".liftoscript"))
+    .map((entry) => entry.name)
+    .sort();
+  if (files.length === 1) {
+    return {
+      file: path.resolve(configFile),
+      root,
+      programs: [],
+      scenarios: [],
+      deployments: { program: { program: files[0] } },
+      discovered: true,
+    };
+  }
+  if (files.length === 0) {
+    throw new Error("No liftosaur-ci.json or root-level .liftoscript program found");
+  }
+  throw new Error("Multiple root-level .liftoscript programs found; add liftosaur-ci.json to configure deployments explicitly");
+}
+
 export async function loadLiftosaurConfig(configFile) {
-  const text = await readFile(configFile, "utf8");
+  let text;
+  try {
+    text = await readFile(configFile, "utf8");
+  } catch (error) {
+    if (error?.code === "ENOENT" && path.basename(configFile) === "liftosaur-ci.json") {
+      return discoverDefaultConfig(configFile);
+    }
+    throw error;
+  }
   const config = parseJson(text, "Check config");
   requireObject(config, "Check config");
   requireAllowedKeys(
@@ -83,6 +116,7 @@ export async function loadLiftosaurConfig(configFile) {
     programs,
     scenarios: validateScenarios(config.scenarios),
     deployments: validateDeployments(config.deployments),
+    discovered: false,
   };
 }
 

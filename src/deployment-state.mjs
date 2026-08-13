@@ -1,114 +1,81 @@
-import { randomUUID } from "node:crypto";
-import { mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
+import { spawnSync } from "node:child_process";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 
 import { configuredDeployment } from "./config.mjs";
 
-function statePath(config, deploymentId) {
-  return path.join(config.root, ".liftosaur-ci", "deployments", `${deploymentId}.json`);
+function git(repository, args, label, { allowMissing = false } = {}) {
+  const result = spawnSync("git", ["-C", repository, ...args], {
+    encoding: "utf8", maxBuffer: 16 * 1024 * 1024, windowsHide: true,
+  });
+  if (result.error) throw result.error;
+  if (result.status !== 0) {
+    if (allowMissing) return null;
+    throw new Error(`${label}: ${result.stderr.trim() || `git exited with ${result.status}`}`);
+  }
+  return result.stdout.trim();
 }
 
-function requireObject(value, label) {
-  if (!value || Array.isArray(value) || typeof value !== "object") {
-    throw new Error(`${label} must be a JSON object`);
-  }
-  return value;
+export function deploymentRef(deploymentId) {
+  return `refs/liftosaur-ci/deployments/${deploymentId}`;
 }
 
-function parseJson(text, label) {
-  try {
-    return JSON.parse(text);
-  } catch (error) {
-    throw new Error(`${label} is not valid JSON: ${error.message}`);
-  }
-}
-
-function validateState(state, deploymentId) {
-  requireObject(state, "Deployment state");
-  if (
-    Object.keys(state).some((key) => !["commitSha", "blobSha"].includes(key))
-    || !/^[a-f0-9]{40,64}$/.test(state.commitSha ?? "")
-    || !/^[a-f0-9]{40,64}$/.test(state.blobSha ?? "")
-  ) {
-    throw new Error(`Deployment state is invalid for ${deploymentId}`);
-  }
-  return state;
-}
-
-async function readState(config, deploymentId) {
-  const file = statePath(config, deploymentId);
-  try {
-    const text = await readFile(file, "utf8");
-    return { file, state: validateState(parseJson(text, "Deployment state"), deploymentId) };
-  } catch (error) {
-    if (error?.code === "ENOENT") return { file, state: null };
-    throw error;
-  }
+export function readDeploymentRef(repository, deploymentId) {
+  return git(repository, ["rev-parse", "--verify", "--end-of-options", `${deploymentRef(deploymentId)}^{commit}`],
+    `Cannot resolve deployment ref for ${deploymentId}`, { allowMissing: true });
 }
 
 export async function configuredGitPreparation({
-  configFile,
-  deploymentId = null,
-  candidateRef = "HEAD",
-  baseRef = null,
-  repository = null,
+  configFile, deploymentId = null, candidateRef = "HEAD", baseRef = null, repository = null,
 }) {
   const { config, deployment } = await configuredDeployment(configFile, deploymentId);
-  const tracked = await readState(config, deployment.id);
-  if (!tracked.state && !baseRef) {
-    throw new Error(`Deployment ${deployment.id} has no tracked base; provide --base-ref for the first preparation`);
+  const root = path.resolve(repository ?? config.root);
+  const trackedCommit = readDeploymentRef(root, deployment.id);
+  if (trackedCommit && !deployment.programId) {
+    throw new Error(`Deployment ${deployment.id} is initialized but has no exact programId; pin the exact target in canonical config before deploying again`);
   }
+  if (!trackedCommit && !baseRef) {
+    throw new Error(`Deployment ${deployment.id} has no deployment ref; provide --base-ref for the first preparation`);
+  }
+  const resolvedBase = trackedCommit ?? baseRef;
+  const candidateCommit = git(root, ["rev-parse", "--verify", "--end-of-options", `${candidateRef}^{commit}`], "Cannot resolve candidate ref");
+  const baseBlob = git(root, ["rev-parse", "--verify", "--end-of-options", `${resolvedBase}:${deployment.program}`], "Cannot resolve deployed program blob");
+  const candidateBlob = git(root, ["rev-parse", "--verify", "--end-of-options", `${candidateCommit}:${deployment.program}`], "Cannot resolve candidate program blob");
   return {
-    repository: path.resolve(repository ?? config.root),
-    baseRef: baseRef ?? tracked.state.commitSha,
-    candidateRef,
-    programPath: deployment.program,
-    programId: deployment.programId,
-    expectedBase: tracked.state,
-    stateFile: tracked.file,
-    deploymentId: deployment.id,
+    repository: root, baseRef: resolvedBase, candidateRef, programPath: deployment.program,
+    programId: deployment.programId ?? "current", expectedBase: trackedCommit ? { commitSha: trackedCommit, blobSha: baseBlob } : null,
+    expectedRefSha: trackedCommit, deploymentRef: deploymentRef(deployment.id), deploymentId: deployment.id,
+    deploymentRequired: !trackedCommit || baseBlob !== candidateBlob,
+    targetBindingRequired: !deployment.programId,
   };
 }
 
-export async function recordDeploymentState({
-  configFile,
-  deploymentId = null,
-  reportFile,
-}) {
-  const { config, deployment } = await configuredDeployment(configFile, deploymentId);
-  const report = parseJson(await readFile(reportFile, "utf8"), "Deployment report");
-  requireObject(report, "Deployment report");
-  if (report.command !== "deploy" || report.deploymentPerformed !== true || !report.deployedAt) {
+function requireReport(report, deployment, expectedRefSha) {
+  if (!report || report.command !== "deploy" || report.deploymentPerformed !== true || !report.deployedAt) {
     throw new Error("Deployment report does not record a verified deployment");
   }
-  if (deployment.programId !== "current" && report.target?.id !== deployment.programId) {
+  if (deployment.programId && report.target?.id !== deployment.programId) {
     throw new Error("Deployment report target does not match configured deployment");
   }
-  const source = report.source;
-  if (
-    !source
-    || source.programPath !== deployment.program
-  ) {
+  if (!report.source || report.source.programPath !== deployment.program) {
     throw new Error("Deployment report lacks matching Git provenance");
   }
-  const tracked = await readState(config, deployment.id);
-  if (tracked.state && (
-    tracked.state.commitSha !== source.base?.commitSha
-    || tracked.state.blobSha !== source.base?.blobSha
-  )) {
-    throw new Error("Deployment report base does not match tracked deployment state");
+  if (expectedRefSha && report.source.base?.commitSha !== expectedRefSha) {
+    throw new Error("Deployment report base does not match the expected deployment ref");
   }
-  const state = validateState({
-    commitSha: source.candidate?.commitSha,
-    blobSha: source.candidate?.blobSha,
-  }, deployment.id);
-  await mkdir(path.dirname(tracked.file), { recursive: true });
-  const temporary = `${tracked.file}.${randomUUID()}.tmp`;
-  try {
-    await writeFile(temporary, `${JSON.stringify(state, null, 2)}\n`, { encoding: "utf8", mode: 0o644 });
-    await rename(temporary, tracked.file);
-  } finally {
-    await rm(temporary, { force: true });
-  }
-  return { file: tracked.file, state, deploymentId: deployment.id };
+  return report.source.candidate?.commitSha;
+}
+
+export async function recordDeploymentState({ configFile, deploymentId = null, reportFile, repository = null }) {
+  const { config, deployment } = await configuredDeployment(configFile, deploymentId);
+  const root = path.resolve(repository ?? config.root);
+  const ref = deploymentRef(deployment.id);
+  const expected = readDeploymentRef(root, deployment.id);
+  const report = JSON.parse(await readFile(reportFile, "utf8"));
+  const candidate = requireReport(report, deployment, expected);
+  if (!/^[a-f0-9]{40,64}$/.test(candidate ?? "")) throw new Error("Deployment report has invalid candidate provenance");
+  const lease = expected ? `--force-with-lease=${ref}:${expected}` : `--force-with-lease=${ref}:`;
+  git(root, ["push", lease, "origin", `${candidate}:${ref}`],
+    `Verified deployment succeeded, but recording ${ref} failed; retain the deployment receipt and retry record-deployment`);
+  return { ref, previousCommitSha: expected, commitSha: candidate, deploymentId: deployment.id, targetId: report.target.id };
 }

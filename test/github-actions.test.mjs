@@ -2,36 +2,26 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-const checkFile = new URL("../.github/workflows/reusable-check.yml", import.meta.url);
-const deployFile = new URL("../.github/workflows/reusable-deploy.yml", import.meta.url);
-
-test("reusable GitHub workflows retain the generic safety contract", async () => {
-  const [check, deploy] = await Promise.all([
-    readFile(checkFile, "utf8"),
-    readFile(deployFile, "utf8"),
-  ]);
-
+test("reusable workflows expose Ready to Deploy with optional approval and ref state", async () => {
+  const check = await readFile(new URL("../.github/workflows/reusable-check.yml", import.meta.url), "utf8");
+  const deploy = await readFile(new URL("../.github/workflows/reusable-deploy.yml", import.meta.url), "utf8");
+  const guide = await readFile(new URL("../docs/github-actions.md", import.meta.url), "utf8");
   for (const workflow of [check, deploy]) {
     assert.match(workflow, /workflow_call:/);
     assert.match(workflow, /tool_ref:[\s\S]*?required: true/);
-    assert.match(workflow, /fromJSON\(inputs\.runs_on\)/);
-    assert.doesNotMatch(workflow, /ubuntu-latest|ROAR|WSL/);
-    assert.doesNotMatch(workflow, /npm ci|cache: npm/);
+    assert.match(workflow, /ubuntu-latest/);
+    assert.doesNotMatch(workflow, /ROAR|fflate|update-archive/);
   }
-
-  assert.match(check, /permissions:\s+contents: read/);
-  assert.match(check, /Check programs and reviewed snapshots\s+shell: bash/);
-  assert.match(check, /liftosaur-ci\.mjs" check/);
-
-  assert.match(deploy, /needs: prepare/);
-  assert.match(deploy, /environment: \$\{\{ inputs\.environment \}\}/);
-  assert.match(deploy, /contents: write\s+pull-requests: write/);
-  assert.match(deploy, /Deploy and verify\s+shell: bash/);
-  assert.match(deploy, /liftosaur-ci\.mjs" deploy/);
-  assert.match(deploy, /Record verified Git deployment state\s+shell: bash/);
-  assert.match(deploy, /liftosaur-ci\.mjs" record-deployment/);
-  assert.match(deploy, /retention-days: 1/g);
-  assert.match(deploy, /github\.rest\.pulls\.create/);
-  assert.doesNotMatch(deploy, /liftosaur_program_id|LIFTOSAUR_PROGRAM_ID/);
-  assert.match(deploy, /git switch --detach "origin\/\$STATE_BRANCH"/);
+  assert.match(deploy, /name: Ready to deploy/);
+  assert.match(deploy, /needs: ready/);
+  assert.match(deploy, /environment:\s+\$\{\{ inputs\.environment \|\| null \}\}/);
+  assert.match(deploy, /refs\/liftosaur-ci\/deployments/);
+  assert.match(deploy, /Record verified deployment position/);
+  assert.match(deploy, /Initialize or pin canonical deployment config/);
+  assert.match(deploy, /Base Git revision \(advanced first migration only\)/);
+  assert.doesNotMatch(deploy, /pull-requests: write|target-binding pull request|gh pr create/);
+  assert.match(deploy, /if: needs\.ready\.outputs\.required == 'true'/);
+  assert.doesNotMatch(deploy, /\.liftosaur-ci\/deployments|state_branch|deployment-state pull request/);
+  assert.match(guide, /workflow_dispatch:[\s\S]*?base_ref:[\s\S]*?Base Git revision \(advanced first migration only\)[\s\S]*?required: false/);
+  assert.match(guide, /leave the manual `base_ref` field blank/);
 });

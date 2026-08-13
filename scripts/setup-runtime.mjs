@@ -122,7 +122,7 @@ async function main() {
       throw new Error(`Runtime checkout has local changes; refusing to modify it:\n${unexpected.join("\n")}`);
     }
   } else {
-    run("git", ["clone", expectedRemote, destination]);
+    run("git", ["clone", "-c", "core.longpaths=true", expectedRemote, destination]);
   }
 
   const known = git(destination, ["cat-file", "-e", `${revision}^{commit}`], {
