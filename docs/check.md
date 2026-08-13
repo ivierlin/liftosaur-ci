@@ -13,17 +13,38 @@ escape its directory. A deployable repository can start with one deployment:
 {
   "deployments": {
     "example": {
-      "program": "programs/example.liftoscript",
-      "programId": "exact-program-id"
+      "program": "programs/example.liftoscript"
     }
   }
 }
 ```
 
-The [deployment contract](deployment.md) owns the meaning of deployment fields,
-including target resolution and name preservation. Optional `programs` globs,
-scenario program references, and deployment program references are combined into
-one validation set, so a program does not need to be declared twice. The
+`programId` is optional. When present, it must be an exact non-empty Liftosaur
+program ID; durable config rejects the literal `current`. Omitting it enables the
+one-time bootstrap path described in the [deployment contract](deployment.md):
+the first verified deployment resolves Liftosaur's current program and opens a PR
+pinning the resulting exact ID. Multi-program repositories can set exact IDs up
+front:
+
+```json
+{
+  "deployments": {
+    "strength": {
+      "program": "programs/strength.liftoscript",
+      "programId": "exact-strength-id"
+    },
+    "hypertrophy": {
+      "program": "programs/hypertrophy.liftoscript",
+      "programId": "exact-hypertrophy-id"
+    }
+  }
+}
+```
+
+The [deployment contract](deployment.md) owns target resolution, bootstrap,
+deployed-position tracking, merge behavior, and recovery. Optional `programs`
+globs, scenario program references, and deployment program references are combined
+into one validation set, so a program does not need to be declared twice. The
 configuration must reference at least one program in total.
 
 Reviewed scenarios are optional:
