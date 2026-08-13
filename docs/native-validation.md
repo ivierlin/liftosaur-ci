@@ -8,19 +8,7 @@ The validator evaluates the source, constructs every day, serializes the evaluat
 
 The built-in corpus is intentionally broader than the small smoke corpus. It extracts every Liftoscript block from Liftosaur's built-in program Markdown and validates each source with the same runtime used for external programs. During that same nominal lifecycle pass, it compares one reviewed snapshot per built-in. The snapshot records each day's next exposure using exercise names, progression state, and compact work-set prescriptions; it does not repeat lifecycle execution or include warm-ups and internal workout metadata.
 
-After intentionally reviewing a pinned runtime or behavior change, regenerate the corpus snapshots with:
-
-```sh
-npm run update:builtin-snapshots
-```
-
 This is not a claim that every built-in program's coaching behavior is correct. The corpus establishes that the source remains executable through the current Liftosaur lifecycle and provides a stable base for reviewed behavioral scenarios.
-
-The pinned built-in `gzcl-ggbb.md` currently has one tracked upstream lifecycle
-failure: an exercise overriding inherited `lp(...)` with `progress: none` still
-runs the inherited finish script without its `successCounter` state. The corpus
-requires that exact failure until the pinned upstream source/runtime is fixed;
-all other built-ins must pass the full nominal lifecycle.
 
 ## Reviewed regression scenarios
 

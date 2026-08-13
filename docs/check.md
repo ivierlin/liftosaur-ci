@@ -6,8 +6,8 @@ snapshots. It never updates a program, scenario, or snapshot.
 
 ## Configuration
 
-A deployable repository can start with only the program path and Liftosaur
-target:
+Configuration paths and patterns are relative to the config file and may not
+escape its directory. A deployable repository can start with one deployment:
 
 ```json
 {
@@ -20,15 +20,11 @@ target:
 }
 ```
 
-`programId` may be an exact Liftosaur ID or `current`. `current` is resolved to
-the exact returned ID during preparation and that exact ID is used for the rest
-of the deployment transaction. Program names are preserved automatically.
-
-Paths and patterns are relative to the config file and may not escape its
-directory. Optional `programs` globs, scenario program references, and deployment
-program references are combined into one validation set, so a program does not
-need to be declared twice. The configuration must reference at least one program
-in total.
+The [deployment contract](deployment.md) owns the meaning of deployment fields,
+including target resolution and name preservation. Optional `programs` globs,
+scenario program references, and deployment program references are combined into
+one validation set, so a program does not need to be declared twice. The
+configuration must reference at least one program in total.
 
 Reviewed scenarios are optional:
 

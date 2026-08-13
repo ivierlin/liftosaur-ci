@@ -1,25 +1,55 @@
-# CLI layers
+# CLI command layers
 
-`liftosaur-ci` serves three related use cases. The command surface should stay consistent without pretending that every caller needs the same level of detail.
+The command surface has three layers. They share configuration, identities, and
+failure semantics while exposing the amount of detail appropriate to each task.
 
 ## Everyday updates
 
-`update` is the human-facing convenience command. In a configured single-program repository it should normally need no arguments after bootstrap. Its output should describe what the author needs to know and do next, not internal deployment identities, report formats, or state-file plumbing.
+`update` is the human-facing command. In a configured single-program repository,
+it needs only `--base-ref` for the first deployment and no arguments thereafter.
+Its errors identify the corresponding action: configure Liftosaur access, supply
+the bootstrap base, resolve a live/Git conflict, move a direct Liftosaur logic
+edit into Git, or use explicit recovery after an ambiguous write.
 
-Errors from `update` should therefore translate common failures into actions: configure Liftosaur access, supply the bootstrap base, resolve a live/Git conflict, or move a direct Liftosaur logic edit back into Git. Recovery paths remain explicit when an attempted write has an ambiguous result.
+See the [deployment contract](deployment.md) for the complete update, merge, and
+recovery behavior.
 
 ## Composable deployment
 
-`prepare-git`, `deploy`, and `record-deployment` are the stable primitives for CI workflows and integrations such as program-specific release pipelines. They use the same repository configuration conventions as `update`: `liftosaur-ci.json` is the default config and a single deployment is inferred.
+`prepare-git`, `deploy`, and `record-deployment` expose the preparation, live
+write, and state-recording stages used by `update`. They are the integration
+surface for approval-gated CI and program-specific release pipelines.
 
-These commands keep technical errors and exact identities visible because callers may need them for logs, policy checks, or orchestration. Explicit raw inputs remain available when configuration is intentionally bypassed, but configured and raw modes are mutually exclusive rather than partially mixed.
+These commands use `liftosaur-ci.json` by default and infer a single configured
+deployment. Explicit raw inputs are available when configuration is deliberately
+bypassed; configured and raw modes cannot be combined.
 
-`prepare-git --program-name <name>` optionally seals a reviewed external program name into the deployment bundle. The deploy step cannot override it: it verifies that the current name has not changed since preparation, writes the prepared name with the prepared source, and verifies both on read-back. Without this option, the existing name is preserved.
+`prepare-git --program-name <name>` seals a reviewed name into the private
+deployment bundle. `deploy` then verifies the observed name, writes the prepared
+name and source, and verifies both on read-back. Without this option, deployment
+preserves the live name.
 
-A merge conflict does not persist live Liftosaur state by default. `prepare-git` reports that explicitly and shows the opt-in `--conflict-output <directory>` flag at the point of failure. When supplied, the private workspace contains the deployed base, current live source, candidate, conflict representation, and merge report. It may contain athlete-specific state and must not be committed. Prefer a temporary directory for CI and other automated environments.
+`prepare-git` does not persist private live state when a merge conflicts. Add
+`--conflict-output <directory>` to retain the deployed base, live source,
+candidate, conflict representation, and merge report. This directory may contain
+athlete-specific state; keep it private and use temporary storage in automation.
+
+See [GitHub Actions integration](github-actions.md) for the reusable workflows
+that compose these commands.
 
 ## Advanced and recovery tools
 
-`merge`, `validate`, `snapshot`, `prepare`, and `prepare-deployment` expose lower-level or offline building blocks. `prepare` supports the same opt-in `--conflict-output <directory>` behavior as `prepare-git`. `rollback` and `restore` are explicit recovery operations. These commands favor precise contracts and technical diagnostics over convenience wording.
+- `merge` performs the Liftosaur-aware three-way merge offline.
+- `validate` runs native Liftosaur validation.
+- `snapshot` produces output for a reviewed behavior scenario.
+- `prepare` prepares caller-supplied base, live, and candidate sources. It also
+  supports opt-in `--conflict-output`.
+- `prepare-deployment` assembles a bundle from prepared sources and validation
+  evidence.
+- `rollback` explicitly restores the pre-update source after an ambiguous write.
+- `restore` writes an exact historical deployment snapshot and rewinds its
+  serialized progression state.
 
-The distinction is intentional: consistency means predictable flags, defaults, identities, and failure semantics across the CLI, while presentation follows the audience of each command.
+The [native validation contract](native-validation.md) owns validation and
+scenario behavior. The [deployment contract](deployment.md) owns preparation,
+rollback, restore, and private-artifact safety.
