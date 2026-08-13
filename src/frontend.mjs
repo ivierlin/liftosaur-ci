@@ -64,7 +64,12 @@ function initializationReplacements(source, root) {
       return;
     }
     if (current.type.name === "ExerciseSets" || current.type.name === "WarmupExerciseSets") {
-      replace(current.from, current.to);
+      const labels = [];
+      const cursor = current.cursor();
+      do {
+        if (cursor.type.name === "SetLabel") labels.push(nodeText(source, cursor.node));
+      } while (cursor.next());
+      replace(current.from, current.to, `${INITIALIZATION_STATE}${JSON.stringify(labels)}`);
       return;
     }
     if (current.type.name === "ExerciseProperty") {

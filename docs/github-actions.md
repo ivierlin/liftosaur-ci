@@ -9,7 +9,7 @@ Node.js, or Git on your computer.
 You need:
 
 - a GitHub repository;
-- for the simplest setup, the program currently in Liftosaur saved as the only
+- for the simplest setup, the clean/original program source saved as the only
   root-level file whose name ends in `.liftoscript`; and
 - a Liftosaur API key saved in the repository as a secret named
   `LIFTOSAUR_API_KEY`.
@@ -64,14 +64,20 @@ You do not need to understand or edit the rest of the YAML for the simple setup.
 3. Choose **Run workflow**.
 4. Leave **Base Git revision** blank and run the workflow.
 
-The run checks that the root `.liftoscript` file is byte-for-byte identical to
-the source currently in Liftosaur. It also validates the program. When they
-match, `liftosaur-ci` adds a canonical `liftosaur-ci.json` file and records the
-Git version it verified. It does **not** write the program back to Liftosaur.
+Use the original built-in source if the live program began as a built-in, or the
+original clean source if you authored it. Do not use a current progressed export.
 
-If the sources do not match, copy or export the program currently used in
-Liftosaur into the root file, save that change in GitHub, and run the workflow
-again.
+The run privately fetches the current Liftosaur source and verifies that it can
+be the progressed/stateful form of the clean Git program without changes to its
+structure or author-owned logic. It also checks that the normal merge reproduces
+the private live source exactly. When both checks pass, `liftosaur-ci` adds a
+canonical `liftosaur-ci.json` file and records the clean Git version it verified.
+It does **not** write the program back to Liftosaur.
+
+If verification fails, check that Git contains the original clean source for
+this live program. If only the progressed source remains, do not blindly commit
+it because it can contain athlete-specific state. Use the advanced migration
+path only with a trustworthy historical Git revision.
 
 ## Normal use
 
@@ -113,9 +119,9 @@ Liftosaur.
 
 ## Advanced first migration
 
-The blank first-run field is correct only when the Git file exactly matches the
-program currently in Liftosaur. Otherwise, you must provide `base_ref`: the Git
-revision that produced the program already in Liftosaur.
+The blank first-run field is for the clean-base verification described above.
+Use `base_ref` when Git already has history and you know the exact revision that
+produced the program already in Liftosaur.
 
 Open **Actions** > **Liftosaur program** > **Run workflow** and enter that commit
 ID in **Base Git revision**. This establishes the starting point for the

@@ -5,9 +5,10 @@ import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { parseLiftosaurMergeDocument } from "../src/frontend.mjs";
+import { parseLiftosaurMergeDocument, projectLiftosaurSourceForInitialization } from "../src/frontend.mjs";
 import { mergeLiftosaurSources } from "../src/merge.mjs";
 import { createBuiltinSnapshot } from "../src/report.mjs";
+import { canonicalizeLiftosaurSource } from "../src/source-format.mjs";
 import { validateLiftosaurSource } from "../src/validate.mjs";
 
 const testDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -137,6 +138,17 @@ for (const { filename, source } of programs) {
     assert.equal(result.report.status, "merged");
     assert.match(result.source, new RegExp(`${state.key}: ${state.next.replace(".", "\\.")}`));
     assert.match(result.source, /ciProbe: 0/);
+  });
+
+  test(`built-in corpus verifies compatible initialization state: ${filename}`, async () => {
+    const active = replaceRange(source, state.start, state.end, state.next);
+    assert.equal(
+      projectLiftosaurSourceForInitialization(active),
+      projectLiftosaurSourceForInitialization(source)
+    );
+    const result = await mergeLiftosaurSources({ base: source, active, candidate: source });
+    assert.equal(result.report.status, "merged");
+    assert.equal(canonicalizeLiftosaurSource(result.source), canonicalizeLiftosaurSource(active));
   });
 
   test(`built-in corpus rejects conflicting fake progression: ${filename}`, async () => {

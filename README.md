@@ -26,13 +26,20 @@ my-program/
         └── liftosaur.yml
 ```
 
-Start with the program you **currently** use in Liftosaur: export or copy it into
-that single root file and commit it. Add the recommended
+Start with the **clean, original program source**, before workouts changed its
+weights, reps, or other progression state. If you started from a built-in
+Liftosaur program, use the original built-in source, not your current progressed
+copy. If you authored the program, use the original clean source you kept. Add the recommended
 [GitHub Actions workflow](docs/github-actions.md), store the API-key secret, and
-let the workflow run once. `liftosaur-ci` verifies byte-for-byte that Git contains
-the current Liftosaur source, records its exact target and deployed position,
-and makes no live program write. **From then on, valid program changes pushed to
+let the workflow run once. `liftosaur-ci` privately fetches the current source,
+verifies that it is a compatible progressed form of the clean Git base, and
+checks that the merge engine reproduces the live state exactly. It records the
+exact target and clean Git position and makes no live program write. **From then on, valid program changes pushed to
 `main` deploy automatically while preserving progression.**
+
+If only the progressed live source remains, do not blindly commit it: it can
+contain athlete-specific data. Treat adoption as an advanced migration and use
+a trustworthy historical `base_ref` when one exists.
 
 Discovery is intentionally strict: it considers only regular root-level files
 ending in `.liftoscript`. If there are none, more than one, or your repository has

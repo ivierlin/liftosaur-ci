@@ -33,6 +33,9 @@ test("reusable workflows expose Ready to Deploy with optional approval and ref s
   assert.doesNotMatch(guide, /project-requirements:[\s\S]*?run: "true"/);
   assert.match(guide, /project-requirements:[\s\S]*?needs: program-checks[\s\S]*?npm test[\s\S]*?needs: \[program-checks, project-requirements\]/);
   assert.match(guide, /Leave \*\*Base Git revision\*\* blank/);
+  assert.match(guide, /clean\/original program source/);
+  assert.match(guide, /does \*\*not\*\* write the program back to Liftosaur/);
+  assert.doesNotMatch(guide, /byte-for-byte identical|copy or export the program currently used/);
   assert.match(releasing, /Every release pointed to by `0` must remain compatible/);
   assert.match(releasing, /--force-with-lease="refs\/tags\/0:\$old_zero"/);
 });

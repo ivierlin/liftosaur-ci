@@ -34,17 +34,37 @@ Automatic initialization is intentionally narrow. It applies when:
 - deployment `program` has no recorded deployment ref; and
 - no `base_ref` was supplied.
 
-The tool resolves Liftosaur's current program to an exact ID, fetches its source,
-and compares its UTF-8 bytes with the candidate file. Native validation must
-also pass, but validation alone is not proof that the two sources are identical.
+Git must contain the clean/original source, not an export containing current
+athlete progression. The tool resolves Liftosaur's current program once to an
+exact ID and fetches its source privately. Using the pinned Liftosaur parser, it
+compares an immutable program skeleton: program and exercise identity, week/day
+and section structure, progression/update bodies, reused logic, and other
+author-owned properties must match.
+
+Differences are allowed only where Liftosaur progression can own serialized
+state: prescription values such as weights, reps and minimum reps, RPE, timers,
+AMRAP/log-RPE/ask-weight flags, set count and 1RM; custom state values; and the
+current set, exercise, or description selection. Manual edits to one of those
+live-owned values are indistinguishable from progression and are preserved.
+Additions, removals, reordering, unknown-property changes, and changes to
+`{~ ... ~}` or reused `{ ... }` logic fail compatibility.
+
+Compatibility is only the first proof. The tool then runs the normal three-way
+merge with clean Git as both base and candidate and live Liftosaur as active. Its
+canonical result must reproduce the canonical live source exactly. Any conflict
+or information loss fails closed.
 
 When they match, no Liftosaur write is needed. Automation creates canonical
 `liftosaur-ci.json`, commits it to the selected release branch, and creates the
 initial deployment ref at that config-only commit. The program file is identical
 before and after the config commit, so the recorded position is exact.
 
-A mismatch stops without creating config, a deployment ref, or a live write.
-Replace the Git file with the source currently used in Liftosaur and retry.
+An incompatibility stops without creating config, a deployment ref, a conflict
+workspace, or a live write. Use the original built-in source if the program
+started from a built-in, or the original clean source if you authored it. Do not
+commit a progressed export merely to pass initialization; it may contain
+athlete-specific data. If only the live progressed source remains, adoption is
+an advanced case.
 
 ### Advanced first migration
 
@@ -168,7 +188,10 @@ Liftosaur unchanged. Correct the reported problem and rerun.
 If protected-branch policy rejects the initialization config commit, the error
 prints the complete canonical config and exact `base_ref`. Commit that config
 through normal repository policy and rerun the manual workflow with the reported
-value. No alternate token or hidden policy bypass is attempted.
+value. When the base and candidate program blobs are unchanged, the rerun
+re-verifies the exact target and compatibility, creates the initial ref, and
+still performs no Liftosaur write. No alternate token or hidden policy bypass is
+attempted.
 
 If the config commit succeeds but initial ref creation fails, no live write has
 occurred. Rerun the manual path using the reported config commit as `base_ref`.

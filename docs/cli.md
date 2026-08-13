@@ -24,9 +24,10 @@ recovery.
 Use these commands when a release pipeline needs separate checking, approval,
 deployment, and recording stages:
 
-- `initialize-git` verifies simple first-time setup or pins the exact Liftosaur
-  target for a based migration. It can commit canonical config and push, so it
-  requires an explicit release branch.
+- `initialize-git` privately verifies that the live program is a compatible
+  progressed form of the clean Git base, round-trips the live state without a
+  write, or pins the exact target for a based migration. It can commit canonical
+  config and push, so it requires an explicit release branch.
 - `prepare-git` reads immutable Git objects, performs the three-way merge, and
   creates a private deployment bundle. An unchanged program is a successful
   no-op.

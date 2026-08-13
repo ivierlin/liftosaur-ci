@@ -127,4 +127,8 @@ Squat / 3x5 / progress: custom(volume: 3) {~ weights += 5lb ~}
     projectLiftosaurSourceForInitialization(clean.replace("progress:", "used:")),
     projectLiftosaurSourceForInitialization(clean)
   );
+  assert.notEqual(
+    projectLiftosaurSourceForInitialization(clean.replace("3x5", "3x5 (heavy)")),
+    projectLiftosaurSourceForInitialization(clean.replace("3x5", "3x5 (light)"))
+  );
 });
