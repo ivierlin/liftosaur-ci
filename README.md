@@ -26,13 +26,13 @@ my-program/
         └── liftosaur.yml
 ```
 
-Start with the program you **currently use in Liftosaur**: export or copy it into
+Start with the program you **currently** use in Liftosaur: export or copy it into
 that single root file and commit it. Add the recommended
 [GitHub Actions workflow](docs/github-actions.md), store the API-key secret, and
 let the workflow run once. `liftosaur-ci` verifies byte-for-byte that Git contains
 the current Liftosaur source, records its exact target and deployed position,
-and makes no live program write. From then on, valid program changes pushed to
-`main` deploy automatically while preserving progression.
+and makes no live program write. **From then on, valid program changes pushed to
+`main` deploy automatically while preserving progression.**
 
 Discovery is intentionally strict: it considers only regular root-level files
 ending in `.liftoscript`. If there are none, more than one, or your repository has
