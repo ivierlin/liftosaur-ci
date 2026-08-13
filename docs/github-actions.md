@@ -17,13 +17,11 @@ on:
         required: false
         type: string
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   program-checks:
     name: Program checks
+    permissions:
+      contents: read
     uses: ivierlin/liftosaur-ci/.github/workflows/reusable-check.yml@TOOL_COMMIT
     with:
       tool_ref: TOOL_COMMIT
@@ -31,6 +29,8 @@ jobs:
   project-requirements:
     name: Project release requirements
     needs: program-checks
+    permissions:
+      contents: read
     runs-on: self-hosted
     steps:
       - run: "true" # replace with generators, tests, docs, fuzzing, etc.
@@ -38,6 +38,9 @@ jobs:
   deploy:
     if: github.event_name != 'pull_request'
     needs: project-requirements
+    permissions:
+      contents: write
+      pull-requests: write
     uses: ivierlin/liftosaur-ci/.github/workflows/reusable-deploy.yml@TOOL_COMMIT
     with:
       tool_ref: TOOL_COMMIT
@@ -47,10 +50,11 @@ jobs:
 ```
 
 Reusable workflows cannot elevate the caller's `GITHUB_TOKEN` permissions, so
-the caller grants `contents: write` for deployment refs and `pull-requests: write`
-for the optional one-time target-binding PR. Repositories that always configure
-exact target IDs never need the latter at runtime, but keeping the documented
-minimal workflow uniform avoids a separate bootstrap variant.
+the deployment job grants `contents: write` for deployment refs and
+`pull-requests: write` for the optional one-time target-binding PR. Check and
+project-requirement jobs remain read-only. Repositories that always configure
+exact target IDs never need pull-request write access at runtime, but keeping the
+documented minimal deployment job uniform avoids a separate bootstrap variant.
 
 The repository owns the `project-requirements` job; `liftosaur-ci` is not a
 general CI policy engine. Replace the trivial step with generators, tests, docs,
