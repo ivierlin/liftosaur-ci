@@ -37,7 +37,9 @@ and makes no live program write. **From then on, valid program changes pushed to
 Discovery is intentionally strict: it considers only regular root-level files
 ending in `.liftoscript`. If there are none, more than one, or your repository has
 a custom layout, add `liftosaur-ci.json` explicitly. The canonical config also
-supports several named deployments with exact target IDs.
+supports several named deployments with exact target IDs. See the
+[configuration examples](docs/check.md#when-configuration-is-needed) for
+single- and multi-program setups.
 
 Repositories that cannot use this strictly verified starting point can supply a
 known historical Git revision through the Actions manual-run screen. See the
