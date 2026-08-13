@@ -29,7 +29,7 @@ my-program/
 Start with the program you **currently use in Liftosaur**: export or copy it into
 that single root file and commit it. Add the recommended
 [GitHub Actions workflow](docs/github-actions.md), store the API-key secret, and
-run the workflow once. `liftosaur-ci` verifies byte-for-byte that Git contains
+let the workflow run once. `liftosaur-ci` verifies byte-for-byte that Git contains
 the current Liftosaur source, records its exact target and deployed position,
 and makes no live program write. From then on, valid program changes pushed to
 `main` deploy automatically while preserving progression.
@@ -54,10 +54,10 @@ pinned Liftosaur validation runtime with:
 node scripts/setup-runtime.mjs
 ```
 
-The first state-preserving update identifies the Git revision corresponding to
-the program version already live in Liftosaur. After that, the deployment
-position is recorded in Git and later updates need no base. See the
-[CLI guide](docs/cli.md) for the commands and options.
+For the first configured state-preserving update, pass `--base-ref` with the Git
+revision that the live Liftosaur program was based on. After a successful update,
+the deployment ref records that position automatically and later updates need no
+base. See the [CLI guide](docs/cli.md) for the commands and options.
 
 The [deployment contract](docs/deployment.md) explains state preservation,
 target locking, failure behavior, and recovery.

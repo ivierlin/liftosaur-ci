@@ -32,7 +32,7 @@ function programBlob(repository, commit, programPath) {
   return git(repository, ["cat-file", "blob", blob], "Cannot read candidate program", { buffer: true });
 }
 
-function configWriteRecovery({ error, canonical, verifiedBaseRevision }) {
+function configWriteRecovery({ error, canonicalText, relativeConfigPath, verifiedBaseRevision }) {
   if (!verifiedBaseRevision) {
     return new Error(`${error.message}\nThe release branch moved or rejected the config-only commit. No Liftosaur write or deployment ref was created. Rerun after the branch is current, or pin liftosaur-ci.json manually and use the advanced base_ref route.`);
   }
@@ -42,9 +42,9 @@ function configWriteRecovery({ error, canonical, verifiedBaseRevision }) {
     "The branch may be protected, a ruleset or token policy may reject direct writes, or the branch may have moved concurrently.",
     "No Liftosaur write or deployment ref was created.",
     "",
-    "Create liftosaur-ci.json on the current release branch with this complete canonical content, commit it, and push it:",
+    `Create or update ${relativeConfigPath} on the current release branch with this complete canonical content, commit it, and push it:`,
     "",
-    JSON.stringify(canonical, null, 2),
+    canonicalText.trimEnd(),
     "",
     `Base Git revision: ${verifiedBaseRevision}`,
     "",
@@ -53,10 +53,13 @@ function configWriteRecovery({ error, canonical, verifiedBaseRevision }) {
   ].join("\n"));
 }
 
-async function commitCanonicalConfig({ repository, configFile, config, deployment, targetId, candidateCommit, releaseBranch, verifiedBaseRevision = null }) {
+async function commitCanonicalConfig({
+  repository, configFile, config, deployment, targetId, candidateCommit, releaseBranch, verifiedBaseRevision = null,
+}) {
   const configPath = path.resolve(configFile);
-  const expectedPath = path.join(repository, path.relative(repository, configPath));
-  if (expectedPath !== configPath || path.relative(repository, configPath).startsWith("..")) {
+  const relativeConfigPath = path.relative(repository, configPath);
+  const expectedPath = path.join(repository, relativeConfigPath);
+  if (expectedPath !== configPath || relativeConfigPath.startsWith("..")) {
     throw new Error("Initialization config must be inside the repository");
   }
   if (exactCommit(repository, "HEAD", "checked-out commit") !== candidateCommit) {
@@ -66,17 +69,18 @@ async function commitCanonicalConfig({ repository, configFile, config, deploymen
     ? { deployments: { [deployment.id]: { program: deployment.program, programId: targetId } } }
     : JSON.parse(await readFile(configPath, "utf8"));
   canonical.deployments[deployment.id].programId = targetId;
-  await writeFile(configPath, `${JSON.stringify(canonical, null, 2)}\n`, "utf8");
+  const canonicalText = `${JSON.stringify(canonical, null, 2)}\n`;
+  await writeFile(configPath, canonicalText, "utf8");
   git(repository, ["config", "user.name", "github-actions[bot]"], "Cannot configure initialization author");
   git(repository, ["config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], "Cannot configure initialization author");
-  git(repository, ["add", "--", path.relative(repository, configPath)], "Cannot stage canonical config");
+  git(repository, ["add", "--", relativeConfigPath], "Cannot stage canonical config");
   git(repository, ["commit", "-m", "Initialize liftosaur-ci"], "Cannot create canonical config commit");
   const commitSha = exactCommit(repository, "HEAD", "canonical config commit");
   const branchRef = `refs/heads/${releaseBranch}`;
   try {
     git(repository, ["push", `--force-with-lease=${branchRef}:${candidateCommit}`, "origin", `${commitSha}:${branchRef}`], "Cannot record canonical config on the release branch");
   } catch (error) {
-    throw configWriteRecovery({ error, canonical, verifiedBaseRevision });
+    throw configWriteRecovery({ error, canonicalText, relativeConfigPath, verifiedBaseRevision });
   }
   return commitSha;
 }
@@ -111,7 +115,13 @@ export async function initializeGitDeployment({
   }
 
   const canonicalCommit = await commitCanonicalConfig({
-    repository: root, configFile, config, deployment, targetId: target.id, candidateCommit, releaseBranch,
+    repository: root,
+    configFile,
+    config,
+    deployment,
+    targetId: target.id,
+    candidateCommit,
+    releaseBranch,
     verifiedBaseRevision: baseRef ? null : candidateCommit,
   });
   if (!baseRef) {
