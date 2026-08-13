@@ -14,7 +14,7 @@ escape its directory. A deployable repository can start with one deployment:
   "deployments": {
     "example": {
       "program": "programs/example.liftoscript",
-      "programId": "current"
+      "programId": "exact-program-id"
     }
   }
 }

@@ -34,5 +34,5 @@ interfaces.
 ## How do I use the current reusable GitHub workflows?
 
 Read [GitHub Actions integration](github-actions.md). It owns the supported
-check and approval-gated deployment workflows, their inputs and permissions,
+check and automatic deployment workflows, optional approval, their inputs and permissions,
 runner/tool selection, and Actions-specific handling of private artifacts.

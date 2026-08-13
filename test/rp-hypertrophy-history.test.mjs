@@ -143,15 +143,17 @@ test("real RP Hypertrophy v4 to v4.1 survives the Git and API update round trip 
 
   try {
     await mkdir(path.dirname(programFile), { recursive: true });
+    const remote = path.join(root, "remote.git");
+    git(root, ["init", "--bare", remote]);
     git(repository, ["init"]);
     git(repository, ["remote", "add", "origin", "https://github.com/example/rp-hypertrophy.git"]);
+    git(repository, ["remote", "set-url", "--push", "origin", remote]);
     await Promise.all([
       writeFile(programFile, sources.get("v4"), "utf8"),
       writeFile(configFile, `${JSON.stringify({
         deployments: {
           program: {
             program: "programs/rp-hypertrophy.liftoscript",
-            programId: "current",
           },
         },
       }, null, 2)}\n`, "utf8"),

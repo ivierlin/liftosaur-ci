@@ -210,7 +210,14 @@ async function runUpdate(argv) {
       apiKey: process.env.LIFTOSAUR_API_KEY?.trim(),
       apiBase: options["api-base"],
     });
-    console.log(`Liftosaur updated: ${result.target.name}`);
+    if (!result.deploymentRequired) {
+      console.log(`Liftosaur update not required: configured program blob already matches ${result.deploymentRef}`);
+    } else {
+      console.log(`Liftosaur updated: ${result.target.name}`);
+      if (result.targetBindingRequired) {
+        console.log(`Pin programId ${result.targetId} in liftosaur-ci.json before the next deployment`);
+      }
+    }
   } catch (error) {
     const message = friendlyUpdateError(error);
     const recovery = error?.recoveryDirectory
@@ -421,6 +428,10 @@ async function runPrepareGit(argv) {
           baseRef: options["base-ref"] ?? null,
           repository: options.repository ? path.resolve(options.repository) : null,
         });
+    if (!explicitProgram && !preparation.deploymentRequired) {
+      console.log(`Git deployment not required: configured program blob already matches ${preparation.deploymentRef}`);
+      return;
+    }
     const result = await prepareGitDeployment({
       repository: preparation.repository,
       baseRef: preparation.baseRef,
@@ -446,13 +457,14 @@ async function runPrepareGit(argv) {
 }
 
 async function runRecordDeployment(argv) {
-  const options = parseOptions(argv, ["config", "deployment", "report"]);
+  const options = parseOptions(argv, ["repository", "config", "deployment", "report"]);
   const result = await recordDeploymentState({
     configFile: defaultConfig(options),
     deploymentId: options.deployment ?? null,
     reportFile: requireOption(options, "report"),
+    repository: options.repository ? path.resolve(options.repository) : null,
   });
-  console.log(`Deployment state recorded: ${result.file}`);
+  console.log(`Deployment ref recorded: ${result.ref} → ${result.commitSha}`);
 }
 
 async function runDeploy(argv) {
@@ -478,7 +490,11 @@ async function runDeploy(argv) {
     }
   } else {
     const resolved = await configuredDeployment(defaultConfig(options), options.deployment ?? null);
-    expectedProgramId = resolved.deployment.programId;
+    if (resolved.deployment.programId) expectedProgramId = resolved.deployment.programId;
+    else {
+      const manifest = JSON.parse(await readFile(path.join(requireOption(options, "bundle"), "deployment-manifest.json"), "utf8"));
+      expectedProgramId = manifest.target?.id;
+    }
   }
   const report = await deployPreparedBundle({
     bundleDirectory: requireOption(options, "bundle"),

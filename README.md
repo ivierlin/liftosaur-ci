@@ -30,15 +30,15 @@ Create `liftosaur-ci.json` with the Git program path and Liftosaur target:
 {
   "deployments": {
     "program": {
-      "program": "programs/example.liftoscript",
-      "programId": "current"
+      "program": "programs/example.liftoscript"
     }
   }
 }
 ```
 
-`programId` may be an exact Liftosaur ID or `current`. The live program name is
-preserved automatically.
+Omitting `programId` bootstraps once from Liftosaur's current program; the first
+verified deployment opens a PR pinning the exact ID. Durable config never uses
+`current`.
 
 ## Update a program
 
@@ -50,8 +50,8 @@ LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update \
   --base-ref first-deployed-ref
 ```
 
-After a successful update, commit the generated
-`.liftosaur-ci/deployments/program.json` state file. Later updates need no base:
+After a successful update, `refs/liftosaur-ci/deployments/program` records the
+verified deployed commit. Later updates need no base:
 
 ```sh
 LIFTOSAUR_API_KEY=... node bin/liftosaur-ci.mjs update
@@ -63,7 +63,7 @@ With one configured deployment, the command infers the deployment and uses
 
 The [deployment contract](docs/deployment.md) explains state preservation,
 target locking, merge ownership, failure behavior, and recovery. For protected
-automation, see [GitHub Actions integration](docs/github-actions.md).
+automatic or protected automation, see [GitHub Actions integration](docs/github-actions.md).
 
 ## Validate a repository
 

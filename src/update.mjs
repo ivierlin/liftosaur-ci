@@ -26,6 +26,10 @@ export async function updateConfiguredGitDeployment({
       baseRef,
       repository,
     });
+    if (!preparation.deploymentRequired) {
+      await rm(temporary, { recursive: true, force: true });
+      return { deploymentRequired: false, deploymentRef: preparation.deploymentRef };
+    }
     const prepared = await prepareGitDeployment({
       repository: preparation.repository,
       baseRef: preparation.baseRef,
@@ -49,12 +53,16 @@ export async function updateConfiguredGitDeployment({
       configFile,
       deploymentId: preparation.deploymentId,
       reportFile: path.join(recordDirectory, "deployment-report.json"),
+      repository: preparation.repository,
     });
     await rm(temporary, { recursive: true, force: true });
     return {
       target: report.target,
       candidateCommitSha: prepared.manifest.source.candidate.commitSha,
-      stateFile: state.file,
+      deploymentRequired: true,
+      deploymentRef: state.ref,
+      targetBindingRequired: preparation.targetBindingRequired,
+      targetId: report.target.id,
     };
   } catch (error) {
     if (!deploymentStarted) {

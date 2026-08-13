@@ -17,8 +17,13 @@ recovery behavior.
 ## Composable deployment
 
 `prepare-git`, `deploy`, and `record-deployment` expose the preparation, live
-write, and state-recording stages used by `update`. They are the integration
-surface for approval-gated CI and program-specific release pipelines.
+write, and ref-recording stages used by `update`. They are the integration
+surface for automatic or approval-gated CI and program-specific release pipelines.
+
+`prepare-git` exits as a successful no-op when the configured program blob is
+unchanged. `record-deployment` validates the verified receipt and pushes the
+candidate commit to the deployment ref with an exact old-SHA lease. If recording
+fails after the live write, retain the receipt and retry it.
 
 These commands use `liftosaur-ci.json` by default and infer a single configured
 deployment. Explicit raw inputs are available when configuration is deliberately

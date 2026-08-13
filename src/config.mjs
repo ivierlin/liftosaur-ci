@@ -51,12 +51,15 @@ function validateDeployments(deployments = {}) {
     if (!/^[a-z0-9][a-z0-9_-]*$/.test(id)) throw new Error(`Invalid deployment ID: ${id}`);
     requireObject(value, `Check config deployment ${id}`);
     requireAllowedKeys(value, new Set(["program", "programId"]), `Check config deployment ${id}`);
-    if (typeof value.programId !== "string" || !value.programId.trim()) {
-      throw new Error(`Check config deployment ${id} programId is required`);
+    if (value.programId != null && (typeof value.programId !== "string" || !value.programId.trim())) {
+      throw new Error(`Check config deployment ${id} programId must be a non-empty exact ID`);
+    }
+    if (value.programId?.trim() === "current") {
+      throw new Error(`Check config deployment ${id} programId must be an exact ID, not current`);
     }
     result[id] = {
       program: requireRelativePath(value.program, `Check config deployment ${id}.program`),
-      programId: value.programId.trim(),
+      ...(value.programId == null ? {} : { programId: value.programId.trim() }),
     };
   }
   return result;
