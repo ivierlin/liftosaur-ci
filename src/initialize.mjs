@@ -32,10 +32,13 @@ function programBlob(repository, commit, programPath) {
   return git(repository, ["cat-file", "blob", blob], "Cannot read candidate program", { buffer: true });
 }
 
-async function commitCanonicalConfig({ repository, configFile, config, deployment, targetId, candidateCommit, releaseBranch }) {
+async function commitCanonicalConfig({
+  repository, configFile, config, deployment, targetId, candidateCommit, releaseBranch, manualBaseRef,
+}) {
   const configPath = path.resolve(configFile);
-  const expectedPath = path.join(repository, path.relative(repository, configPath));
-  if (expectedPath !== configPath || path.relative(repository, configPath).startsWith("..")) {
+  const relativeConfigPath = path.relative(repository, configPath);
+  const expectedPath = path.join(repository, relativeConfigPath);
+  if (expectedPath !== configPath || relativeConfigPath.startsWith("..")) {
     throw new Error("Initialization config must be inside the repository");
   }
   if (exactCommit(repository, "HEAD", "checked-out commit") !== candidateCommit) {
@@ -45,17 +48,25 @@ async function commitCanonicalConfig({ repository, configFile, config, deploymen
     ? { deployments: { [deployment.id]: { program: deployment.program, programId: targetId } } }
     : JSON.parse(await readFile(configPath, "utf8"));
   canonical.deployments[deployment.id].programId = targetId;
-  await writeFile(configPath, `${JSON.stringify(canonical, null, 2)}\n`, "utf8");
+  const canonicalText = `${JSON.stringify(canonical, null, 2)}\n`;
+  await writeFile(configPath, canonicalText, "utf8");
   git(repository, ["config", "user.name", "github-actions[bot]"], "Cannot configure initialization author");
   git(repository, ["config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], "Cannot configure initialization author");
-  git(repository, ["add", "--", path.relative(repository, configPath)], "Cannot stage canonical config");
+  git(repository, ["add", "--", relativeConfigPath], "Cannot stage canonical config");
   git(repository, ["commit", "-m", "Initialize liftosaur-ci"], "Cannot create canonical config commit");
   const commitSha = exactCommit(repository, "HEAD", "canonical config commit");
   const branchRef = `refs/heads/${releaseBranch}`;
   try {
     git(repository, ["push", `--force-with-lease=${branchRef}:${candidateCommit}`, "origin", `${commitSha}:${branchRef}`], "Cannot record canonical config on the release branch");
   } catch (error) {
-    throw new Error(`${error.message}\nThe release branch moved or rejected the config-only commit. No Liftosaur write or deployment ref was created. Rerun after the branch is current, or pin liftosaur-ci.json manually and use the advanced base_ref route. Target ID: ${targetId}`);
+    throw new Error([
+      error.message,
+      "The release branch moved or rejected the config-only commit. No Liftosaur write or deployment ref was created.",
+      `Create or update ${relativeConfigPath} with:`,
+      canonicalText.trimEnd(),
+      "Then commit it through your normal repository policy and rerun the manual workflow with:",
+      `base_ref: ${manualBaseRef}`,
+    ].join("\n"));
   }
   return commitSha;
 }
@@ -90,7 +101,14 @@ export async function initializeGitDeployment({
   }
 
   const canonicalCommit = await commitCanonicalConfig({
-    repository: root, configFile, config, deployment, targetId: target.id, candidateCommit, releaseBranch,
+    repository: root,
+    configFile,
+    config,
+    deployment,
+    targetId: target.id,
+    candidateCommit,
+    releaseBranch,
+    manualBaseRef: baseRef ?? candidateCommit,
   });
   if (!baseRef) {
     const ref = deploymentRef(deployment.id);
