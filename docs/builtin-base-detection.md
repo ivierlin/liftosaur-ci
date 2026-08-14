@@ -1,7 +1,8 @@
 # Built-in base detection and bootstrap design
 
-This document records a possible future bootstrap convenience. It is a design,
-not implemented behavior.
+This document records the evaluated bootstrap design and its final disposition.
+Built-in autodetection is not implemented and should not be pursued; manual
+bootstrap remains the supported direction.
 
 ## Scope and ownership
 
@@ -10,28 +11,24 @@ represented in Git. Program authors own custom and community programs;
 `liftosaur-ci` should not maintain a registry of popular programs, known
 derivatives, or curated exceptions.
 
-Automatic base detection is limited to official Liftosaur built-ins. Its one
-purpose is to help when the live program originated from a built-in but the
-correct historical merge base is not yet represented in Git. The catalogue
-should be derived from Liftosaur upstream where practical, rather than copied
-into this repository. Upstream additions, removals, renames, and changes should
-ideally require no `liftosaur-ci` catalogue update or release.
+The experiment limited automatic base detection to official Liftosaur built-ins.
+Its proposed purpose was to help when the live program originated from a
+built-in but the correct historical merge base was not yet represented in Git.
 
-Historical revisions are part of that catalogue. A live program may have been
-cloned from an older built-in and modified since then, so the useful candidate is
-the historical merge ancestor, not necessarily the current program with the
-same name.
+Historical revisions were part of that candidate catalogue. A live program may
+have been cloned from an older built-in and modified since then, so the useful
+candidate is the historical merge ancestor, not necessarily the current program
+with the same name.
 
 ## Confidence policy
 
-Detection optimizes for high precision, not high recall. A false negative costs
-one manual bootstrap; a false positive supplies the wrong merge ancestor.
-Therefore automation proceeds only while there is a single defensible
+The experiment optimized for high precision, not high recall. A false negative
+costs one manual bootstrap; a false positive supplies the wrong merge ancestor.
+Automation therefore could have proceeded only with a single defensible
 interpretation.
 
-The preferred automatic decision mechanism is exact structural identity after
-removing state that Liftosaur owns while a user trains. It must be invariant to
-both normal progression and Liftosaur's own serialization:
+The final candidate mechanism was exact structural identity after removing state
+that Liftosaur owns while a user trains:
 
 1. Extract the Liftoscript program body from each official built-in revision.
 2. Project both the live source and candidate into a representation that removes
@@ -42,11 +39,13 @@ both normal progression and Liftosaur's own serialization:
 4. Automate only when exactly one candidate is byte-for-byte identical after
    that projection.
 
-The current initialization projection is not yet sufficient for step 3. The
-[progression evaluation](builtin-base-detection-evaluation.md#accumulated-live-progression)
-found exact pristine-source matches for only 7 of 59 executable built-ins. This
-design therefore remains blocked on a serialization-invariant structural
-projection; the experiment does not authorize production autodetection.
+The [evaluation](builtin-base-detection-evaluation.md#parser-derived-structural-identity)
+found that a compact parser-derived representation matched only 50 of 59
+executable built-ins after 16 accumulated exposures and failed to detect a
+reusable-definition edit. Fixing both gaps requires semantic reconstruction of
+definitions, inheritance, and serializer-expanded aliases. This crosses the
+maintenance limit, so the design decision is manual bootstrap rather than a
+blocked future autodetector.
 
 Textual or edit-distance similarity must not decide an automatic base. The
 historical experiment found a close, confidently separated wrong winner for
@@ -74,40 +73,31 @@ but they do not become product catalogue entries.
 See the [upstream history evaluation](builtin-base-detection-evaluation.md) for
 the exploratory current-pair and time-travel results that informed this design.
 
-Exact projected identity still needs historical revision testing after the
-projection becomes serialization-invariant. It must distinguish real author
-structure changes from live state without relying on a tuned similarity
-threshold.
+Exact structural identity was tested against current and historical revisions.
+Uniqueness was encouraging, but progression invariance and edit sensitivity
+failed; historical uniqueness alone does not make an identity function safe.
 
 ## Workflow outcomes
 
-If exactly one official historical built-in is structurally identical after the
-proven projection, `liftosaur-ci` may propose it as the merge base and hand off
-to the normal reconciliation workflow.
+Users confirm the base through manual base/ref selection. A closest plausible
+program and immutable upstream revision may be shown as an informational hint,
+but neither similarity nor the exploratory fingerprint supplies the merge base
+automatically.
 
-Otherwise automatic detection stops without deploying. Structurally modified
-programs use manual base/ref selection. The message may show the closest
-plausible program and immutable upstream revision as a hint, then give the exact
-configuration and base/ref instructions needed to confirm the base manually and
-rerun. The product behavior need not expose a complex confidence taxonomy: it
-only needs to distinguish proven identity from author confirmation.
-
-Confident base detection does not authorize semantic conflict resolution. If
-the normal three-way merge conflicts, automation stops through the existing
-private conflict-workspace policy. This is the same rule at both stages:
+Author confirmation of a base does not authorize semantic conflict resolution.
+If the normal three-way merge conflicts, automation stops through the existing
+private conflict-workspace policy:
 
 - one defensible base and a clean deterministic merge: proceed;
 - uncertain base or conflicting author intent: stop with actionable evidence.
 
-Automatic state-preserving bootstrap may therefore continue only when the base
-is identified conservatively, the candidate participates in the expected
-lineage workflow, and reconciliation requires no choice between competing
-intentions. Otherwise nothing is deployed and control returns to the author.
+State-preserving bootstrap continues only after the author identifies the base
+and reconciliation requires no choice between competing intentions. Otherwise
+nothing is deployed and control returns to the author.
 
 ## Maintenance limit
 
-This feature is worthwhile only while it remains a small convenience around the
-ongoing Git-to-Liftosaur workflow. If reliable detection requires a substantial
-classifier, manually maintained registry, or permanent platform-specific
-knowledge base, the better product decision may be to make manual bootstrap
-excellent and stop automation earlier.
+Reliable detection required semantic definition/inheritance reconstruction and
+serializer-specific exceptions even without a classifier, maintained family
+registry, or heuristic thresholds. The experiment therefore reached this limit:
+make manual bootstrap excellent and stop automatic base detection here.

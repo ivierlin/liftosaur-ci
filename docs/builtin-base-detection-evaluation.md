@@ -2,15 +2,15 @@
 
 ## Conclusion
 
-Neither evaluated mechanism is ready to decide an automatic base. Textual
-nearest-candidate selection is unsafe, and the current initialization projection
-is not invariant to Liftosaur's real serialized progression for most built-ins.
+None of the evaluated mechanisms is suitable for deciding an automatic base.
+Textual nearest-candidate selection is unsafe, the current initialization
+projection is not invariant to real serialized progression, and the final
+parser-derived structural experiment crossed the maintenance limit without
+achieving complete invariance and edit sensitivity.
 
-The viable direction remains exact structural identity after a stronger,
-serialization-invariant projection. Until that is demonstrated across both live
-progression and historical revisions, structurally modified or non-identical
-programs require manual base/ref selection. Similarity may provide an
-informational closest-match hint only.
+Built-in autodetection should be dropped in favor of manual bootstrap. This is
+not a production behavior change: no detector was implemented. Similarity may
+provide an informational closest-match hint only.
 
 ## Accumulated live progression
 
@@ -102,10 +102,106 @@ full corpus, or 7/59 of the executable corpus. The stable results through 16
 exposures are encouraging for the programs already inside its equivalence
 boundary, but do not rescue the 52 immediate false negatives.
 
-A follow-up may evaluate a structural representation that is invariant to the
-specific serializer rewrites above. Production autodetection must wait until
-that representation achieves exact matches across the generic executable corpus
-and is also tested against genuine structural edits and historical revisions.
+The parser-derived follow-up below tested the remaining direction. It did not
+meet those requirements and closes the production-autodetection investigation.
+
+## Parser-derived structural identity
+
+### Method and complexity
+
+The final experiment used the same pinned Liftosaur runtime and parser-backed
+evaluator as validation. The test-only fingerprint emitted deterministic JSON
+records for weeks, days, exercises and alternatives, labels, tags, supersets,
+and progression/update types and scripts. It omitted live set prescriptions,
+warmups, timers, current markers, progress state values, comments, and
+serializer-only repeat metadata. Liftosaur's evaluated exercise model supplied
+the first semantic normalization of reusable `...exercise` forms. No program
+names, family rules, similarity thresholds, or heuristic weights were used.
+
+The implementation is one exploratory file and does not call or change
+`projectLiftosaurSourceForInitialization()`. Reproduce it with
+`node test/evaluate-builtin-structural-identity.mjs` after setting up the pinned
+runtime. Its apparent compactness depends on Liftosaur's evaluator. The model
+drops unused reusable definitions and does not preserve a stable resolved
+identity for every reuse after live serialization. Fixing those gaps would
+require a second parser-level definition table, inheritance resolution, and
+special handling for serializer-expanded aliases. That is substantial semantic
+reconstruction rather than a small fingerprint.
+
+### Current corpus and accumulated progression
+
+All 60 current official built-ins were fingerprinted. Fifty-nine were
+executable; `gzcl-ggbb.md` retained the same upstream lifecycle failure recorded
+above. All 59 executable sources matched their pristine Liftosaur serialization.
+
+| Depth | Executable | Exact structural match | Mismatch |
+|---:|---:|---:|---:|
+| 1 | 59 | 51 | 8 |
+| 4 | 59 | 50 | 9 |
+| 8 | 59 | 50 | 9 |
+| 16 | 59 | 50 | 9 |
+
+The nine depth-16 mismatches were `bullmastiff.md`,
+`gzcl-general-gainz-burrito-but-big.md`, `gzcl-general-gainz-riptide.md`,
+`gzcl-jacked-and-tan-2.md`, `gzcl-the-rippler.md`,
+`recommended-routine.md`, `shortcut-to-size.md`,
+`tactical-barbell-mass-protocol.md`, and
+`tactical-barbell-operator.md`. First differences were exercise identities that
+switched between a resolved exercise and a reusable label after serialization.
+`recommended-routine.md` first diverged between exposures 1 and 4; the other
+eight diverged at exposure 1.
+
+There were no exact fingerprint collisions among the 60 current built-ins.
+
+### Historical uniqueness
+
+The practical history scan examined 196 bodies across 61 modern built-in paths.
+One old body did not parse with the pinned runtime. After deduplicating unchanged
+fingerprints within each path, 82 structural revisions remained. The only
+cross-path exact collision was the same Westside for Skinny Bastards body before
+and after its `ws4sb.md` to `westside-for-skinny-bastards.md` rename. No
+materially distinct historical programs or revisions collided.
+
+This is useful uniqueness evidence, but it cannot compensate for false
+negatives under ordinary progression or a fingerprint that ignores an
+author-owned definition edit.
+
+### Structural-edit sensitivity
+
+| Generic author edit | Fingerprint changed |
+|---|---:|
+| Exercise substitution | Yes |
+| Day/scheme name change | Yes |
+| Progress logic change | Yes |
+| Reusable-definition prescription change | **No** |
+| Author-owned superset property change | Yes |
+
+The reusable-definition failure is a false negative: the evaluated model omits
+an unused definition even though later reuse or author maintenance can make that
+definition part of program identity. Retaining definitions while also treating
+expanded and inherited serialized forms as identical is the semantic
+reconstruction described above.
+
+### Provenance check
+
+The pinned Liftosaur storage model does not retain an authoritative built-in
+origin after cloning. `Program_cloneProgram()` copies the program, replaces its
+ID with a new random ID, and records only `clonedAt`; there is no original
+built-in ID or origin field. The stored planner text and program API model
+therefore do not provide trustworthy provenance on which to base detection.
+
+### Final judgment
+
+The structural representation is much better than textual projection, but it
+is not empirically strong enough for automatic identity: 9 of 59 executable
+built-ins are false negatives after normal progression, and the compact version
+misses a deliberate reusable-definition edit. Addressing both problems requires
+definition/reuse semantic reconstruction and serializer exceptions, crossing
+the experiment's hard-stop criterion.
+
+Do not implement production autodetection. Manual bootstrap is the durable
+design; the exploratory evaluator remains only to make this conclusion
+reproducible.
 
 ## Dataset and method
 
