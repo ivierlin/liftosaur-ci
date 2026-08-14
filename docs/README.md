@@ -35,3 +35,9 @@ runtime checks and the complete, sequential, and partial scenario interfaces.
 
 Read [Release liftosaur-ci](releasing.md) for version-tag mechanics and the
 compatibility policy for the moving `0` workflow tag.
+
+## Which future bootstrap design is under consideration?
+
+Read [Built-in base detection and bootstrap design](builtin-base-detection.md)
+for the unimplemented proposal to conservatively infer an official historical
+Liftosaur built-in during first-time setup.
