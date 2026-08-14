@@ -1,185 +1,263 @@
-# Prepared deployment and recovery
+# Preserve state while deploying program logic
 
-The normal job is simple: take the reviewed Git version of a Liftosaur program,
-merge in progression accumulated in the app since the previous update, validate
-the result, and write it back to the same Liftosaur program.
+`liftosaur-ci` keeps reviewed program logic in Git without losing the progression
+that accumulates in Liftosaur. It treats Git as the owner of code and Liftosaur
+as the owner of live training state, then combines both when a program changes.
 
-Configuration owns target identity. A deployment contains one deployable
-`.liftoscript` path and may contain an exact Liftosaur `programId`. Durable
-configuration rejects the literal `current`; raw CLI use may still resolve it.
-Program names are preserved automatically unless preparation seals a reviewed
-replacement with `--program-name`.
+## The mental model
 
-Operational position lives only in
-`refs/liftosaur-ci/deployments/<deployment-id>`, pointing to the last verified
-deployed commit. The program blob is derived from that commit and configured
-path, so no blob hash or program ID is duplicated in hidden state.
+A normal update uses three sources:
 
-## Verified initialization and advanced first migration
+```text
+previously deployed Git source + current Liftosaur state + new Git source
+                              -> prepared deployment
+```
 
-Automatic initialization is deliberately narrow. It applies only when the
-default config is absent, discovery finds exactly one regular root-level
-`.liftoscript`, deployment `program` has no ref, and no `base_ref` was supplied.
-It resolves Liftosaur `current` once to an exact ID, fetches that target's source,
-and compares its UTF-8 bytes exactly with the discovered program blob at the
-candidate commit. Native validation is also required, but validation is not used
-as identity evidence.
+The previously deployed source is the common starting point, or **base**. The
+current source fetched from Liftosaur is **live**. The reviewed Git version to
+deploy is the **candidate**.
 
-An exact match needs no Liftosaur write. Automation creates canonical
-`liftosaur-ci.json`, commits it directly to the selected release branch with a
-lease against the exact observed branch SHA, and only after that succeeds creates
-`refs/liftosaur-ci/deployments/program` at the new config-only commit with an
-empty-ref lease. The program blob is identical in the original candidate and the
-config-only descendant, so the descendant is the canonical initialized position.
+The configured deployment identifies one `.liftoscript` path and may identify
+one exact Liftosaur `programId`. A Git ref named
+`refs/liftosaur-ci/deployments/<deployment-id>` records the commit last verified
+as deployed. A ref is a Git pointer; this one is operational state, not a branch
+people edit.
 
-A mismatch stops with instructions to export or copy the program currently used
-in Liftosaur into the root file, commit it, and try again. No config, deployment
-ref, or live write is made. A concurrent branch push or repository policy that
-rejects the direct config commit also stops before ref creation or live mutation.
+## First-time initialization
 
-If that config push is rejected after the target and provenance are known, the
-error prints the complete canonical config and the exact `base_ref` needed for the
-manual route. Commit that config through the repository's normal policy and rerun
-the manual workflow with the reported value. The user does not need to recover a
-target ID or Git SHA from separate logs. Alternatively, deliberately adjust the
-repository policy if automatic initialization is intended; no alternate token or
-automatic pull request bypass is attempted.
+### Simple verified setup
 
-Every other first deployment requires an explicit `base_ref` identifying the Git
-revision already live in Liftosaur. This includes explicit config, custom or
-nested layouts, multiple programs, generators, and historical migrations. If
-`programId` is omitted, automation resolves `current` and commits the exact ID to
-canonical config with the same branch lease **before** preparing or writing the
-live update. Preparation then uses that config-only descendant as its candidate;
-its deployable program blob is provably unchanged. Exact IDs configured up front
-skip this commit. Once a deployment ref exists, it is always the durable base and
-`base_ref` is unnecessary.
+Automatic initialization is intentionally narrow. It applies when:
 
-## Relevance and deployed position
+- `liftosaur-ci.json` does not exist;
+- exactly one regular root-level `.liftoscript` file is discovered;
+- deployment `program` has no recorded deployment ref; and
+- no `base_ref` was supplied.
 
-For an initialized deployment, preparation compares only the configured program
-blob at the deployment ref with the candidate commit's blob. Equal blobs are a
-clean no-op even when unrelated repository files or commits changed.
-`liftosaur-ci` deliberately does not infer generator, template, engine, or other
-project-specific dependency graphs.
+Git must contain the clean/original source, not an export containing current
+athlete progression. The tool resolves Liftosaur's current program once to an
+exact ID and fetches its source privately. Using the pinned Liftosaur parser, it
+compares an immutable program skeleton: program and exercise identity, week/day
+and section structure, progression/update bodies, reused logic, and other
+author-owned properties must match.
 
-Only after the live write and exact read-back succeed does `record-deployment`
-advance the deployment ref. Existing refs are updated with an exact old-SHA lease;
-a concurrent advance therefore fails closed rather than overwriting newer state.
-The deployed pointer may move non-fast-forward for deliberate Git rollbacks, so
-ancestry is not the safety invariant. The exact previously observed ref value is.
+Differences are allowed only where Liftosaur progression can own serialized
+state: prescription values such as weights, reps and minimum reps, RPE, timers,
+AMRAP/log-RPE/ask-weight flags, set count and 1RM; custom state values; and the
+current set, exercise, or description selection. Manual edits to one of those
+live-owned values are indistinguishable from progression and are preserved.
+Additions, removals, reordering, unknown-property changes, and changes to
+`{~ ... ~}` or reused `{ ... }` logic fail compatibility.
 
-If the live deployment succeeds but ref recording fails, the verified live write
-is not automatically rolled back. Retain the private deployment receipt and retry
-`record-deployment`. If initialization records config but deployment-ref creation
-fails, no live write occurred; rerun the manual path with the reported config
-commit as `base_ref`.
+Compatibility is only the first proof. The tool then runs the normal three-way
+merge with clean Git as both base and candidate and live Liftosaur as active. Its
+canonical result must reproduce the canonical live source exactly. Any conflict
+or information loss fails closed.
 
-## What preparation preserves
+When they match, no Liftosaur write is needed. Automation creates canonical
+`liftosaur-ci.json`, commits it to the selected release branch, and creates the
+initial deployment ref at that config-only commit. The program file is identical
+before and after the config commit, so the recorded position is exact.
 
-Preparation reads three versions of the program:
+An incompatibility stops without creating config, a deployment ref, a conflict
+workspace, or a live write. Use the original built-in source if the program
+started from a built-in, or the original clean source if you authored it. Do not
+commit a progressed export merely to pass initialization; it may contain
+athlete-specific data. If only the live progressed source remains, adoption is
+an advanced case.
 
-- the previously deployed Git source,
-- the current Liftosaur source containing real-world progression state,
-- the new reviewed Git source.
+### Advanced first migration
 
-Code inside Liftoscript `{ ... }` bodies is Git-managed program logic. If the live
-Liftosaur source differs from the previously deployed Git source inside those
-bodies, preparation stops: the author must commit that logic change in Git or
-discard it in Liftosaur before updating. The tool does not merge program-code
-edits made directly in the app.
+Every other first deployment needs an explicit `base_ref`: the Git revision that
+produced the program already live in Liftosaur. This includes explicit config,
+nested or multiple programs, generators, and historical migrations.
 
-Everything outside those bodies is eligible live progression for the three-way
-merge. Independent live changes are carried forward. If the live source and new
-Git source change the same mergeable region incompatibly, preparation fails
-closed rather than guessing.
+If config omits `programId`, automation first resolves Liftosaur's `current`
+program and commits that exact ID to canonical config. It then uses the
+config-only descendant as the candidate; the program blob is provably unchanged.
+An exact configured ID skips that commit. Once a deployment ref exists, it
+becomes the durable base and `base_ref` is no longer needed.
 
-Git revisions are resolved to immutable commits and program blobs, and source is
-read from those objects. Unrelated staged, modified, or untracked worktree files
-cannot affect the prepared program. A credential-free, non-local `origin` URL is
-retained as provenance.
+## Later updates
 
-## Deployment transaction
+Preparation reads the base program from the recorded Git commit, the current
+live source from the exact configured Liftosaur target, and the candidate from
+an immutable Git commit. It does not read modified, staged, or untracked
+worktree files.
 
-Before writing, deployment fetches the exact resolved Liftosaur program ID and
-requires its source hash and name to match the target observed during preparation.
-It writes the prepared source once, preserving the live name by default or
-applying a reviewed name sealed by `--program-name`, then reads the same exact ID
-back.
+For an initialized deployment, only the configured program blob determines
+whether deployment is relevant. Equal base and candidate blobs are a successful
+no-op even when other repository files changed. The tool does not infer whether
+templates, generators, engines, or other files should trigger deployment; a
+project with those dependencies must express them in its own release pipeline.
 
-A read-back matching the prepared deployment source and name is success. A
-read-back still matching the prepared pre-write source means the write did not
-take effect. Any other readable state is treated as an ambiguous or concurrent
-change. Deployment stops and **does not automatically roll back**.
+## What Git owns and what Liftosaur owns
 
-The private rollback source is retained for deliberate recovery. The one-command
-`update` path reports its recovery directory when deployment has started and then
-fails; failures before any live write clean up temporary recovery data.
+Code inside Liftoscript `{ ... }` bodies is Git-managed program logic. If live
+Liftosaur code differs from the base, preparation stops. Commit that edit to Git
+or discard it in Liftosaur before continuing; the tool will not silently merge
+direct edits to program code.
 
-## Explicit rollback after an ambiguous write
+Serialized values outside those bodies are eligible live progression state.
+Independent live changes are carried into the candidate. If live state and the
+candidate change the same mergeable region incompatibly, preparation fails
+instead of guessing.
 
-When a live write was attempted but read-back cannot establish a safe outcome,
-`update` reports an explicit recovery command:
+### Recover an unresolved live-versus-candidate conflict
+
+The private conflict workspace separates the three versions involved:
+
+- `base.liftoscript` is the last Git version verified as deployed;
+- `active.liftoscript` is the current Liftosaur source, including live
+  progression; and
+- `candidate.liftoscript` is the new Git version being prepared.
+
+It also contains `conflict.txt`, which shows the unresolved merge, and
+`merge-report.json`, which records the structured merge result. **These files
+may contain athlete-specific live state. Keep the workspace private, do not
+print it, and never commit it.**
+
+For CLI or custom automation, rerun the failed `prepare` or `prepare-git`
+command with `--conflict-output <directory>`. Use a new private directory. The
+tool then prints commands equivalent to:
+
+```sh
+git diff --no-index <base> <active>
+git diff --no-index <base> <candidate>
+```
+
+The first comparison shows what changed in Liftosaur since the base. The second
+shows what the candidate changes in Git. Inspect both, decide the intended
+resulting program behavior, then adjust the Git candidate so that intent is
+explicit. Commit the adjustment and rerun preparation or deployment.
+
+Do **not** solve the conflict by copying the whole active Liftosaur source into
+Git. The active source may include athlete-specific progression or state that
+Git does not own. Use it only as evidence for the conflicting region and encode
+the intended program logic in the candidate.
+
+GitHub-only custom automation can retain the workspace as a short-lived private
+artifact on preparation failure; see
+[Preserve a conflict workspace](github-actions.md#preserve-a-conflict-workspace).
+
+The live program name is preserved unless preparation explicitly seals a
+reviewed replacement with `--program-name`.
+
+## Safety checks before and after writing
+
+Preparation resolves Git revisions to immutable commits and reads the program
+blob directly from those objects. It also retains a credential-free, non-local
+`origin` URL as provenance.
+
+Before writing, deployment fetches the exact Liftosaur program ID again. Its
+source hash and name must match what preparation observed. The tool then writes
+once and reads that same ID back.
+
+The result is successful only when the read-back source and name match the
+prepared deployment. If read-back still matches the pre-write source, the write
+did not take effect. Any other readable state is an ambiguous or concurrent
+change. The tool stops and does not automatically roll it back.
+
+Only after a successful exact read-back does `record-deployment` advance the
+deployment ref.
+
+## Deployment position in Git
+
+The deployment ref points to the last verified deployed commit. The program
+blob is derived from that commit and the configured path, so hidden state does
+not duplicate a program hash or target ID.
+
+Both initialization and later recording use a **lease**: the write succeeds only
+if the branch or ref still has the exact value previously observed. A concurrent
+change therefore fails closed instead of being overwritten. The deployment ref
+may move backward for a deliberate Git rollback; ancestry is not the safety
+rule. The exact observed old value is.
+
+During initialization, the canonical-config commit is leased against the exact
+observed release-branch commit. The initial deployment ref is then created only
+if it is still absent. Branch protection or a concurrent push stops this before
+any Liftosaur write.
+
+## Failure and recovery
+
+### Failure before a write
+
+Validation, merge, target, branch, or lease failures before the live write leave
+Liftosaur unchanged. Correct the reported problem and rerun.
+
+If protected-branch policy rejects the initialization config commit, the error
+prints the complete canonical config and exact `base_ref`. Commit that config
+through normal repository policy and rerun the manual workflow with the reported
+value. When the base and candidate program blobs are unchanged, the rerun
+re-verifies the exact target and compatibility, creates the initial ref, and
+still performs no Liftosaur write. No alternate token or hidden policy bypass is
+attempted.
+
+If the config commit succeeds but initial ref creation fails, no live write has
+occurred. Rerun the manual path using the reported config commit as `base_ref`.
+
+### Ambiguous live write
+
+When a write was attempted but read-back cannot prove a safe outcome, the
+one-command `update` path retains private recovery data and prints:
 
 ```sh
 liftosaur-ci rollback --recovery "/path/reported/by/update"
 ```
 
-`rollback` is not a general version-revert command. It accepts recovery data from
-an ambiguous write, restores the exact pre-write source to the exact prepared
-target, preserves the current program name, and verifies the result by read-back.
-Before replacing an unknown current source, it retains that observed source as
-additional private recovery material. Repeating a successful rollback is
-idempotent.
+`rollback` restores the exact pre-write source to the exact prepared target,
+preserves the current name, and verifies read-back. Before replacing an unknown
+current source, it saves that observed source as additional private recovery
+material. Repeating a successful rollback is safe.
 
-Failures before the write, a target that changed before deployment, and already
-verified successful deployments are outside this emergency rollback contract.
+This command applies only to an ambiguous write. It does not apply to failures
+before writing or to an already verified deployment.
 
-## Version rollback through Git
+### Ref recording failure after a verified write
 
-Rolling back reviewed program logic is normally another Git change: revert the
-unwanted commit or choose an older candidate and run the ordinary update path.
-The current Liftosaur source remains the live side of the merge, so accumulated
-progression is carried into the older program logic rather than rewound.
+A verified live write is not automatically reversed when deployment-ref
+recording fails. Retain the private deployment receipt and retry
+`record-deployment`; its exact-old-value lease prevents overwriting a newer
+recorded position.
 
-This is distinct from emergency `rollback`: Git rollback changes reviewed program
-logic, while emergency rollback restores the source that existed immediately
-before one ambiguous live write.
+## Rolling back program logic
 
-After a verified Git rollback deployment, `record-deployment` moves the custom
-deployment ref to that verified candidate commit using the same exact-old-SHA
-lease as any other deployment.
+An ordinary program-logic rollback is another reviewed Git change: revert the
+unwanted commit or select an older candidate and run the normal update. Current
+Liftosaur progression remains the live side of the merge and is carried into the
+older logic. After verification, the deployment ref moves to that candidate with
+the normal lease.
 
-## Advanced historical restore
+This differs from emergency `rollback`, which restores the source that existed
+immediately before one ambiguous write.
 
-`restore` is the deliberately destructive disaster-recovery path. Given an
-extracted historical deployment bundle, it writes the exact historical
-`deploy.liftoscript` to the bundle's exact resolved program ID:
+## Historical restore
+
+`restore` is the deliberately destructive disaster-recovery command. Given an
+extracted historical bundle, it writes the bundle's exact `deploy.liftoscript`
+to its exact recorded program ID:
 
 ```sh
 LIFTOSAUR_API_KEY=... liftosaur-ci restore \
   --artifact /path/to/historical-deployment-bundle
 ```
 
-It validates the historical source against the bundle manifest but deliberately
-does not apply normal deployment-age or prepared-live-source checks. Before
-writing, it saves today's complete target source in a private recovery directory,
-preserves the current program name, writes the historical source, and verifies
-read-back.
+It verifies the bundle source, saves today's complete target in a private
+recovery directory, preserves the current program name, writes the historical
+source, and verifies read-back. Normal deployment-age and prepared-live-source
+checks deliberately do not apply.
 
-A historical restore therefore rewinds **all** serialized source state, including
-progression accumulated after that artifact. It does not advance the deployment
-ref automatically; after disaster recovery, the author must deliberately decide
-which Git revision should become the next normal deployed position.
+A restore rewinds all serialized source state, including later progression. It
+does not move the deployment ref; the author must deliberately choose the next
+normal deployed Git position.
 
 ## Private artifacts
 
 Deployment bundles, conflict workspaces, receipts, rollback observations, and
-restore recovery data may contain athlete-specific live state. They must not be
-committed, printed in logs, or published. Automation should use temporary private
-storage and short retention. Long-term backup is an explicit author decision, not
-part of normal continuous deployment.
+restore recovery data may contain athlete-specific state. Do not commit them,
+print them in logs, or publish them. Automation should use temporary private
+storage and short retention. Long-term backup is an explicit author decision.
 
-See [GitHub Actions integration](github-actions.md) for the recommended automation
-flow and [CLI command layers](cli.md) for the composable commands implementing
-this contract.
+See [Use liftosaur-ci on GitHub](github-actions.md) for the recommended
+automation and [Choose a CLI command](cli.md) for the commands implementing this
+contract.

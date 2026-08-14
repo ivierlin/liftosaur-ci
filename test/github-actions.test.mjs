@@ -6,9 +6,12 @@ test("reusable workflows expose Ready to Deploy with optional approval and ref s
   const check = await readFile(new URL("../.github/workflows/reusable-check.yml", import.meta.url), "utf8");
   const deploy = await readFile(new URL("../.github/workflows/reusable-deploy.yml", import.meta.url), "utf8");
   const guide = await readFile(new URL("../docs/github-actions.md", import.meta.url), "utf8");
+  const releasing = await readFile(new URL("../docs/releasing.md", import.meta.url), "utf8");
   for (const workflow of [check, deploy]) {
     assert.match(workflow, /workflow_call:/);
-    assert.match(workflow, /tool_ref:[\s\S]*?required: true/);
+    assert.match(workflow, /repository: \$\{\{ job\.workflow_repository \}\}/);
+    assert.match(workflow, /ref: \$\{\{ job\.workflow_sha \}\}/);
+    assert.doesNotMatch(workflow, /tool_ref|tool_repository|tool_token|TOOL_COMMIT/);
     assert.match(workflow, /ubuntu-latest/);
     assert.doesNotMatch(workflow, /ROAR|fflate|update-archive/);
   }
@@ -23,5 +26,16 @@ test("reusable workflows expose Ready to Deploy with optional approval and ref s
   assert.match(deploy, /if: needs\.ready\.outputs\.required == 'true'/);
   assert.doesNotMatch(deploy, /\.liftosaur-ci\/deployments|state_branch|deployment-state pull request/);
   assert.match(guide, /workflow_dispatch:[\s\S]*?base_ref:[\s\S]*?Base Git revision \(advanced first migration only\)[\s\S]*?required: false/);
-  assert.match(guide, /leave the manual `base_ref` field blank/);
+  assert.match(guide, /github\.event\.inputs\.base_ref \|\| ''/);
+  assert.match(guide, /reusable-check\.yml@0/);
+  assert.match(guide, /reusable-deploy\.yml@0/);
+  assert.doesNotMatch(guide, /tool_ref|tool_repository|tool_token|TOOL_COMMIT/);
+  assert.doesNotMatch(guide, /project-requirements:[\s\S]*?run: "true"/);
+  assert.match(guide, /project-requirements:[\s\S]*?needs: program-checks[\s\S]*?npm test[\s\S]*?needs: \[program-checks, project-requirements\]/);
+  assert.match(guide, /Leave \*\*Base Git revision\*\* blank/);
+  assert.match(guide, /clean\/original program source/);
+  assert.match(guide, /does \*\*not\*\* write the program back to Liftosaur/);
+  assert.doesNotMatch(guide, /byte-for-byte identical|copy or export the program currently used/);
+  assert.match(releasing, /Every release pointed to by `0` must remain compatible/);
+  assert.match(releasing, /--force-with-lease="refs\/tags\/0:\$old_zero"/);
 });

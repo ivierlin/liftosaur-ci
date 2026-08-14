@@ -28,14 +28,6 @@ on:
         required: false
         default: ''
         type: string
-      tool_repository:
-        required: false
-        default: ivierlin/liftosaur-ci
-        type: string
-      tool_ref:
-        description: Reviewed liftosaur-ci commit or tag
-        required: true
-        type: string
       runs_on:
         required: false
         default: '["ubuntu-latest"]'
@@ -43,8 +35,6 @@ on:
     secrets:
       liftosaur_api_key:
         required: true
-      tool_token:
-        required: false
 
 concurrency:
   group: liftosaur-deploy-${{ inputs.deployment }}
@@ -73,10 +63,9 @@ jobs:
       - name: Check out liftosaur-ci
         uses: actions/checkout@v7
         with:
-          repository: ${{ inputs.tool_repository }}
-          ref: ${{ inputs.tool_ref }}
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
           path: tool
-          token: ${{ secrets.tool_token || github.token }}
       - uses: actions/setup-node@v7
         with:
           node-version: 24
@@ -147,10 +136,9 @@ jobs:
         run: git fetch origin '+refs/liftosaur-ci/deployments/*:refs/liftosaur-ci/deployments/*'
       - uses: actions/checkout@v7
         with:
-          repository: ${{ inputs.tool_repository }}
-          ref: ${{ inputs.tool_ref }}
+          repository: ${{ job.workflow_repository }}
+          ref: ${{ job.workflow_sha }}
           path: tool
-          token: ${{ secrets.tool_token || github.token }}
       - uses: actions/setup-node@v7
         with:
           node-version: 24

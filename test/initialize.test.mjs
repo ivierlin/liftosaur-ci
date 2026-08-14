@@ -18,7 +18,7 @@ function git(repository, args, { fail = false } = {}) {
   return fail ? result : result.stdout.trim();
 }
 
-async function fixture({ configured = false, programId = null } = {}) {
+async function fixture({ configured = false, programId = null, sourceText = source } = {}) {
   const root = await mkdtemp(path.join(os.tmpdir(), "liftosaur-initialize-"));
   const repository = path.join(root, "repository");
   const remote = path.join(root, "remote.git");
@@ -26,7 +26,7 @@ async function fixture({ configured = false, programId = null } = {}) {
   assert.equal(spawnSync("git", ["init", "--bare", remote], { encoding: "utf8" }).status, 0);
   git(repository, ["init"]);
   git(repository, ["remote", "add", "origin", remote]);
-  await writeFile(path.join(repository, "program.liftoscript"), source);
+  await writeFile(path.join(repository, "program.liftoscript"), sourceText);
   if (configured) {
     await writeFile(path.join(repository, "liftosaur-ci.json"), `${JSON.stringify({ deployments: { program: {
       program: "program.liftoscript", ...(programId ? { programId } : {}),
@@ -44,7 +44,7 @@ async function api(programSource = source) {
   const server = createServer((request, response) => {
     requests.push([request.method, request.url]);
     response.setHeader("content-type", "application/json");
-    if (request.method === "GET" && request.url === "/api/v1/programs/current") {
+    if (request.method === "GET" && /^\/api\/v1\/programs\/(?:current|exact-1)$/.test(request.url)) {
       response.end(JSON.stringify({ data: { id: "exact-1", name: "Program", text: programSource, isCurrent: true } }));
       return;
     }
@@ -77,17 +77,82 @@ test("simple exact match commits canonical config before creating the deployment
   }
 });
 
-test("simple mismatch fails closed with beginner instructions", async () => {
+test("live progression initializes from a clean base without a live write", async () => {
   const f = await fixture();
   const live = await api(source.replace("1x5", "2x5"));
   try {
+    const result = await initializeGitDeployment({
+      configFile: f.configFile, repository: f.repository, releaseBranch: "main", apiKey, apiBase: live.apiBase,
+    });
+    assert.equal(result.action, "initialized");
+    assert.deepEqual(live.requests, [["GET", "/api/v1/programs/current"]]);
+  } finally {
+    await new Promise((resolve) => live.server.close(resolve));
+    await rm(f.root, { recursive: true, force: true });
+  }
+});
+
+test("incompatible live structure fails closed with clean-base instructions", async () => {
+  const f = await fixture();
+  const live = await api(source.replace("Squat", "Bench Press"));
+  try {
     await assert.rejects(initializeGitDeployment({
       configFile: f.configFile, repository: f.repository, releaseBranch: "main", apiKey, apiBase: live.apiBase,
-    }), /Export or copy.*commit and push.*base_ref/s);
+    }), /original clean program source.*built-in.*base_ref/s);
     assert.deepEqual(live.requests, [["GET", "/api/v1/programs/current"]]);
     await assert.rejects(readFile(f.configFile, "utf8"), /ENOENT/);
     assert.notEqual(git(f.remote, ["rev-parse", deploymentRef("program")], { fail: true }).status, 0);
     assert.equal(git(f.remote, ["rev-parse", "refs/heads/main"]), f.candidate);
+  } finally {
+    await new Promise((resolve) => live.server.close(resolve));
+    await rm(f.root, { recursive: true, force: true });
+  }
+});
+
+test("custom state and combined prescription progression initialize without information loss", async () => {
+  const clean = `# Week 1
+## Day A
+Squat | Pistol Squat / 3x5 120s / 4x3 / progress: custom(volume: 3, phase: 1) {~
+  if (completedReps >= reps) { weights += 5lb }
+~}
+
+
+`;
+  const progressed = clean
+    .replace("Squat | Pistol", "Squat | ! Pistol")
+    .replace("3x5 120s / 4x3", "! 5x4 @8 100kg 90s / 2x8")
+    .replace("volume: 3, phase: 1", "volume: 7, phase: 4");
+  const f = await fixture({ sourceText: clean });
+  const live = await api(progressed);
+  try {
+    const result = await initializeGitDeployment({
+      configFile: f.configFile, repository: f.repository, releaseBranch: "main", apiKey, apiBase: live.apiBase,
+    });
+    assert.equal(result.action, "initialized");
+    assert.deepEqual(live.requests, [["GET", "/api/v1/programs/current"]]);
+  } finally {
+    await new Promise((resolve) => live.server.close(resolve));
+    await rm(f.root, { recursive: true, force: true });
+  }
+});
+
+test("changed progress logic rejects before config, ref, or live writes", async () => {
+  const clean = `# Week 1
+## Day A
+Squat / 3x5 / progress: custom(volume: 3) {~ weights += 5lb ~}
+
+
+`;
+  const f = await fixture({ sourceText: clean });
+  const live = await api(clean.replace("weights += 5lb", "weights += 10lb"));
+  try {
+    await assert.rejects(initializeGitDeployment({
+      configFile: f.configFile, repository: f.repository, releaseBranch: "main", apiKey, apiBase: live.apiBase,
+    }), /not a compatible clean base/);
+    await assert.rejects(readFile(f.configFile, "utf8"), /ENOENT/);
+    assert.notEqual(git(f.remote, ["rev-parse", deploymentRef("program")], { fail: true }).status, 0);
+    assert.equal(git(f.remote, ["rev-parse", "refs/heads/main"]), f.candidate);
+    assert.deepEqual(live.requests, [["GET", "/api/v1/programs/current"]]);
   } finally {
     await new Promise((resolve) => live.server.close(resolve));
     await rm(f.root, { recursive: true, force: true });
@@ -162,6 +227,23 @@ test("release branch lease failure reports complete manual recovery and creates 
     assert.equal(git(f.remote, ["rev-parse", "refs/heads/main"]), moved);
     assert.notEqual(git(f.remote, ["rev-parse", deploymentRef("program")], { fail: true }).status, 0);
     assert.deepEqual(live.requests, [["GET", "/api/v1/programs/current"]]);
+  } finally {
+    await new Promise((resolve) => live.server.close(resolve));
+    await rm(f.root, { recursive: true, force: true });
+  }
+});
+
+test("protected-branch recovery records an unchanged clean base without a live write", async () => {
+  const f = await fixture({ configured: true, programId: "exact-1" });
+  const live = await api(source.replace("1x5", "2x5"));
+  try {
+    const result = await initializeGitDeployment({
+      configFile: f.configFile, repository: f.repository, releaseBranch: "main",
+      baseRef: f.candidate, apiKey, apiBase: live.apiBase,
+    });
+    assert.equal(result.action, "initialized");
+    assert.equal(git(f.remote, ["rev-parse", deploymentRef("program")]), f.candidate);
+    assert.deepEqual(live.requests, [["GET", "/api/v1/programs/exact-1"]]);
   } finally {
     await new Promise((resolve) => live.server.close(resolve));
     await rm(f.root, { recursive: true, force: true });
