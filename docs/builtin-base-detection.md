@@ -29,30 +29,35 @@ one manual bootstrap; a false positive supplies the wrong merge ancestor.
 Therefore automation proceeds only while there is a single defensible
 interpretation.
 
-The first approach to evaluate is deliberately simple:
+The preferred automatic decision mechanism is exact structural identity after
+removing state that Liftosaur owns while a user trains. It must be invariant to
+both normal progression and Liftosaur's own serialization:
 
 1. Extract the Liftoscript program body from each official built-in revision.
-2. Normalize inconsequential representation details such as appropriate
-   whitespace and comments.
-3. Compare the live body with the historical catalogue using ordinary textual
-   or edit distance.
-4. Apply an absolute admissibility threshold to the best candidate.
-5. Only after it passes that threshold, require adequate separation from the
-   next plausible candidate.
+2. Project both the live source and candidate into a representation that removes
+   live set prescriptions, progression arguments, current markers, and other
+   Liftosaur-owned mutable state.
+3. Normalize source forms that Liftosaur's serializer can rewrite without an
+   author edit, including reusable exercise forms and attached comments.
+4. Automate only when exactly one candidate is byte-for-byte identical after
+   that projection.
 
-A large winner margin cannot rescue a poor absolute match. The least-distant
-candidate may still be unrelated. Conversely, close phases or variants may be
-genuinely ambiguous even when both are good matches.
+The current initialization projection is not yet sufficient for step 3. The
+[progression evaluation](builtin-base-detection-evaluation.md#accumulated-live-progression)
+found exact pristine-source matches for only 7 of 59 executable built-ins. This
+design therefore remains blocked on a serialization-invariant structural
+projection; the experiment does not authorize production autodetection.
 
-Do not add semantic weighting, a Liftoscript classifier, a maintained knowledge
-base, or other sophisticated machinery unless upstream data demonstrates that
-the simple conservative approach is insufficient and that the added maintenance
-cost is proportionate to this first-run convenience.
+Textual or edit-distance similarity must not decide an automatic base. The
+historical experiment found a close, confidently separated wrong winner for
+Starting Strength Phase 2. A closest-match result may remain an informational
+hint accompanying manual base/ref selection, but it cannot supply the merge
+ancestor automatically.
 
-## Evidence for thresholds
+## Evidence requirements
 
-Thresholds must come from upstream history rather than intuition. The evaluation
-should include:
+Candidate representations must be tested against upstream history rather than
+intuition. The evaluation should include:
 
 - all current built-in pairs, including each program's nearest and
   second-nearest neighbors;
@@ -62,30 +67,30 @@ should include:
 - absolute distance to the known prior revision, winner margin, whether that
   lineage is recovered, and misleading or ambiguous results.
 
-Historical lineage tests are the primary basis for the acceptance boundary.
+Historical lineage tests are a primary check on the identity boundary.
 Community modifications may later be useful as an independent validation set,
 but they do not become product catalogue entries.
 
 See the [upstream history evaluation](builtin-base-detection-evaluation.md) for
 the exploratory current-pair and time-travel results that informed this design.
 
-The eventual threshold should define a conservative acceptance zone supported
-by observed successful lineage cases while rejecting known wrong-winner and
-close-family cases. It should not be tuned merely to maximize the fraction of
-programs classified.
+Exact projected identity still needs historical revision testing after the
+projection becomes serialization-invariant. It must distinguish real author
+structure changes from live state without relying on a tuned similarity
+threshold.
 
 ## Workflow outcomes
 
-If exactly one official historical built-in passes both the absolute threshold
-and the winner-margin requirement, `liftosaur-ci` may propose it as the merge
-base and hand off to the normal reconciliation workflow.
+If exactly one official historical built-in is structurally identical after the
+proven projection, `liftosaur-ci` may propose it as the merge base and hand off
+to the normal reconciliation workflow.
 
-Otherwise automatic detection stops without deploying. The message should show
-the closest plausible program and immutable upstream revision when useful, then
-give the exact configuration and base/ref instructions needed to confirm the
-base manually and rerun. The product behavior need not expose a complex
-confidence taxonomy: it only needs to distinguish safe automation from author
-confirmation.
+Otherwise automatic detection stops without deploying. Structurally modified
+programs use manual base/ref selection. The message may show the closest
+plausible program and immutable upstream revision as a hint, then give the exact
+configuration and base/ref instructions needed to confirm the base manually and
+rerun. The product behavior need not expose a complex confidence taxonomy: it
+only needs to distinguish proven identity from author confirmation.
 
 Confident base detection does not authorize semantic conflict resolution. If
 the normal three-way merge conflicts, automation stops through the existing

@@ -2,13 +2,110 @@
 
 ## Conclusion
 
-A simple normalized program-body detector looks sufficient **only as a
-conservative accept-or-defer gate**. It is useful for exact and very close
-historical matches, but nearest-candidate selection is unsafe and winner margin
-does not eliminate every close-family false positive.
+Neither evaluated mechanism is ready to decide an automatic base. Textual
+nearest-candidate selection is unsafe, and the current initialization projection
+is not invariant to Liftosaur's real serialized progression for most built-ins.
 
-The evidence supports starting simple and accepting low recall. It does not
-support choosing a production threshold yet.
+The viable direction remains exact structural identity after a stronger,
+serialization-invariant projection. Until that is demonstrated across both live
+progression and historical revisions, structurally modified or non-identical
+programs require manual base/ref selection. Similarity may provide an
+informational closest-match hint only.
+
+## Accumulated live progression
+
+### Dataset and method
+
+- Official upstream: the pinned Liftosaur runtime at
+  `f9c1b1453aaa22ab177d8e7473da08d707c28b60`.
+- Corpus: all 60 official Markdown built-ins in `programs/builtin`; no community
+  programs or separate registry.
+- Lifecycle: the existing native nominal completed-workout path ran Liftosaur's
+  real evaluate, construct, update, finish-day, serialize, reload, and
+  next-workout operations.
+- Accumulation: each exact serialized progressed source was the input to the
+  next exposure. Days advanced cyclically through the program.
+- Depths: 1, 4, 8, and 16 completed workout exposures.
+- Comparison: at each depth,
+  `projectLiftosaurSourceForInitialization(progressedSource)` was compared
+  byte-for-byte with the projection of the pristine built-in source.
+- Control: the same comparison was made against Liftosaur's pristine serialized
+  source to separate initial serializer rewrites from progression rewrites.
+- Reproduction: run `node test/evaluate-builtin-progression-projection.mjs`
+  with `LIFTOSAUR_RUNTIME` pointing at the pinned runtime checkout.
+
+### Coverage and results
+
+| Depth | Executable | Exact pristine match | Projection mismatch |
+|---:|---:|---:|---:|
+| 1 | 59 | 7 | 52 |
+| 4 | 59 | 7 | 52 |
+| 8 | 59 | 7 | 52 |
+| 16 | 59 | 7 | 52 |
+
+The seven exact matches at every depth were `arnoldgoldensix.md`, `gzcl-vdip.md`,
+`metallicadpappl.md`, `mike-mentzer-consolidated.md`, `ss1.md`, `ss2.md`, and
+`ss3.md`. Results did not degrade with depth: every program that matched at one
+exposure still matched at 16, and every mismatch was already present at the
+first exposure.
+
+The 52 mismatches were `arnold-split.md`,
+`barbell-medicine-the-bridge.md`, `basicBeginner.md`, `bro-split.md`,
+`bullmastiff.md`, `calgary-barbell-16-week.md`, `coolcicada-ppl.md`,
+`cube-method.md`, `dbPpl.md`, `deep-water.md`, `doggcrapp.md`,
+`doug-hepburn-method.md`, `easy-strength.md`, `fierce-5.md`,
+`german-volume-training.md`, `gzcl-general-gainz-burrito-but-big.md`,
+`gzcl-general-gainz-riptide.md`, `gzcl-general-gainz.md`,
+`gzcl-jacked-and-tan-2.md`, `gzcl-the-rippler.md`,
+`gzcl-uhf-5-weeks.md`, `gzcl-uhf-9-weeks.md`, `gzclp-blacknoir.md`,
+`gzclp.md`, `ice-cream-fitness-5x5.md`, `ivysaur-4-4-8.md`,
+`jay-cutler-split.md`, `juggernaut-method.md`, `lylegenericbulking.md`,
+`madcow.md`, `mike-mentzer-heavy-duty.md`, `monolith531.md`, `nsuns.md`,
+`phat.md`, `phrakgreyskull.md`, `phul.md`,
+`planet-fitness-hypertrophy.md`, `pzerofullbody.md`,
+`recommended-routine.md`, `sheiko-29-32.md`, `shortcut-to-size.md`,
+`smolov-jr.md`, `smolov-squat.md`, `strongcurves.md`,
+`tactical-barbell-mass-protocol.md`, `tactical-barbell-operator.md`,
+`texasmethod.md`, `the5314b.md`, `the531bbb.md`,
+`tsa-9-week-intermediate.md`, `westside-conjugate-method.md`, and
+`westside-for-skinny-bastards.md`.
+
+### Failure classification
+
+The mismatches are projection limitations, not evidence that these users edited
+program structure. Observed first differences included:
+
+- a different number or placement of projected exercise-set placeholders after
+  Liftosaur advanced the current prescription;
+- serializer expansion or movement of reusable `...exercise` forms;
+- movement or omission of comments attached to selected exercises;
+- multiline versus single-line rendering of otherwise equivalent exercise
+  definitions.
+
+The pristine serialization control matched the pristine built-in projection for
+38 of 59 programs and mismatched for 21 before any workout. Comparing progressed
+sources with that serialized baseline still matched only 8 of 59 at every
+depth. This shows both serializer representation and live-prescription shape are
+outside the current projection's equivalence boundary.
+
+One program, `gzcl-ggbb.md`, was not executable at any depth. Its nominal day 1
+finish script references the missing `successCounter` state variable for
+`t3a: Ab Wheel, Bodyweight`. This is the already tracked upstream Liftosaur
+`lifecycle-finish` failure, not a detector or projection mismatch, and it was
+kept visible rather than excluded from the corpus.
+
+### Judgment
+
+The current exact projection is not sufficient to bootstrap a long-running but
+structurally unmodified built-in automatically: observed coverage is 7/60 of the
+full corpus, or 7/59 of the executable corpus. The stable results through 16
+exposures are encouraging for the programs already inside its equivalence
+boundary, but do not rescue the 52 immediate false negatives.
+
+A follow-up may evaluate a structural representation that is invariant to the
+specific serializer rewrites above. Production autodetection must wait until
+that representation achieves exact matches across the generic executable corpus
+and is also tested against genuine structural edits and historical revisions.
 
 ## Dataset and method
 
@@ -87,22 +184,16 @@ production thresholds.
 
 ## Review judgment
 
-The simple detector remains viable if its product contract is deliberately
-narrow:
+This historical experiment rules out similarity as an automatic decision
+mechanism:
 
-- exact matches and a small, empirically clean near-match zone may automate;
-- everything else returns the closest candidate and immutable revision with
-  manual base/ref instructions;
-- close families must be represented in threshold tests, not treated as rare
-  anomalies;
+- similarity may return the closest candidate and immutable revision as an
+  informational hint with manual base/ref instructions;
+- even apparently clean near-match zones are sample-dependent and cannot prove
+  identity;
+- close families remain important negative cases for any later exact structural
+  representation;
 - normal merge conflicts continue through the existing conflict-workspace path.
 
-Before choosing a threshold, the final metric and normalization should be fixed,
-then evaluated against more upstream transitions and realistic held-out user
-modifications. The decisive evidence is zero observed false positives in the
-acceptance zone, especially across close families, with stability under small
-normalization changes. Recall is secondary.
-
-If no useful zero-false-positive zone survives that validation, the feature
-should defer more often or remain manual rather than grow into a sophisticated
-classifier.
+The next experiment therefore tests exact projected identity under accumulated
+real progression. It does not choose or tune a similarity threshold.
