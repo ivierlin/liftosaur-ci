@@ -66,6 +66,9 @@ Historical lineage tests are the primary basis for the acceptance boundary.
 Community modifications may later be useful as an independent validation set,
 but they do not become product catalogue entries.
 
+See the [upstream history evaluation](builtin-base-detection-evaluation.md) for
+the exploratory current-pair and time-travel results that informed this design.
+
 The eventual threshold should define a conservative acceptance zone supported
 by observed successful lineage cases while rejecting known wrong-winner and
 close-family cases. It should not be tuned merely to maximize the fraction of
