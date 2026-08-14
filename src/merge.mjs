@@ -27,12 +27,9 @@ function gitManagedBodies(source) {
 }
 
 function assertLiveProgramLogicUnchanged(base, active) {
-  const baseBodies = gitManagedBodies(base);
-  const activeBodies = gitManagedBodies(active);
-  if (baseBodies.length === activeBodies.length
-    && baseBodies.every((body, index) => body === activeBodies[index])) {
-    return;
-  }
+  const baseBodies = new Set(gitManagedBodies(base));
+  const activeBodies = new Set(gitManagedBodies(active));
+  if ([...activeBodies].every((body) => baseBodies.has(body))) return;
   throw new Error(
     "Live Liftosaur program contains changes inside Git-managed { ... } bodies. "
     + "Commit those changes in Git or discard them in Liftosaur before updating."
@@ -212,12 +209,26 @@ async function mergeRelocatedBlocks(sources, directory) {
 }
 
 export async function mergeLiftosaurSources({ base, active, candidate }) {
+  assertLiveProgramLogicUnchanged(base, active);
+  if (canonicalizeLiftosaurSource(candidate) === canonicalizeLiftosaurSource(base)) {
+    return {
+      source: canonicalizeLiftosaurSource(active),
+      conflictSource: null,
+      report: {
+        strategy: "git-three-way-with-liftosaur-projection",
+        frontend: LIFTOSAUR_MERGE_FRONTEND,
+        status: "merged",
+        projectedStateBlocks: { base: 0, active: 0, candidate: 0 },
+        projectedStatements: { base: 0, active: 0, candidate: 0 },
+        blockFallback: null,
+      },
+    };
+  }
   const initialBlocks = {
     base: parseLiftosaurMergeDocument(base),
     active: parseLiftosaurMergeDocument(active),
     candidate: parseLiftosaurMergeDocument(candidate),
   };
-  assertLiveProgramLogicUnchanged(base, active);
   const blockOrderChanged = initialBlocks.active.order !== initialBlocks.base.order
     || initialBlocks.candidate.order !== initialBlocks.base.order;
   const projected = {

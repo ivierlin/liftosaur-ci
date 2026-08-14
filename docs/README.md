@@ -21,6 +21,10 @@ authoritative safety and recovery contract for initialization, three-way state
 preservation, exact targets, Git deployment refs, writes, rollback, restore, and
 private artifacts.
 
+Read [Parser-backed generic merge evaluation](parser-backed-merge-evaluation.md)
+for the measured, non-production prototype of a parser-derived reversible merge
+projection over real progressed built-ins.
+
 ## Which local or automation command should I use?
 
 Read [Choose a CLI command](cli.md). It separates the everyday `update` command,

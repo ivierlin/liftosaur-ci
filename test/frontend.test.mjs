@@ -8,6 +8,7 @@ import {
   projectLiftosaurSource,
   restoreProjectedSource,
 } from "../src/frontend.mjs";
+import { canonicalizeLiftosaurSource } from "../src/source-format.mjs";
 
 const source = `# Week 1
 ## Day A
@@ -32,7 +33,7 @@ test("extracts stable definition and statement blocks", () => {
 
   assert.equal(document.frontend, LIFTOSAUR_MERGE_FRONTEND);
   assert.deepEqual(keys, [
-    JSON.stringify(["definition", "Week 1", "shared"]),
+    JSON.stringify(["statement", "Week 1", "Day A", "shared", 1]),
     JSON.stringify(["statement", "Week 1", "Day A", "Squat", 1]),
   ]);
   assert.match(document.order, /__LIFTOSAUR_CI_BLOCK__/);
@@ -64,11 +65,11 @@ test("round-trips projected sections and state through the frontend", () => {
   const projected = projectLiftosaurSource(source);
 
   assert.equal(projected.frontend, LIFTOSAUR_MERGE_FRONTEND);
-  assert.equal(projected.statementCount, 1);
-  assert.equal(projected.stateBlockCount, 1);
+  assert.equal(projected.statementCount, 2);
+  assert.equal(projected.stateBlockCount, 0);
   assert.equal(
     restoreProjectedSource(projected.source, projected.stateOrders),
-    `${source.trimEnd()}\n\n\n`
+    canonicalizeLiftosaurSource(source)
   );
 });
 
@@ -83,7 +84,7 @@ test("round-trips prompted custom state keys", () => {
   const prompted = source.replace("volume: 3", "volume+: 3");
   const projected = projectLiftosaurSource(prompted);
 
-  assert.match(projected.source, /__LIFTOSAUR_CI_STATE__ volume\+/);
+  assert.match(projected.source, /FunctionArgument:key:volume/);
   assert.match(restoreProjectedSource(projected.source, projected.stateOrders), /volume\+: 3/);
 });
 

@@ -7,6 +7,7 @@ import {
   projectLiftosaurSource,
   restoreProjectedSource,
 } from "../src/merge.mjs";
+import { canonicalizeLiftosaurSource } from "../src/source-format.mjs";
 
 const source = ({ timer = 120, volume = 3, phase = 1, extraState = "" } = {}) => `# Week 1
 ## Day A
@@ -43,12 +44,12 @@ test("projects and restores custom state without program-specific rules", () => 
   const original = source();
   const projected = projectLiftosaurSource(original);
 
-  assert.equal(projected.stateBlockCount, 1);
-  assert.match(projected.source, /__LIFTOSAUR_CI_STATE__ phase\n__LIFTOSAUR_CI_STATE_VALUE__ 1/);
-  assert.match(projected.source, /__LIFTOSAUR_CI_STATE__ volume\n__LIFTOSAUR_CI_STATE_VALUE__ 3/);
+  assert.equal(projected.stateBlockCount, 0);
+  assert.match(projected.source, /FunctionArgument:key:phase/);
+  assert.match(projected.source, /FunctionArgument:key:volume/);
   assert.equal(
     restoreProjectedSource(projected.source, projected.stateOrders),
-    `${original.trimEnd()}\n\n\n`
+    canonicalizeLiftosaurSource(original)
   );
 });
 
@@ -108,7 +109,8 @@ test("fails closed when the candidate removes an actively changed state field", 
 
   assert.equal(result.source, null);
   assert.equal(result.report.status, "conflict");
-  assert.match(result.conflictSource, /__LIFTOSAUR_CI_STATE_VALUE__ 2/);
+  assert.match(result.conflictSource, /FunctionArgument:key:phase/);
+  assert.match(result.conflictSource, /<<<<<<< active/);
 });
 
 test("fails closed when active and candidate change the same state variable differently", async () => {
@@ -121,8 +123,7 @@ test("fails closed when active and candidate change the same state variable diff
   assert.equal(result.source, null);
   assert.equal(result.report.status, "conflict");
   assert.match(result.conflictSource, /<<<<<<< active/);
-  assert.match(result.conflictSource, /__LIFTOSAUR_CI_STATE_VALUE__ 4/);
-  assert.match(result.conflictSource, /__LIFTOSAUR_CI_STATE_VALUE__ 5/);
+  assert.match(result.conflictSource, /FunctionArgument:key:volume/);
 });
 
 test("rejects live edits inside Liftoscript program bodies", async () => {

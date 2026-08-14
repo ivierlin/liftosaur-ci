@@ -443,6 +443,21 @@ function completeDay(source, day, api, completeSet, context = {}) {
   };
 }
 
+// Test-only access for corpus experiments that feed Liftosaur's exact serialized
+// output into the next nominal completed-workout lifecycle.
+export function progressNominalLiftosaurSourceForTesting(source, day, context) {
+  const api = loadApi();
+  const result = completeDay(source, day, api, completeNominalSet, context);
+  return {
+    serializedSource: result.serializedSource,
+    nextDay: result.nextDay,
+    context: {
+      settings: result.settings,
+      stats: result.stats,
+    },
+  };
+}
+
 function scenarioEntries(step, label) {
   if (!Number.isInteger(step.day) || step.day < 1) {
     throw new LiftosaurValidationError(`${label} day must be a positive integer`, "scenario");
