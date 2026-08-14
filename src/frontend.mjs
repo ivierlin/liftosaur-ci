@@ -4,11 +4,10 @@ import {
 } from "./source-format.mjs";
 import { loadLiftosaurRuntime, pinnedRuntimeRevision } from "./runtime.mjs";
 
-const STATE_MARKER = "__LIFTOSAUR_CI_STATE__";
-const STATE_VALUE = "__LIFTOSAUR_CI_STATE_VALUE__";
 const STATEMENT_MARKER = "__LIFTOSAUR_CI_STATEMENT__";
-const SECTION_MARKER = "__LIFTOSAUR_CI_SECTION__";
-const SECTION_VALUE = "__LIFTOSAUR_CI_SECTION_VALUE__";
+const ATOM_MARKER = "__LIFTOSAUR_CI_ATOM__";
+const ATOM_VALUE = "__LIFTOSAUR_CI_ATOM_VALUE__";
+const ATOM_END = "__LIFTOSAUR_CI_ATOM_END__";
 const STATEMENT_END = "__LIFTOSAUR_CI_STATEMENT_END__";
 const INITIALIZATION_STATE = "__LIFTOSAUR_CI_INITIALIZATION_STATE__";
 export const BLOCK_MARKER = "__LIFTOSAUR_CI_BLOCK__";
@@ -121,18 +120,6 @@ export function projectLiftosaurSourceForInitialization(source) {
   return projected;
 }
 
-function exercisePropertyName(source, section) {
-  const property = section.getChild("ExerciseProperty");
-  const name = property?.getChild("ExercisePropertyName");
-  return name ? nodeText(source, name) : undefined;
-}
-
-function exerciseFunctionName(source, section) {
-  const fn = section.getChild("ExerciseProperty")?.getChild("FunctionExpression");
-  const name = fn?.getChild("FunctionName");
-  return name ? nodeText(source, name) : undefined;
-}
-
 function exerciseVariationsIdentity(source, variations) {
   if (!variations) return "";
   return variations.getChildren("ExerciseVariation")
@@ -142,106 +129,97 @@ function exerciseVariationsIdentity(source, variations) {
     .join(" | ");
 }
 
-function parseStateArguments(argumentsText) {
-  const state = new Map();
-  const trimmed = argumentsText.trim();
-  if (!trimmed) return state;
+const OPAQUE_ATOM_TYPES = new Set(["Liftoscript", "ReuseLiftoscript"]);
 
-  for (const item of trimmed.split(",")) {
-    const separator = item.indexOf(":");
-    if (separator <= 0) {
-      throw new Error(`Unsupported progress: custom(...) state item: ${item.trim()}`);
+function statementAtoms(source, statement) {
+  const atoms = [];
+  function childSegment(parent, child, count) {
+    if (child.type.name === "ExerciseSection") {
+      const property = child.getChild("ExerciseProperty")
+        ?.getChild("ExercisePropertyName");
+      if (property) return `ExerciseSection:property:${nodeText(source, property)}`;
+      const kindCount = (kind) => {
+        let result = 1;
+        for (let sibling = child.prevSibling; sibling; sibling = sibling.prevSibling) {
+          if (sibling.type.name === "ExerciseSection" && sibling.getChild(kind)) result += 1;
+        }
+        return result;
+      };
+      if (child.getChild("ReuseSectionWithWeekDay")) {
+        return `ExerciseSection:reuse:${kindCount("ReuseSectionWithWeekDay")}`;
+      }
+      if (child.getChild("Superset")) return "ExerciseSection:superset";
+      if (child.getChild("ExerciseSets")) {
+        return `ExerciseSection:sets:${kindCount("ExerciseSets")}`;
+      }
     }
-    const key = item.slice(0, separator).trim();
-    const value = item.slice(separator + 1).trim();
-    if (!/^[A-Za-z][A-Za-z0-9_]*\+?$/.test(key) || !value) {
-      throw new Error(`Unsupported progress: custom(...) state item: ${item.trim()}`);
+    if (child.type.name === "FunctionArgument") {
+      const key = child.getChild("KeyValue")?.getChild("Keyword");
+      if (key) return `FunctionArgument:key:${nodeText(source, key)}`;
     }
-    if (state.has(key)) throw new Error(`Duplicate progress state variable: ${key}`);
-    if (value.includes("\n")) {
-      throw new Error(`Multiline progress state values are not supported yet: ${key}`);
-    }
-    state.set(key, value);
+    return `${child.type.name}:${count}`;
   }
-  return state;
-}
-
-function splitTopLevelSections(line) {
-  const sections = [];
-  let start = 0;
-  let round = 0;
-  let square = 0;
-  let curly = 0;
-  for (let index = 0; index < line.length; index += 1) {
-    const character = line[index];
-    if (character === "(") round += 1;
-    else if (character === ")") round -= 1;
-    else if (character === "[") square += 1;
-    else if (character === "]") square -= 1;
-    else if (character === "{") curly += 1;
-    else if (character === "}") curly -= 1;
-    if (
-      round === 0
-      && square === 0
-      && curly === 0
-      && line.slice(index, index + 3) === " / "
-    ) {
-      sections.push(line.slice(start, index).trim());
-      start = index + 3;
-      index += 2;
+  function visit(node, path) {
+    if (OPAQUE_ATOM_TYPES.has(node.type.name) || !node.firstChild) {
+      atoms.push({ path: path.join("/"), from: node.from, to: node.to });
+      return;
+    }
+    const counts = new Map();
+    for (let child = node.firstChild; child; child = child.nextSibling) {
+      if (child.type.name === "SectionSeparator") continue;
+      const count = (counts.get(child.type.name) ?? 0) + 1;
+      counts.set(child.type.name, count);
+      visit(child, [...path, childSegment(node, child, count)]);
     }
   }
-  sections.push(line.slice(start).trim());
-  return sections;
+  visit(statement, ["ExerciseExpression:1"]);
+  atoms.sort((left, right) => left.from - right.from || left.to - right.to);
+  const fragments = [];
+  let offset = statement.from;
+  for (let index = 0; index < atoms.length; index += 1) {
+    const atom = atoms[index];
+    if (atom.from > offset) {
+      const previous = atoms[index - 1]?.path ?? "start";
+      fragments.push({ key: `gap:${previous}->${atom.path}`, text: source.slice(offset, atom.from) });
+    }
+    fragments.push({ key: atom.path, text: source.slice(atom.from, atom.to) });
+    offset = atom.to;
+  }
+  if (offset < statement.to) {
+    fragments.push({ key: `gap:${atoms.at(-1)?.path ?? "start"}->end`, text: source.slice(offset, statement.to) });
+  }
+  return fragments;
 }
 
-function sectionKey(section, bareIndex) {
-  if (section.startsWith("...")) return "inherit";
-  const label = /^([A-Za-z][A-Za-z0-9_-]*):/.exec(section)?.[1];
-  return label ? `property:${label}` : `prescription:${bareIndex}`;
-}
-
-function projectStructuredStatements(source) {
-  const lines = source.split("\n");
+function projectStructuredStatements(source, root) {
+  const projected = [];
+  const identities = new Map();
+  let offset = 0;
   let week = "";
   let day = "";
   let statementCount = 0;
-  const identities = new Map();
-  const projected = [];
-
-  for (const line of lines) {
-    if (line.startsWith("# ")) week = line.slice(2).trim();
-    if (line.startsWith("## ")) day = line.slice(3).trim();
-    if (line.startsWith(" ") || !line.includes("progress: custom(")) {
-      projected.push(line);
-      continue;
-    }
-    const sections = splitTopLevelSections(line);
-    if (sections.length < 2) {
-      projected.push(line);
-      continue;
-    }
-
-    const identityBase = JSON.stringify([week, day, sections[0]]);
+  for (let node = root.firstChild; node; node = node.nextSibling) {
+    if (node.type.name === "Week") week = nodeText(source, node).slice(1).trim();
+    if (node.type.name === "Day") day = nodeText(source, node).slice(2).trim();
+    if (node.type.name !== "ExerciseExpression") continue;
+    projected.push(source.slice(offset, node.from));
+    const label = exerciseVariationsIdentity(source, node.getChild("ExerciseVariations"));
+    const identityBase = JSON.stringify([week, day, label]);
     const occurrence = (identities.get(identityBase) ?? 0) + 1;
     identities.set(identityBase, occurrence);
-    const identity = JSON.stringify([week, day, sections[0], occurrence]);
-    const keyCounts = new Map();
-    let bareIndex = 0;
-    statementCount += 1;
-    projected.push(`${STATEMENT_MARKER} ${identity}`);
-    for (let index = 0; index < sections.length; index += 1) {
-      let key = index === 0 ? "identity" : sectionKey(sections[index], bareIndex);
-      if (key.startsWith("prescription:")) bareIndex += 1;
-      const count = (keyCounts.get(key) ?? 0) + 1;
-      keyCounts.set(key, count);
-      if (count > 1) key = `${key}#${count}`;
-      projected.push(`${SECTION_MARKER} ${key}`);
-      projected.push(`${SECTION_VALUE} ${sections[index]}`);
+    const identity = JSON.stringify([week, day, label, occurrence]);
+    projected.push(`${STATEMENT_MARKER} ${identity}\n`);
+    for (const atom of statementAtoms(source, node)) {
+      projected.push(`${ATOM_MARKER} ${atom.key}\n`);
+      projected.push(`${ATOM_VALUE} ${Buffer.from(atom.text).toString("base64")}\n`);
+      projected.push(`${ATOM_END} ${atom.key}\n`);
     }
-    projected.push(`${STATEMENT_END} ${identity}`);
+    projected.push(`${STATEMENT_END} ${identity}\n`);
+    statementCount += 1;
+    offset = node.to;
   }
-  return { source: projected.join("\n"), statementCount };
+  projected.push(source.slice(offset));
+  return { source: projected.join(""), statementCount };
 }
 
 function restoreStructuredStatements(source) {
@@ -254,24 +232,28 @@ function restoreStructuredStatements(source) {
       continue;
     }
     const identity = line.slice(STATEMENT_MARKER.length + 1);
-    const sections = [];
+    const fragments = [];
     index += 1;
     while (index < lines.length && lines[index] !== `${STATEMENT_END} ${identity}`) {
-      const section = lines[index];
-      if (!section.startsWith(`${SECTION_MARKER} `)) {
-        throw new Error(`Projected statement section could not be restored: ${identity}`);
+      const atom = lines[index];
+      if (!atom.startsWith(`${ATOM_MARKER} `)) {
+        throw new Error(`Projected statement atom could not be restored: ${identity}`);
       }
       index += 1;
-      if (!lines[index]?.startsWith(`${SECTION_VALUE} `)) {
-        throw new Error(`Projected statement section value is missing: ${identity}`);
+      if (!lines[index]?.startsWith(`${ATOM_VALUE} `)) {
+        throw new Error(`Projected statement atom value is missing: ${identity}`);
       }
-      sections.push(lines[index].slice(SECTION_VALUE.length + 1));
+      fragments.push(Buffer.from(lines[index].slice(ATOM_VALUE.length + 1), "base64").toString());
+      index += 1;
+      if (lines[index] !== `${ATOM_END} ${atom.slice(ATOM_MARKER.length + 1)}`) {
+        throw new Error(`Projected statement atom end is missing: ${identity}`);
+      }
       index += 1;
     }
     if (index >= lines.length) {
       throw new Error(`Projected statement end is missing: ${identity}`);
     }
-    restored.push(sections.join(" / "));
+    restored.push(fragments.join("").replace(/\n$/, ""));
   }
   return restored.join("\n");
 }
@@ -330,26 +312,10 @@ export function parseLiftosaurMergeDocument(source) {
 
     const variations = node.getChild("ExerciseVariations");
     const label = exerciseVariationsIdentity(normalized, variations);
-    const sections = node.getChildren("ExerciseSection");
-    const isProgressStatement = sections.some((section) => (
-      exercisePropertyName(normalized, section) === "progress"
-      && exerciseFunctionName(normalized, section) === "custom"
-    ));
-    if (isProgressStatement) {
-      const identityBase = JSON.stringify([week, day, label]);
-      const occurrence = (statementIdentities.get(identityBase) ?? 0) + 1;
-      statementIdentities.set(identityBase, occurrence);
-      addBlock(JSON.stringify(["statement", week, day, label, occurrence]), text);
-      continue;
-    }
-    const isDefinition = /^[A-Za-z][A-Za-z0-9_-]*$/.test(label)
-      && sections.some((section) => exercisePropertyName(normalized, section) === "update");
-    if (isDefinition) {
-      addBlock(JSON.stringify(["definition", week, label]), text);
-      continue;
-    }
-    flushPending();
-    manifest.push(text);
+    const identityBase = JSON.stringify([week, day, label]);
+    const occurrence = (statementIdentities.get(identityBase) ?? 0) + 1;
+    statementIdentities.set(identityBase, occurrence);
+    addBlock(JSON.stringify(["statement", week, day, label, occurrence]), text);
   }
 
   flushPending();
@@ -364,77 +330,28 @@ export function parseLiftosaurMergeDocument(source) {
 export function projectLiftosaurSource(source) {
   const normalized = normalizeLineEndings(source);
   if ([
-    STATE_MARKER,
-    STATE_VALUE,
     STATEMENT_MARKER,
-    SECTION_MARKER,
-    SECTION_VALUE,
+    ATOM_MARKER,
+    ATOM_VALUE,
+    ATOM_END,
     STATEMENT_END,
     BLOCK_MARKER,
   ].some((marker) => normalized.includes(marker))) {
     throw new Error("Liftosaur source contains a reserved merge marker");
   }
 
-  const structured = projectStructuredStatements(normalized);
-  const stateOrders = [];
-  let stateBlockCount = 0;
-  const projected = structured.source.replace(
-    /progress:\s*custom\(([^)]*)\)/g,
-    (_match, argumentsText) => {
-      const parsedState = parseStateArguments(argumentsText);
-      if (parsedState.size === 0) return "progress: custom()";
-      stateBlockCount += 1;
-      stateOrders.push([...parsedState.keys()]);
-      const state = [...parsedState.entries()]
-        .sort(([left], [right]) => left.localeCompare(right));
-      const lines = state.flatMap(([key, value]) => [
-        `${STATE_MARKER} ${key}`,
-        `${STATE_VALUE} ${value}`,
-      ]);
-      return `progress: custom(\n${lines.join("\n")}\n)`;
-    }
-  );
+  const root = parsePlannerSyntax(normalized);
+  const structured = projectStructuredStatements(normalized, root);
   return {
     frontend: LIFTOSAUR_MERGE_FRONTEND,
-    source: projected,
-    stateBlockCount,
-    stateOrders,
+    source: structured.source,
+    stateBlockCount: 0,
+    stateOrders: [],
     statementCount: structured.statementCount,
   };
 }
 
-export function restoreProjectedSource(source, preferredOrders = []) {
+export function restoreProjectedSource(source) {
   const normalized = normalizeLineEndings(source);
-  let stateBlockIndex = 0;
-  const restored = normalized.replace(
-    /progress:\s*custom\(\n((?:(?:__LIFTOSAUR_CI_STATE__|__LIFTOSAUR_CI_STATE_VALUE__) [^\n]+\n)+)\)/g,
-    (_match, body) => {
-      const lines = body.trimEnd().split("\n");
-      const byKey = new Map();
-      for (let index = 0; index < lines.length; index += 2) {
-        if (!lines[index]?.startsWith(`${STATE_MARKER} `)
-          || !lines[index + 1]?.startsWith(`${STATE_VALUE} `)) {
-          throw new Error("Projected merge state has an invalid key/value pair");
-        }
-        const key = lines[index].slice(STATE_MARKER.length + 1);
-        const value = lines[index + 1].slice(STATE_VALUE.length + 1);
-        byKey.set(key, `${key}: ${value}`);
-      }
-      const preferred = preferredOrders[stateBlockIndex] ?? [];
-      stateBlockIndex += 1;
-      const ordered = [];
-      for (const key of preferred) {
-        if (byKey.has(key)) {
-          ordered.push(byKey.get(key));
-          byKey.delete(key);
-        }
-      }
-      ordered.push(...byKey.values());
-      return `progress: custom(${ordered.join(", ")})`;
-    }
-  );
-  if (restored.includes(STATE_MARKER) || restored.includes(STATE_VALUE)) {
-    throw new Error("Projected merge state could not be restored");
-  }
-  return canonicalizeLiftosaurSource(restoreStructuredStatements(restored));
+  return canonicalizeLiftosaurSource(restoreStructuredStatements(normalized));
 }

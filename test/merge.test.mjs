@@ -4,9 +4,11 @@ import test from "node:test";
 import {
   LIFTOSAUR_MERGE_FRONTEND,
   mergeLiftosaurSources,
+  mergeLiftosaurSourcesThroughProjectionForTesting,
   projectLiftosaurSource,
   restoreProjectedSource,
 } from "../src/merge.mjs";
+import { canonicalizeLiftosaurSource } from "../src/source-format.mjs";
 
 const source = ({ timer = 120, volume = 3, phase = 1, extraState = "" } = {}) => `# Week 1
 ## Day A
@@ -43,12 +45,12 @@ test("projects and restores custom state without program-specific rules", () => 
   const original = source();
   const projected = projectLiftosaurSource(original);
 
-  assert.equal(projected.stateBlockCount, 1);
-  assert.match(projected.source, /__LIFTOSAUR_CI_STATE__ phase\n__LIFTOSAUR_CI_STATE_VALUE__ 1/);
-  assert.match(projected.source, /__LIFTOSAUR_CI_STATE__ volume\n__LIFTOSAUR_CI_STATE_VALUE__ 3/);
+  assert.equal(projected.stateBlockCount, 0);
+  assert.match(projected.source, /FunctionArgument:key:phase/);
+  assert.match(projected.source, /FunctionArgument:key:volume/);
   assert.equal(
     restoreProjectedSource(projected.source, projected.stateOrders),
-    `${original.trimEnd()}\n\n\n`
+    canonicalizeLiftosaurSource(original)
   );
 });
 
@@ -108,7 +110,8 @@ test("fails closed when the candidate removes an actively changed state field", 
 
   assert.equal(result.source, null);
   assert.equal(result.report.status, "conflict");
-  assert.match(result.conflictSource, /__LIFTOSAUR_CI_STATE_VALUE__ 2/);
+  assert.match(result.conflictSource, /FunctionArgument:key:phase/);
+  assert.match(result.conflictSource, /<<<<<<< active/);
 });
 
 test("fails closed when active and candidate change the same state variable differently", async () => {
@@ -121,8 +124,7 @@ test("fails closed when active and candidate change the same state variable diff
   assert.equal(result.source, null);
   assert.equal(result.report.status, "conflict");
   assert.match(result.conflictSource, /<<<<<<< active/);
-  assert.match(result.conflictSource, /__LIFTOSAUR_CI_STATE_VALUE__ 4/);
-  assert.match(result.conflictSource, /__LIFTOSAUR_CI_STATE_VALUE__ 5/);
+  assert.match(result.conflictSource, /FunctionArgument:key:volume/);
 });
 
 test("rejects live edits inside Liftoscript program bodies", async () => {
@@ -146,6 +148,31 @@ test("rejects live edits to reused program bodies", async () => {
     /Commit those changes in Git or discard them in Liftosaur/
   );
 });
+
+test("the experiment can force unchanged candidates through the projection", async () => {
+  const active = source({ volume: 4 });
+  const result = await mergeLiftosaurSourcesThroughProjectionForTesting({
+    base: source(), active, candidate: source(),
+  });
+
+  assert.equal(result.report.status, "merged");
+  assert.ok(result.report.projectedStatements.active > 0);
+  assert.equal(canonicalizeLiftosaurSource(result.source), canonicalizeLiftosaurSource(active));
+});
+
+for (const [name, active] of [
+  ["deletion", "# Week 1\n## Day A\nSquat / 3x5 100kg\n"],
+  ["addition", `${source()}\nBench Press / 3x5 / progress: custom() {~ state.x = 1 ~}\n`],
+  ["modification", source().replace("state.volume = state.volume", "state.volume = 4")],
+  ["multiplicity change", source().replace("{~ state.volume = state.volume ~}", "{~ state.volume = state.volume ~} / update: custom() {~ state.volume = state.volume ~}")],
+]) {
+  test(`rejects live code body ${name}`, async () => {
+    await assert.rejects(
+      mergeLiftosaurSources({ base: source(), active, candidate: source({ timer: 180 }) }),
+      /Commit those changes in Git or discard them in Liftosaur/
+    );
+  });
+}
 
 test("merges a historical active prescription with a candidate warmup on the same statement", async () => {
   const base = `# Week 1

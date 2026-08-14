@@ -29,10 +29,7 @@ function gitManagedBodies(source) {
 function assertLiveProgramLogicUnchanged(base, active) {
   const baseBodies = gitManagedBodies(base);
   const activeBodies = gitManagedBodies(active);
-  if (baseBodies.length === activeBodies.length
-    && baseBodies.every((body, index) => body === activeBodies[index])) {
-    return;
-  }
+  if (JSON.stringify(activeBodies) === JSON.stringify(baseBodies)) return;
   throw new Error(
     "Live Liftosaur program contains changes inside Git-managed { ... } bodies. "
     + "Commit those changes in Git or discard them in Liftosaur before updating."
@@ -211,13 +208,31 @@ async function mergeRelocatedBlocks(sources, directory) {
   };
 }
 
-export async function mergeLiftosaurSources({ base, active, candidate }) {
+async function mergeLiftosaurSourcesInternal(
+  { base, active, candidate },
+  { bypassUnchangedCandidateOptimization = false } = {}
+) {
+  assertLiveProgramLogicUnchanged(base, active);
+  if (!bypassUnchangedCandidateOptimization
+    && canonicalizeLiftosaurSource(candidate) === canonicalizeLiftosaurSource(base)) {
+    return {
+      source: canonicalizeLiftosaurSource(active),
+      conflictSource: null,
+      report: {
+        strategy: "git-three-way-with-liftosaur-projection",
+        frontend: LIFTOSAUR_MERGE_FRONTEND,
+        status: "merged",
+        projectedStateBlocks: { base: 0, active: 0, candidate: 0 },
+        projectedStatements: { base: 0, active: 0, candidate: 0 },
+        blockFallback: null,
+      },
+    };
+  }
   const initialBlocks = {
     base: parseLiftosaurMergeDocument(base),
     active: parseLiftosaurMergeDocument(active),
     candidate: parseLiftosaurMergeDocument(candidate),
   };
-  assertLiveProgramLogicUnchanged(base, active);
   const blockOrderChanged = initialBlocks.active.order !== initialBlocks.base.order
     || initialBlocks.candidate.order !== initialBlocks.base.order;
   const projected = {
@@ -277,4 +292,14 @@ export async function mergeLiftosaurSources({ base, active, candidate }) {
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+}
+
+export async function mergeLiftosaurSources(sources) {
+  return mergeLiftosaurSourcesInternal(sources);
+}
+
+export async function mergeLiftosaurSourcesThroughProjectionForTesting(sources) {
+  return mergeLiftosaurSourcesInternal(sources, {
+    bypassUnchangedCandidateOptimization: true,
+  });
 }
