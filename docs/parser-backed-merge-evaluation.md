@@ -1,122 +1,106 @@
 # Parser-backed generic merge evaluation
 
-## Conclusion
+## Corrected conclusion
 
-A reversible projection built directly from the pinned Liftosaur parser is
-promising, but this prototype is not production-ready. It removes the previous
-hand-written section splitter and custom-state argument parser, merges five of
-six supported independent candidate-change classes cleanly, and exactly
-round-trips 57 of 59 executable built-ins through 16 accumulated exposures.
+The parser-backed frontend remains a useful research direction, but the
+corrected experiment gives materially weaker evidence than the first pass. It
+is not production-ready and this PR remains a draft.
 
-The remaining limitations are safety handling for serializer-expanded reused
-code and statement identity/layout around reuse. More importantly, the matrix
-found one wrong merge when changing an unrelated day. A wrong merge is a hard
-stop: the prototype must not be described as ready for deployment.
+The earlier 58/59 and 57/59 round-trip numbers were misleading: identical base
+and candidate sources triggered the production optimization that returned the
+active source without invoking the parser-backed projection. The corrected
+harness uses a test-only entry point that disables that optimization while
+leaving production behavior unchanged.
 
-This experiment concerns the core known-base merge engine. It does not infer a
-base, identify built-ins, use similarity, or reopen the rejected autodetection
-design recorded in draft PR #25.
+The genuine parser path round-trips 47/59 executable built-ins at every measured
+depth. Six fail closed at candidate-layout identity and six are rejected by the
+strict live-code check. That is evidence of a substantially larger
+representation problem, not a small two-program reuse edge case. No semantic
+reconstruction was attempted.
 
 ## Architecture tested
 
-The pinned official parser is the only Liftoscript syntax authority. Every
-`ExerciseExpression` is projected into deterministic line-oriented records for
-parser leaves and parser-defined gaps. Node paths distinguish exercise
-variations, sets and set parts, weights, percentages, RPE, timers, labels,
-properties, function names and arguments, reuse sections, supersets, and
-week/day statement identity. Liftoscript and reused code bodies remain opaque
-source atoms.
+The pinned Liftosaur parser remains the only syntax authority. Parser leaves and
+parser-defined gaps become reversible source atoms; opaque Liftoscript and reuse
+bodies remain source atoms. Restoration concatenates selected original slices.
+There is no copied grammar, custom serializer, evaluator-derived model, fuzzy
+matching, or program-family rule.
 
-Atom values contain reversible source slices, not normalized syntax. Restoration
-concatenates the selected original fragments; there is no Liftoscript serializer
-or evaluator-derived program model. Stable atom end markers give ordinary
-`git merge-file` enough separation to merge deletion of one function argument
-beside progression of another.
+Production still uses the unchanged-candidate shortcut after the safety check.
+Only `mergeLiftosaurSourcesThroughProjectionForTesting()` bypasses it.
 
-When `candidate == base`, ordinary three-way semantics select the exact active
-source directly after the live-code safety check. This avoids manufacturing
-conflicts from serializer-only statement layout.
+## Experiment A: accumulated real progression through projection
 
-## Experiment A: accumulated real progression
+The corpus contains 60 official built-ins from the pinned runtime. The known
+`gzcl-ggbb.md` `lifecycle-finish` failure is tracked separately, leaving 59
+normally executable programs. Each exact serialized result feeds the next
+exposure. At 1, 4, 8, and 16 exposures, success requires a merged result from a
+non-empty parser projection and exact canonical equality with active.
 
-The corpus contains 60 official built-ins from the pinned runtime. Fifty-nine
-are normally executable. `gzcl-ggbb.md` remains the separately tracked upstream
-`lifecycle-finish` failure involving the missing `successCounter` state.
-
-Each exact serialized progressed source was fed into the next nominal exposure.
-The merge used pristine source as both base and candidate and required exact
-canonical equality with active.
-
-| Exposure depth | Executable | Exact round-trip | Merge limitation |
+| Exposure depth | Executable | Exact parser-path round-trip | Failed closed |
 |---:|---:|---:|---:|
-| 1 | 59 | 58 | 1 |
-| 4 | 59 | 57 | 2 |
-| 8 | 59 | 57 | 2 |
-| 16 | 59 | 57 | 2 |
+| 1 | 59 | 47 | 12 |
+| 4 | 59 | 47 | 12 |
+| 8 | 59 | 47 | 12 |
+| 16 | 59 | 47 | 12 |
 
-`pzerofullbody.md` fails at exposure 1 because serialization expands reused code
-bodies that the fail-closed live-code check currently treats as a live edit.
-`shortcut-to-size.md` passes at exposure 1 and reaches the same safety limitation
-before exposure 4. These are merge/safety limitations, not lifecycle failures.
+Candidate-layout conflicts at every depth: `bullmastiff.md`,
+`calgary-barbell-16-week.md`, `gzcl-general-gainz-burrito-but-big.md`,
+`gzcl-general-gainz-riptide.md`, `gzcl-jacked-and-tan-2.md`, and
+`tsa-9-week-intermediate.md`.
+
+Strict live-code safety rejects `easy-strength.md`, `gzcl-uhf-5-weeks.md`,
+`gzcl-uhf-9-weeks.md`, `phat.md`, `pzerofullbody.md`, and
+`shortcut-to-size.md`. Serializer-expanded reuse is not excused or normalized;
+these remain unsupported/safety-limited reuse cases.
 
 ## Experiment B: independent candidate changes
 
-The initial matrix uses a genuinely progressed Starting Strength Phase 1 source
-after one exposure. Every supported mutation has an explicit source predicate;
-the harness does not equate `status: merged` with correctness.
+The active input is the exact Starting Strength Phase 1 serialization after one
+nominal exposure. For every clean classification, parser-derived evidence
+checks candidate-only atoms (or the intended statement deletion) and active-only
+progression atoms independently.
 
-| Mutation class | Outcome |
-|---|---|
-| Add an exercise | CLEAN MERGE |
-| Remove an unchanged exercise | CLEAN MERGE |
-| Change set/rep scheme beside live progression | CLEAN MERGE |
-| Change progression logic beside live state | CLEAN MERGE |
-| Add unrelated exercise property | CLEAN MERGE |
-| Change unrelated day | **WRONG MERGE** |
-| Change reusable definition | UNSUPPORTED TEST |
+| Mutation | Outcome | Candidate evidence | Active evidence |
+|---|---|---:|---:|
+| Add an exercise | CLEAN MERGE | 8/8 atoms | 5/5 atoms |
+| Remove an unchanged exercise | CLEAN MERGE | statement absent | 5/5 atoms |
+| Change set/rep scheme beside progression | CLEAN MERGE | 1/1 atom | 5/5 atoms |
+| Change progression logic beside state | CLEAN MERGE | 1/1 atom | 5/5 atoms |
+| Add unrelated exercise property | CLEAN MERGE | 6/6 atoms | 5/5 atoms |
+| Change unrelated day | CLEAN MERGE | 1/1 atom | 5/5 atoms |
+| Change reusable definition | UNSUPPORTED | not claimed | not claimed |
 
-Totals: 5 clean merges, 0 expected conflicts, 0 spurious conflicts, 1 wrong
-merge, and 1 unsupported test. The matrix is deliberately small and generic;
-it is evidence about the representation, not a production conformance claim.
+The corrected matrix has six clean merges, zero spurious conflicts, zero wrong
+merges, and one unsupported class. The previous unrelated-day wrong merge was a
+weak-oracle result; the corrected case verifies both sides. Reuse is not counted
+clean without a safe generic progressed case.
 
-## Experiment C: progression-change inventory
+## Experiment C: deliberate true conflicts
 
-At exposure 1, the harness compares parser-projected atoms from pristine
-Liftosaur serialization with the progressed serialization. Counts include atoms
-whose statement identity changed, so they describe projection pressure rather
-than unique semantic edits.
+Compact generic cases change the same parser atom differently on active and
+candidate. All four fail closed as expected: reps, weight, a timer property
+argument, and a progression-function argument. Result: 4 expected conflicts,
+0 wrong merges.
 
-| Parser-backed class | Differing projected atoms |
-|---|---:|
-| Sets, reps, and minimum reps | 3,009 |
-| Timers | 2,446 |
-| Other parser fragments | 1,621 |
-| Weights | 1,395 |
-| Percentages | 1,134 |
-| Properties | 1,069 |
-| RPE | 758 |
-| Reuse representation | 659 |
-| Progress/function arguments | 83 |
+## Experiment D: strict live-code safety
 
-The inventory confirms that real progression is not confined to custom-state
-arguments or `{ ... }` regions. Prescription fields dominate, while reuse
-representation remains a material cross-cutting class.
+The check now compares the sorted body arrays exactly, preserving multiplicity.
+It rejects deletion, addition, modification, and multiplicity changes in
+`{ ... }` / `{~ ... ~}` bodies. Result: 4 expected safety rejections, 0
+accepted live-code changes. This deliberately reduces corpus coverage rather
+than weakening the invariant.
 
-## Complexity judgment
+## Judgment
 
-The parser-backed projection makes `frontend.mjs` conceptually simpler in one
-important respect: it deletes the hand-written top-level slash scanner, custom
-argument parser, and regex-based statement projector. It does not copy the
-grammar, evaluate whole programs, or serialize Liftoscript.
+The frontend is conceptually simpler than the removed hand-written syntax
+scanner, but the corrected 47/59 result shows that the remaining work is no
+longer plausibly a tiny reuse-only adjustment. Six identity/layout failures and
+six strict-safety reuse failures would invite semantic reconstruction if pursued
+indiscriminately. Stop here: retain this as characterization evidence and do not
+expand production scope.
 
-The unresolved wrong merge and reuse safety cases show where the simplicity
-limit currently lies. Fixing them is justified only if it remains a small change
-to identity and opaque-body handling. If it requires definition inheritance,
-program-specific rules, fuzzy matching, or a semantic reconstruction layer,
-stop. Parser-backed reversible projection remains viable as a research
-direction, but the measured prototype is not yet viable for production.
-
-Reproduce all three experiments with:
+Reproduce the experiments with:
 
 ```text
 node test/evaluate-parser-merge.mjs

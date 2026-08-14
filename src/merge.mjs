@@ -27,9 +27,9 @@ function gitManagedBodies(source) {
 }
 
 function assertLiveProgramLogicUnchanged(base, active) {
-  const baseBodies = new Set(gitManagedBodies(base));
-  const activeBodies = new Set(gitManagedBodies(active));
-  if ([...activeBodies].every((body) => baseBodies.has(body))) return;
+  const baseBodies = gitManagedBodies(base);
+  const activeBodies = gitManagedBodies(active);
+  if (JSON.stringify(activeBodies) === JSON.stringify(baseBodies)) return;
   throw new Error(
     "Live Liftosaur program contains changes inside Git-managed { ... } bodies. "
     + "Commit those changes in Git or discard them in Liftosaur before updating."
@@ -208,9 +208,13 @@ async function mergeRelocatedBlocks(sources, directory) {
   };
 }
 
-export async function mergeLiftosaurSources({ base, active, candidate }) {
+async function mergeLiftosaurSourcesInternal(
+  { base, active, candidate },
+  { bypassUnchangedCandidateOptimization = false } = {}
+) {
   assertLiveProgramLogicUnchanged(base, active);
-  if (canonicalizeLiftosaurSource(candidate) === canonicalizeLiftosaurSource(base)) {
+  if (!bypassUnchangedCandidateOptimization
+    && canonicalizeLiftosaurSource(candidate) === canonicalizeLiftosaurSource(base)) {
     return {
       source: canonicalizeLiftosaurSource(active),
       conflictSource: null,
@@ -288,4 +292,14 @@ export async function mergeLiftosaurSources({ base, active, candidate }) {
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+}
+
+export async function mergeLiftosaurSources(sources) {
+  return mergeLiftosaurSourcesInternal(sources);
+}
+
+export async function mergeLiftosaurSourcesThroughProjectionForTesting(sources) {
+  return mergeLiftosaurSourcesInternal(sources, {
+    bypassUnchangedCandidateOptimization: true,
+  });
 }

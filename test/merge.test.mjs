@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   LIFTOSAUR_MERGE_FRONTEND,
   mergeLiftosaurSources,
+  mergeLiftosaurSourcesThroughProjectionForTesting,
   projectLiftosaurSource,
   restoreProjectedSource,
 } from "../src/merge.mjs";
@@ -147,6 +148,31 @@ test("rejects live edits to reused program bodies", async () => {
     /Commit those changes in Git or discard them in Liftosaur/
   );
 });
+
+test("the experiment can force unchanged candidates through the projection", async () => {
+  const active = source({ volume: 4 });
+  const result = await mergeLiftosaurSourcesThroughProjectionForTesting({
+    base: source(), active, candidate: source(),
+  });
+
+  assert.equal(result.report.status, "merged");
+  assert.ok(result.report.projectedStatements.active > 0);
+  assert.equal(canonicalizeLiftosaurSource(result.source), canonicalizeLiftosaurSource(active));
+});
+
+for (const [name, active] of [
+  ["deletion", "# Week 1\n## Day A\nSquat / 3x5 100kg\n"],
+  ["addition", `${source()}\nBench Press / 3x5 / progress: custom() {~ state.x = 1 ~}\n`],
+  ["modification", source().replace("state.volume = state.volume", "state.volume = 4")],
+  ["multiplicity change", source().replace("{~ state.volume = state.volume ~}", "{~ state.volume = state.volume ~} / update: custom() {~ state.volume = state.volume ~}")],
+]) {
+  test(`rejects live code body ${name}`, async () => {
+    await assert.rejects(
+      mergeLiftosaurSources({ base: source(), active, candidate: source({ timer: 180 }) }),
+      /Commit those changes in Git or discard them in Liftosaur/
+    );
+  });
+}
 
 test("merges a historical active prescription with a candidate warmup on the same statement", async () => {
   const base = `# Week 1
